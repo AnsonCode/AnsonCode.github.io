@@ -1,4 +1,4 @@
-baseURL = "https://ansoncode.github.io/" # <head> 里面的 baseurl 信息，填你的博客地址
+baseURL = "http://ansoncode.bazhentu.net/" # <head> 里面的 baseurl 信息，填你的博客地址
 title = "Anson`s Blog" # 浏览器的标题
 languageCode = "zh-cn" # 语言
 hasCJKLanguage = true # 开启可以让「字数统计」统计汉字
@@ -44,15 +44,15 @@ preserveTaxonomyNames = true
     since = 2017
     author = "Anson"                          # Author's name
     avatar = "/images/me/avatar.png"           # Author's avatar
-    subtitle = "Just for Fun"                  # Subtitle
+    subtitle = "会写代码的产品经理"                  # Subtitle
     cdn_url = ""           # Base CDN URL
     home_mode = "" # post or other
     enableGitalk = true # gitalk 评论系统
 
     google_verification = ""
 
-    description = "" # (Meta) 描述
-    keywords = "" # site keywords
+    description = "anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。" # (Meta) 描述
+    keywords = "golang;PMP" # site keywords
 
     beian = ""
     baiduAnalytics = ""
@@ -71,8 +71,8 @@ preserveTaxonomyNames = true
     # Medium = "xxoo"
 
 [params.gitalk] # Github: https://github.com/gitalk/gitalk
-    clientID = "5abafb88d519a0b1761e" # Your client ID
-    clientSecret = "f626d72fe0a92234b4c76a39ff168ac076016b0b" # Your client secret
+    clientID = "f5abafb88d519a0b1761e" # Your client ID
+    clientSecret = "ff626d72fe0a92234b4c76a39ff168ac076016b0b" # Your client secret
     repo = "https://github.com/AnsonCode/myblogtalk.git" # The repo to store comments
     owner = "AnsonCode" # Your GitHub ID
     admin= "AnsonCode" # Required. Github repository owner and collaborators. (Users who having write access to this repository)
