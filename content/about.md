@@ -1,7 +1,11 @@
 ---
-title: "About"
+title: "关于我"
 date: 2021-01-20T09:31:36+08:00
-tags: "技术"
+description: "会写代码的产品经理"
+tags: [ "golanger", "PMP", "PMer", "创业" ]
+categories:
+  - "开发"
+slug: "about-me"
 draft: false
 ---
 
