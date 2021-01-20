@@ -71,11 +71,11 @@ preserveTaxonomyNames = true
     # Medium = "xxoo"
 
 [params.gitalk] # Github: https://github.com/gitalk/gitalk
-    clientID = "" # Your client ID
-    clientSecret = "" # Your client secret
-    repo = "" # The repo to store comments
-    owner = "" # Your GitHub ID
-    admin= "" # Required. Github repository owner and collaborators. (Users who having write access to this repository)
+    clientID = "5abafb88d519a0b1761e" # Your client ID
+    clientSecret = "f626d72fe0a92234b4c76a39ff168ac076016b0b" # Your client secret
+    repo = "https://github.com/AnsonCode/myblogtalk.git" # The repo to store comments
+    owner = "AnsonCode" # Your GitHub ID
+    admin= "AnsonCode" # Required. Github repository owner and collaborators. (Users who having write access to this repository)
     id= "location.pathname" # The unique id of the page.
     labels= "gitalk" # Github issue labels. If you used to use Gitment, you can change it
     perPage= 15 # Pagination size, with maximum 100.
