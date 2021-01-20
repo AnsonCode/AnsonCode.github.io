@@ -44,10 +44,10 @@ preserveTaxonomyNames = true
     since = 2017
     author = "Anson"                          # Author's name
     avatar = "https://i.loli.net/2021/01/20/PfjiWupdZrtzINV.png"           # Author's avatar
-    subtitle = "会写代码的产品经理"                  # Subtitle
+    subtitle = "Anson，会写代码的产品经理"                  # Subtitle
     cdn_url = ""           # Base CDN URL
     home_mode = "" # post or other
-    enableGitalk = true # gitalk 评论系统
+    enableGitalk = false # gitalk 评论系统
 
     google_verification = ""
 
