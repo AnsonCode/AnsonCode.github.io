@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Mogeko`s Blog</title>
@@ -6,11 +6,7 @@
     <description>Recent content on Mogeko`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 20 Jan 2021 09:33:20 +0800</lastBuildDate>
-    
-	<atom:link href="https://anson.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 20 Jan 2021 09:33:20 +0800</lastBuildDate><atom:link href="https://anson.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>First</title>
       <link>https://anson.github.io/post/first/</link>
