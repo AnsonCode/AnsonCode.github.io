@@ -43,7 +43,7 @@ preserveTaxonomyNames = true
 [params]
     since = 2017
     author = "Anson"                          # Author's name
-    avatar = "https://sm.ms/image/PfjiWupdZrtzINV"           # Author's avatar
+    avatar = "https://i.loli.net/2021/01/20/PfjiWupdZrtzINV.png"           # Author's avatar
     subtitle = "会写代码的产品经理"                  # Subtitle
     cdn_url = ""           # Base CDN URL
     home_mode = "" # post or other
@@ -64,7 +64,7 @@ preserveTaxonomyNames = true
     # Twitter = "xxoo"
     Email   = "caoyanbin1993@foxmail.com"
     # Instagram = "xxoo"
-    Wechat = "/images/me/wechat.png"  # Wechat QRcode image
+    Wechat = "https://i.loli.net/2021/01/20/4VCpNqXahn75GfD.jpg"  # Wechat QRcode image
     # Facebook = "xxoo"
     # Telegram = "xxoo"
     # Dribbble = "xxoo"
