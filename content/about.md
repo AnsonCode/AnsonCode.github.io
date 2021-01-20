@@ -5,7 +5,6 @@ description: "会写代码的产品经理"
 tags: [ "golanger", "PMP", "PMer", "创业" ]
 categories:
   - "开发"
-slug: "about-me"
 draft: false
 ---
 
