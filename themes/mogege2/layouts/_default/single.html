@@ -62,11 +62,11 @@
                     <a href={{ . }}>{{ . }}</span>
             </p>
             <!-- anson 补充 参考：https://blog.csdn.net/qq_30552993/article/details/50251979-->
-
+            
             <div id="qr_code_pc_outer" >
                 <img src={{ replace "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=$data" "$data" . }}>
                 <p>扫一扫<br>阅读文章</p>
-            </div> -->
+            </div>
             <script>
                 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                     // alert("mobile")
@@ -76,6 +76,7 @@
                 }
             </script>
             <style> 
+            p { word-wrap:break-word; }
                 #qr_code_pc_outer {
                     display: none;
                     color: #717375;
@@ -92,6 +93,12 @@
                     font-size: 0.5em;
                 }
             </style>
+            {{ end }}
+            {{ with .Site.Params.expect }}
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>{{ . }} </span>
+                </p>
             {{ end }}
             {{ with .Site.Params.license }}
             <p class="copyright-item lincese">
