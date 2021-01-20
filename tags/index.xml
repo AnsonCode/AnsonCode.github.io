@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 20 Jan 2021 09:31:36 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Jan 2021 21:14:29 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>内存</title>
+      <link>http://ansoncode.bazhentu.net/tags/%E5%86%85%E5%AD%98/</link>
+      <pubDate>Wed, 20 Jan 2021 21:14:29 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/tags/%E5%86%85%E5%AD%98/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>计算机基础</title>
+      <link>http://ansoncode.bazhentu.net/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Wed, 20 Jan 2021 21:14:29 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>golanger</title>
       <link>http://ansoncode.bazhentu.net/tags/golanger/</link>

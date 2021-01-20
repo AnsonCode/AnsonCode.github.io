@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Anson`s Blog</title>
-    <link>http://ansoncode.bazhentu.net/posts/</link>
-    <description>Recent content in Posts on Anson`s Blog</description>
+    <title>计算机基础 on Anson`s Blog</title>
+    <link>http://ansoncode.bazhentu.net/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
+    <description>Recent content in 计算机基础 on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 20 Jan 2021 21:14:29 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Jan 2021 21:14:29 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>001万物之始——什么是大端对齐和小端对齐？</title>
       <link>http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B/</link>
@@ -14,15 +14,6 @@
       
       <guid>http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B/</guid>
       <description>前言 前端时间迷上了物联网，搞了一个控制硬件开关的demo。在阅读硬件通讯协议时，经常看到大端对齐和小端对齐，一脸懵逼，今天终于搞懂了。 什么是</description>
-    </item>
-    
-    <item>
-      <title>我的博客正式启动了</title>
-      <link>http://ansoncode.bazhentu.net/2021/first/</link>
-      <pubDate>Wed, 20 Jan 2021 09:33:20 +0800</pubDate>
-      
-      <guid>http://ansoncode.bazhentu.net/2021/first/</guid>
-      <description>hugo new about.md</description>
     </item>
     
   </channel>

@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/first/" />
     
-    <link rel="next" href="http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B/" />
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/first/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            我的博客正式启动了 | Anson`s Blog
+            001万物之始——什么是大端对齐和小端对齐？ | Anson`s Blog
         
     </title>
-    <meta name="title" content="我的博客正式启动了 | Anson`s Blog">
+    <meta name="title" content="001万物之始——什么是大端对齐和小端对齐？ | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "我的博客正式启动了",
-    "headline" : "我的博客正式启动了",
-    "description" : "hugo new about.md",
+    "name" : "001万物之始——什么是大端对齐和小端对齐？",
+    "headline" : "001万物之始——什么是大端对齐和小端对齐？",
+    "description" : "计算机基础知识",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
@@ -53,11 +53,11 @@
     "accountablePerson" : "Anson",
     "copyrightHolder" : "Anson",
     "copyrightYear" : "2021",
-    "datePublished": "2021-01-20 09:33:20 \u002b0800 CST",
-    "dateModified" : "2021-01-20 09:33:20 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/first\/",
-    "wordCount" : "3",
-    "keywords" : [  "Anson`s Blog"]
+    "datePublished": "2021-01-20 21:14:29 \u002b0800 CST",
+    "dateModified" : "2021-01-20 21:14:29 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B\/",
+    "wordCount" : "689",
+    "keywords" : [ "内存","计算机基础", "Anson`s Blog"]
 }
 </script>
 
@@ -146,7 +146,7 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">我的博客正式启动了</h1>
+        <h1 class="post-title" itemprop="name headline">001万物之始——什么是大端对齐和小端对齐？</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
@@ -154,7 +154,16 @@
                 </span>
                 in
                 
-                <span class="post-word-count">3 words</span>
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E5%BC%80%E5%8F%91/"> 开发, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">689 words</span>
         </div>
     </header>
 
@@ -174,7 +183,107 @@
         
         
 
-        <p>hugo new about.md</p>
+        <h2 id="前言">前言</h2>
+<p>前端时间迷上了物联网，搞了一个控制硬件开关的demo。在阅读硬件通讯协议时，经常看到大端对齐和小端对齐，一脸懵逼，今天终于搞懂了。</p>
+<h2 id="什么是大端对齐和小端对齐">什么是大端对齐和小端对齐？</h2>
+<p>要想搞清楚这个问题，我们需要先搞清楚两个概念：低（高）地址和低（高）位。</p>
+<h3 id="低地址栈顶和高地址栈低">低地址（栈顶）和高地址（栈低）</h3>
+<p>程序运行时的数据需要一个载体来存储，一般是寄存器。
+我们可以把寄存器比作一个有页码的作业本，按照0x00001-0x000100的顺序编号。那么，类比到计算机中，序号小的页码<em>0x00001</em>对应低地址，序号大的页码<em>0x000100</em>对应高地址。</p>
+<h3 id="低位和高位">低位和高位</h3>
+<p>低(高）位的概念容易与低（高）地址弄混，他其实是由我们的阅读习惯决定的。
+例如‘1234’,我们理解它的语义为“一千二百三十四”，而不是反过来“四千三百二十一”。这是因为我们的阅读习惯是从左到右，而非从右往左。对应的，1就是高位，4就是低位。这样说好理解吧？</p>
+<h3 id="王八的屁股规定">王八的屁股——规定</h3>
+<p>还回到作业本的例子，假设我们再每一页上写一个数字，有的同学喜欢按照顺序从前往后写子，用完第一页再用第二页，具体为：</p>
+<table>
+<thead>
+<tr>
+<th>内存数据</th>
+<th style="text-align:center">内存地址</th>
+<th style="text-align:right">存储内容</th>
+<th style="text-align:right">数字顺序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低</td>
+<td style="text-align:center">0x00001</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">高</td>
+</tr>
+<tr>
+<td>↓</td>
+<td style="text-align:center">0x00002</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">↓</td>
+</tr>
+<tr>
+<td>↓</td>
+<td style="text-align:center">0x00003</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">↓</td>
+</tr>
+<tr>
+<td>高</td>
+<td style="text-align:center">0x00004</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">低</td>
+</tr>
+</tbody>
+</table>
+<p>还有同学喜欢从后往前写，具体为：</p>
+<table>
+<thead>
+<tr>
+<th>内存数据</th>
+<th style="text-align:center">内存地址</th>
+<th style="text-align:right">存储内容</th>
+<th style="text-align:right">数字顺序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低</td>
+<td style="text-align:center">0x00001</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">低</td>
+</tr>
+<tr>
+<td>↓</td>
+<td style="text-align:center">0x00002</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">↑</td>
+</tr>
+<tr>
+<td>↓</td>
+<td style="text-align:center">0x00003</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">↑</td>
+</tr>
+<tr>
+<td>高</td>
+<td style="text-align:center">0x00004</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">高</td>
+</tr>
+</tbody>
+</table>
+<p>那么结果就呼之欲出了：</p>
+<ul>
+<li>
+<p>前一种内存的低位和数字的高位对齐，叫做：<em>大端对齐</em>；</p>
+</li>
+<li>
+<p>后一种内存的低位和数字的低位对齐，叫做：<em>小端对齐</em>；</p>
+</li>
+</ul>
+<p>值得注意的是，不同的操作系统对齐方式不同，在进行数据通讯时需要统一转为为约定格式，避免鸡同鸭讲。</p>
+<p>最后在送大家一个记忆的妙法：</p>
+<blockquote>
+<p>小弟弟：(小低低)小端对齐是：低地址和低位对齐；另一个就是大端对齐。</p>
+</blockquote>
+<h2 id="参考">参考</h2>
+<p><a href="https://zhidao.baidu.com/question/1900511789089474940.html">https://zhidao.baidu.com/question/1900511789089474940.html</a></p>
 
     </div>
 
@@ -189,7 +298,7 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2021/first/>http://ansoncode.bazhentu.net/2021/first/</span>
+                    <a href=http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B/>http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B/</span>
             </p>
             
             
@@ -202,6 +311,17 @@
 
     <div class="post-tags">
         
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E5%86%85%E5%AD%98/">
+                    #内存</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/">
+                    #计算机基础</a></span>
+            
+            </section>
+        
         <section>
                 <a href="javascript:window.history.back();">back</a></span> ·
                 <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
@@ -210,8 +330,8 @@
 
     <div class="post-nav">
         
+        <a href="http://ansoncode.bazhentu.net/2021/first/" class="prev" rel="prev" title="我的博客正式启动了"><i class="iconfont icon-left"></i>&nbsp;我的博客正式启动了</a>
         
-        <a href="http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B/" class="next" rel="next" title="001万物之始——什么是大端对齐和小端对齐？">001万物之始——什么是大端对齐和小端对齐？&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
