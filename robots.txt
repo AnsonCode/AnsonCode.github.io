@@ -63,4 +63,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: https://caoyanbin1993.github.io/anson.github.io/sitemap.xml
+Sitemap: https://caoyanbin1993.github.io/sitemap.xml
