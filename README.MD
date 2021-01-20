@@ -7,6 +7,13 @@ hugo --theme=hyde --baseUrl="http://anson.github.io/"
 
 ####
 
+
+#### 部署记录
+
+git push origin blog
+
+######
+
 1.记得要创建master分支：https://www.cnblogs.com/silencey/p/10794784.html
 
 
