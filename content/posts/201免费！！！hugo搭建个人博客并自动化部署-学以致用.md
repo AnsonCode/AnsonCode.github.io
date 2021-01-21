@@ -1,7 +1,10 @@
 ---
 title: "201免费！！！hugo搭建个人博客并自动化部署"
 date: 2021-01-20T22:37:29+08:00
-draft: true
+tags: [ "hugo"]
+categories:
+  - "开发"
+draft: false
 ---
 
 # 前言
@@ -228,8 +231,8 @@ git push -u origin blog #推送到github上
 4. 在github的项目设置中把blog设置为主分支
 
 ### 授权travis
-1. 前往[https://www.travis-ci.org/](https://www.travis-ci.org/)，并用github账户登陆
-2. 前往[https://www.travis-ci.org/account/repositories](https://www.travis-ci.org/account/repositories)授权travis访问刚刚新建仓库的权限
+1. 前往[https://travis-ci.com/](https://travis-ci.com/)，并用github账户登陆
+2. 前往[https://travis-ci.com/account/repositories](https://travis-ci.com/account/repositories)授权travis访问刚刚新建仓库的权限
 
 ![20210122030216](https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210122030216.png)
 
@@ -286,20 +289,20 @@ deploy:
 3. 将`theme`的值修改为`"mogege"`(主要是为了匹配`.travis.yml`文件中的`hugo  --enableGitInfo`)
 
 ### 提交站点
-1. 在本地初始化git，并新建blog分支
-2. 将本地仓库映射到github仓库
-3. 提交本地仓库的blog分支到github的blog分支
+1. 提交本地仓库的blog分支到github的blog分支
 ```bash
 git add .
 git commit -m "测试travis自动化部署"
 git push -u origin blog #注意-》提交本地blog分支到blog分支
 ```
+2. 前往[https://travis-ci.com/account/repositories](https://travis-ci.com/account/repositories)查看部署日志
+
 
 ### 域名配置(可选)
-
-自动化部署时github pages的custom domin被覆盖
-
-
+1. 前往域名服务商后台，设置域名CNAME解析到`"[git用户名].github.io"`
+2. 前往github当前仓库setting的github pages部分，设置custom domin为你的域名
+3. 在`/static`目录下新建`CNAME`文件，写入`你的域名`（主要是为了解决自定义域名被覆盖的问题）
+4. 访问你的域名试一试
 
 # 参考
 - hexo发布之后GitHub Pages自定义域名失效：https://craftboss.net/2019/10/22/hexo%E5%8F%91%E5%B8%83%E4%B9%8B%E5%90%8Egithubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88/
