@@ -56,7 +56,7 @@
     "datePublished": "2021-01-20 22:37:29 \u002b0800 CST",
     "dateModified" : "2021-01-20 22:37:29 \u002b0800 CST",
     "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/201%E5%85%8D%E8%B4%B9hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8\/",
-    "wordCount" : "4984",
+    "wordCount" : "5203",
     "keywords" : [ "hugo", "Anson`s Blog"]
 }
 </script>
@@ -163,7 +163,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">4984 words</span>
+                <span class="post-word-count">5203 words</span>
         </div>
     </header>
 
@@ -488,6 +488,10 @@ git commit -m <span style="color:#e6db74">&#34;测试travis自动化部署&#34;<
 git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog分支到blog分支</span>
 </code></pre></div><ol start="2">
 <li>前往<a href="https://travis-ci.com/account/repositories">https://travis-ci.com/account/repositories</a>查看部署日志</li>
+<li>若没有问题的话，前往github仓库，切换到master分支，可以看到来自travis提交的记录（这表明部署成功）</li>
+<li>访问<code>&quot;[git用户名].github.io&quot;</code>即可开始博客之旅</li>
+<li>以后每次新建文章，并将文章头部的<code>draft</code>置为<code>false</code>，提交git到blog分支即可</li>
+<li>稍等片刻，系统将自动化部署，并由github帮你进行文章的版本管理</li>
 </ol>
 <h3 id="域名配置可选">域名配置(可选)</h3>
 <ol>
@@ -496,6 +500,8 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
 <li>在<code>/static</code>目录下新建<code>CNAME</code>文件，写入<code>你的域名</code>（主要是为了解决自定义域名被覆盖的问题）</li>
 <li>访问你的域名试一试</li>
 </ol>
+<h1 id="后记">后记</h1>
+<p>恭喜你，看到这里，说明你已经掌握了 用hugo<strong>免费</strong>搭建个人博客并自动化发布部署 的所有技巧！</p>
 <h1 id="参考">参考</h1>
 <ul>
 <li>
