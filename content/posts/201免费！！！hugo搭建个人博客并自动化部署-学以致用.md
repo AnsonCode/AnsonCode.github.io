@@ -296,13 +296,19 @@ git commit -m "测试travis自动化部署"
 git push -u origin blog #注意-》提交本地blog分支到blog分支
 ```
 2. 前往[https://travis-ci.com/account/repositories](https://travis-ci.com/account/repositories)查看部署日志
-
+3. 若没有问题的话，前往github仓库，切换到master分支，可以看到来自travis提交的记录（这表明部署成功）
+4. 访问`"[git用户名].github.io"`即可开始博客之旅
+5. 以后每次新建文章，并将文章头部的`draft`置为`false`，提交git到blog分支即可
+6. 稍等片刻，系统将自动化部署，并由github帮你进行文章的版本管理
 
 ### 域名配置(可选)
 1. 前往域名服务商后台，设置域名CNAME解析到`"[git用户名].github.io"`
 2. 前往github当前仓库setting的github pages部分，设置custom domin为你的域名
 3. 在`/static`目录下新建`CNAME`文件，写入`你的域名`（主要是为了解决自定义域名被覆盖的问题）
 4. 访问你的域名试一试
+
+# 后记
+恭喜你，看到这里，说明你已经掌握了 用hugo**免费**搭建个人博客并自动化发布部署 的所有技巧！
 
 # 参考
 - hexo发布之后GitHub Pages自定义域名失效：https://craftboss.net/2019/10/22/hexo%E5%8F%91%E5%B8%83%E4%B9%8B%E5%90%8Egithubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88/
