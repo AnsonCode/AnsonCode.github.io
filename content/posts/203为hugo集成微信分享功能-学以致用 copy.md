@@ -47,3 +47,4 @@ draft: true
 - 【公众号开发】用Serverless快速上手微信公众号开发：https://www.jianshu.com/p/ed0ce24b1e3a
 - 微信公众平台开发指南：https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Access_Overview.html
 - nodejs 中koa框架下的微信公众号开发初始篇:https://www.cnblogs.com/shtyhome/p/5676845.html
+- 微信 JS 接口签名校验工具：https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign
