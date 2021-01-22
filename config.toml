@@ -49,6 +49,7 @@ preserveTaxonomyNames = true
     cdn_url = ""           # Base CDN URL
     home_mode = "" # post or other
     enableGitalk = false # gitalk 评论系统
+    enableTwikoo = true # Twikoo 评论系统
 
     google_verification = ""
 
@@ -70,6 +71,12 @@ preserveTaxonomyNames = true
     # Telegram = "xxoo"
     # Dribbble = "xxoo"
     # Medium = "xxoo"
+
+[params.twikoo]
+  envId="anson-blog-talk-8gwaudnw7b5c558b" # 腾讯云环境ids
+  enable=true
+  visitor=true
+  # region: ap-guangzhou # 环境地域，默认为 ap-shangha
 
 [params.gitalk] # Github: https://github.com/gitalk/gitalk
     clientID = "f5abafb88d519a0b1761e" # Your client ID

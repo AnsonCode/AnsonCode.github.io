@@ -141,6 +141,8 @@
                 {{ partial "gitalk.html" . }}
             {{ else if .Site.Params.enableUtteranc }}
                 {{ partial "utteranc.html" . }}
+            {{ else if .Site.Params.enableTwikoo }}
+                {{ partial "twikoo.html" . }}
             {{ end }}
         {{ end }}
     </div>
