@@ -83,6 +83,7 @@ preserveTaxonomyNames = true
   # region: ap-guangzhou # 环境地域，默认为 ap-shangha
 
 [params.wechat]
+  debug=false #是否调试模式
   link="https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign" # 获取微信签名的地址
 
 [params.gitalk] # Github: https://github.com/gitalk/gitalk
