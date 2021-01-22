@@ -223,6 +223,7 @@
 
   
 
+
                 </div>
             </main>
             <footer class="footer">
@@ -250,6 +251,8 @@
 
 
 
+
+
 <script defer src="/js/vendor_main.min.js"></script>
 
 
@@ -263,6 +266,183 @@
 
 
 
+
+
+
+
+
+
+  <script>
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    var currurl = decodeURIComponent(location.href.split('#')[0]);
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+
+    let arr = [
+        "http://astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "http://res.wx.qq.com/open/js/jweixin-1.4.0.js"
+    ]
+    if (true) {
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = 'Anson`s Blog'
+            
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://i.loli.net/2021/01/20/PfjiWupdZrtzINV.png"
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            wx.config({
+                debug: false, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "updateTimelineShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "updateTimelineShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                wx.updateTimelineShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
 
 
         </div>

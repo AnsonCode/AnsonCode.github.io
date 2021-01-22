@@ -8,11 +8,11 @@
     <language>zh-cn</language>
     <lastBuildDate>Wed, 20 Jan 2021 22:37:29 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>201免费！！！hugo搭建个人博客并自动化部署</title>
-      <link>http://ansoncode.bazhentu.net/2021/201%E5%85%8D%E8%B4%B9hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/</link>
+      <title>201用hugo搭建免费的个人博客并自动化部署</title>
+      <link>http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/</link>
       <pubDate>Wed, 20 Jan 2021 22:37:29 +0800</pubDate>
       
-      <guid>http://ansoncode.bazhentu.net/2021/201%E5%85%8D%E8%B4%B9hugo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/</guid>
+      <guid>http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/</guid>
       <description>前言 本文详细介绍了“如何用hugo免费搭建个人博客并自动化发布部署”，原理为：hugo基于博客模板（皮肤）把markdown文件生成网页，利</description>
     </item>
     
