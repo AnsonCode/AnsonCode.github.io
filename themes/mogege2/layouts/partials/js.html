@@ -1,8 +1,10 @@
+
 {{ $highlight := resources.Get "/js/highlight.pack.js" }}
 {{ $main := resources.Get "/js/main.js" }}
 
 
-{{ $main := slice  $highlight $main | resources.Concat "/js/vendor_main.js" | resources.Minify}}
+<!-- 将js文件合并起来 并压缩 -->
+{{ $main := slice  $highlight $main  | resources.Concat "/js/vendor_main.js" | resources.Minify}}
 <!-- Main -->
 <script defer src="{{ printf "%s" $main.RelPermalink }}"></script>
 
@@ -36,7 +38,16 @@
 <script> pangu.spacingPage();</script>
 {{ end }}
 
+
 {{ range .Site.Params.custom.js }}
 <!-- Custom -->>
 <script defer src="{{ . | absURL }}" ></script>
+{{ end }}
+
+<!-- {{ $wechat := resources.Get "/js/wechat.js" }}
+<script defer src="{{ printf "%s" $wechat.RelPermalink }}"></script> -->
+
+
+{{ if .Site.Params.Wechat.link }}
+  {{ partial "wechat_mp.html" . }}
 {{ end }}

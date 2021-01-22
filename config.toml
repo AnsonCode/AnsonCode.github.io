@@ -60,6 +60,10 @@ preserveTaxonomyNames = true
     baiduAnalytics = ""
 
     license= '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
+[params.custom]
+    js= [
+      #"http://res.wx.qq.com/open/js/jweixin-1.4.0.js", #微信JS
+    ]
 
 [params.social]
     GitHub = "AnsonCode"
@@ -77,6 +81,9 @@ preserveTaxonomyNames = true
   enable=true
   visitor=true
   # region: ap-guangzhou # 环境地域，默认为 ap-shangha
+
+[params.wechat]
+  link="https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign" # 获取微信签名的地址
 
 [params.gitalk] # Github: https://github.com/gitalk/gitalk
     clientID = "f5abafb88d519a0b1761e" # Your client ID

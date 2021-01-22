@@ -1,9 +1,9 @@
 ---
-title: "201免费！！！hugo搭建个人博客并自动化部署"
+title: "201用hugo搭建免费的个人博客并自动化部署"
 date: 2021-01-20T22:37:29+08:00
 tags: [ "hugo"]
 categories:
-  - "开发"
+  - "学以致用"
 draft: false
 ---
 
