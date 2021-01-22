@@ -48,3 +48,4 @@ draft: true
 - 微信公众平台开发指南：https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Access_Overview.html
 - nodejs 中koa框架下的微信公众号开发初始篇:https://www.cnblogs.com/shtyhome/p/5676845.html
 - 微信 JS 接口签名校验工具：https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign
+- 微信开发 遇到 config:invalid url domain:https://blog.csdn.net/u010575112/article/details/52661936

@@ -43,7 +43,7 @@ preserveTaxonomyNames = true
 [params]
     since = 2017
     author = "Anson"                          # Author's name
-    avatar = "https://i.loli.net/2021/01/20/PfjiWupdZrtzINV.png"           # Author's avatar
+    avatar = "http://hanshitu.bazhentu.net/image/avatar.png"           # Author's avatar
     subtitle = "Anson，会写代码的产品经理"                  # Subtitle
     expect  = "专注云开发相关技术及产品，寻找合作机会" #个人期待
     cdn_url = ""           # Base CDN URL
