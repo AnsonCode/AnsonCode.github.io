@@ -251,13 +251,13 @@
                 timestamp: data.timestamp, 
                 nonceStr: data.nonceStr, 
                 signature: data.signature,
-                jsApiList: ["checkJsApi", "updateAppMessageShareData", "updateTimelineShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
             });
   
             wx.ready(function () {
                 
                 wx.checkJsApi({
-                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "updateTimelineShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
                     success: function (res) {
                         
                         
@@ -276,15 +276,15 @@
                     }
                 })
                 
-                wx.updateTimelineShareData({
-                    title: title, 
-                    desc: desc, 
-                    link: currurl, 
-                    imgUrl: imgUrl, 
-                    success: function () {
-                        
-                    }
-                });
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 wx.onMenuShareTimeline({
                     title: title, 
