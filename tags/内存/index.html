@@ -222,10 +222,10 @@
     let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
 
     let arr = [
-        "http://astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
-        "http://res.wx.qq.com/open/js/jweixin-1.4.0.js"
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.4.0.js"
     ]
-    if (true) {
+    if (isWeixin) {
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
             let title = '内存'

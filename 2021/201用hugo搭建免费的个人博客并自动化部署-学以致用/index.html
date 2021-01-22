@@ -727,10 +727,10 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
     let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
 
     let arr = [
-        "http://astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
-        "http://res.wx.qq.com/open/js/jweixin-1.4.0.js"
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.4.0.js"
     ]
-    if (true) {
+    if (isWeixin) {
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
             let title = '201用hugo搭建免费的个人博客并自动化部署'
