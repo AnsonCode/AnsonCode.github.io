@@ -173,10 +173,8 @@
 
 
 
-
-
-
   <script>
+    
     function loadJs(url) {
         return new Promise((resolve, reject) => {
             var script = document.createElement('script');
@@ -228,10 +226,10 @@
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
             let title = '404 Page not found'
-            
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
-            let imgUrl =  "http://hanshitu.bazhentu.net/image/avatar.png"
+            let imgUrl =  "http://hanshitu.bazhentu.net/image/avatar.png" 
+            
 
             let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
             let data = await JQ.get(link, { url: currurl })
@@ -242,8 +240,9 @@
             
             
             
+            let debug= false 
             wx.config({
-                debug:  false , 
+                debug: debug, 
                 appId: data.appId, 
                 timestamp: data.timestamp, 
                 nonceStr: data.nonceStr, 

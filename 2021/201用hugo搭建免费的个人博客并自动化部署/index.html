@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B-%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" />
-    
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2021/002%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            201用hugo搭建免费的个人博客并自动化部署 | Anson`s Blog
+            201十分钟！用hugo搭建免费的个人博客并自动化部署 | Anson`s Blog
         
     </title>
-    <meta name="title" content="201用hugo搭建免费的个人博客并自动化部署 | Anson`s Blog">
+    <meta name="title" content="201十分钟！用hugo搭建免费的个人博客并自动化部署 | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "201用hugo搭建免费的个人博客并自动化部署",
-    "headline" : "201用hugo搭建免费的个人博客并自动化部署",
-    "description" : "前言 本文详细介绍了“如何用hugo免费搭建个人博客并自动化发布部署”，原理为：hugo基于博客模板（皮肤）把markdown文件生成网页，利",
+    "name" : "201十分钟！用hugo搭建免费的个人博客并自动化部署",
+    "headline" : "201十分钟！用hugo搭建免费的个人博客并自动化部署",
+    "description" : "前言 本文详细介绍了“如何用hugo免费搭建个人博客并自动化发布部署”，原理是：用hugo把markdown文件和博客模板（皮肤）合并生成网页",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
@@ -55,9 +55,9 @@
     "copyrightYear" : "2021",
     "datePublished": "2021-01-20 22:37:29 \u002b0800 CST",
     "dateModified" : "2021-01-20 22:37:29 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8\/",
-    "wordCount" : "5222",
-    "keywords" : [ "hugo", "Anson`s Blog"]
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2\/",
+    "wordCount" : "4790",
+    "keywords" : [ "hugo","travis-ci","github pages", "Anson`s Blog"]
 }
 </script>
 
@@ -146,7 +146,7 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">201用hugo搭建免费的个人博客并自动化部署</h1>
+        <h1 class="post-title" itemprop="name headline">201十分钟！用hugo搭建免费的个人博客并自动化部署</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
@@ -163,7 +163,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">5222 words</span>
+                <span class="post-word-count">4790 words</span>
         </div>
     </header>
 
@@ -186,17 +186,25 @@
         
 
         <h1 id="前言">前言</h1>
-<p>本文详细介绍了“如何用hugo<strong>免费</strong>搭建个人博客并自动化发布部署”，原理为：hugo基于博客模板（皮肤）把markdown文件生成网页，利用github pages服务托管上述网页，实现免费博客。具体细节如下：</p>
+<p>本文详细介绍了“如何用hugo<strong>免费</strong>搭建个人博客并自动化发布部署”，原理是：用hugo把markdown文件和博客模板（皮肤）合并生成网页，利用github pages服务托管上述网页，实现免费博客。具体细节如下：</p>
 <ol>
 <li>将个人博客系统发布到github的特殊仓库的<code>blog</code>分支中；</li>
-<li>当提交本地仓库到github时，github通过webhook通知travis-ci；</li>
-<li>travis-ci拉去最新的仓库，并执行特定脚本（hugo 生成页面脚本），生成html文件；</li>
-<li>travis-ci自动将生成的html文件提交到本仓库的<code>master</code>分支；</li>
-<li>本仓库开启了github pages功能，可以通过特殊域名访问；</li>
+<li>当提交本地仓库<code>blog</code>分支到github时，github通过webhook通知travis-ci；</li>
+<li>travis-ci拉取<code>blog</code>分支，并执行特定脚本（hugo），生成<code>public</code>文件；</li>
+<li>travis-ci自动将<code>public</code>文件提交到本仓库的<code>master</code>分支；</li>
+<li>本仓库<code>master</code>分支开启了github pages功能，可以通过特殊域名访问；</li>
 </ol>
-<p>需要如下背景知识或条件：</p>
+<pre><code class="language-plantuml" data-lang="plantuml">@startuml
+本机 -&gt; github :push(all)-&gt;blog分支
+github-&gt;travisCI :webhook触发
+travisCI-&gt;travisCI : hugo指令(./public)
+travisCI-&gt;github :push(./public)-&gt;master分支(github token)
+github-&gt;github:pages服务
+github-&gt;本机 :本机或公网访问
+@enduml
+</code></pre><p>学会了该原理，将网页托管到自建服务器或者OSS中也不再话下，尽管发挥想象把。参考本文搭建博客需要如下背景知识或条件：</p>
 <ul>
-<li>git基本操作</li>
+<li>git基本操作技能</li>
 <li>github账户</li>
 <li>vscode编辑器</li>
 </ul>
@@ -246,13 +254,13 @@
 </code></pre></div><p>若提示如下，说明安装成功。</p>
 <pre><code>Hugo Static Site Generator v0.80.0/extended windows/amd64 BuildDate: unknown
 </code></pre><p>若提示如下，则说明<em>系统环境变量</em>设置错误或未生校。</p>
-<pre><code>hugo : 无法将“hugo”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确，然后再试一次。
-所在位置 行:1 字符: 1
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo : 无法将“hugo”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确，然后再试一次。
+所在位置 行:1 字符: <span style="color:#ae81ff">1</span>
 + hugo version
 + ~~~~
-    + CategoryInfo          : ObjectNotFound: (hugo:String) [], CommandNotFoundException
+    + CategoryInfo          : ObjectNotFound: <span style="color:#f92672">(</span>hugo:String<span style="color:#f92672">)</span> <span style="color:#f92672">[]</span>, CommandNotFoundException
     + FullyQualifiedErrorId : CommandNotFoundException
-</code></pre><h3 id="新建站点">新建站点</h3>
+</code></pre></div><h3 id="新建站点">新建站点</h3>
 <ol>
 <li>新建文件夹用于存储博客，用vscode打开文件夹
 <ul>
@@ -262,15 +270,15 @@
 </li>
 <li>在上一级目录中执行<code>hugo new site [替换成你的文件夹]</code>创建站点(提示如下)</li>
 </ol>
-<pre><code>Congratulations! Your new Hugo site is created in [你的目录].
-Just a few more steps and you're ready to go:
-1. Download a theme into the same-named folder. #下载主题到themes目录
-   Choose a theme from https://themes.gohugo.io/ or #从官方下载主题
-   create your own with the &quot;hugo new theme &lt;THEMENAME&gt;&quot; command. #新建主题
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Congratulations! Your new Hugo site is created in <span style="color:#f92672">[</span>你的目录<span style="color:#f92672">]</span>.
+Just a few more steps and you<span style="color:#960050;background-color:#1e0010">&#39;</span>re ready to go:
+1. Download a theme into the same-named folder. <span style="color:#75715e">#下载主题到themes目录</span>
+   Choose a theme from https://themes.gohugo.io/ or <span style="color:#75715e">#从官方下载主题</span>
+   create your own with the <span style="color:#e6db74">&#34;hugo new theme &lt;THEMENAME&gt;&#34;</span> command. <span style="color:#75715e">#新建主题</span>
 2. Perhaps you want to add some content. You can add single files 
-   with &quot;hugo new &lt;SECTIONNAME&gt;\&lt;FILENAME&gt;.&lt;FORMAT&gt;&quot;.# 新建内容
-3. Start the built-in live server via &quot;hugo server&quot;. # 本地启动服务
-</code></pre><h3 id="安装模板及预览">安装模板及预览</h3>
+   with <span style="color:#e6db74">&#34;hugo new &lt;SECTIONNAME&gt;\&lt;FILENAME&gt;.&lt;FORMAT&gt;&#34;</span>.# 新建内容
+3. Start the built-in live server via <span style="color:#e6db74">&#34;hugo server&#34;</span>. <span style="color:#75715e"># 本地启动服务</span>
+</code></pre></div><h3 id="安装模板及预览">安装模板及预览</h3>
 <ol>
 <li>前往hugo官网选择中意的模板下载，前往<a href="https://themes.gohugo.io/">这里</a>
 <ul>
@@ -288,14 +296,14 @@ Just a few more steps and you're ready to go:
 <li>录入<code>hugo new posts/[文章名].md</code>新建文章</li>
 <li>在<code>content/posts</code>目录中可以看到该文章</li>
 </ol>
-<pre><code>--- #头部起始位
-title: &quot;001万物之始 内存对齐&quot; #文章标题
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">--- #头部起始位
+title: &#34;001万物之始 内存对齐&#34; #文章标题
 date: 2021-01-21T01:12:44+08:00 #文章日期
 draft: true #是否为草稿（false发布|true草稿）
 --- #头部结束位
 
 这里是文章内容，需要用markdown语法来写，其实很简单，等我填坑
-</code></pre><ol start="4">
+</code></pre></div><ol start="4">
 <li>刷新<code>http://localhost:1313/posts</code>可以看到文章展示出来了</li>
 </ol>
 <h3 id="配置站点">配置站点</h3>
@@ -505,37 +513,34 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
 <h1 id="参考">参考</h1>
 <ul>
 <li>
-<p>hexo发布之后GitHub Pages自定义域名失效：https://craftboss.net/2019/10/22/hexo%E5%8F%91%E5%B8%83%E4%B9%8B%E5%90%8Egithubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88/</p>
+<p><a href="https://olowolo.com/post/hugo-quick-start/?utm_source=cyhour.com">Hugo 从入门到会用</a></p>
 </li>
 <li>
-<p><a href="https://www.gohugo.org/doc/templates/functions/">https://www.gohugo.org/doc/templates/functions/</a></p>
+<p><a href="https://mogeko.me/2018/018/">hugo模板配置</a></p>
 </li>
 <li>
-<p>Hexo 博客终极玩法：云端写作，自动部署：https://segmentfault.com/a/1190000017797561?utm_source=tag-newest</p>
+<p><a href="https://www.gohugo.org/doc/templates/functions/">hugo文档-函数</a></p>
 </li>
 <li>
-<p>Hugo搭建个人博客与自动部署：https://kxcblog.com/post/blog/1.hugo-blog/</p>
+<p><a href="https://segmentfault.com/a/1190000017797561?utm_source=tag-newest">Hexo 博客终极玩法：云端写作，自动部署</a></p>
 </li>
 <li>
-<p>Hugo 自动化部署脚本 deploy.py：https://www.gohugo.org/2015/11/21/hugo-deploy-script/</p>
+<p><a href="https://kxcblog.com/post/blog/1.hugo-blog/">Hugo搭建个人博客与自动部署</a></p>
 </li>
 <li>
-<p>搭建 Hugo 静态博客并配置自动部署：https://www.hyec.me/posts/hugo-and-auto-deploy/</p>
+<p><a href="https://www.gohugo.org/2015/11/21/hugo-deploy-script/">Hugo 自动化部署脚本 deploy.py</a></p>
 </li>
 <li>
-<p>使用Travis-CI部署Hugo，实现自动化部署:https://blog.csdn.net/still_night/article/details/104838505/</p>
+<p><a href="https://www.hyec.me/posts/hugo-and-auto-deploy/">搭建 Hugo 静态博客并配置自动部署</a></p>
 </li>
 <li>
-<p>hugo模板配置：https://mogeko.me/2018/018/</p>
+<p><a href="http://researchlab.github.io/2016/05/08/travis-ci-deploy-hexo-blog/">⭐使用Travis CI自动构建Hexo静态博客</a></p>
 </li>
 <li>
-<p>搭建 Hugo 静态博客并配置自动部署：http://malonghua.com/post/25.html</p>
+<p><a href="https://blog.csdn.net/still_night/article/details/104838505/">使用Travis-CI部署Hugo，实现自动化部署</a></p>
 </li>
 <li>
-<p>⭐使用Travis CI自动构建Hexo静态博客：http://researchlab.github.io/2016/05/08/travis-ci-deploy-hexo-blog/</p>
-</li>
-<li>
-<p>Hugo 从入门到会用：https://olowolo.com/post/hugo-quick-start/?utm_source=cyhour.com</p>
+<p><a href="https://craftboss.net/2019/10/22/hexo%E5%8F%91%E5%B8%83%E4%B9%8B%E5%90%8Egithubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88/">hexo发布之后GitHub Pages自定义域名失效</a></p>
 </li>
 </ul>
 
@@ -553,12 +558,12 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/>http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/</span>
+                    <a href=http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/>http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -611,6 +616,12 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
             <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/hugo/">
                     #hugo</a></span>
             
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/travis-ci/">
+                    #travis-ci</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/github-pages/">
+                    #github pages</a></span>
+            
             </section>
         
         <section>
@@ -621,8 +632,10 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
 
     <div class="post-nav">
         
-        <a href="http://ansoncode.bazhentu.net/2021/001%E4%B8%87%E7%89%A9%E4%B9%8B%E5%A7%8B-%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" class="prev" rel="prev" title="001万物之始——什么是大端对齐和小端对齐？"><i class="iconfont icon-left"></i>&nbsp;001万物之始——什么是大端对齐和小端对齐？</a>
+        <a href="http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" class="prev" rel="prev" title="001什么是大端对齐和小端对齐？"><i class="iconfont icon-left"></i>&nbsp;001什么是大端对齐和小端对齐？</a>
         
+        
+        <a href="http://ansoncode.bazhentu.net/2021/002%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/" class="next" rel="next" title="002内存对齐">002内存对齐&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -671,6 +684,21 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
 
 
 
+<script src="https://cdn.jsdelivr.net/gh/jmnote/plantuml-encoder@1.2.4/dist/plantuml-encoder.min.js" integrity="sha256-Qsk2KRBCN5qVZX7B+8+2IvQl1Aqc723qV1tBCQaVoqo=" crossorigin="anonymous"></script>
+<script>
+(function(){
+  let plantumlPrefix = "language-plantuml";
+  Array.prototype.forEach.call(document.querySelectorAll("[class^=" + plantumlPrefix + "]"), function(code){
+    let image = document.createElement("IMG");
+    image.loading = 'lazy'; 
+    image.src = 'http://www.plantuml.com/plantuml/svg/~1' + plantumlEncoder.encode(code.innerText);
+    code.parentNode.insertBefore(image, code);
+    code.style.display = 'none';
+  });
+})();
+</script>
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
@@ -681,10 +709,8 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
 
 
 
-
-
-
   <script>
+    
     function loadJs(url) {
         return new Promise((resolve, reject) => {
             var script = document.createElement('script');
@@ -735,11 +761,11 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = '201用hugo搭建免费的个人博客并自动化部署'
-            
+            let title = '201十分钟！用hugo搭建免费的个人博客并自动化部署'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
-            let imgUrl =  "http://hanshitu.bazhentu.net/image/avatar.png"
+            let imgUrl =  "http://hanshitu.bazhentu.net/image/avatar.png" 
+            
 
             let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
             let data = await JQ.get(link, { url: currurl })
@@ -750,8 +776,9 @@ git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog�
             
             
             
+            let debug= false 
             wx.config({
-                debug:  false , 
+                debug: debug, 
                 appId: data.appId, 
                 timestamp: data.timestamp, 
                 nonceStr: data.nonceStr, 

@@ -121,7 +121,7 @@
     <h2 class="post-title" style="text-align:right;padding-bottom:2em">-&nbsp;Categories&nbsp;·&nbsp;学以致用&nbsp;-</h2>
     
     <article class="archive-item">
-        <a href="http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/" class="archive-item-link hvr-underline-from-center">201用hugo搭建免费的个人博客并自动化部署</a>
+        <a href="http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" class="archive-item-link hvr-underline-from-center">201十分钟！用hugo搭建免费的个人博客并自动化部署</a>
         <span class="archive-item-date">
             January 20, 2021
         </span>
@@ -176,10 +176,8 @@
 
 
 
-
-
-
   <script>
+    
     function loadJs(url) {
         return new Promise((resolve, reject) => {
             var script = document.createElement('script');
@@ -231,10 +229,10 @@
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
             let title = '学以致用'
-            
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
-            let imgUrl =  "http://hanshitu.bazhentu.net/image/avatar.png"
+            let imgUrl =  "http://hanshitu.bazhentu.net/image/avatar.png" 
+            
 
             let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
             let data = await JQ.get(link, { url: currurl })
@@ -245,8 +243,9 @@
             
             
             
+            let debug= false 
             wx.config({
-                debug:  false , 
+                debug: debug, 
                 appId: data.appId, 
                 timestamp: data.timestamp, 
                 nonceStr: data.nonceStr, 
