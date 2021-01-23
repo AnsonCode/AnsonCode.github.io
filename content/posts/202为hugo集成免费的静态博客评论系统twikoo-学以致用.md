@@ -1,7 +1,7 @@
 ---
-title: "202基于hugo搭建免费的静态博客评论系统Twikoo"
+title: "202云开发尝试！基于hugo搭建免费的静态博客评论系统Twikoo"
 date: 2021-01-22T16:37:29+08:00
-tags: [ "hugo"]
+tags: [ "hugo","serverless","twikoo"]
 categories:
   - "学以致用"
 draft: true

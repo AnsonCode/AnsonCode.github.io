@@ -1,22 +1,34 @@
 ---
-title: "201用hugo搭建免费的个人博客并自动化部署"
+title: "201十分钟！用hugo搭建免费的个人博客并自动化部署"
 date: 2021-01-20T22:37:29+08:00
-tags: [ "hugo"]
+tags: [ "hugo","travis-ci","github pages"]
 categories:
   - "学以致用"
 draft: false
+plantuml: true
 ---
 
 # 前言
-本文详细介绍了“如何用hugo**免费**搭建个人博客并自动化发布部署”，原理为：hugo基于博客模板（皮肤）把markdown文件生成网页，利用github pages服务托管上述网页，实现免费博客。具体细节如下：
+本文详细介绍了“如何用hugo**免费**搭建个人博客并自动化发布部署”，原理是：用hugo把markdown文件和博客模板（皮肤）合并生成网页，利用github pages服务托管上述网页，实现免费博客。具体细节如下：
 1. 将个人博客系统发布到github的特殊仓库的`blog`分支中；
-2. 当提交本地仓库到github时，github通过webhook通知travis-ci；
-3. travis-ci拉去最新的仓库，并执行特定脚本（hugo 生成页面脚本），生成html文件；
-4. travis-ci自动将生成的html文件提交到本仓库的`master`分支；
-5. 本仓库开启了github pages功能，可以通过特殊域名访问；
+2. 当提交本地仓库`blog`分支到github时，github通过webhook通知travis-ci；
+3. travis-ci拉取`blog`分支，并执行特定脚本（hugo），生成`public`文件；
+4. travis-ci自动将`public`文件提交到本仓库的`master`分支；
+5. 本仓库`master`分支开启了github pages功能，可以通过特殊域名访问；
 
-需要如下背景知识或条件：
-- git基本操作
+```plantuml
+@startuml
+本机 -> github :push(all)->blog分支
+github->travisCI :webhook触发
+travisCI->travisCI : hugo指令(./public)
+travisCI->github :push(./public)->master分支(github token)
+github->github:pages服务
+github->本机 :本机或公网访问
+@enduml
+```
+
+学会了该原理，将网页托管到自建服务器或者OSS中也不再话下，尽管发挥想象把。参考本文搭建博客需要如下背景知识或条件：
+- git基本操作技能
 - github账户
 - vscode编辑器
 
@@ -68,7 +80,7 @@ hugo version
 Hugo Static Site Generator v0.80.0/extended windows/amd64 BuildDate: unknown
 ```
 若提示如下，则说明*系统环境变量*设置错误或未生校。
-```
+```bash
 hugo : 无法将“hugo”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确，然后再试一次。
 所在位置 行:1 字符: 1
 + hugo version
@@ -83,7 +95,7 @@ hugo : 无法将“hugo”项识别为 cmdlet、函数、脚本文件或可运�
     - 点击 终端->新终端，打开终端
     - 在终端中，输入`cd ..`进入上一级目录
 2. 在上一级目录中执行`hugo new site [替换成你的文件夹]`创建站点(提示如下)
-```
+```bash
 Congratulations! Your new Hugo site is created in [你的目录].
 Just a few more steps and you're ready to go:
 1. Download a theme into the same-named folder. #下载主题到themes目录
@@ -106,7 +118,7 @@ hugo server --minify --theme mogege
 1. 在终端右上角点击“+”新建终端
 2. 录入`hugo new posts/[文章名].md`新建文章
 3. 在`content/posts`目录中可以看到该文章
-```
+```markdown
 --- #头部起始位
 title: "001万物之始 内存对齐" #文章标题
 date: 2021-01-21T01:12:44+08:00 #文章日期
@@ -311,17 +323,16 @@ git push -u origin blog #注意-》提交本地blog分支到blog分支
 恭喜你，看到这里，说明你已经掌握了 用hugo**免费**搭建个人博客并自动化发布部署 的所有技巧！心动不如行动，马上搭建你的BLOG吧！
 
 # 参考
-- hexo发布之后GitHub Pages自定义域名失效：https://craftboss.net/2019/10/22/hexo%E5%8F%91%E5%B8%83%E4%B9%8B%E5%90%8Egithubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88/
+- [Hugo 从入门到会用](https://olowolo.com/post/hugo-quick-start/?utm_source=cyhour.com)
+- [hugo模板配置](https://mogeko.me/2018/018/)
 
-- https://www.gohugo.org/doc/templates/functions/
+- [hugo文档-函数](https://www.gohugo.org/doc/templates/functions/)
 
 
-- Hexo 博客终极玩法：云端写作，自动部署：https://segmentfault.com/a/1190000017797561?utm_source=tag-newest
-- Hugo搭建个人博客与自动部署：https://kxcblog.com/post/blog/1.hugo-blog/
-- Hugo 自动化部署脚本 deploy.py：https://www.gohugo.org/2015/11/21/hugo-deploy-script/
-- 搭建 Hugo 静态博客并配置自动部署：https://www.hyec.me/posts/hugo-and-auto-deploy/
-- 使用Travis-CI部署Hugo，实现自动化部署:https://blog.csdn.net/still_night/article/details/104838505/
-- hugo模板配置：https://mogeko.me/2018/018/
-- 搭建 Hugo 静态博客并配置自动部署：http://malonghua.com/post/25.html
-- ⭐使用Travis CI自动构建Hexo静态博客：http://researchlab.github.io/2016/05/08/travis-ci-deploy-hexo-blog/
-- Hugo 从入门到会用：https://olowolo.com/post/hugo-quick-start/?utm_source=cyhour.com
+- [Hexo 博客终极玩法：云端写作，自动部署](https://segmentfault.com/a/1190000017797561?utm_source=tag-newest)
+- [Hugo搭建个人博客与自动部署](https://kxcblog.com/post/blog/1.hugo-blog/)
+- [Hugo 自动化部署脚本 deploy.py](https://www.gohugo.org/2015/11/21/hugo-deploy-script/)
+- [搭建 Hugo 静态博客并配置自动部署](https://www.hyec.me/posts/hugo-and-auto-deploy/)
+- [⭐使用Travis CI自动构建Hexo静态博客](http://researchlab.github.io/2016/05/08/travis-ci-deploy-hexo-blog/)
+- [使用Travis-CI部署Hugo，实现自动化部署](https://blog.csdn.net/still_night/article/details/104838505/)
+- [hexo发布之后GitHub Pages自定义域名失效](https://craftboss.net/2019/10/22/hexo%E5%8F%91%E5%B8%83%E4%B9%8B%E5%90%8Egithubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88/)

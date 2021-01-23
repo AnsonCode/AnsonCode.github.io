@@ -1,5 +1,5 @@
 ---
-title: "202基于hugo搭建免费的静态博客评论系统"
+title: "203为hugo博客集成微信分享功能"
 date: 2021-01-22T16:37:29+08:00
 tags: [ "hugo"]
 categories:

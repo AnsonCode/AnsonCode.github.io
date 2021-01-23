@@ -6,3 +6,9 @@ draft: false
 ---
 
 hugo new about.md
+
+```plantuml
+@startuml
+Bob -> Alice : hello
+@enduml
+```

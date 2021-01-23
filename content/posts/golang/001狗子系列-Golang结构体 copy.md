@@ -9,3 +9,5 @@ draft: true
 
 *p
 //引用和解引用
+
+![golang channel 无缓冲通讯](https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210123114251.png)

@@ -44,10 +44,6 @@
 <script defer src="{{ . | absURL }}" ></script>
 {{ end }}
 
-<!-- {{ $wechat := resources.Get "/js/wechat.js" }}
-<script defer src="{{ printf "%s" $wechat.RelPermalink }}"></script> -->
-
-
 {{ if .Site.Params.Wechat.link }}
   {{ partial "wechat_mp.html" . }}
 {{ end }}
