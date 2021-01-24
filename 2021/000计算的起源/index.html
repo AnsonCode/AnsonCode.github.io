@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/first/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/000%E8%AE%A1%E7%AE%97%E7%9A%84%E8%B5%B7%E6%BA%90/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            001计算机起源？ | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="001计算机起源？ | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/ansoncode.bazhentu.net\/"
+    },
+    "articleSection" : "posts",
+    "name" : "001计算机起源？",
+    "headline" : "001计算机起源？",
+    "description" : "大端对齐和小端对齐是啥玩意",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-20 21:14:29 \u002b0800 CST",
+    "dateModified" : "2021-01-20 21:14:29 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/000%E8%AE%A1%E7%AE%97%E7%9A%84%E8%B5%B7%E6%BA%90\/",
+    "wordCount" : "5244",
+    "keywords" : [ "内存", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://ansoncode.bazhentu.net/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://ansoncode.bazhentu.net/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">001计算机起源？</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-20 itemprop="datePublished">January 20, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">5244 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="前言">前言</h2>
+<h1 id="通讯">通讯</h1>
+<p>通讯-》</p>
+<p>莫斯密码</p>
+<p>布莱叶盲文</p>
+<p>由手电筒到电路</p>
+<p>电报与继电器</p>
+<p>十进制到二进制（算盘）</p>
+<p>逻辑与开关</p>
+<p>逻辑门</p>
+<h1 id="二进制运算器">二进制运算器</h1>
+<h2 id="加法器">加法器</h2>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_243" alt="二进制加法表" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_260" alt="二进制加法表_拆分" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_246" alt="二进制加法_案例" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_261" alt="异或门和与门" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_258" alt="异或门符号" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_262" alt="半加器组成" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_263" alt="半加器简化" loading="lazy" ></p>
+<p>两个半加法器的进位输出是不会同时为1的。或门在这里已经足够，因为或门除了在输入都为1的时候以外，其他情况下结果和异或门结果相同。
+<img src="https://res.weread.qq.com/wrepub/epub_33381009_265" alt="全加器组成" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_266" alt="全加器简化" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_267" alt="全加器枚举值" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_272" alt="8位相加" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_273" alt="8位相加简化" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_276" alt="8位相加再简化" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_277" alt="16位相加" loading="lazy" ></p>
+<p>继电器-》真空管-》晶体管</p>
+<p>以上就是“脉冲进位”，加法器的总体速度等于数字的位数乘以全加器器件的速度。更快的叫做：前置进位</p>
+<h2 id="减法器">减法器</h2>
+<h3 id="避免借位">避免借位</h3>
+<p>253- 176</p>
+<p>253- 176 + 1000 - 1000</p>
+<p>253- 176 + 999 + 1 - 1000</p>
+<p>253 + (999 - 176) + 1 - 1000</p>
+<h3 id="避免">避免</h3>
+<p>176- 253</p>
+<p>999- 253=746</p>
+<p>176+ 746=922</p>
+<p>922- 999？-》-（999-922）</p>
+<pre><code>$$
+\begin{array}{c:c:c}
+a &amp; b &amp; c \\\\
+a &amp; b &amp; c
+\end{array}
+$$
+</code></pre><p>$$
+\begin{array}{c:c}
+&amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1
+\\ \hline
+.- &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+\\ \hline
+&amp; ? &amp; ? &amp; ? &amp; ? &amp; ? &amp; ? &amp; ? &amp; ?
+\end{array}
+\tag{1.1}
+$$</p>
+<hr>
+<p>第一步，用11111111（即255）减去减数：</p>
+<p>$$
+\begin{array}{c:c}
+&amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+\\<br>
+.- &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+\\ \hline
+&amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+\end{array}
+\tag{1.1}
+$$</p>
+<p>因此对1求补数有时也会称为相反数（negation）或反码（inverse）。</p>
+<p>第二步，将减数对1的补数与被减数相加：</p>
+<p>$$
+\begin{array}{c:c}
+&amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 &amp; 1
+\\ \hline
+.+ &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 1 &amp; 1
+\\ \hline
+1  &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0
+\end{array}
+\tag{1.1}
+$$</p>
+<p>第三步，将上式所得结果加1：</p>
+<p>$$
+\begin{array}{c:c}
+&amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0
+\\ \hline
+.+&amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+\\ \hline
+&amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1
+\end{array}
+\tag{1.1}
+$$</p>
+<p>第四步，减去100000000（即256）：</p>
+<p>$$
+\begin{array}{c:c}
+&amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1
+\\ \hline
+.-&amp;1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+\\ \hline
+&amp; &amp;  &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 1
+\end{array}
+\tag{1.1}
+$$</p>
+<p>结果就等于十进制数的77。</p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_306" alt="XOR" loading="lazy" ></p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_309" alt="XOR" loading="lazy" ></p>
+<p>最高有效位（最左位）作为符号位（sign bit）。符号位中，1表示负数，0表示正数。</p>
+<p>现在，二进制数可以有两种不同的使用方法。二进制数可以是有符号的，也可以是无符号的。无符号的8位二进制数所表示的范围是0～255。有符号的8位二进制表示的范围是-128～127。无论是有符号的还是无符号的，数字本身是无法显示的。例如，如果有一个人问：“有一个8位二进制数，值为10110110。它相当于十进制的多少？”你必须先问：“它是有符号数还是无符号数？它可能为-74或者182。”</p>
+<h1 id="反馈与触发器">反馈与触发器</h1>
+<p>振荡器：https://res.weread.qq.com/wrepub/epub_33381009_313</p>
+<p>振荡器简化：https://res.weread.qq.com/wrepub/epub_33381009_318</p>
+<p>振荡器简化2：https://res.weread.qq.com/wrepub/epub_33381009_319</p>
+<p>振荡器随时间的输出及循环：https://res.weread.qq.com/wrepub/epub_33381009_322</p>
+<p>这幅图表示随着时间的推移，振荡器的输出在0和1之间按照固有的规律交替变化。正因为这一点，振荡器又经常被称为时钟（clock），通过振荡进行计数也是一种计时方式</p>
+<p>一个循环所占用的时间就是该振荡器的周期（period），周期的倒数是频率。</p>
+<p>或非门：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">NOR</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<h2 id="电路中的跷跷板触发器计数">电路中的跷跷板——触发器（计数）</h2>
+<p>触发器1：https://res.weread.qq.com/wrepub/epub_33381009_325</p>
+<p>触发器2：https://res.weread.qq.com/wrepub/epub_33381009_326</p>
+<p>触发器3：https://res.weread.qq.com/wrepub/epub_33381009_327</p>
+<p>触发器4：https://res.weread.qq.com/wrepub/epub_33381009_328</p>
+<p>触发器5：https://res.weread.qq.com/wrepub/epub_33381009_329</p>
+<p>触发器6：</p>
+<ul>
+<li>
+<p>接通上面的开关，灯泡被点亮，断开此开关灯泡仍然亮着。</p>
+</li>
+<li>
+<p>接通下面的开关，灯泡被熄灭，断开此开关灯泡仍然不亮。</p>
+</li>
+</ul>
+<p>触发器电路可以保持信息，它可以“记住”某些信息。特别地，对于本章先前所讲述的触发器，它可以记住最近一次是哪个开关先闭合。</p>
+<p>触发器和跷跷板有着很强的相似性。跷跷板也有两个稳定状态，它不会长期停留在不稳定的中间位置。通过观察跷跷板，我们很容易推测出哪边最后一次被压下来。</p>
+<h1 id="ram64kb8">RAM(64KB*8)</h1>
+<h1 id="heading"></h1>
+<p>我们人类的创造能力与勤奋精神常常令我感叹不已，但人类的本性却是相当懒惰的。举个简单而又常见的例子，我们总是不情愿工作。我们对工作的反感是如此的强烈——当然人类也很聪明——以至于情愿花费大量的时间去设计并制造一些设备，哪怕这些设备只能将工作时间缩减几分钟。悠闲地躺在吊床上，看着自己刚发明的新奇工具自动修剪草坪，没有什么事情能比这更让我们快乐的神经为之一动了。</p>
+<h1 id="npn二极管代替继电器">NPN二极管（代替继电器）</h1>
+<p>二极管的逻辑电路：https://res.weread.qq.com/wrepub/epub_33381009_523</p>
+<h1 id="存储器">存储器</h1>
+<p>RAM 随机访问访问存储器，RAM就像一本书，我们可以翻到它的任意一页</p>
+<p>堆栈，后进先出存储器（last-in-first-out，LIFO）</p>
+<p>堆栈的功能是怎样实现的呢？首先，堆栈其实就是一段普通的RAM存储空间，只是这段空间相对独立不另作他用。8080微处理器设置了一个专门的16位寄存器对这段存储空间寻址，这个特殊的寄存器称为堆栈指针（SP，Stack Pointer）。</p>
+<p>Call指令</p>
+<p>跳转指令和Return指令？</p>
+<p>PC寄存器</p>
+<h1 id="编码的历史">编码的历史</h1>
+<p>ascii-》unicode-&gt;</p>
+<h1 id="总线">总线</h1>
+<p>●数据输出信号：微处理器产生</p>
+<p>●数据输入信号：RAM传给处理器</p>
+<p>●控制信号：</p>
+<h2 id="输入设备">输入设备</h2>
+<p>我们称键盘硬件提供的代码为扫描码（scan code）。当按下键盘上的某个按键时，一小段计算机程序就会计算出这个按键对应的ASCII码（如果有的话）。</p>
+<p>电路图：https://res.weread.qq.com/wrepub/epub_33381009_646</p>
+<p>0110：https://res.weread.qq.com/wrepub/epub_33381009_646</p>
+<h2 id="输出设备">输出设备</h2>
+<h3 id="显示器">显示器</h3>
+<p>它是只读存储器（read-only memory），即ROM。它是一种集成电路，在生产时里面已经填入了数据，固定的地址输出的数据是不变的</p>
+<p>用10个地址信号和8个输出信号。其中7个地址信号是用来确定ASCII码字符的（这7个地址位来自视频板上RAM的数据输出）。其他三个地址信号则用来表示行。举个例子来说，最高行用000表示，最低行用111表示。8个输出位就是每行的8个像素。</p>
+<h1 id="永久存储设备">永久存储设备</h1>
+<p>以几何学角度来看，磁盘是能够实现快速访问的介质。磁盘围绕其中心旋转，连到臂上的一个或多个磁头从磁盘外沿向中间移动，通过磁头可以快速访问磁盘上的任何区域。</p>
+<p>磁盘的表面被划分成许多同心圆，称为磁道（tracks），每个磁道又被划分成像圆饼切片形状的扇区（sectors），每个扇区可以存放一定数量的字节，通常为512字节。</p>
+<p>memory（内存）仅仅表示半导体随机访问存储器；storage（存储器）用来指任何的存储设备，通常包括软盘、硬盘和磁带。</p>
+<p>存储的信息是否易失，是随机访问存储器与磁介质存储器的主要区别。</p>
+<p>随机访问存储器就像办公桌的桌面，上面的任何东西都可以拿来直接使用；而磁介质存储器就像一个文件柜，里面的东西不能直接使用，如果想要使用放在文件柜里的某件东西，你需要站起来，走到文件柜前，查找需要的文件，然后带回桌面。如果桌面太拥挤，没有空间放置需要的文件，还需要把桌面上暂时不用的东西先放回到文件柜中。</p>
+<h2 id="文件存储系统">文件存储系统</h2>
+<h3 id="目录区">目录区</h3>
+<p>目录结构体：https://res.weread.qq.com/wrepub/epub_33381009_658</p>
+<h1 id="操作系统的引导">操作系统的引导</h1>
+<p>控制台命令处理程序（Console Command Processor，CCP）、基本磁盘操作系统（Basic Disk Operating System，BDOS）和基本输入/输出系统（BasicInput/Output System，BIOS）是CP/M的三个组成部分</p>
+<p><a href="https://res.weread.qq.com/wrepub/epub_33381009_665">https://res.weread.qq.com/wrepub/epub_33381009_665</a></p>
+<h3 id="控制台程序">控制台程序</h3>
+<ul>
+<li>内部命令：文件操作</li>
+<li>外部命令：执行命令</li>
+</ul>
+<p>CP/M-》</p>
+<p>（Basic Disk OperatingSystem，BDOS）-》
+（Basic Input And Output System，BIOS）</p>
+<p>QDOS-》86-DOS-》MS-DOS</p>
+<p>MS-DOS有两种运行程序：一是以COM为扩展名的文件，其大小不能超过64 KB，二是更大一些的程序，以EXE（意思是可以被执行）为文件的扩展名，表明文件本身是可执行的。</p>
+<p>硬盘容量越大存储的文件也就越多，存储的文件越多，当然，查找某个指定的文件或组织文件也就越困难。</p>
+<p>MS-DOS 2.0引入了层次文件系统（hierarchical filesystem）</p>
+<p>UNIX</p>
+<p>在这种思想的指导下，人们都使用文本文件作为公用文件形式。许多UNIX实用程序读取文本文件，利用它提供的一些功能做些处理，然后将其写入另一个文本文件。因此可以用链的形式来组织UNIX实用程序，然后对这些文本文件做相应的处理。</p>
+<p>在20世纪60-70年代，计算机不仅体积庞大而且价格昂贵，仅仅为一个人服务显然不太现实，为了能够让多个人同时使用计算机，必须有相应操作系统来支持，这也就是开发UNIX系统的最初目的。</p>
+<p>v操作系统引入了虚拟内存（virtual memory）技术。虚拟内存是指，在磁盘上划出部分空间用做保存临时文件，程序把暂时不需要用的内存块放到临时文件里，待需要时再把它调入内存。。</p>
+<p>Linux系统</p>
+<h1 id="定点数和浮点数">定点数和浮点数</h1>
+<p>正整数</p>
+<p>整数-》补位</p>
+<p>实数：有理数和无理数</p>
+<p>种基于二进制的存储和标记方式也被称作定点格式</p>
+<p>科学计数法</p>
+<p>浮点格式是基于科学计数法的，所以它是存储极大或极小数的理想方式</p>
+<p>在规范化二进制浮点数中，小数点的左边通常只有一个1，除此之外没有其他数字。</p>
+<p>二进制科学计数法：https://res.weread.qq.com/wrepub/epub_33381009_702</p>
+<p>IEEE浮点数标准定义了两种基本的格式：以4个字节表示的单精度格式和以8个字节表示的双精度格式。</p>
+<p>4字节约定：https://res.weread.qq.com/wrepub/epub_33381009_703</p>
+<p><a href="https://res.weread.qq.com/wrepub/epub_33381009_704">https://res.weread.qq.com/wrepub/epub_33381009_704</a></p>
+<p>8位指数部分的取值范围是0～255，称为偏移（biased）指数，它的意思是：对于有符号指数，为了确定其实际所代表的值必须从指数中减去一个值——称做偏移量（bias）。对于单精度浮点数，其偏移量为127。？？</p>
+<p>-1的s次幂是数学上所采用的一种巧妙的方法，它的含义是：如果s = 0，则该数是正的（因为任何数的0次幂都是1）；如果s= 1，则该数是负的（因为-1的1次幂等于-1）。</p>
+<p>表达式的中间部分是[1.f]，其含义是：1的后面是小数点，小数点后面跟着23位的有效数。[1.f]与2的幂相乘，其中指数等于内存中的8位的偏移指数减去127。</p>
+<p>●如果e= 0且f= 0，则该数为0。在这种情况下，通常把32位都设置为0以表示该数为0。但是符号位可以设置为1，这种数可以解释为负0。负0可以用来表示非常小的数，这些数极小以至于不能在单精度格式下用数字和指数来表示，但它们仍然小于0。</p>
+<p>●如果e= 0且f≠ 0，则该数是合法的，但不是规范化的。这类数可以表示为：
+<a href="https://res.weread.qq.com/wrepub/epub_33381009_707">https://res.weread.qq.com/wrepub/epub_33381009_707</a></p>
+<p>●如果e= 255且f= 0，则该数被解释为无穷大或无穷小，这取决于符号位s的值。</p>
+<p>●如果e= 255且f ≠ 0，则该值被解释为“不是一个数”，通常被缩写为NaN（not a number）。NaN用来表示未知的数或非法操作的结果。</p>
+<p>最大值：https://res.weread.qq.com/wrepub/epub_33381009_709</p>
+<p>最小值：https://res.weread.qq.com/wrepub/epub_33381009_708</p>
+<p>单精度存储时可能会有问题？两个不同的数存储为同一个结果的情况</p>
+<p>双精度浮点数：
+<a href="https://res.weread.qq.com/wrepub/epub_33381009_719">https://res.weread.qq.com/wrepub/epub_33381009_719</a></p>
+<p><a href="https://res.weread.qq.com/wrepub/epub_33381009_720">https://res.weread.qq.com/wrepub/epub_33381009_720</a></p>
+<p>浮点数四则运算？</p>
+<p>浮点数运算硬件对于困惑的汇编程序员来说无疑是个惊喜的礼物</p>
+<h1 id="高级语言和低级语言">高级语言和低级语言</h1>
+<p>第一个编写汇编器的人需要手工对程序汇编。如果要为机器写一个新的汇编器（或者对其修改），则可以使用汇编语言编写该程序，然后使用原有的汇编器对其汇编。一旦新的汇编器通过了汇编，则它也就可以对自身进行汇编。</p>
+<p>每当一种新的微处理器面世，就需要为其编写新的汇编器。然而，新的汇编器可以在已有的计算机上编写，并利用其汇编器进行汇编。这种方式称为交叉汇编（cross-assembler），即利用计算机A的汇编器对运行在计算机B上的程序汇编。</p>
+<p>机器码-》</p>
+<p>汇编语言：
+缺陷</p>
+<ul>
+<li>语言粒度太细，很难编写</li>
+<li>不可移植，不同系统要重写</li>
+</ul>
+<p>高级语言</p>
+<ul>
+<li>语法</li>
+<li>编译器</li>
+</ul>
+<p>优缺点</p>
+<ul>
+<li>编写方便</li>
+<li>效率降低</li>
+</ul>
+<p>A-0-&gt;FORTRAN-&gt;ALGOL-&gt;COBOL-&gt;PL/Ⅰ-&gt;BASIC-&gt;Pascal-&gt;Turbo Pascal(编译器+编辑器+调试器)-&gt;Ada-&gt;BCPL-&gt;C(高级汇编语言)-&gt;</p>
+<ul>
+<li>C支持位运算</li>
+<li>C支持指针</li>
+</ul>
+<p>LISP和APL</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://ansoncode.bazhentu.net/2021/000%E8%AE%A1%E7%AE%97%E7%9A%84%E8%B5%B7%E6%BA%90/>http://ansoncode.bazhentu.net/2021/000%E8%AE%A1%E7%AE%97%E7%9A%84%E8%B5%B7%E6%BA%90/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2021/000%E8%AE%A1%E7%AE%97%E7%9A%84%E8%B5%B7%E6%BA%90/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E5%86%85%E5%AD%98/">
+                    #内存</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://ansoncode.bazhentu.net/2021/first/" class="prev" rel="prev" title="我的博客正式启动了"><i class="iconfont icon-left"></i>&nbsp;我的博客正式启动了</a>
+        
+        
+        <a href="http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" class="next" rel="next" title="001什么是大端对齐和小端对齐？">001什么是大端对齐和小端对齐？&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://ansoncode.bazhentu.net/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha256-V8SV2MO1FUb63Bwht5Wx9x6PVHNa02gv8BgH/uH3ung=" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha256-F/Xda58SPdcUCr+xhSGz9MA2zQBPb0ASEYKohl8UCHc=" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha256-90d2pnfw0r4K8CZAWPko4rpFXQsZvJhTBGYNkipDprI=" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/jmnote/plantuml-encoder@1.2.4/dist/plantuml-encoder.min.js" integrity="sha256-Qsk2KRBCN5qVZX7B+8+2IvQl1Aqc723qV1tBCQaVoqo=" crossorigin="anonymous"></script>
+<script>
+(function(){
+  let plantumlPrefix = "language-plantuml";
+  Array.prototype.forEach.call(document.querySelectorAll("[class^=" + plantumlPrefix + "]"), function(code){
+    let image = document.createElement("IMG");
+    image.loading = 'lazy'; 
+    image.src = 'http://www.plantuml.com/plantuml/svg/~1' + plantumlEncoder.encode(code.innerText);
+    code.parentNode.insertBefore(image, code);
+    code.style.display = 'none';
+  });
+})();
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '001计算机起源？'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "http://hanshitu.bazhentu.net/image/avatar.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>

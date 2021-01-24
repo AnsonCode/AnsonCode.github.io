@@ -56,7 +56,7 @@
     "datePublished": "2021-01-20 22:37:29 \u002b0800 CST",
     "dateModified" : "2021-01-20 22:37:29 \u002b0800 CST",
     "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2\/",
-    "wordCount" : "4790",
+    "wordCount" : "4842",
     "keywords" : [ "hugo","travis-ci","github pages", "Anson`s Blog"]
 }
 </script>
@@ -163,7 +163,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">4790 words</span>
+                <span class="post-word-count">4842 words</span>
         </div>
     </header>
 
@@ -247,7 +247,7 @@ github-&gt;本机 :本机或公网访问
 </ul>
 </li>
 <li>安装hugo：将hugo.exe文件复制到任意一个文件夹（随心即可），同时在<em>系统环境变量</em>中设置hugo.exe所在目录，重启电脑（不重启可能不生效）
-<img src="https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210122011409.png" alt="20210122011409" loading="lazy" ></li>
+<img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210122011409.png" alt="本地环境变量设置" loading="lazy" ></li>
 </ol>
 <p>在命令行输入：</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo version
@@ -286,7 +286,7 @@ Just a few more steps and you<span style="color:#960050;background-color:#1e0010
 <li>这里我推荐一个不错的模板：<a href="https://github.com/Mogeko/mogege">mogege</a>（本站在用）</li>
 </ul>
 </li>
-<li>将下载的模板复制到themes目录即可<a href="https://gohugo.io/news/0.48-relnotes/">here</a></li>
+<li>将下载的模板复制到themes目录即可</li>
 <li>执行如下指令后，访问<code>http://localhost:1313/</code>,即可在本地预览博客</li>
 </ol>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server --minify --theme mogege
@@ -473,14 +473,14 @@ git push -u origin blog <span style="color:#75715e">#推送到github上</span>
 
 <span style="color:#75715e"># 构建完成后会自动更新Github Pages</span>
 <span style="color:#f92672">deploy</span>:
-  <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">pages  </span> <span style="color:#75715e">#github pages部署</span>
-  <span style="color:#f92672">skip-cleanup</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">pages  </span> <span style="color:#75715e">#github pages部署，还有其他方式</span>
+  <span style="color:#f92672">skip-cleanup</span>: <span style="color:#66d9ef">true</span> <span style="color:#75715e"># 重要，不能省略（暂不知道原因）</span>
   <span style="color:#f92672">local-dir</span>: <span style="color:#ae81ff">public</span> <span style="color:#75715e">#部署的内容是刚刚生成的html站点</span>
   <span style="color:#f92672">target-branch</span>: <span style="color:#ae81ff">master</span> <span style="color:#75715e">#部署到当前仓库的master分支</span>
   <span style="color:#f92672">github-token</span>: <span style="color:#ae81ff">$GH_APIKEY2 </span> <span style="color:#75715e">#上传到该仓库需要push权限，这个是在travis后台设置的github token</span>
-  <span style="color:#f92672">keep-history</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">keep-history</span>: <span style="color:#66d9ef">true</span> <span style="color:#75715e"># 是否保持target-branch分支的提交记录</span>
   <span style="color:#f92672">on</span>:
-    <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">blog</span>
+    <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">blog </span> <span style="color:#75715e">#博客源码的分支</span>
 </code></pre></div><h3 id="修改配置">修改配置</h3>
 <ol>
 <li>打开<code>config.toml</code>文件，修改参数</li>
