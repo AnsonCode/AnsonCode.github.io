@@ -8,10 +8,9 @@ draft: false
 ### 关于我
 hi，my name is anson.
 
-http://ansoncode.bazhentu.net/
+https://ansoncode.bazhentu.net/
 
-
-PicGo: image uploading...
+![PfjiWupdZrtzINV](https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png)
 
 
 

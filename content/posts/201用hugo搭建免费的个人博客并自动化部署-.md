@@ -246,7 +246,7 @@ git push -u origin blog #推送到github上
 1. 前往[https://travis-ci.com/](https://travis-ci.com/)，并用github账户登陆
 2. 前往[https://travis-ci.com/account/repositories](https://travis-ci.com/account/repositories)授权travis访问刚刚新建仓库的权限
 
-![20210122030216](https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210122030216.png)
+![20210122030216](https://ansoncode.bazhentu.net/myblogtalk/img/20210122030216.png)
 
 3. 在travis当前仓库的后台设置`$GH_APIKEY2`(详情见`.travis.yml`）为github的token
     - 前往`https://github.com/settings/tokens`获取git token,权限为`write:packages`
