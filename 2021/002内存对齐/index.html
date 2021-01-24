@@ -186,28 +186,28 @@
 <p>线程：</p>
 <p>协程：</p>
 <p>go程：</p>
-<p><img src="https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210121014024.png" alt="20210121014024" loading="lazy" ></p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210121014024.png" alt="20210121014024" loading="lazy" ></p>
 <p>主存内存中的线程抢到CPU时间轮片时，通过数据总线，将数据存入寄存器，指令存入PC，然后发给ALU计算单元计算。</p>
 <p>由于CPU计算速度时内存读取速度的100倍，为了最大化利用CPU资源，工程实践中增加了速度更快的xxx来缓存指令。基于工程最佳实践，缓存一般是3层。</p>
-<p><img src="https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210121014841.png" alt="20210121014841" loading="lazy" ></p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210121014841.png" alt="20210121014841" loading="lazy" ></p>
 <p>缓存机制如下：从内存中成块的读取数据，放入缓存层。这个块叫做<em>缓存行</em>，大小为64字节。如果操作系统有多个CPU，各CPU之间还要进行缓存同步，即当2个CPU共用一个<em>缓存行</em>时，一个CUP修改数据后，需要通知另一个CPU重新获取数据。这就是<em>缓存一致性协议</em>。</p>
-<p><img src="https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210121020648.png" alt="20210121020648" loading="lazy" ></p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210121020648.png" alt="20210121020648" loading="lazy" ></p>
 <h1 id="用途">用途</h1>
 <p>加速程序执行</p>
 <h1 id="cpu乱序执行原理">CPU乱序执行原理</h1>
 <p>CPU在进行<em>读等待</em>的同时执行指令，是CPU乱序的根源，本质是为了提高执行效率。</p>
-<p><img src="https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210121022420.png" alt="20210121022420" loading="lazy" ></p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210121022420.png" alt="20210121022420" loading="lazy" ></p>
 <p>java 的volatile用于禁止CPU乱序执行，避免单例模式下的半成品对象</p>
 <p>golang采用chan的机制，规避了该问题</p>
 <p>happens before</p>
 <p>as if serial ：不管如何重排序，单线程的结果不会变</p>
 <p>看上去是序列表执行的 表示的乱序</p>
-<p><img src="https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210121131008.png" alt="20210121131008" loading="lazy" ></p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210121131008.png" alt="20210121131008" loading="lazy" ></p>
 <p>内存对齐</p>
 <p>篮子</p>
 <p>golang的特殊之处：分类型分篮子</p>
 <p>span：有78中类型</p>
-<p><img src="https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210121232720.png" alt="20210121232720" loading="lazy" ></p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210121232720.png" alt="20210121232720" loading="lazy" ></p>
 <p>STW碎片整理</p>
 <p>总结一下，Golang的GC过程有两次STW:第一次STW会准备根对象的扫描, 启动写屏障(Write Barrier)和辅助GC(mutator assist).第二次STW会重新扫描部分根对象, 禁用写屏障(Write Barrier)和辅助GC(mutator assist).</p>
 <p>作者：Davie
@@ -406,7 +406,7 @@
             let title = '002内存对齐'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
-            let imgUrl =  "http://hanshitu.bazhentu.net/image/avatar.png" 
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
             
 
             let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
