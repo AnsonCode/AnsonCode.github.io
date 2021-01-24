@@ -69,7 +69,7 @@ github->本机 :本机或公网访问
     - hugo有两种版本：一个是普通版，一个是扩展版（支持各种插件如sass）
     - 上述链接为hugo_extended_0.80.0_Windows-64bit,为扩展版
 2. 安装hugo：将hugo.exe文件复制到任意一个文件夹（随心即可），同时在*系统环境变量*中设置hugo.exe所在目录，重启电脑（不重启可能不生效）
-![20210122011409](https://raw.githubusercontent.com/AnsonCode/myblogtalk/main/img/20210122011409.png)
+![本地环境变量设置](https://ansoncode.bazhentu.net/myblogtalk/img/20210122011409.png)
 
 在命令行输入：
 ```bash
@@ -109,7 +109,7 @@ Just a few more steps and you're ready to go:
 1. 前往hugo官网选择中意的模板下载，前往[这里](https://themes.gohugo.io/)
     - 官网提供了模板列表，真正下载一般要到github上下载
     - 这里我推荐一个不错的模板：[mogege](https://github.com/Mogeko/mogege)（本站在用）
-2. 将下载的模板复制到themes目录即可[here](https://gohugo.io/news/0.48-relnotes/)
+2. 将下载的模板复制到themes目录即可
 3. 执行如下指令后，访问`http://localhost:1313/`,即可在本地预览博客
 ```bash
 hugo server --minify --theme mogege
@@ -285,14 +285,14 @@ script:
 
 # 构建完成后会自动更新Github Pages
 deploy:
-  provider: pages   #github pages部署
-  skip-cleanup: true
+  provider: pages   #github pages部署，还有其他方式
+  skip-cleanup: true # 重要，不能省略（暂不知道原因）
   local-dir: public #部署的内容是刚刚生成的html站点
   target-branch: master #部署到当前仓库的master分支
   github-token: $GH_APIKEY2  #上传到该仓库需要push权限，这个是在travis后台设置的github token
-  keep-history: true
+  keep-history: true # 是否保持target-branch分支的提交记录
   on:
-    branch: blog
+    branch: blog  #博客源码的分支
 ```
 
 ### 修改配置
