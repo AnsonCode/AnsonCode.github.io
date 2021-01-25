@@ -12,7 +12,9 @@ https://ansoncode.bazhentu.net/
 
 ![PfjiWupdZrtzINV](https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png)
 
+![20210124202558](https://ansoncode.bazhentu.net/myblogtalk//img/20210124202558.png)
 
+![20210124202646](https://ansoncode.bazhentu.net/myblogtalk/img/20210124202646.png)
 
 #关于本站点
 
