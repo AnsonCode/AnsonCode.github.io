@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 21 Jan 2021 01:12:44 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Jan 2021 09:03:13 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>101编码——国际求救信号为什么是SOS？</title>
+      <link>http://ansoncode.bazhentu.net/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/</link>
+      <pubDate>Mon, 25 Jan 2021 09:03:13 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/</guid>
+      <description>前言 无论是灾难电影还是日常生活，我们都曾看到过SOS的身影?例如，中国电影《一出好戏》中流落荒岛的一群人用救生衣摆放了一个SOS的标记；国外</description>
+    </item>
+    
     <item>
       <title>002内存对齐</title>
       <link>http://ansoncode.bazhentu.net/2021/002%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/</link>
@@ -35,21 +44,12 @@
     </item>
     
     <item>
-      <title>001计算机起源？</title>
-      <link>http://ansoncode.bazhentu.net/2021/000%E8%AE%A1%E7%AE%97%E7%9A%84%E8%B5%B7%E6%BA%90/</link>
-      <pubDate>Wed, 20 Jan 2021 21:14:29 +0800</pubDate>
-      
-      <guid>http://ansoncode.bazhentu.net/2021/000%E8%AE%A1%E7%AE%97%E7%9A%84%E8%B5%B7%E6%BA%90/</guid>
-      <description>前言 通讯 通讯-》 莫斯密码 布莱叶盲文 由手电筒到电路 电报与继电器 十进制到二进制（算盘） 逻辑与开关 逻辑门 二进制运算器 加法器 两个半加法器的进位输出是</description>
-    </item>
-    
-    <item>
       <title>我的博客正式启动了</title>
       <link>http://ansoncode.bazhentu.net/2021/first/</link>
       <pubDate>Wed, 20 Jan 2021 09:33:20 +0800</pubDate>
       
       <guid>http://ansoncode.bazhentu.net/2021/first/</guid>
-      <description>hugo new about.md @startuml Bob -&amp;gt; Alice : hello @enduml</description>
+      <description>hugo new about.md @startuml Bob -&amp;gt; Alice : hello @enduml 一颗种子 逻辑推理+科学技术 +计算机 人口普查 诸子百家 + 春秋战国 机械 必须要受器重 财力支持 战争-》通讯技术</description>
     </item>
     
   </channel>

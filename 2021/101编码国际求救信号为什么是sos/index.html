@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/first/" />
-    <link rel="next" href="http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" />
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/002%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/" />
+    
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            001什么是大端对齐和小端对齐？ | Anson`s Blog
+            101编码——国际求救信号为什么是SOS？ | Anson`s Blog
         
     </title>
-    <meta name="title" content="001什么是大端对齐和小端对齐？ | Anson`s Blog">
+    <meta name="title" content="101编码——国际求救信号为什么是SOS？ | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "001什么是大端对齐和小端对齐？",
-    "headline" : "001什么是大端对齐和小端对齐？",
-    "description" : "大端对齐和小端对齐是啥玩意",
+    "name" : "101编码——国际求救信号为什么是SOS？",
+    "headline" : "101编码——国际求救信号为什么是SOS？",
+    "description" : "前言 无论是灾难电影还是日常生活，我们都曾看到过SOS的身影?例如，中国电影《一出好戏》中流落荒岛的一群人用救生衣摆放了一个SOS的标记；国外",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
@@ -53,11 +53,11 @@
     "accountablePerson" : "Anson",
     "copyrightHolder" : "Anson",
     "copyrightYear" : "2021",
-    "datePublished": "2021-01-20 21:14:29 \u002b0800 CST",
-    "dateModified" : "2021-01-20 21:14:29 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90\/",
-    "wordCount" : "699",
-    "keywords" : [ "内存", "Anson`s Blog"]
+    "datePublished": "2021-01-25 09:03:13 \u002b0800 CST",
+    "dateModified" : "2021-01-25 09:03:13 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos\/",
+    "wordCount" : "1682",
+    "keywords" : [ "莫斯密码", "Anson`s Blog"]
 }
 </script>
 
@@ -146,11 +146,11 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">001什么是大端对齐和小端对齐？</h1>
+        <h1 class="post-title" itemprop="name headline">101编码——国际求救信号为什么是SOS？</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
-                on <time datetime=2021-01-20 itemprop="datePublished">January 20, 2021</time>
+                on <time datetime=2021-01-25 itemprop="datePublished">January 25, 2021</time>
                 </span>
                 in
                 
@@ -159,11 +159,11 @@
                         
                         
                         
-                          <a href="http://ansoncode.bazhentu.net/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础, </a>
+                          <a href="http://ansoncode.bazhentu.net/categories/%E4%BB%8E%E7%BB%A7%E7%94%B5%E5%99%A8%E5%88%B0%E8%AE%A1%E7%AE%97%E6%9C%BA/"> 从继电器到计算机, </a>
                         
                         
                 </span>
-                <span class="post-word-count">699 words</span>
+                <span class="post-word-count">1682 words</span>
         </div>
     </header>
 
@@ -172,118 +172,47 @@
 
         
         
-
-        
-        
-        
-        
+            
         
 
         
         
         
+        
+        
 
-        <h2 id="前言">前言</h2>
-<p>前段时间迷上了物联网，搞了一个控制硬件开关的demo。在阅读硬件通讯协议（MODBUS）时，经常看到大端对齐和小端对齐，一脸懵逼，今天终于搞懂了。</p>
-<h2 id="什么是大端对齐和小端对齐">什么是大端对齐和小端对齐？</h2>
-<p>要想搞清楚这个问题，我们需要先搞清楚两个概念：低（高）地址和低（高）位。</p>
-<h3 id="低地址栈顶和高地址栈低">低地址（栈顶）和高地址（栈低）</h3>
-<p>程序运行时的数据需要一个载体来存储，一般是虚拟内存。
-我们可以把虚拟内存比作一个有页码的作业本，按照0x00001-0x000100的顺序编号。那么，类比到计算机中，序号小的页码<em>0x00001</em>对应低地址，序号大的页码<em>0x000100</em>对应高地址。</p>
-<h3 id="低位和高位">低位和高位</h3>
-<p>低(高）位的概念容易与低（高）地址弄混，他其实是由我们的阅读习惯决定的。
-例如‘1234’,我们理解它的语义为“一千二百三十四”，而不是反过来“四千三百二十一”。这是因为我们的阅读习惯是从左到右，而非从右往左。对应的，1就是高位，4就是低位。这样说好理解吧？</p>
-<h3 id="王八的屁股规定">王八的屁股——规定</h3>
-<p>还回到作业本的例子，假设我们再每一页上写一个数字，有的同学喜欢按照顺序从前往后写子，用完第一页再用第二页，具体为：</p>
-<table>
-<thead>
-<tr>
-<th>内存数据</th>
-<th style="text-align:center">内存地址</th>
-<th style="text-align:right">存储内容</th>
-<th style="text-align:right">数字顺序</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>低</td>
-<td style="text-align:center">0x00001</td>
-<td style="text-align:right">1</td>
-<td style="text-align:right">高</td>
-</tr>
-<tr>
-<td>↓</td>
-<td style="text-align:center">0x00002</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">↓</td>
-</tr>
-<tr>
-<td>↓</td>
-<td style="text-align:center">0x00003</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">↓</td>
-</tr>
-<tr>
-<td>高</td>
-<td style="text-align:center">0x00004</td>
-<td style="text-align:right">4</td>
-<td style="text-align:right">低</td>
-</tr>
-</tbody>
-</table>
-<p>还有同学喜欢从后往前写，具体为：</p>
-<table>
-<thead>
-<tr>
-<th>内存数据</th>
-<th style="text-align:center">内存地址</th>
-<th style="text-align:right">存储内容</th>
-<th style="text-align:right">数字顺序</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>低</td>
-<td style="text-align:center">0x00001</td>
-<td style="text-align:right">4</td>
-<td style="text-align:right">低</td>
-</tr>
-<tr>
-<td>↓</td>
-<td style="text-align:center">0x00002</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">↑</td>
-</tr>
-<tr>
-<td>↓</td>
-<td style="text-align:center">0x00003</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">↑</td>
-</tr>
-<tr>
-<td>高</td>
-<td style="text-align:center">0x00004</td>
-<td style="text-align:right">1</td>
-<td style="text-align:right">高</td>
-</tr>
-</tbody>
-</table>
-<p>那么结果就呼之欲出了：</p>
+        
+        
+        
+
+        <h1 id="a-name1前言a"><!-- raw HTML omitted -->前言<!-- raw HTML omitted --></h1>
+<p>无论是灾难电影还是日常生活，我们都曾看到过<em>SOS</em>的身影?例如，中国电影《一出好戏》中流落荒岛的一群人用救生衣摆放了一个<em>SOS</em>的标记；国外电影《荒岛余生》中汤姆汉克斯用木头摆了一个<em>SOS</em>。但为什么国际求救信号是<em>SOS</em>呢？它背后到底隐藏着什么秘密？</p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210125100609.png" alt="一出好戏SOS信号" loading="lazy" ></p>
+<h1 id="从航海业说起">从航海业说起</h1>
+<p>20世纪初，航海业迅速发展，海上事故日益增多。海洋大国为了能够及时发现船只遇险信息，决定制订通用求救信号，该信号要满足如下特点：</p>
 <ul>
-<li>
-<p>前一种内存的低位和数字的高位对齐，叫做：<em>大端对齐</em>；</p>
-</li>
-<li>
-<p>后一种内存的低位和数字的低位对齐，叫做：<em>小端对齐</em>；</p>
-</li>
+<li>足够简单，容易记忆</li>
+<li>足够完备，信息准确</li>
 </ul>
-<p>值得注意的是，不同的操作系统对齐方式不同，在进行数据通讯时需要统一转为为约定格式，避免鸡同鸭讲。</p>
-<p>最后在送大家一个记忆的妙法：</p>
-<blockquote>
-<p>小弟弟：(小低低)小端对齐是：低地址和低位对齐；另一个就是大端对齐。</p>
-</blockquote>
-<h2 id="参考">参考</h2>
-<p><a href="https://zhidao.baidu.com/question/1900511789089474940.html">https://zhidao.baidu.com/question/1900511789089474940.html</a></p>
+<p>当时船舶和陆地主要的通讯方式是无线电，相信我们在很多抗战片中都见过<em>滴滴答答</em>的电报，就是当时最常见的无线电通讯设备。</p>
+<h1 id="有线电报的基本结构">有线电报的基本结构</h1>
+<p>电报按照通讯方式可分为两种：<em>有线电报</em>和<em>无线电报</em>。尽管两者在实用性上不可同日而语，但两者通讯机制是一样的。所以，理解了有线电报的机制，也就理解了无线电报。</p>
+<p>电影《金刚川》中描述了一个场景，解放军需要在凌晨5点之前渡江，渡江需要修筑渡桥，不能有明火，以防敌军轰炸。还要接受来自江对岸的命令，假设无线电通讯被监听，不能通过无线电通讯。在这种场景下，我们就可以利用电池/开关/灯泡等器件组建一台有线电报机，把开关（发送端）放在桥这边，把灯泡（接收端）放在桥对岸的军事基地。同理，再制作一个一样的设备，接收端和发送到颠倒过来，就可以实现两岸的实时通讯了。这就是电报机的雏形。</p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_47" alt="双向结构图" loading="lazy" ></p>
+<p>假设我们用拼音或英文传递信息，首先要对26个字母编码，最直观的方式是：从a-z分别用不同的1-26次闪烁表示。但，这种方式存在明显不足。假设要发送stop指令，大概需要闪烁19+20+15+16=70次，就算发送端手速跟得上，接收端的眼力也跟不上。<del>针对这个问题，可以从两个角度优化：设计新编码和信息持久化。</del></p>
+<h1 id="设计新编码">设计新编码</h1>
+<p>这里有人提出了一个新的方案，用闪烁的间隔表示不同的含义【<em>亮-灭-亮</em>（短闪烁）和<em>亮-灭灭-亮</em>（长闪烁）】，用更长的间隔分割两个字母【上一个字符<em>灭灭灭灭</em>下一个字符】，由这两种闪烁来自由组合构成新的含义。在这个前提下，我们本着<em>最短闪烁次数</em>和<em>高频字母优先</em>的原则，重新设计26个字母编码。</p>
+<p>用编码中包含的短闪烁和长闪烁的数量进行分组，接下来用*.*表示短闪烁，*——*表示长闪烁，例如1个数量可表示2种含义，分别为*.*：E,*——*：T，以此类推，2个数量可表示4个字母，3个可表示8个字母，4个可表示16个字母，累计：2＋4＋8＋16=30个字母，多出的4个可用来做标点或空格。具体如下表：</p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_17" alt="莫斯密码表" loading="lazy" ></p>
+<p>按照这种设计思路，发送端能方便的根据字母查编码，接收端也可以根据编码的数量反查字母。我们还可以发现一个规律：<strong>含义数目 = 2^编码的位数</strong>,因此莫斯编码又被成为二进制编码。</p>
+<p>到这里，其实我们已经回答了<a href="#1">前沿</a>的问题：为什么国际求救信号是<em>SOS</em>?来，看下上图编码表找到<em>SOS</em>的位置，拼出他们的莫斯密码：<strong>&hellip; &mdash; &hellip;</strong>。现在知道原因了吧？<em>SOS</em>简短、准确、连续而有节奏，易于拍发和阅读，也很易懂，是莫斯密码中最方便记忆且不容易和其他编码混淆（3位长度）的组合之一。</p>
+<p>如果有机会会看《无间道》，清注意陈永仁（梁朝伟）给黄sir（黄秋生）传递求救信息时轻敲玻璃时的手势，是不是<strong>嘀嘀嘀 哒哒哒 嘀嘀嘀</strong>?</p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210125192939.png" alt="无间道剧照" loading="lazy" ></p>
+<p><em>SOS</em>第1次被人们使用是在1905年的4月1号，1908年正式成为国际标准，但在此之前<em>CQD</em>才是事实上的国际求救信号。现在很多人都把<em>SOS</em>理解为<em>save our ship</em>，但事实上这只是人们后来赋予它的意义。</p>
+<p>SOS另有一种表现方法为191519。19、15、19分别为S、O、S在26个英文字母中的顺序。原因是SOS求救信号广为人知，当在极端被动的情况之下SOS会暴露受难者求救的信息，所以191519是另一种隐晦的传递和表达求救讯息的符号。</p>
+<h1 id="延长传递距离">延长传递距离</h1>
+<p>解决了编码问题，我们的电报机往前更近了一步，但它的通讯距离仅局限在两岸，效果大打折扣。我们是不是可以继续延长电路，实现和千里之外总部的通讯呢？原理上可行，但实际实施过程中会发现延长导线的长度，会导致电阻增加，灯泡越来越暗，甚至就看不出闪烁了。</p>
+<p>那有什么方法来解决这个问题呢？且听下节：信号放大器，不止放大信号.</p>
 
     </div>
 
@@ -299,12 +228,12 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/>http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/</span>
+                    <a href=http://ansoncode.bazhentu.net/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/>http://ansoncode.bazhentu.net/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -354,8 +283,8 @@
             <section>
             <i class="iconfont icon-tag"></i>Tag(s):
             
-            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E5%86%85%E5%AD%98/">
-                    #内存</a></span>
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E8%8E%AB%E6%96%AF%E5%AF%86%E7%A0%81/">
+                    #莫斯密码</a></span>
             
             </section>
         
@@ -367,10 +296,8 @@
 
     <div class="post-nav">
         
-        <a href="http://ansoncode.bazhentu.net/2021/first/" class="prev" rel="prev" title="我的博客正式启动了"><i class="iconfont icon-left"></i>&nbsp;我的博客正式启动了</a>
+        <a href="http://ansoncode.bazhentu.net/2021/002%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/" class="prev" rel="prev" title="002内存对齐"><i class="iconfont icon-left"></i>&nbsp;002内存对齐</a>
         
-        
-        <a href="http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" class="next" rel="next" title="201十分钟！用hugo搭建免费的个人博客并自动化部署">201十分钟！用hugo搭建免费的个人博客并自动化部署&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -481,7 +408,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = '001什么是大端对齐和小端对齐？'
+            let title = '101编码——国际求救信号为什么是SOS？'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
