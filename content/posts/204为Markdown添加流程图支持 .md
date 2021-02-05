@@ -48,6 +48,9 @@ stop
 ```
 
 
+https://markdown.lovejade.cn/
+
+markdown表格：https://tableconvert.com/
 
 # 后记
 恭喜你，看到这里，说明你已经掌握了 用hugo**免费**搭建个人博客并自动化发布部署 的所有技巧！心动不如行动，马上搭建你的BLOG吧！
