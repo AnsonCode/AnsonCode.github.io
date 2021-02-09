@@ -47,6 +47,23 @@ stop
 @enduml
 ```
 
+```plantuml
+@startmindmap
+* Debian
+** Ubuntu
+*** Linux Mint
+*** Kubuntu
+*** Lubuntu
+*** KDE Neon
+** LMDE
+** SolydXK
+** SteamOS
+** Raspbian with a very long name
+*** <s>Raspmbc</s> => OSMC
+*** <s>Raspyfi</s> => Volumio
+@endmindmap
+```
+
 
 https://markdown.lovejade.cn/
 
@@ -62,3 +79,4 @@ markdown表格：https://tableconvert.com/
 - 使用Pandoc和KaTeX为HUGO添加LaTeX支持:https://wrong.wang/flight-rules/20181130-%E4%BD%BF%E7%94%A8pandoc%E5%92%8Ckatex%E4%B8%BAhugo%E6%B7%BB%E5%8A%A0latex%E6%94%AF%E6%8C%81/
 - Draw Diagrams With Markdown：https://support.typora.io/Draw-Diagrams-With-Markdown/
 - https://mogeko.me/categories/%E6%8A%98%E8%85%BE%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/
+- plantuml：https://plantuml.com/zh/sequence-diagram
