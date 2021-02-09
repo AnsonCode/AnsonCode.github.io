@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/first/" />
-    <link rel="next" href="http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" />
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/30130%E5%A4%A9%E6%8C%91%E6%88%98-%E5%86%99%E4%BD%9C%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%85%A5%E9%97%A8%E5%85%AC%E5%BC%80%E5%86%99%E4%BD%9C/" />
+    
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            001什么是大端对齐和小端对齐？ | Anson`s Blog
+            205为hugo制作在线编辑器 | Anson`s Blog
         
     </title>
-    <meta name="title" content="001什么是大端对齐和小端对齐？ | Anson`s Blog">
+    <meta name="title" content="205为hugo制作在线编辑器 | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "001什么是大端对齐和小端对齐？",
-    "headline" : "001什么是大端对齐和小端对齐？",
-    "description" : "大端对齐和小端对齐是啥玩意",
+    "name" : "205为hugo制作在线编辑器",
+    "headline" : "205为hugo制作在线编辑器",
+    "description" : "前言 近期重建博客，发现用github托管hugo静态博客无比舒心，满足了服务免费、数据安全、扩展性强等需求。美中不足的是，静态博客无法在线编",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
@@ -53,11 +53,11 @@
     "accountablePerson" : "Anson",
     "copyrightHolder" : "Anson",
     "copyrightYear" : "2021",
-    "datePublished": "2021-01-20 21:14:29 \u002b0800 CST",
-    "dateModified" : "2021-01-20 21:14:29 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90\/",
-    "wordCount" : "699",
-    "keywords" : [ "内存", "Anson`s Blog"]
+    "datePublished": "2021-02-08 18:22:24 \u002b0800 CST",
+    "dateModified" : "2021-02-08 18:22:24 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8\/",
+    "wordCount" : "2339",
+    "keywords" : [  "Anson`s Blog"]
 }
 </script>
 
@@ -146,24 +146,15 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">001什么是大端对齐和小端对齐？</h1>
+        <h1 class="post-title" itemprop="name headline">205为hugo制作在线编辑器</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
-                on <time datetime=2021-01-20 itemprop="datePublished">January 20, 2021</time>
+                on <time datetime=2021-02-08 itemprop="datePublished">February 8, 2021</time>
                 </span>
                 in
                 
-                <i class="iconfont icon-folder"></i>
-                <span class="post-category">
-                        
-                        
-                        
-                          <a href="http://ansoncode.bazhentu.net/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"> 计算机基础, </a>
-                        
-                        
-                </span>
-                <span class="post-word-count">699 words</span>
+                <span class="post-word-count">2339 words</span>
         </div>
     </header>
 
@@ -171,6 +162,8 @@
         
 
         
+        
+            
         
 
         
@@ -184,106 +177,97 @@
         
 
         <h2 id="前言">前言</h2>
-<p>前段时间迷上了物联网，搞了一个控制硬件开关的demo。在阅读硬件通讯协议（MODBUS）时，经常看到大端对齐和小端对齐，一脸懵逼，今天终于搞懂了。</p>
-<h2 id="什么是大端对齐和小端对齐">什么是大端对齐和小端对齐？</h2>
-<p>要想搞清楚这个问题，我们需要先搞清楚两个概念：低（高）地址和低（高）位。</p>
-<h3 id="低地址栈顶和高地址栈低">低地址（栈顶）和高地址（栈低）</h3>
-<p>程序运行时的数据需要一个载体来存储，一般是虚拟内存。
-我们可以把虚拟内存比作一个有页码的作业本，按照0x00001-0x000100的顺序编号。那么，类比到计算机中，序号小的页码<em>0x00001</em>对应低地址，序号大的页码<em>0x000100</em>对应高地址。</p>
-<h3 id="低位和高位">低位和高位</h3>
-<p>低(高）位的概念容易与低（高）地址弄混，他其实是由我们的阅读习惯决定的。
-例如‘1234’,我们理解它的语义为“一千二百三十四”，而不是反过来“四千三百二十一”。这是因为我们的阅读习惯是从左到右，而非从右往左。对应的，1就是高位，4就是低位。这样说好理解吧？</p>
-<h3 id="王八的屁股规定">王八的屁股——规定</h3>
-<p>还回到作业本的例子，假设我们再每一页上写一个数字，有的同学喜欢按照顺序从前往后写子，用完第一页再用第二页，具体为：</p>
-<table>
-<thead>
-<tr>
-<th>内存数据</th>
-<th style="text-align:center">内存地址</th>
-<th style="text-align:right">存储内容</th>
-<th style="text-align:right">数字顺序</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>低</td>
-<td style="text-align:center">0x00001</td>
-<td style="text-align:right">1</td>
-<td style="text-align:right">高</td>
-</tr>
-<tr>
-<td>↓</td>
-<td style="text-align:center">0x00002</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">↓</td>
-</tr>
-<tr>
-<td>↓</td>
-<td style="text-align:center">0x00003</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">↓</td>
-</tr>
-<tr>
-<td>高</td>
-<td style="text-align:center">0x00004</td>
-<td style="text-align:right">4</td>
-<td style="text-align:right">低</td>
-</tr>
-</tbody>
-</table>
-<p>还有同学喜欢从后往前写，具体为：</p>
-<table>
-<thead>
-<tr>
-<th>内存数据</th>
-<th style="text-align:center">内存地址</th>
-<th style="text-align:right">存储内容</th>
-<th style="text-align:right">数字顺序</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>低</td>
-<td style="text-align:center">0x00001</td>
-<td style="text-align:right">4</td>
-<td style="text-align:right">低</td>
-</tr>
-<tr>
-<td>↓</td>
-<td style="text-align:center">0x00002</td>
-<td style="text-align:right">3</td>
-<td style="text-align:right">↑</td>
-</tr>
-<tr>
-<td>↓</td>
-<td style="text-align:center">0x00003</td>
-<td style="text-align:right">2</td>
-<td style="text-align:right">↑</td>
-</tr>
-<tr>
-<td>高</td>
-<td style="text-align:center">0x00004</td>
-<td style="text-align:right">1</td>
-<td style="text-align:right">高</td>
-</tr>
-</tbody>
-</table>
-<p>那么结果就呼之欲出了：</p>
+<p>近期重建博客，发现用github托管hugo静态博客无比舒心，满足了服务免费、数据安全、扩展性强等需求。美中不足的是，静态博客无法在线编辑，更换电脑需要单独配置环境，无法在手机上修改文章。我想，肯定不止我遇到了这个难题,不如做个产品解决它。</p>
+<h2 id="建站经历">建站经历</h2>
+<p>大概在2年前接触到静态博客，犹记得第一次鼓捣时，无所适从的场景。当时，用静态博客为公司搭建了一个官网，先是了解静态博客的基本架构，然后用命令行创建站点、文章并生成静态文件，最后是手动将站点上传到服务器。整个过程比较繁琐，着实摸索了一些时间。尤其是每次更新文章，都要如此重复一番，令人不爽。后来，更换了一次电脑，官网的数据也不知弄到那里，就只能重新再来一遍。事后无尽懊悔，不该不备份数据。</p>
+<p>直到前些天，学会了用gihub托管静态网站，才从根本上解决了<code>自动化部署</code>和<code>数据备份</code>的问题。从学习、爬坑到正式部署，花了将近一天时间。</p>
+<p>对于懂技术的同学，若是找不到合适的教程，难免也要像我一样，花费这么长时间。假若建立博客的信心不够坚定，想必也会半途而废，从而失去了建站的乐趣。而不懂技术的同学，即使找到合适的教程，可能也会被<code>命令行</code>和<code>配置步骤</code>吓到，未必能照葫芦画瓢。</p>
+<p>我希望这款产品能够让有志于建立静态博客的小白，无需命令行，仅靠<code>Next</code>就能在半小时内学会，并搭建出自己的静态博客。同时，解决掉静态博客无法在线编辑的难题。</p>
+<h2 id="需求分析">需求分析</h2>
+<p>从以上经历可以发现：</p>
+<p><strong>首先</strong>，使用静态博客<strong>最大</strong>的问题是搭建门槛高，尤其是技术门槛，例如<code>命令行操作</code>以及<code>git及GitHub等的使用</code>。</p>
+<p><strong>其次</strong>，静态博客缺乏版本管理工具，无法像动态博客那样，保留每次修改记录，以便于恢复或追溯。这可能会导致辛苦完成的文章，因没有备份而丢失，损失难以估量。</p>
+<p><strong>此外</strong>，静态博客无法在线（网页）编辑，每次更新内容都要手动执行发布命令。即使采用了自动化部署，也需要人工用命令行把本地仓库push到github上。而且，采用该方式搭建的静态博客，不支持手机端编辑，而且更换电脑时也需要额外配置环境，如<code>安装git</code>、<code>安装hugo</code>、<code>安装编辑器</code>等。</p>
+<p><strong>另一方面</strong>，静态博客编辑体验存在问题，最为突出的是图片上传。动态博客可以方便拖拽上传图片，而静态博客基于markdown语法，图片需要额外的<code>图床</code>托管。一般需要先将图片上传到某个<code>图床</code>后，把链接复制下来，再粘贴到markdown文件中，整个流程比较繁琐。</p>
+<p><strong>最后</strong>，静态博客默认不支持<code>评论</code>、<code>留言</code>等交互功能，缺乏写文章最大动力：<code>反馈</code>。大多数静态博客通过<code>引入js</code>的方式解决该问题，但目前来看缺乏安全、可靠的插件或插件平台来解决该问题。</p>
+<p>针对上述问题，有如下解决方案：</p>
 <ul>
-<li>
-<p>前一种内存的低位和数字的高位对齐，叫做：<em>大端对齐</em>；</p>
-</li>
-<li>
-<p>后一种内存的低位和数字的低位对齐，叫做：<em>小端对齐</em>；</p>
+<li><strong>可视化建站流程</strong>：将<code>命令行操作</code>以及<code>git及GitHub等的使用</code>等复杂操作进行封装，可视将建站及文章发布流程；</li>
+<li><strong>文章版本追溯及站点发布</strong>：基于GitHub或gitee托管markdown格式的文章，系统自动从指定<code>文章仓库</code>下载markdown文章，并根据指定的<code>站点模板</code>生成站点，自动发布；</li>
+<li><strong>文章在线编辑并优化编辑体验</strong>：基于GitHub或gitee提供的api,访问用户指定的<code>文章仓库</code>，在网页中编辑markdown,并<code>内置图床</code>、<code>公式编辑</code>、<code>流程图</code>等功能；</li>
+<li><strong>插件及模板市场</strong>：提供插件和模板市场，允许用户在线选购插件或模板，如<code>评论插件</code>，复制代码可直接集成到网站中；</li>
+</ul>
+<p>通过以上分析，产品定位也很明确了：<strong>静态博客后台管理系统</strong>。</p>
+<p>服务形式分为两种：</p>
+<ul>
+<li>针对无服务器的用户提供SAAS化服务方案；</li>
+<li>针对有服务器的用户提供开源私有化部署方案。</li>
+</ul>
+<pre><code class="language-plantuml" data-lang="plantuml">@startmindmap
+* 产品定位
+** 用户
+*** 静态博客玩家
+*** 技术爱好者
+*** 非计算机的极客
+** 痛点
+*** 静态博客学习成本高，需要懂一些编程知识
+**** 技术小白在第一次操作时，往往要踩坑多次
+*** 静态博客缺乏版本管理，无法恢复历史文章
+**** 可通过github等工具追溯版本，但不友好
+*** 静态博客有环境依赖，无法随时随地编辑
+**** 通过github托管，换电脑时重新clone，不能云端编辑
+*** 静态博客无评论功能，缺乏互动交流平台
+**** 当前通过集成第三方评论系统解决，但流程较复杂，且存在数据丢失的风险
+** 定位
+*** 为静态博客玩家提供一站式后台，随时随地更新文章
+** 形式
+*** SAAS
+*** 开源
+@endmindmap
+</code></pre><h2 id="竞品分析">竞品分析</h2>
+<p>上述产品设计，综合借鉴了下述国内外几款产品。国内两款产品主要侧重于<code>GitHub文件的在线编辑</code>，国外两款产品侧重于<code>基于GitHub源的自动化部署</code>。综合国内外几款产品，将<code>在线编辑</code>和<code>可视化部署</code>结合起来，可以解决上述大多数问题。</p>
+<ul>
+<li>国内
+<ul>
+<li><a href="https://www.jingtaiboke.com/help1.html">https://www.jingtaiboke.com/help1.html</a></li>
+</ul>
 </li>
 </ul>
-<p>值得注意的是，不同的操作系统对齐方式不同，在进行数据通讯时需要统一转为为约定格式，避免鸡同鸭讲。</p>
-<p>最后在送大家一个记忆的妙法：</p>
-<blockquote>
-<p>小弟弟：(小低低)小端对齐是：低地址和低位对齐；另一个就是大端对齐。</p>
-</blockquote>
-<h2 id="参考">参考</h2>
-<p><a href="https://zhidao.baidu.com/question/1900511789089474940.html">https://zhidao.baidu.com/question/1900511789089474940.html</a></p>
+<p><img src="https://img.youzibe.com/upload/2021/01/242342-1611502941620.png" alt="静态博客编辑器" loading="lazy" >
+- <a href="https://isnowfy.github.io/about-simple-cn.html">https://isnowfy.github.io/about-simple-cn.html</a></p>
+<p><img src="https://isnowfy.github.io/img/Simple.png" alt="用静态页面生成静态博客" loading="lazy" ></p>
+<ul>
+<li>国外
+<ul>
+<li><a href="https://glitch.com/dashboard">https://glitch.com/dashboard</a></li>
+<li><a href="https://vercel.com/dashboard">https://vercel.com/dashboard</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="架构设计">架构设计</h2>
+<p>考虑到工作量，计划先基于GitHub实现MVP产品原型，主要分为两个核心功能：<code>编辑博客</code>和<code>发布博客</code>。</p>
+<ul>
+<li><strong>编辑博客</strong>：用户打开web页面访问SAAS系统，SAAS系统自动从当前用户指定的github仓库分支中读取文章，在线编辑后，自动推送到该仓库分支（master);</li>
+<li><strong>发布博客</strong>：用户点击<code>发布</code>按钮时，SAAS系统自动下载文章，并调用hugo，根据设置的模板生成站点，自动将站点推送到指定的github仓库分支（pages）托管，用户可通过GitHub提供的域名访问博客；</li>
+</ul>
+<pre><code class="language-plantuml" data-lang="plantuml">@startuml
+== 编辑博客 ==
+autonumber
+本机 -&gt; SAAS :web访问
+github-&gt;SAAS :拉取master分支
+SAAS-&gt;SAAS:编辑md文档（提供编辑器）
+SAAS-&gt;github:推送到master分支
+== 发布博客 ==
+autonumber
+github-&gt;SAAS :拉取master分支
+SAAS-&gt;SAAS:hugo渲染（模板等设置）
+SAAS-&gt;github:推送到pages分支
+github-&gt;github:pages服务
+github-&gt;本机 :本机或公网访问
+@enduml
+</code></pre><h2 id="后续工作">后续工作</h2>
+<p>按照上述架构完成最小化MVP后，根据反馈优化产品体验：例如针对在线编辑功能，增加标签提取功能、更多的图床；针对发布博客功能，增加更多的托管平台。</p>
+<p>@2021-02-08 于长安 Last Modify：2021-02-10</p>
 
     </div>
 
@@ -299,12 +283,12 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/>http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/</span>
+                    <a href=http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/>http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -351,14 +335,6 @@
 
     <div class="post-tags">
         
-            <section>
-            <i class="iconfont icon-tag"></i>Tag(s):
-            
-            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E5%86%85%E5%AD%98/">
-                    #内存</a></span>
-            
-            </section>
-        
         <section>
                 <a href="javascript:window.history.back();">back</a></span> ·
                 <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
@@ -367,10 +343,8 @@
 
     <div class="post-nav">
         
-        <a href="http://ansoncode.bazhentu.net/2021/first/" class="prev" rel="prev" title="我的博客正式启动了"><i class="iconfont icon-left"></i>&nbsp;我的博客正式启动了</a>
+        <a href="http://ansoncode.bazhentu.net/2021/30130%E5%A4%A9%E6%8C%91%E6%88%98-%E5%86%99%E4%BD%9C%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%85%A5%E9%97%A8%E5%85%AC%E5%BC%80%E5%86%99%E4%BD%9C/" class="prev" rel="prev" title="301【30天挑战-写作】半小时入门公开写作"><i class="iconfont icon-left"></i>&nbsp;301【30天挑战-写作】半小时入门公开写作</a>
         
-        
-        <a href="http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" class="next" rel="next" title="201十分钟！用hugo搭建免费的个人博客并自动化部署">201十分钟！用hugo搭建免费的个人博客并自动化部署&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -417,6 +391,21 @@
 
 
 
+
+
+<script src="https://cdn.jsdelivr.net/gh/jmnote/plantuml-encoder@1.2.4/dist/plantuml-encoder.min.js" integrity="sha256-Qsk2KRBCN5qVZX7B+8+2IvQl1Aqc723qV1tBCQaVoqo=" crossorigin="anonymous"></script>
+<script>
+(function(){
+  let plantumlPrefix = "language-plantuml";
+  Array.prototype.forEach.call(document.querySelectorAll("[class^=" + plantumlPrefix + "]"), function(code){
+    let image = document.createElement("IMG");
+    image.loading = 'lazy'; 
+    image.src = 'http://www.plantuml.com/plantuml/svg/~1' + plantumlEncoder.encode(code.innerText);
+    code.parentNode.insertBefore(image, code);
+    code.style.display = 'none';
+  });
+})();
+</script>
 
 
 
@@ -481,7 +470,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = '001什么是大端对齐和小端对齐？'
+            let title = '205为hugo制作在线编辑器'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 

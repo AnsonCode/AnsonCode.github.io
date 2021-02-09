@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 28 Jan 2021 00:26:00 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Feb 2021 18:22:24 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>205为hugo制作在线编辑器</title>
+      <link>http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/</link>
+      <pubDate>Mon, 08 Feb 2021 18:22:24 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/</guid>
+      <description>前言 近期重建博客，发现用github托管hugo静态博客无比舒心，满足了服务免费、数据安全、扩展性强等需求。美中不足的是，静态博客无法在线编</description>
+    </item>
+    
     <item>
       <title>301【30天挑战-写作】半小时入门公开写作</title>
       <link>http://ansoncode.bazhentu.net/2021/30130%E5%A4%A9%E6%8C%91%E6%88%98-%E5%86%99%E4%BD%9C%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%85%A5%E9%97%A8%E5%85%AC%E5%BC%80%E5%86%99%E4%BD%9C/</link>
