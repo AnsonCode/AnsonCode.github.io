@@ -6,7 +6,34 @@
     <description>Recent content in Tags on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 28 Jan 2021 00:26:00 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Feb 2021 18:22:24 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>github</title>
+      <link>http://ansoncode.bazhentu.net/tags/github/</link>
+      <pubDate>Mon, 08 Feb 2021 18:22:24 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>http://ansoncode.bazhentu.net/tags/hugo/</link>
+      <pubDate>Mon, 08 Feb 2021 18:22:24 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>静态博客</title>
+      <link>http://ansoncode.bazhentu.net/tags/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Mon, 08 Feb 2021 18:22:24 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/tags/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>写作</title>
       <link>http://ansoncode.bazhentu.net/tags/%E5%86%99%E4%BD%9C/</link>
@@ -58,15 +85,6 @@
       <pubDate>Wed, 20 Jan 2021 22:37:29 +0800</pubDate>
       
       <guid>http://ansoncode.bazhentu.net/tags/github-pages/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>hugo</title>
-      <link>http://ansoncode.bazhentu.net/tags/hugo/</link>
-      <pubDate>Wed, 20 Jan 2021 22:37:29 +0800</pubDate>
-      
-      <guid>http://ansoncode.bazhentu.net/tags/hugo/</guid>
       <description></description>
     </item>
     

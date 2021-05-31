@@ -6,7 +6,16 @@
     <description>Recent content in 学以致用 on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 20 Jan 2021 22:37:29 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/categories/%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Feb 2021 18:22:24 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/categories/%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>205为hugo制作在线编辑器</title>
+      <link>http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/</link>
+      <pubDate>Mon, 08 Feb 2021 18:22:24 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/</guid>
+      <description>前言 近期重建博客，发现用github托管hugo静态博客无比舒心，满足了服务免费、数据安全、扩展性强等需求。美中不足的是，静态博客无法在线编</description>
+    </item>
+    
     <item>
       <title>201十分钟！用hugo搭建免费的个人博客并自动化部署</title>
       <link>http://ansoncode.bazhentu.net/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</link>
