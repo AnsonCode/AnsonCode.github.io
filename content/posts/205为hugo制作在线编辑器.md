@@ -3,6 +3,9 @@ title: "205为hugo制作在线编辑器"
 date: 2021-02-08T18:22:24+08:00
 draft: false
 plantuml: true
+tags: [ "hugo","静态博客","github"]
+categories:
+  - "学以致用"
 ---
 
 ## 前言
