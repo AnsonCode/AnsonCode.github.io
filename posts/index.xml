@@ -6,7 +6,25 @@
     <description>Recent content in Posts on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 01 Jun 2021 22:10:20 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 01 Jan 2022 11:09:15 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>001 【研发提效】后端开发神器——Hasura实战教程</title>
+      <link>http://ansoncode.bazhentu.net/2022/001-begin/</link>
+      <pubDate>Sat, 01 Jan 2022 11:09:15 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/001-begin/</guid>
+      <description>前言 如果你希望为你的数据库获得一个开箱即用的 GraphQL 服务，其他工具可能更适合你的情况：Hasura, Postgraphile Hasura GraphQL 引擎 能够根据数据库(数据表) 自动生成 GraphQL s</description>
+    </item>
+    
+    <item>
+      <title>603-我和巴黎有个约定</title>
+      <link>http://ansoncode.bazhentu.net/2021/003-%E6%88%91%E5%92%8C%E5%B7%B4%E9%BB%8E%E6%9C%89%E4%B8%AA%E7%BA%A6%E5%AE%9A/</link>
+      <pubDate>Thu, 03 Jun 2021 22:10:20 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2021/003-%E6%88%91%E5%92%8C%E5%B7%B4%E9%BB%8E%E6%9C%89%E4%B8%AA%E7%BA%A6%E5%AE%9A/</guid>
+      <description>[谁都希望被认可]👇 @2021-06-03 于长安 Last Modify：2021-06-03</description>
+    </item>
+    
     <item>
       <title>602-禅师</title>
       <link>http://ansoncode.bazhentu.net/2021/002-%E7%A6%85%E5%B8%88/</link>
@@ -95,6 +113,24 @@
       
       <guid>http://ansoncode.bazhentu.net/2021/first/</guid>
       <description>hugo new about.md @startuml Bob -&amp;gt; Alice : hello @enduml 一颗种子 逻辑推理+科学技术 +计算机 人口普查 诸子百家 + 春秋战国 机械 必须要受器重 财力支持 战争-》通讯技术 hugo server &amp;ndash;theme=hyde &amp;ndash;buildDrafts hugo &amp;ndash;theme=hyde &amp;ndash;baseUrl=&amp;ldquo;http://anson.github.io/&amp;quot; ./hugo &amp;ndash;theme=hyde &amp;ndash;baseUrl=&amp;ldquo;https://caoyanbin1993.github.io/blog/&amp;quot;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://ansoncode.bazhentu.net/1/00%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/1/00%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/</guid>
+      <description>把acad.exe.config里面注释掉的放开就好！ [Map 3D开发实战系列] Map Resource Explorer 之三&amp;ndash; 添加AutoCAD风格的Palette界面</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://ansoncode.bazhentu.net/1/001%E7%AE%80%E4%BB%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/1/001%E7%AE%80%E4%BB%8B/</guid>
+      <description>https://hasura.io/docs/latest/_images/auth-high-level-overview1.png</description>
     </item>
     
   </channel>

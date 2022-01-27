@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Drafts on Anson`s Blog</title>
+    <link>http://ansoncode.bazhentu.net/draft/</link>
+    <description>Recent content in Drafts on Anson`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language><atom:link href="http://ansoncode.bazhentu.net/draft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>http://ansoncode.bazhentu.net/draft/%E7%BC%96%E7%A8%8B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/draft/%E7%BC%96%E7%A8%8B/</guid>
+      <description>节流和防抖 防抖 所谓防抖就是，触发事件后，把触发非常频繁的时间合并成一次去执行。比如，在指定的时间内只执行一次回调函数，如果在指定的时间内又触</description>
+    </item>
+    
+  </channel>
+</rss>
