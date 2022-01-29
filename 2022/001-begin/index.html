@@ -56,7 +56,7 @@
     "datePublished": "2022-01-01 11:09:15 \u002b0800 CST",
     "dateModified" : "2022-01-01 11:09:15 \u002b0800 CST",
     "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/001-begin\/",
-    "wordCount" : "3746",
+    "wordCount" : "7619",
     "keywords" : [  "Anson`s Blog"]
 }
 </script>
@@ -163,7 +163,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">3746 words</span>
+                <span class="post-word-count">7619 words</span>
         </div>
     </header>
 
@@ -409,7 +409,131 @@
 <p>使用元数据，Hasura 生成 JSON API 描述，并且提供可被消费的 web API。</p>
 <p><img src="https://lh3.googleusercontent.com/mGqRPpruMq_N35pJOr1_ntrJcl9n3vMDAA539bzuu7_269_1hr6bK5_7LRZ-E4gpdVC6swTMWOzVimMsuT1xVkRUTQ2RRe2BQEVykRpxkhHDhYMMDy4va7yJ2EScH1YzRdwa9Abz" alt="s" loading="lazy" ></p>
 <p>Hasura 通过 GraphQL 提供统一的 JSON API。GraphQL 是相当合适的，因为他原生就是 JSON。</p>
-<p>作为一种 API 规范它能够灵活的捕获 xu</p>
+<p>作为一种 API 规范它能够使用多种方法满足操作大量数据模型的灵活性需求，同时提供 web 服务所需的可控边界。</p>
+<p>尽管 Hasura 以 web 服务的形式呈现，但它实际上是一个 JIT 编译器，Hasura 通过 HTTP 接受传入的 GraphQL API 调用，然后当把数据查询给下游数据源的时候，尽可能实现理论上最好的性能。</p>
+<p><img src="https://lh4.googleusercontent.com/OaPy7MSzOL3xIDpmON0mKH399gdi2xbxjHlePv4r25PwFRvXLMbHsIjK1neR3kusrv3R0W1mNrCkArQxTSoLXiYESWB2aJHKq0IKYuXjDMXCEY0RhNEj3Yq8lGvaFovve5Yi5P_E" alt="s" loading="lazy" ></p>
+<p>Hasura 能够完全避免实现 GraphQL 后端常见的 N+1 问题。它也能主动记忆，并且向上游数据源发出最少数量的请求。</p>
+<p>要深入理解 Hasura 是如何通过 Postgres &amp; SQL 实现这些的，请阅读：GraphQL 到 SQL 的高性能架构。
+<a href="https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server-58d9944b8a87/">https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server-58d9944b8a87/</a></p>
+<h4 id="33-内置权限">3.3 内置权限</h4>
+<p>Hasura 的元数据和查询引擎能够有效的将全部数据表示为一个统一可查询的 JSON 文档。</p>
+<p>然而，数据权限不能被自动化和处理，除非没有嵌入权限规则（不需要授权）。</p>
+<p>开发者将在不安全的环境中使用数据。不像很多年前，数据存在银行大楼中，并且 Java 应用程序运行在可信客户的机器中。</p>
+<p>如今作为数据的所有者，我们想要给开发者访问正确范围内数据的权限（和方法），无论他们在哪或者他们打算用数据做什么。</p>
+<table>
+<thead>
+<tr>
+<th>开发者类型</th>
+<th>APIs 类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组织外的开发者</td>
+<td>公共 APIs</td>
+</tr>
+<tr>
+<td>不同团队的开发者</td>
+<td>带有治理和 Qos 控制的网络 APIs</td>
+</tr>
+<tr>
+<td>为外部用户构建 APP 的开发者</td>
+<td>面向外部的 APIs,但带有严格范围限制避免终端用户滥用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hasura 有一个授权引擎，允许开发者在模型级别嵌入生命行约束。</strong></p>
+<p>这允许 Hasura 自动使用正确的权限规则，对于任何给定的 API 调用，可以通过关系访问模型列表，模型的部分字段，模型等。</p>
+<p><img src="https://lh3.googleusercontent.com/ytZAcQOMTdIHnsL4YeLNTxKt7dajS8YEqOnuZQEU6qJ3t5m7QOT8rWTrxbPxDRAGHj3IvKTvBNWJ6Y6vCDgzSioNU7Yg-L0-oh6oNYepoMtqV7viQUyqStuX0bwhmLpbkbWtGpqb" alt="内置权限" loading="lazy" ></p>
+<p>由于这些权限是声明式的，所以（通过 APIs）在运行时能够完全可用，它允许开发者和 Hasura 为授权系统去提供额外的可观察性。例如：</p>
+<ul>
+<li>1.授权审计：终端消费者在特定 API 被调用时使用或触发的那些授权规则</li>
+<li>2.查看或管理授权规则的工具</li>
+</ul>
+<p>Hasura 的授权系统与数据库引擎提供的行级别安全的声明系统类似，但是把这个能力带到了应用层。值得一提的是，很多年前，我们构建第一个版本的 Hasura 鉴权系统时，Postgres RLS 也正好发布。多么愉快地巧合呀！</p>
+<p>授权规则是能够贯穿 JSON 数据图任何属性和方法的条件：</p>
+<ul>
+<li>数据及其关联关系的任何属性
+<ul>
+<li>例如：如果<code>document.collaborators.editors</code>包含<code> current_user.id</code>允许访问</li>
+</ul>
+</li>
+<li>访问数据用户的任何属性
+<ul>
+<li>例如：如果<code>accounts.organization.id</code>等于<code>current_user.organization_id</code>允许访问</li>
+</ul>
+</li>
+<li>规则能够屏蔽、标记或者加密数据模型或方法返回的被标记数据的部分。这个标签通常被称为“角色”。</li>
+</ul>
+<p>这允许 Hasura 提供 RBAC、ABAC、分层多租户权限等。例如，这个博文介绍了你如何用 Hasura 实现一个像谷歌云 IAM 一样的授权系统： <a href="https://hasura.io/blog/authorization-rules-for-multi-tenant-system-google-cloud/">https://hasura.io/blog/authorization-rules-for-multi-tenant-system-google-cloud/</a></p>
+<p><img src="https://lh5.googleusercontent.com/OiTmByHCWpnkheBRxp7vSr9i6RcVxiGDsCQi6obSVr1jau3VuDSq2qQTPlZTq-o01FA1mSfB99Alw5OuV2GY37yxr1dFnSK39evOn__oB-DzOXlmEWfUavLluBwL4h_hmC-mnxBw" alt="授权系统" loading="lazy" ></p>
+<p>声明式授权系统有极大的优势，因为他允许 Hasura 自动执行一些优化工作：</p>
+<ul>
+<li>1.事务级的授权+数据访问：常用的数据查询和授权规则核查在同一个系统中实现。这允许数据查询和授权核查“原子性”的发生，这样在查询数据时授权规则就不会失效。</li>
+<li>2.授权谓词下推[]：只要有可能，Hasura 可以在数据查询中自动下推授权核查。这极大的有利于提升性能，并且避免额外的查询。</li>
+</ul>
+<p><em>注：谓词下推 Predicate Pushdown（PPD）：简而言之，就是在不影响结果的情况下，尽量将过滤条件提前执行。谓词下推后，过滤条件在 map 端执行，减少了 map 端的输出，降低了数据在集群上传输的量，节约了集群的资源，也提升了任务的性能。</em></p>
+<ul>
+<li>3.授权缓存：Hasura 能根据需要自动更新和缓存授权信息或授权检查，（之前）这是在热查询时人必须做的工作。</li>
+<li>4.自动私有数据缓存：因为 Hasura 能“思考”授权规则，Hasura 也能自动确定来自不同用户的多个 GraphQL 查询是否最终返回相同的数据。应用级别缓存这部分，原本由开发者手工构建，现在能够被 Hasura 自动处理。</li>
+</ul>
+<p>尤其，Hasura 没有提供一个内置的授权构件。在很多现存的环境中，尤其是企业，授权服务经常是一个外部的系统。随着 SAAS、开源身份管理系统以及授权即服务提供商的崛起，Hasura 现在可以继续解决它最擅长的问题。例如，Hasura 可以和 Keycloak, Okta, Auth0, Azure AD, Firebase Auth 无缝对接，并且能完全自定义像 hasura-backend-plus 一样提供授权服务的社区解决方案。上面提到的一点也不详尽，而是打算介绍下现存的且 Hasura 能够很好交互的各种授权方案，</p>
+<h4 id="34-应用级别缓存">3.4 应用级别缓存</h4>
+<p>应用级别缓存是这个最主要的原因之一，为什么开发者经常需要手动构建需要提供数据访问的 web APIs。当然，API 调用是及其频繁和昂贵的，计算数据查询对上游数据源来说也是及其昂贵的。</p>
+<p>开发者使用知道什么查询需要缓存的领域知识去构建缓存策略，为某些用户或用户组，使用像 Redis 的缓存存储提供 API 缓存。</p>
+<p>因为 Hasura 的元数据配置包含所有数据模型和授权规则的详细信息，授权规则包含了哪些用户能访问哪些数据地信息，<a href="https://hasura.io/graphql/caching/">Hasura 能针对动态数据自动实现 API 缓存</a>。</p>
+<p>这个问题的第二部分缓存校验是一个复杂的问题。通常，为了避免担心缓存失效和一致，作为开发者我们使用基于缓存的 TTL，并且让 API 消费者去处理这个不一致问题。</p>
+<p>Hasura 与数据源深度交互，并且因为所有数据访问都需要通过 Hasura 或者使用数据源 CDC(数据捕获) 机制，理论上 Hasura 也能提供自动缓存失效。这块的缓存问题与“实例化视图更新”相似。</p>
+<p>我们已经迈出了自动化应用级缓存的第一步，并且有很长的路要走，但是这个前景和潜力是非常让人振奋的：</p>
+<p>关于构建自动缓存策略，我曾在 GraphQL 提交的几个月前，给出了详细的讨论。如果你想要了解更多关于 Hasura 缓存我们是如何思考的，那可能会引起你的兴趣。</p>
+<p><img src="https://www.youtube.com/watch?v=HJPYnUT5unw" alt="An Approach to Automated Caching for Public & Private GraphQL APIs" loading="lazy" ></p>
+<h4 id="35-驱动无状态的业务逻辑">3.5 驱动无状态的业务逻辑</h4>
+<p>在我们所拥有的微服务和多语言数据领域，驱动无状态的业务逻辑正开始不断变得越来越困难</p>
+<p>事件驱动模式已成为一个解决方案去处理大容量事务负载和编排一系列业务逻辑操作，这些行为只执行一次并且处理失败不需要回滚。</p>
+<p>这些模式也允许业务逻辑尽可能的无状态化。 业务逻辑类似在事件中被调用的”纯计算“。在执行期间所需的任何数据都通过 http APIs 访问。</p>
+<p>然而，这样做所需的管道对于入门来说是让人望而却步的。（意思是很难）</p>
+<p>Hasura 实现了一个事件系统，为开发者提供容易的方式去写无状态业务逻辑，并且通过 HTTP 的方式与 Hasura 集成。</p>
+<p><img src="https://lh6.googleusercontent.com/NHgVl-i1y9ifBOqIyufRxJnNCjJke2hmNruS1wTr2EBEnJbg_-b33xeNAwMDgdQwdD6NM4NExiGwpE7w1QcwQCyGJ2QitVE1XC3WOKTQOORNOWutBRUfkxdMT__jfqu3i6vcI1iq" alt="事件机制" loading="lazy" ></p>
+<p>Hasura 捕获并且通过 HTTP 投递事件，同时确保（至少 1 次、正好 1 次）去帮助创建工作流，这可以让开发者像在有状态整体中下写代码那样高效的完成无状态业务逻辑。</p>
+<p>** Hasura 的事件集成：**</p>
+<ul>
+<li>1.与数据源的改变数据捕获集成实现自动捕获，并且通过 HTTP 可靠投递数据事件。<a href="https://hasura.io/docs/latest/graphql/core/event-triggers/index.html#event-triggers">阅读更多</a></li>
+<li>2.API 事件：终端用户触发的 API 调用映射到事件上，通过 HTTP，事件被投递到后端业务逻辑中。Hasura 能提供异步或同步边界。<a href="https://hasura.io/blog/introducing-actions/">阅读更多</a></li>
+<li>3.基于时间的事件：Hasura 能基于定时器或者时间戳触发事件，并且通过 HTTP 投递他们到业务逻辑中。<a href="https://hasura.io/docs/latest/graphql/core/scheduled-triggers/index.html">阅读更多</a></li>
+</ul>
+<p>例如，一个数据改变事件能被 Hasura 捕获并且被投递到一个由无服务函数或微服务支持的 REST 端点上。</p>
+<p>**支持传统事务：**然而，当一个 API 消费者与支持事务的单数据源交互时，Hasura 也能通过 websocket 和 GraphQL 导出事务。这允许业务逻辑作者用通常的方式去使用事务，如果需要的话逐步过渡到基于事件的系统。</p>
+<h4 id="36-实时-apis又名订阅">3.6 实时 APIs(又名订阅)</h4>
+<p>Hasura 与数据库集成并且为终端 API 消费者提供一个可扩展实时 API。这种类型像一个 WATCH API（观察 API）或者一个 GraphQL 订阅能观察特定资源的变化。</p>
+<p>由于它的授权系统，Hasura 能确保它能将正确的事件投递到正确的消费者。</p>
+<p>在生产环境中管理基于 websockets 的实时 APIs 是出名痛苦的，因为他们是令人吃惊的有状态并且昂贵。websockets 也需要额外实现网络安全层。</p>
+<p>阅读更多关于 Hasura 如何通过 Postgres 提供一个可扩展的订阅 API：https://github.com/hasura/graphql-engine/blob/master/architecture/live-queries.md</p>
+<p><img src="https://lh3.googleusercontent.com/cZ_jtjtnA1_9XmnLbIasJO2UJMjSC_z4-1xGxWFrt-UQpJoHNFLZEqckOfr9egCT8Q_pVBceP9IPb0THlWMNMQaS0EDXOL7MDf5PPYZA_DBNuL3YKHWo8mqQDab4VE4StLArAupf" alt="实时订阅" loading="lazy" ></p>
+<h4 id="37-变革管理和-cicd">3.7 变革管理和 CI/CD</h4>
+<p>如果你熟悉 <a href="https://hasura.io/blog/best-practices-jamstack-projects-production-scale/">JAMStack</a> 生态系统，你将理解”预览 URLs“的概念。在各个开发阶段，有一些端点托管静态 APP 版本。在开发、QA 等阶段，这对利益相关者是非常有用的。</p>
+<p>蓝绿发布或 A/B 部署也是一种乐趣，因为在专用的端点上那是可用的静态资源。通过一些简单的配置，DNS 规则或者负载均衡配置，你能从这些能力中获益，去同时发布你 APP 的多版本，并在他们之间分配流量。</p>
+<p>Hasura 的目标是通过动态 APIs 提供这些能力。</p>
+<p>因为 Hasura 是一个 API 系统，他能完全在运行时配置，并且能在外部系统中分离它的元数据配置，你能轻松完成下列事情：</p>
+<ul>
+<li>1.开发一个你 API 的新版本，针对相同的数据源去预览一个元数据改变（比如新的模型映射或者授权规则）</li>
+<li>2.针对相同的数据源运行多个 Hasura 版本去确保一个可靠的推出（TODO）。</li>
+</ul>
+<p><img src="https://lh6.googleusercontent.com/gHJJTcmVWu9TdJAzF1smmjioGgcbkwa5rXMeVQN__hUMyS7d3jVZDP45vRicJG--jVaD9qStAAamcRKiXTfvFr1FYUNA4aOS9NaG4Xi9zycD6F_FvPjro3BeXHCcGzwGZcogoRdP" alt="部署对比" loading="lazy" ></p>
+<h4 id="38-联邦数据控制面板">3.8 联邦数据&amp;控制面板</h4>
+<p>以防你错过它，Hasura 的元数据系统完全是动态的，并且可以在运行时通过 APIs 配置。</p>
+<p>我们正在基于 Hasura 的元数据 APIs 构建一套授权系统。这允许你作为一个 API 的所有者去联合控制元数据给相关数据源的所有者。（TODO）</p>
+<p>你的在线数据早已横跨多个需要被联合的数据源。Hasura 通过提供缺少的环节，一个联合控制面板让这变得更容易。</p>
+<p>阅读更多关于 Hasura 和远程关联的数据联邦内容，<a href="https://hasura.io/blog/remote-joins-a-graphql-api-to-join-database-and-other-data-sources/">前往</a></p>
+<h4 id="39-不局限特定的语言框架">3.9 不局限特定的语言、框架</h4>
+<p>Hasura 以服务的形式呈现它自己，并且 提供与其他服务的集成点，例如其他数据系统的网络原生链接、消费 API 或者驱动业务逻辑的 HTTP。</p>
+<p>这允许 Hasura 用户使用他们最喜欢的语言、运行时、框架或者主机供应商。</p>
+<p>这也允许我们在相对独立又解耦的环境中构建 Hasura，同时鼓励采用最新和最优秀的技术趋势。</p>
+<h4 id="310-空操作">3.10 空操作</h4>
+<p>作为一个产品，我们的的愿景是允许开发者尽可能快的进入”无操作“的未来，这也是至关重要的去确保 Hasura 提升商业价值。</p>
+<p>因为 Hasura 是一个独立的服务，我们能构建一个能运行的自动伸缩实践，与 APM 和追踪工具建立正确的集成，这样这些数据 API 服务不会带来沉重的操作重担。</p>
+<p>甚至更重要的是，Hasura 能够与上游数据源需要的健康核查、可用性、复用性、可伸缩以及断路模式 进行 集成。</p>
+<h3 id="4-faq">4. FAQ</h3>
+<h4 id="41-如果我的数据模型改变了他是一个坏的主意去">4.1 如果我的数据模型改变了，他是一个坏的主意去</h4>
 
     </div>
 
