@@ -8,21 +8,12 @@
     <language>zh-cn</language>
     <lastBuildDate>Sat, 01 Jan 2022 11:09:15 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>001 【研发提效】后端开发神器——Hasura实战教程</title>
-      <link>http://ansoncode.bazhentu.net/2022/001-begin/</link>
+      <title>001【翻译01】Hasura设计思想</title>
+      <link>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%9101hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
       <pubDate>Sat, 01 Jan 2022 11:09:15 +0800</pubDate>
       
-      <guid>http://ansoncode.bazhentu.net/2022/001-begin/</guid>
-      <description>前言 如果你希望为你的数据库获得一个开箱即用的 GraphQL 服务，其他工具可能更适合你的情况：Hasura, Postgraphile Hasura GraphQL 引擎 能够根据数据库(数据表) 自动生成 GraphQL s</description>
-    </item>
-    
-    <item>
-      <title>603-我和巴黎有个约定</title>
-      <link>http://ansoncode.bazhentu.net/2021/003-%E6%88%91%E5%92%8C%E5%B7%B4%E9%BB%8E%E6%9C%89%E4%B8%AA%E7%BA%A6%E5%AE%9A/</link>
-      <pubDate>Thu, 03 Jun 2021 22:10:20 +0800</pubDate>
-      
-      <guid>http://ansoncode.bazhentu.net/2021/003-%E6%88%91%E5%92%8C%E5%B7%B4%E9%BB%8E%E6%9C%89%E4%B8%AA%E7%BA%A6%E5%AE%9A/</guid>
-      <description>[谁都希望被认可]👇 @2021-06-03 于长安 Last Modify：2021-06-03</description>
+      <guid>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%9101hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
+      <description>翻译自：Hasura Design Philosophy Hasura 设计思想 本文，我打算从产品视角谈论下 Hasura，我们的技术设计思想，与其他技术的比较，以及一些常见问题。 如果你仅</description>
     </item>
     
     <item>
@@ -130,7 +121,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://ansoncode.bazhentu.net/1/001%E7%AE%80%E4%BB%8B/</guid>
-      <description>https://hasura.io/docs/latest/_images/auth-high-level-overview1.png</description>
+      <description>https://hasura.io/docs/latest/_images/auth-high-level-overview1.png 前言 如果你希望为你的数据库获得一个开箱即用的 GraphQL 服务，其他工具可能更适合你的情况：Hasura, Postgraphile Hasura GraphQL 引擎 能够根据数据库(数据表) 自动生成 GraphQL</description>
     </item>
     
   </channel>

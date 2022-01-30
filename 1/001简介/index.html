@@ -45,7 +45,7 @@
     "articleSection" : "posts",
     "name" : "",
     "headline" : "",
-    "description" : "https:\/\/hasura.io\/docs\/latest\/_images\/auth-high-level-overview1.png",
+    "description" : "https:\/\/hasura.io\/docs\/latest\/_images\/auth-high-level-overview1.png 前言 如果你希望为你的数据库获得一个开箱即用的 GraphQL 服务，其他工具可能更适合你的情况：Hasura, Postgraphile Hasura GraphQL 引擎 能够根据数据库(数据表) 自动生成 GraphQL",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
@@ -56,7 +56,7 @@
     "datePublished": "0001-01-01 00:00:00 \u002b0000 UTC",
     "dateModified" : "0001-01-01 00:00:00 \u002b0000 UTC",
     "url" : "http:\/\/ansoncode.bazhentu.net\/1\/001%E7%AE%80%E4%BB%8B\/",
-    "wordCount" : "1",
+    "wordCount" : "1761",
     "keywords" : [  "Anson`s Blog"]
 }
 </script>
@@ -154,7 +154,7 @@
                 </span>
                 in
                 
-                <span class="post-word-count">1 words</span>
+                <span class="post-word-count">1761 words</span>
         </div>
     </header>
 
@@ -162,6 +162,8 @@
         
 
         
+        
+            
         
 
         
@@ -175,6 +177,125 @@
         
 
         <p><a href="https://hasura.io/docs/latest/_images/auth-high-level-overview1.png">https://hasura.io/docs/latest/_images/auth-high-level-overview1.png</a></p>
+<h3 id="前言">前言</h3>
+<p>如果你希望为你的数据库获得一个开箱即用的 GraphQL 服务，其他工具可能更适合你的情况：Hasura, Postgraphile</p>
+<p>Hasura GraphQL 引擎 能够根据数据库(数据表) 自动生成 GraphQL schema，并且处理 GraphQL 查询, 订阅 和 变更。</p>
+<h4 id="schema-生成">Schema 生成</h4>
+<p>我们只需要跟踪表或视图，并且创建他们之间的关联关系，Hasura 引擎将自动生成 GraphQL schema。</p>
+<h5 id="表">表</h5>
+<p>跟踪表时将自动生成如下内容：</p>
+<ul>
+<li>关于该表的 GraphQL 类型定义</li>
+<li>查询：支持 where（条件搜索）、oreder_by（排序）、limit 和 offset（分页）的查询</li>
+<li>订阅：支持 where（条件搜索）、oreder_by（排序）、limit 和 offset（分页）的<em>订阅</em></li>
+<li>新增：支持冲突更新的单条新增；支持批量新增；</li>
+<li>更新：支持 where 条件的批量更新</li>
+<li>删除：支持 where 条件的批量删除</li>
+</ul>
+<h5 id="表视图tablesviews">表/视图（Tables/Views）</h5>
+<p>跟踪表时将自动生成如下内容：</p>
+<ul>
+<li>
+<p>定义：关于该表的 GraphQL 类型定义</p>
+</li>
+<li>
+<p>查询：支持 where（条件搜索）、oreder_by（排序）、limit 和 offset（分页）的查询</p>
+</li>
+<li>
+<p>订阅：支持 where（条件搜索）、oreder_by（排序）、limit 和 offset（分页）的<em>订阅</em></p>
+</li>
+<li>
+<p>新增：支持冲突更新的单条新增；支持批量新增；</p>
+</li>
+<li>
+<p>更新：支持 where 条件的批量更新</p>
+</li>
+<li>
+<p>删除：支持 where 条件的批量删除</p>
+</li>
+</ul>
+<ul>
+<li>视图不支持变更，因此只具有表的前 3 条功能</li>
+</ul>
+<h5 id="关系relationships">关系（Relationships）</h5>
+<p>当在 Hasura 引擎中创建表/视图与其他表/视图关系后，引擎自动完成下述内容：</p>
+<ul>
+<li>在表/视图中增加对象类型的字段，方便通过嵌套的方式查询数据</li>
+<li>为嵌套对象增加 where 和 order_by 语法，便于过滤和排序</li>
+</ul>
+<h5 id="解析器resolvers">解析器（Resolvers）</h5>
+<p>Hasura 不需要任何手写任何解析器，它自身就是一个编译器，能够将 GraphQL 查询编译成高效的 SQL 查询语句。</p>
+<p>Hasura 针对 SQL 查询做了优化，能够充分利用 SQL 的功能，实现高效的查询。</p>
+<h5 id="元数据metadata">元数据（Metadata）</h5>
+<p>Hasura 将 schema 生成所需要的全部信息 以元数据的方式存储 在“目录”中，它实际上是元数据数据库中的一个特殊 Postgres schema。</p>
+<h4 id="元数据目录">元数据目录</h4>
+<p>元数据目录是 Hasura 系统内部的表，被用于管理数据库状态和 GraphQL schema。</p>
+<p>Hasura 引擎使用元数据生成能够被不同客户端访问的 GraphQL API。</p>
+<p>Hasura 引擎将元数据存储在 Postgres 元数据库中，默认和业务数据所在位置相同。</p>
+<p>初始化的时候，Hasura 在元数据库中创建一个叫做<code>hdb_catalog</code>的 schema，并且初始化一些表，详情见下文。</p>
+<h5 id="hdb_catalog-schema">hdb_catalog schema</h5>
+<p>Hasura 创建它的目的是为了管理系统内部的状态。</p>
+<p>当使用 Hasura 面板或 API 创建或更新表/权限/关系时，Hasura 将捕获该信息，同时将信息存储到相应的表中。</p>
+<p>下面的表是 Hasura 用到的：</p>
+<h5 id="hdb_table-table">hdb_table table</h5>
+<p><code>hdb_table</code>存储所有表/视图被创建或追踪的相关信息.</p>
+<!-- raw HTML omitted -->
+<p><img src="https://hasura.io/docs/latest/_images/hdb_table1.jpg" alt="hdb_table" loading="lazy" ></p>
+<ul>
+<li>table_schema:</li>
+<li>table_name:</li>
+<li>is_system_defined:真代表由系统内部创建；假代表由用户创建</li>
+</ul>
+<h5 id="hdb_relationship-table">hdb_relationship table</h5>
+<p><code>hdb_relationship</code>存储表/视图间的关联信息。</p>
+<p><img src="https://hasura.io/docs/latest/_images/hdb_relationship1.jpg" alt="hdb_relationship" loading="lazy" ></p>
+<ul>
+<li>table_schema:</li>
+<li>table_name:</li>
+<li>rel_name:关系的名称</li>
+<li>rel_type：权限类型（insert/select/update/delete）</li>
+<li>perm_def：关系定义的相关信息</li>
+</ul>
+<pre><code>{
+  &quot;foreign_key_constraint_on&quot;: &quot;user_id&quot;
+}
+</code></pre><ul>
+<li>comment:关系的备注</li>
+<li>is_system_defined:真代表由系统内部创建；假代表由用户创建</li>
+</ul>
+<h5 id="hdb_permission-table">hdb_permission table</h5>
+<p><code>hdb_permission</code>存储与表或视图权限控制规则相关的信息。</p>
+<ul>
+<li>table_schema:</li>
+<li>table_name:</li>
+<li>role_name:使用该权限的角色名称</li>
+<li>perm_type：权限类型（insert/select/update/delete）</li>
+<li>perm_def：权限定义的相关信息</li>
+</ul>
+<p>当一个请求携带上述角色访问上述表时，引擎将先验证被用户请求的字段是否有访问权限。只要请求通过验证，这个 <code>filter</code>字段定义的过滤器将返回适当的结果。例如：</p>
+<pre><code>{
+  &quot;columns&quot;: [&quot;id&quot;, &quot;name&quot;],
+  &quot;filter&quot;: {
+    &quot;id&quot;: {
+      &quot;_eq&quot;: &quot;X-HASURA-USER-ID&quot;
+    }
+  }
+}
+</code></pre><ul>
+<li>comment:权限的备注</li>
+<li>is_system_defined:真代表由系统内部创建；假代表由用户创建</li>
+</ul>
+<p>注意：上述内容将持续更新。截止到上一次更新，后续可能有新的表或字段增加到目录中，以便于支持新的特性。</p>
+<h5 id="exploring-the-catalogue">Exploring the catalogue</h5>
+<p>通过 Postgres 客户端访问 <code>hdb_catalog</code> schema,你可以核查当前 schema 和目录内容。</p>
+<h5 id="catalogue-versioning">Catalogue versioning</h5>
+<p>当目录的 schema 被修改后，系统将自动升级目录版本。</p>
+<p>如果有 Hasura 引擎更新期间有新的版本可用，目录版本也将在系统启动时更新。</p>
+<h3 id="参考">参考</h3>
+<p><a href="https://hasura.io/docs/latest/_images/auth-webhook-overview1.png">https://hasura.io/docs/latest/_images/auth-webhook-overview1.png</a></p>
+<p><a href="https://hasura.io/learn/zh/graphql/hasura/what-next/">https://hasura.io/learn/zh/graphql/hasura/what-next/</a></p>
+<p><a href="https://www.graphqlweekly.com/">https://www.graphqlweekly.com/</a></p>
+<p>N+1 问题讨论：https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping</p>
 
     </div>
 

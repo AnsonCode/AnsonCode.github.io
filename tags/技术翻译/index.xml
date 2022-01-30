@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>”技术翻译“ on Anson`s Blog</title>
+    <link>http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/</link>
+    <description>Recent content in ”技术翻译“ on Anson`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 01 Jan 2022 11:09:15 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>001【翻译01】Hasura设计思想</title>
+      <link>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%9101hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
+      <pubDate>Sat, 01 Jan 2022 11:09:15 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%9101hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
+      <description>翻译自：Hasura Design Philosophy Hasura 设计思想 本文，我打算从产品视角谈论下 Hasura，我们的技术设计思想，与其他技术的比较，以及一些常见问题。 如果你仅</description>
+    </item>
+    
+  </channel>
+</rss>
