@@ -1,165 +1,15 @@
 ---
-title: "001 【研发提效】后端开发神器——Hasura实战教程"
+title: "001【翻译01】Hasura设计思想"
 date: 2022-01-01T11:09:15+08:00
-tags: []
-categories: [""]
+tags: [”技术翻译“, "Hasura"]
+categories:
+  - "研发提效"
 featured_image:
 description:
 draft: false
 ---
 
-### 前言
-
-如果你希望为你的数据库获得一个开箱即用的 GraphQL 服务，其他工具可能更适合你的情况：Hasura, Postgraphile
-
-Hasura GraphQL 引擎 能够根据数据库(数据表) 自动生成 GraphQL schema，并且处理 GraphQL 查询, 订阅 和 变更。
-
-#### Schema 生成
-
-我们只需要跟踪表或视图，并且创建他们之间的关联关系，Hasura 引擎将自动生成 GraphQL schema。
-
-##### 表
-
-跟踪表时将自动生成如下内容：
-
-- 关于该表的 GraphQL 类型定义
-- 查询：支持 where（条件搜索）、oreder_by（排序）、limit 和 offset（分页）的查询
-- 订阅：支持 where（条件搜索）、oreder_by（排序）、limit 和 offset（分页）的*订阅*
-- 新增：支持冲突更新的单条新增；支持批量新增；
-- 更新：支持 where 条件的批量更新
-- 删除：支持 where 条件的批量删除
-
-##### 表/视图（Tables/Views）
-
-跟踪表时将自动生成如下内容：
-
-- 定义：关于该表的 GraphQL 类型定义
-- 查询：支持 where（条件搜索）、oreder_by（排序）、limit 和 offset（分页）的查询
-- 订阅：支持 where（条件搜索）、oreder_by（排序）、limit 和 offset（分页）的*订阅*
-
-- 新增：支持冲突更新的单条新增；支持批量新增；
-- 更新：支持 where 条件的批量更新
-- 删除：支持 where 条件的批量删除
-
-* 视图不支持变更，因此只具有表的前 3 条功能
-
-##### 关系（Relationships）
-
-当在 Hasura 引擎中创建表/视图与其他表/视图关系后，引擎自动完成下述内容：
-
-- 在表/视图中增加对象类型的字段，方便通过嵌套的方式查询数据
-- 为嵌套对象增加 where 和 order_by 语法，便于过滤和排序
-
-##### 解析器（Resolvers）
-
-Hasura 不需要任何手写任何解析器，它自身就是一个编译器，能够将 GraphQL 查询编译成高效的 SQL 查询语句。
-
-Hasura 针对 SQL 查询做了优化，能够充分利用 SQL 的功能，实现高效的查询。
-
-##### 元数据（Metadata）
-
-Hasura 将 schema 生成所需要的全部信息 以元数据的方式存储 在“目录”中，它实际上是元数据数据库中的一个特殊 Postgres schema。
-
-#### 元数据目录
-
-元数据目录是 Hasura 系统内部的表，被用于管理数据库状态和 GraphQL schema。
-
-Hasura 引擎使用元数据生成能够被不同客户端访问的 GraphQL API。
-
-Hasura 引擎将元数据存储在 Postgres 元数据库中，默认和业务数据所在位置相同。
-
-初始化的时候，Hasura 在元数据库中创建一个叫做`hdb_catalog`的 schema，并且初始化一些表，详情见下文。
-
-##### hdb_catalog schema
-
-Hasura 创建它的目的是为了管理系统内部的状态。
-
-当使用 Hasura 面板或 API 创建或更新表/权限/关系时，Hasura 将捕获该信息，同时将信息存储到相应的表中。
-
-下面的表是 Hasura 用到的：
-
-##### hdb_table table
-
-`hdb_table`存储所有表/视图被创建或追踪的相关信息.
-
-<!-- 当使用 Hasura 面板或 API 创建或跟踪表/视图时， -->
-
-![hdb_table](https://hasura.io/docs/latest/_images/hdb_table1.jpg)
-
-- table_schema:
-- table_name:
-- is_system_defined:真代表由系统内部创建；假代表由用户创建
-
-##### hdb_relationship table
-
-`hdb_relationship`存储表/视图间的关联信息。
-
-![hdb_relationship](https://hasura.io/docs/latest/_images/hdb_relationship1.jpg)
-
-- table_schema:
-- table_name:
-- rel_name:关系的名称
-- rel_type：权限类型（insert/select/update/delete）
-- perm_def：关系定义的相关信息
-
-```
-{
-  "foreign_key_constraint_on": "user_id"
-}
-```
-
-- comment:关系的备注
-- is_system_defined:真代表由系统内部创建；假代表由用户创建
-
-##### hdb_permission table
-
-`hdb_permission`存储与表或视图权限控制规则相关的信息。
-
-- table_schema:
-- table_name:
-- role_name:使用该权限的角色名称
-- perm_type：权限类型（insert/select/update/delete）
-- perm_def：权限定义的相关信息
-
-当一个请求携带上述角色访问上述表时，引擎将先验证被用户请求的字段是否有访问权限。只要请求通过验证，这个 `filter`字段定义的过滤器将返回适当的结果。例如：
-
-```
-{
-  "columns": ["id", "name"],
-  "filter": {
-    "id": {
-      "_eq": "X-HASURA-USER-ID"
-    }
-  }
-}
-```
-
-- comment:权限的备注
-- is_system_defined:真代表由系统内部创建；假代表由用户创建
-
-注意：上述内容将持续更新。截止到上一次更新，后续可能有新的表或字段增加到目录中，以便于支持新的特性。
-
-##### Exploring the catalogue
-
-通过 Postgres 客户端访问 `hdb_catalog` schema,你可以核查当前 schema 和目录内容。
-
-##### Catalogue versioning
-
-当目录的 schema 被修改后，系统将自动升级目录版本。
-
-如果有 Hasura 引擎更新期间有新的版本可用，目录版本也将在系统启动时更新。
-
-### 参考
-
-https://hasura.io/docs/latest/_images/auth-webhook-overview1.png
-
-https://hasura.io/learn/zh/graphql/hasura/what-next/
-
-https://www.graphqlweekly.com/
-
-N+1 问题讨论：https://stackoverflow.com/questions/97197/what-is-the-n1-selects-problem-in-orm-object-relational-mapping
-
-https://hasura.io/blog/how-hasura-works/
+翻译自：[Hasura Design Philosophy](https://hasura.io/blog/how-hasura-works/)
 
 ## Hasura 设计思想
 
@@ -171,7 +21,7 @@ https://hasura.io/blog/how-hasura-works/
 
 在 Hasura 中，我们的使命是让应用开发比传统方式更快。随着技术领域的发展，我们相信这个需要被攻克的瓶颈是让数据可用。
 
-![s](https://lh4.googleusercontent.com/X2duY5dYkQCJbQKSJlm55Fie2nnvulYMHVDxce6PhQTfpSuZg4YXG4hrkNgXaCFxSz1xzjz0bXHOXUubVReMu3oBLzwzDgW4dlW3jOyflUDEhn74eKztuC1fWm30fpX2AvJv6fyP)
+![](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130160741.png)
 
 尤其是在企业环境中，采用最佳技术，构建现代化程序或者构建新的能力严重依赖对在线/实时数据的处理能力。
 
@@ -208,7 +58,7 @@ Hasura 用户能够任何场景下快速完成需求。从印度的开发者、�
 
 数据库提供了运行时的元数据引擎，能够满足开发者的特定需求，并且提供允许开发者操作数据的服务，而且没有处理原始文件带来的任何繁琐工作。例如，考虑下 Lucene 和 Elasticsearch 的不同。
 
-![数据库发展历程](https://lh3.googleusercontent.com/JNwEuyHVrrA0rVpnA9vFD-Fgv5NsSYNGA2kdFRoP4cQKzRT-1qSnQSCOSC1S3lOIq6SXzyXS8_z6noKOC8OuYspMvtjbYGisgOY0ve7PKjlibd9Gx8tBXSj8XYy6k5NYZxkwvo1r)
+![数据库发展历程](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130155321.png)
 
 使用数据库元数据，数据库引擎能够在运行时（作为服务）完全运行，而不需要开发人员进行任何构建时工作。
 描述性的元数据系统时有用的，因为数据库引擎能够高效“思考它自己”，并且通过可预测但是灵活的 API 自动化抽象处繁重的工作.
@@ -239,7 +89,7 @@ Hasura 实现了一个元数据引擎，能捕获需要授权的网络服务特�
 
 在下图，你能看到 Hasura 是如何将 web API 概念映射到 声明性网络服务的，即“GraphQL 引擎”。
 
-![Hasura](https://lh4.googleusercontent.com/bswkTBFrM6riII93BCiAzIwFjPxHhhXzajhFnpD590RSb997A2REhdsyjVKZJ3sWp-USRnub2r3FTbSQ1M7GwerJ3wCHnb2NfzwW_eQO3KhlKsjkE5hP6dy0YuWIMcNCWyuXyNLX)
+![Hasura实现路径](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130155425.png)
 
 让我们深入这些能力和特性的细节，我们将看到 Hasura 设计是如何应对这些技术难题的。
 
@@ -253,7 +103,7 @@ Hasura 实现了一个元数据引擎，能捕获需要授权的网络服务特�
 
 我们设计 Hasura 和围绕它的开发工具去确保意会 Hasura 的概念，并且尽可能快和容易的上手它。
 
-![分钟级准备](https://lh6.googleusercontent.com/IGLgmDdIun7OxT0IlNgYLyZYm4nxEBtNDGP6RQwDqeXjBCNiXIYv6Khs_F7HkjVhuCVfyGO3McXW3EIBEfpC5JUbwak44U5zBxm4bi3HsZuXLwoaZ7BrTNO9uvRqqwkr9YaaYy4B)
+![分钟级准备](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130155523.png)
 
 #### 3.2 数据即时 GraphQL API
 
@@ -268,7 +118,7 @@ Hasura 实现了一个元数据引擎，能捕获需要授权的网络服务特�
 
 使用元数据，Hasura 生成 JSON API 描述，并且提供可被消费的 web API。
 
-![s](https://lh3.googleusercontent.com/mGqRPpruMq_N35pJOr1_ntrJcl9n3vMDAA539bzuu7_269_1hr6bK5_7LRZ-E4gpdVC6swTMWOzVimMsuT1xVkRUTQ2RRe2BQEVykRpxkhHDhYMMDy4va7yJ2EScH1YzRdwa9Abz)
+![](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130155553.png)
 
 Hasura 通过 GraphQL 提供统一的 JSON API。GraphQL 是相当合适的，因为他原生就是 JSON。
 
@@ -276,12 +126,11 @@ Hasura 通过 GraphQL 提供统一的 JSON API。GraphQL 是相当合适的，�
 
 尽管 Hasura 以 web 服务的形式呈现，但它实际上是一个 JIT 编译器，Hasura 通过 HTTP 接受传入的 GraphQL API 调用，然后当把数据查询给下游数据源的时候，尽可能实现理论上最好的性能。
 
-![s](https://lh4.googleusercontent.com/OaPy7MSzOL3xIDpmON0mKH399gdi2xbxjHlePv4r25PwFRvXLMbHsIjK1neR3kusrv3R0W1mNrCkArQxTSoLXiYESWB2aJHKq0IKYuXjDMXCEY0RhNEj3Yq8lGvaFovve5Yi5P_E)
+![](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130155809.png)
 
 Hasura 能够完全避免实现 GraphQL 后端常见的 N+1 问题。它也能主动记忆，并且向上游数据源发出最少数量的请求。
 
-要深入理解 Hasura 是如何通过 Postgres & SQL 实现这些的，请阅读：GraphQL 到 SQL 的高性能架构。
-https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server-58d9944b8a87/
+要深入理解 Hasura 是如何通过 Postgres & SQL 实现这些的，请阅读：[GraphQL 到 SQL 的高性能架构。](https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server-58d9944b8a87/)
 
 #### 3.3 内置权限
 
@@ -303,7 +152,7 @@ Hasura 的元数据和查询引擎能够有效的将全部数据表示为一个�
 
 这允许 Hasura 自动使用正确的权限规则，对于任何给定的 API 调用，可以通过关系访问模型列表，模型的部分字段，模型等。
 
-![内置权限](https://lh3.googleusercontent.com/ytZAcQOMTdIHnsL4YeLNTxKt7dajS8YEqOnuZQEU6qJ3t5m7QOT8rWTrxbPxDRAGHj3IvKTvBNWJ6Y6vCDgzSioNU7Yg-L0-oh6oNYepoMtqV7viQUyqStuX0bwhmLpbkbWtGpqb)
+![内置权限](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130160357.png)
 
 由于这些权限是声明式的，所以（通过 APIs）在运行时能够完全可用，它允许开发者和 Hasura 为授权系统去提供额外的可观察性。例如：
 
@@ -322,7 +171,7 @@ Hasura 的授权系统与数据库引擎提供的行级别安全的声明系统�
 
 这允许 Hasura 提供 RBAC、ABAC、分层多租户权限等。例如，这个博文介绍了你如何用 Hasura 实现一个像谷歌云 IAM 一样的授权系统： https://hasura.io/blog/authorization-rules-for-multi-tenant-system-google-cloud/
 
-![授权系统](https://lh5.googleusercontent.com/OiTmByHCWpnkheBRxp7vSr9i6RcVxiGDsCQi6obSVr1jau3VuDSq2qQTPlZTq-o01FA1mSfB99Alw5OuV2GY37yxr1dFnSK39evOn__oB-DzOXlmEWfUavLluBwL4h_hmC-mnxBw)
+![授权系统](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130160432.png)
 
 声明式授权系统有极大的优势，因为他允许 Hasura 自动执行一些优化工作：
 
@@ -343,6 +192,8 @@ _注：谓词下推 Predicate Pushdown（PPD）：简而言之，就是在不影
 开发者使用知道什么查询需要缓存的领域知识去构建缓存策略，为某些用户或用户组，使用像 Redis 的缓存存储提供 API 缓存。
 
 因为 Hasura 的元数据配置包含所有数据模型和授权规则的详细信息，授权规则包含了哪些用户能访问哪些数据地信息，[Hasura 能针对动态数据自动实现 API 缓存](https://hasura.io/graphql/caching/)。
+
+![自动缓存](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130154453.png)
 
 这个问题的第二部分缓存校验是一个复杂的问题。通常，为了避免担心缓存失效和一致，作为开发者我们使用基于缓存的 TTL，并且让 API 消费者去处理这个不一致问题。
 
@@ -367,7 +218,7 @@ Hasura 与数据源深度交互，并且因为所有数据访问都需要通过 
 
 Hasura 实现了一个事件系统，为开发者提供容易的方式去写无状态业务逻辑，并且通过 HTTP 的方式与 Hasura 集成。
 
-![事件机制](https://lh6.googleusercontent.com/NHgVl-i1y9ifBOqIyufRxJnNCjJke2hmNruS1wTr2EBEnJbg_-b33xeNAwMDgdQwdD6NM4NExiGwpE7w1QcwQCyGJ2QitVE1XC3WOKTQOORNOWutBRUfkxdMT__jfqu3i6vcI1iq)
+![事件机制](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130160520.png)
 
 Hasura 捕获并且通过 HTTP 投递事件，同时确保（至少 1 次、正好 1 次）去帮助创建工作流，这可以让开发者像在有状态整体中下写代码那样高效的完成无状态业务逻辑。
 
@@ -391,7 +242,7 @@ Hasura 与数据库集成并且为终端 API 消费者提供一个可扩展实�
 
 阅读更多关于 Hasura 如何通过 Postgres 提供一个可扩展的订阅 API：https://github.com/hasura/graphql-engine/blob/master/architecture/live-queries.md
 
-![实时订阅](https://lh3.googleusercontent.com/cZ_jtjtnA1_9XmnLbIasJO2UJMjSC_z4-1xGxWFrt-UQpJoHNFLZEqckOfr9egCT8Q_pVBceP9IPb0THlWMNMQaS0EDXOL7MDf5PPYZA_DBNuL3YKHWo8mqQDab4VE4StLArAupf)
+![实时订阅](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130160558.png)
 
 #### 3.7 变革管理和 CI/CD
 
@@ -406,7 +257,7 @@ Hasura 的目标是通过动态 APIs 提供这些能力。
 - 1.开发一个你 API 的新版本，针对相同的数据源去预览一个元数据改变（比如新的模型映射或者授权规则）
 - 2.针对相同的数据源运行多个 Hasura 版本去确保一个可靠的推出（TODO）。
 
-![部署对比](https://lh6.googleusercontent.com/gHJJTcmVWu9TdJAzF1smmjioGgcbkwa5rXMeVQN__hUMyS7d3jVZDP45vRicJG--jVaD9qStAAamcRKiXTfvFr1FYUNA4aOS9NaG4Xi9zycD6F_FvPjro3BeXHCcGzwGZcogoRdP)
+![部署对比](https://gitee.com/caoyanbin/picgo/raw/master/img/20220130160644.png)
 
 #### 3.8 联邦数据&控制面板
 
@@ -436,4 +287,45 @@ Hasura 以服务的形式呈现它自己，并且 提供与其他服务的集成
 
 ### 4. FAQ
 
-#### 4.1 如果我的数据模型改变了，他是一个坏的主意去
+#### 4.1 如果我的数据模型改变了怎么办？将 API 和数据源结合起来是一个坏主意吗？
+
+Hasura 不是从从它的数据库中派生 API 的。严格的说，Hasura 从用户配置的元数据中派生它的 APIs。这允许 Hasura 直接处理暴露数据模型产生的所有问题，并从这个方法中获益。
+
+数据模型是要变化的，主要有下面几个原因：
+
+- 1.数据模型随着业务进化（增加或减少）
+- 2.为了让写数据更容易而规范化
+- 3.为了让读数据更容易而去规范化
+- 4.完全的改变数据库
+
+当需要维持终端 APIs 不变时，Hasura 的元数据引擎允许开发者重新定义模型映射。虽然可以使用数据库视图概念，也能在不需要任何额外的 DDL 的情况下实现这些，因为 Hasura 元数据也包含这些正确的映射关系。例如，加入一个完整的表不存在了，Hasura 的元数据能够继续暴露相同的 API 模型的同名查询（类似视图），但是现在从多个表而不是一张表中获取数据。
+
+另一个例子，尤其在 Postgres 上，我们能创建相同的 API，无论你是使用标准表还是带有的 JSON 字段的非标准表。
+
+#### 4.2 我应该如何定制 Hasura 的 APIs?
+
+Hasura 使用你提供的元数据自动产生一些列必须的 APIs，然后允许你通过混合业务逻辑去扩展 API。
+
+Hasura 鼓励 CQRS（命令查询职责分离） 模型，同时提供底层管道增加自定义 APIs ，你也能用自己喜欢的语言、框架、主机提供商增加 API，并且把它 以 REST 路由的方式插入到 Hasura 中。
+
+#### 4.3 Hasura 强制消费者使用 GraphQL 吗？
+
+基于受欢迎的需求，尤其是企业用户，我们将很快增加对 REST APIs 的支持，就像 Hasura 早已提供的 GraphQL 一样。
+
+保持留意！
+
+#### 4.4 对于现存的应用我应该如何使用 Hasura?
+
+我们设计 Hasura 可以立即为任何现存的在线数据存储增加价值。你可以将 Hasura 指向现存的数据源（数据库、GraphQL 或 REST），并且增加一些配置，开始使用它。
+
+很常见，我们的用户使用 Hasura 去增加高性能的 GraphQL 查询和订阅去支持他们现存的应用程序，并且继续使用他们现存的 APIs 去写入数据。
+
+Hasura 为了增加采用被设计，不需要推到重来或者完全重构技术栈。如果你需要帮助思考你的架构，请与我们联系。
+
+#### 4.5 我使用某种网络框架去构建 APIs。我应该如何使用 Hasura？
+
+同 4.2 和 4.4！
+
+### 5.在该领域与其他技术的对比
+
+很快到来。我们将仔细研究 Hasura 如何在你的技术栈中与其他技术对比，以及 Hasura 的优缺点。
