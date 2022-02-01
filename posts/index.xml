@@ -6,13 +6,22 @@
     <description>Recent content in Posts on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 01 Jan 2022 11:09:15 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Feb 2022 11:59:39 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>002【翻译】Nhost简介及使用</title>
+      <link>http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 01 Feb 2022 11:59:39 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. 欢迎来到 Nhost Nhost 是一个开源的，实时，无服务的后端平台，能够构建可靠的应用，去扩大你的商业规模。 组件 Nhost 构建在一系列开源组件之上。 数据库 你的应用程</description>
+    </item>
+    
     <item>
       <title>001【翻译01】Hasura设计思想</title>
-      <link>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%9101hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
-      <pubDate>Sat, 01 Jan 2022 11:09:15 +0800</pubDate>
+      <link>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
+      <pubDate>Sun, 30 Jan 2022 16:09:15 +0800</pubDate>
       
-      <guid>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%9101hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
+      <guid>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
       <description>翻译自：Hasura Design Philosophy Hasura 设计思想 本文，我打算从产品视角谈论下 Hasura，我们的技术设计思想，与其他技术的比较，以及一些常见问题。 如果你仅</description>
     </item>
     
@@ -95,15 +104,6 @@
       
       <guid>http://ansoncode.bazhentu.net/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/</guid>
       <description>前言 前段时间迷上了物联网，搞了一个控制硬件开关的demo。在阅读硬件通讯协议（MODBUS）时，经常看到大端对齐和小端对齐，一脸懵逼，今天终</description>
-    </item>
-    
-    <item>
-      <title>我的博客正式启动了</title>
-      <link>http://ansoncode.bazhentu.net/2021/first/</link>
-      <pubDate>Wed, 20 Jan 2021 09:33:20 +0800</pubDate>
-      
-      <guid>http://ansoncode.bazhentu.net/2021/first/</guid>
-      <description>hugo new about.md @startuml Bob -&amp;gt; Alice : hello @enduml 一颗种子 逻辑推理+科学技术 +计算机 人口普查 诸子百家 + 春秋战国 机械 必须要受器重 财力支持 战争-》通讯技术 hugo server &amp;ndash;theme=hyde &amp;ndash;buildDrafts hugo &amp;ndash;theme=hyde &amp;ndash;baseUrl=&amp;ldquo;http://anson.github.io/&amp;quot; ./hugo &amp;ndash;theme=hyde &amp;ndash;baseUrl=&amp;ldquo;https://caoyanbin1993.github.io/blog/&amp;quot;</description>
     </item>
     
     <item>

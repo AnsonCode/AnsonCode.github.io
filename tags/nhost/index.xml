@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nhost on Anson`s Blog</title>
+    <link>http://ansoncode.bazhentu.net/tags/nhost/</link>
+    <description>Recent content in Nhost on Anson`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 01 Feb 2022 11:59:39 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/nhost/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>002【翻译】Nhost简介及使用</title>
+      <link>http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 01 Feb 2022 11:59:39 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. 欢迎来到 Nhost Nhost 是一个开源的，实时，无服务的后端平台，能够构建可靠的应用，去扩大你的商业规模。 组件 Nhost 构建在一系列开源组件之上。 数据库 你的应用程</description>
+    </item>
+    
+  </channel>
+</rss>

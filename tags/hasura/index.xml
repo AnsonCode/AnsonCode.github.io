@@ -6,13 +6,22 @@
     <description>Recent content in Hasura on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 01 Jan 2022 11:09:15 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/hasura/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 01 Feb 2022 11:59:39 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/hasura/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>002【翻译】Nhost简介及使用</title>
+      <link>http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 01 Feb 2022 11:59:39 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. 欢迎来到 Nhost Nhost 是一个开源的，实时，无服务的后端平台，能够构建可靠的应用，去扩大你的商业规模。 组件 Nhost 构建在一系列开源组件之上。 数据库 你的应用程</description>
+    </item>
+    
     <item>
       <title>001【翻译01】Hasura设计思想</title>
-      <link>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%9101hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
-      <pubDate>Sat, 01 Jan 2022 11:09:15 +0800</pubDate>
+      <link>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
+      <pubDate>Sun, 30 Jan 2022 16:09:15 +0800</pubDate>
       
-      <guid>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%9101hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
+      <guid>http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
       <description>翻译自：Hasura Design Philosophy Hasura 设计思想 本文，我打算从产品视角谈论下 Hasura，我们的技术设计思想，与其他技术的比较，以及一些常见问题。 如果你仅</description>
     </item>
     
