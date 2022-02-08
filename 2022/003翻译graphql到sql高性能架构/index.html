@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            003【翻译】GraphQL到SQL高性能架构 | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="003【翻译】GraphQL到SQL高性能架构 | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/ansoncode.bazhentu.net\/"
+    },
+    "articleSection" : "posts",
+    "name" : "003【翻译】GraphQL到SQL高性能架构",
+    "headline" : "003【翻译】GraphQL到SQL高性能架构",
+    "description" : "翻译自：Architecture of a high performance GraphQL to SQL engine 更新：在旧金山的 2019 GraphQL 峰会上，Tanmai Gopal（Hasura 联合创始人\\CEO）讨论了更",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-01-30 16:32:14 \u002b0800 CST",
+    "dateModified" : "2022-01-30 16:32:14 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84\/",
+    "wordCount" : "2584",
+    "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://ansoncode.bazhentu.net/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://ansoncode.bazhentu.net/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">003【翻译】GraphQL到SQL高性能架构</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2022-01-30 itemprop="datePublished">January 30, 2022</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E7%A0%94%E5%8F%91%E6%8F%90%E6%95%88/"> 研发提效, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">2584 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>翻译自：<a href="https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server-58d9944b8a87/">Architecture of a high performance GraphQL to SQL engine</a></p>
+<p>更新：在旧金山的 <a href="https://www.youtube.com/watch?v=HOKMJkBYaqQ">2019 GraphQL 峰会</a>上，Tanmai Gopal（Hasura 联合创始人\CEO）讨论了更多细节。</p>
+<p>Hasura 平台的数据微服务提供了一个 HTTP API， 在权限安全的方式下 使用 GraphQL 或 JSON 去查询 Postgres。</p>
+<p>你可以在 Postgres 中运用外键约束通过单个请求查询分层数据。例如，你能运行查询去获取“专辑”和他们所有的“歌曲”（提供的“歌曲“表需要有指向“专辑”表的外键）：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-graphql" data-lang="graphql">{
+  album(where: { <span style="color:#a6e22e">year</span>: { <span style="color:#a6e22e">_eq</span>: <span style="color:#a6e22e">2018</span> } }) {
+    title
+    tracks {
+      id
+      title
+    }
+  }
+}
+</code></pre></div><p>正如你所猜测的，这个查询可以遍历表到任意的深度。这个查询接口接合了权限，能够不写任何后端代码让前端应用程序查询 Postgres。</p>
+<p>这个 api 被设计为最快的响应时间，并且处理大量吞吐（每秒请求），但是轻量的资源消耗（低 cpu 和内存使用）。我们将讨论让我们实现它的架构选型。</p>
+<h3 id="查询生命周期">查询生命周期</h3>
+<p>数据微服务查询经过这几个阶段：</p>
+<ul>
+<li>1.Session resolution：请求到达授权密钥网关（如果有的话），增加<code>user-id</code>和<code>role</code>头，然后代理请求到数据服务。</li>
+<li>2.查询解析：数据服务接收请求，解析头部去获取<code>user-id</code>和<code>role</code>，解析请求体为 GraphQL AST</li>
+<li>3.查询验证：核查查询是否是语义正确的，然后强制执行角色定义的权限</li>
+<li>4.查询执行：合法的查询被转化为一个 SQL 语句，并且在 Postgres 中执行。</li>
+<li>5.响应生成：来自 Postgres 的结果被处理，并且发送至客户端（如果需要的话，网关增加 gzip 压缩）</li>
+</ul>
+<h3 id="目标">目标</h3>
+<p>大概需求如下：</p>
+<ul>
+<li>1.HTTP 栈应该只增加很少的开销，并且应该能够处理大量高吞吐的并发请求</li>
+<li>2.快速的查询转换（GraphQL 到 SQL）</li>
+<li>3.编译的 SQL 查询应该对 Postgres 有效</li>
+<li>4.Postgres 的结果必须被有效的返回</li>
+</ul>
+<h3 id="处理-graphql-请求">处理 GraphQL 请求</h3>
+<p>以下是获取 GraphQL 查询所需数据的各种方法。</p>
+<h4 id="原生解析器">原生解析器</h4>
+<p>GraphQL 查询执行通常涉及为每个字段执行一个解析器。在示例查询中，我们将调用函数去查询 2018 年发布的唱片，然后对于每一个唱片，我们将调用函数去获取歌曲，这是典型的 N+1 查询问题。随着查询的深度大量的查询将指数倍增长。</p>
+<p>在 Postgres 中执行的查询如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id,title <span style="color:#66d9ef">FROM</span> album <span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">year</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2018</span>;
+</code></pre></div><p>这给我们所有的唱片。让这大量的唱片返回是 N。对于每一个唱片，我们将执行这个查询（所以是，N 查询）：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id,title <span style="color:#66d9ef">FROM</span> tracks <span style="color:#66d9ef">WHERE</span> album_id <span style="color:#f92672">=</span> <span style="color:#f92672">&lt;</span>album<span style="color:#f92672">-</span>id<span style="color:#f92672">&gt;</span>
+</code></pre></div><p>这将总共 N+1 个查询，去获取所有需要的数据。</p>
+<h4 id="批量查询">批量查询</h4>
+<p>像 dataloader 这样的项目目的是通过批量查询解决 N+1 查询问题。请求的数量不再依赖结果集合的尺寸大小，他们将替代为依赖在 GraphQL 查询中节点的数量。本例中的示例查询将需要 2 次 Postgres 查询去获取必须数据。</p>
+<p>这个在 Postgres 上的查询执行情况如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id,title <span style="color:#66d9ef">FROM</span> album <span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">year</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2018</span>
+</code></pre></div><p>这给我们所有的唱片。去获取所有需要唱片的歌曲。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> id, title <span style="color:#66d9ef">FROM</span> tracks <span style="color:#66d9ef">WHERE</span> album_id <span style="color:#66d9ef">IN</span> <span style="color:#960050;background-color:#1e0010">{</span>the list <span style="color:#66d9ef">of</span> album ids<span style="color:#960050;background-color:#1e0010">}</span>
+</code></pre></div><p>这里总共有 2 个请求。我们避免发起请求为每一个唱片获取歌曲信息，而且代替使用 where 语句在单个查询张浩工获取所有需要唱片的歌曲。</p>
+<h4 id="连接">连接</h4>
+<p>Dataloader 被设计用于跨不同的数据源工作，不能利用单数据源的特性。在我们的示例中，我们唯一的数据源是 Postgres，和所有关系数据库一样， Postgres 提供了一个方式在单查询中从几个表中去收集数据，也就是所谓的连接。我们能决定 GraphQL 查询需要的这些表，使用连接生成一个 SQL 查询去获取所有数据。所以，GraphQL 查询需要的数据能从一个 SQL 查询中获取。这些数据在发送到客户端之前已经进行了适当转化。</p>
+<p>查询将如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span>
+  album.id <span style="color:#66d9ef">as</span> album_id,
+  album.title <span style="color:#66d9ef">as</span> album_title,
+  track.id <span style="color:#66d9ef">as</span> track_id,
+  track.title <span style="color:#66d9ef">as</span> track_title
+<span style="color:#66d9ef">FROM</span>
+  album
+<span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">OUTER</span> <span style="color:#66d9ef">JOIN</span>
+  track
+<span style="color:#66d9ef">ON</span>
+  (album.id <span style="color:#f92672">=</span> track.album_id)
+<span style="color:#66d9ef">WHERE</span>
+  album.<span style="color:#66d9ef">year</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2018</span>
+</code></pre></div><p>这将给我们如下所示的数据：</p>
+<pre><code>album_id, album_title, track_id, track_title
+1, Album1, 1, track1
+1, Album1, 2, track2
+2, Album2, NULL, NULL
+</code></pre><p>这些数据必须被转换为如下结构的 JSON 响应。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">[
+  {
+    <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Album1&#34;</span>,
+    <span style="color:#f92672">&#34;tracks&#34;</span>: [
+      { <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;track1&#34;</span> },
+      { <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">2</span>, <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;track2&#34;</span> }
+    ]
+  },
+  {
+    <span style="color:#f92672">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;Album2&#34;</span>,
+    <span style="color:#f92672">&#34;tracks&#34;</span>: []
+  }
+]
+</code></pre></div><h4 id="优化响应生成">优化响应生成</h4>
+<p>我们发现处理请求的大部分时间被花费在转换函数上（转换 sql 结果到 json 结果）。尝试一些方法去优化转换函数之后，我们决定通过把转换推给 Postgres，来移除这些函数。Postgres 9.4 （在第一个数据微服务发布的时候发布）增加了 json 聚合函数，帮助我们推送转换到 Postgres。这个生产的 SQL 将如下所示：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span> json_agg(r.<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> (
+  <span style="color:#66d9ef">SELECT</span>
+    album.title <span style="color:#66d9ef">as</span> title,
+    json_agg(track.<span style="color:#f92672">*</span>) <span style="color:#66d9ef">as</span> tracks
+  <span style="color:#66d9ef">FROM</span>
+    album
+  <span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">OUTER</span> <span style="color:#66d9ef">JOIN</span>
+    track
+  <span style="color:#66d9ef">ON</span>
+    (album.id <span style="color:#f92672">=</span> track.album_id)
+  <span style="color:#66d9ef">WHERE</span>
+    album.<span style="color:#66d9ef">year</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2018</span>
+  <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span>
+    album.id
+) r
+</code></pre></div><p>这个查询的结果将有一列和一行，这个值也被发送到客户端不需要进一步的转换。根据我们的压测，这个方法比 Haskell 转换函数大概快 3-6 倍。</p>
+<h4 id="预处理语句">预处理语句</h4>
+<p>根据这个查询嵌套级别和使用的 where 条件，生成的 SQL 语句可能很大和复杂。通常，任何前端应用有一系列带有不同参数的重复查询。例如，下面的查询将执行 2017 年而不是 2018 年。预处理语句最适用于这些使用的用例，例如当你有复杂的 SQL 语句，他们仅仅在参数上有一些变化，其他部分是重复的。</p>
+<p>因此，第一次执行 GraphQL 查询时：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gql" data-lang="gql">{
+  album(where: { <span style="color:#a6e22e">year</span>: { <span style="color:#a6e22e">_eq</span>: <span style="color:#a6e22e">2018</span> } }) {
+    title
+    tracks {
+      id
+      title
+    }
+  }
+}
+</code></pre></div><p>我们准备 SQL 语句而不是直接执行它，所以这个生成的 SQL 将如下（注意这个$1 ）：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">PREPARE</span> prep_1 <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">SELECT</span> json_agg(r.<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> (
+  <span style="color:#66d9ef">SELECT</span>
+    album.title <span style="color:#66d9ef">as</span> title,
+    json_agg(track.<span style="color:#f92672">*</span>) <span style="color:#66d9ef">as</span> tracks
+  <span style="color:#66d9ef">FROM</span>
+    album
+  <span style="color:#66d9ef">LEFT</span> <span style="color:#66d9ef">OUTER</span> <span style="color:#66d9ef">JOIN</span>
+    track
+  <span style="color:#66d9ef">ON</span>
+    (album.id <span style="color:#f92672">=</span> track.album_id)
+  <span style="color:#66d9ef">WHERE</span>
+    album.<span style="color:#66d9ef">year</span> <span style="color:#f92672">=</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>
+  <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span>
+    album.
+</code></pre></div><p>接下来执行这个预生成语句：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">EXECUTE</span> prep_1(<span style="color:#e6db74">&#39;2018&#39;</span>);
+</code></pre></div><p>当 graphql 查询变更为 2017 年时，我们只需要直接执行预处理语句：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">EXECUTE</span> prep_1(<span style="color:#e6db74">&#39;2017&#39;</span>);
+</code></pre></div><p>依据 GraphQL 查询的复杂性，这大概提升 10-20%。</p>
+<h4 id="haskell">Haskell</h4>
+<p>Haskell 适用的多种理由：</p>
+<ul>
+<li>高性能编译语言（<a href="https://stackoverflow.com/questions/35027952/why-is-haskell-ghc-so-darn-fast">这里</a>）</li>
+<li>非常高效的 http 栈（<a href="http://www.aosabook.org/en/posa/warp.html">wrap，wrap 架构</a>）</li>
+<li>之前有很多针对该语言的经验</li>
+</ul>
+<h4 id="总结">总结</h4>
+<p>所有这些优化放在一起会带来一系列性能的好处。这里有一些 Hasura 架构与 Prisma 和 Postgraphile 的对比。</p>
+<h5 id="警告">警告</h5>
+<p>更新在 2018 年 12 月 13 日：这个文章第一次发布于 2018 年 4 月，这个压力测试现在被更新了。下面介绍的所有项目均已进行了性能优化，我们将很快更新这个文章的最新数据。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220206132921.png" alt="Hasura’s API与Postgraphile和Prisma的对比" loading="lazy" ></p>
+<p>事实上，当与直接查询 postgres 对比， 他的内存占用低，延迟可忽略，对于很多服务端代码用例，你甚至可以使用 GraphQL API 去替换 ORM。</p>
+<h5 id="压力测试">压力测试</h5>
+<p>设置细节：</p>
+<ul>
+<li>1.一个 8GB RAB，i7 笔记本</li>
+<li>2.Postgres 运行在相同的机器上</li>
+<li>3.<a href="https://github.com/wg/wrk">wrk</a> 被用于作为压力测试工具，对于不同的请求，我们尝试“最大化”每秒的请求</li>
+<li>4.一个单实例 Hasura 引擎被查询</li>
+<li>5.连接赤子大小：50</li>
+<li>6.数据集：<a href="https://github.com/lerocha/chinook-database">chinook</a></li>
+</ul>
+<p><strong>查询 1:tracks_media_some</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gql" data-lang="gql"><span style="color:#66d9ef">query</span> <span style="color:#a6e22e">tracks_media_some</span> {
+  tracks(where: { <span style="color:#a6e22e">composer</span>: { <span style="color:#a6e22e">_eq</span>: <span style="color:#e6db74">&#34;Kurt Cobain&#34;</span> } }) {
+    <span style="color:#a6e22e">id</span>
+    name
+    album {
+      id
+      title
+    }
+    media_type {
+      name
+    }
+  }
+}
+</code></pre></div><ul>
+<li>每秒请求：1375req/s</li>
+<li>延时：17.5ms</li>
+<li>CUP：～ 30%</li>
+<li>RAM：~30MB (Hasura) + 90MB (Postgres)</li>
+</ul>
+<p><strong>查询 2:tracks_media_all</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gql" data-lang="gql"><span style="color:#66d9ef">query</span> <span style="color:#a6e22e">tracks_media_all</span> {
+  tracks {
+    id
+    name
+    media_type {
+      name
+    }
+  }
+}
+</code></pre></div><ul>
+<li>每秒请求：410req/s</li>
+<li>延时：59ms</li>
+<li>CUP：～ 100%</li>
+<li>RAM：~30MB (Hasura) + 130MB (Postgres)</li>
+</ul>
+<p><strong>查询 3:album_tracks_genre_some</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gql" data-lang="gql"><span style="color:#66d9ef">query</span> <span style="color:#a6e22e">albums_tracks_genre_some</span> {
+  albums(where: { <span style="color:#a6e22e">artist_id</span>: { <span style="color:#a6e22e">_eq</span>: <span style="color:#a6e22e">127</span> } }) {
+    id
+    title
+    tracks {
+      id
+      name
+      genre {
+        name
+      }
+    }
+  }
+}
+</code></pre></div><ul>
+<li>每秒请求：1029req/s</li>
+<li>延时：24ms</li>
+<li>CUP：～ 30%</li>
+<li>RAM：~30MB (Hasura) + 90MB (Postgres)</li>
+</ul>
+<p><strong>查询 4:album_tracks_genre_all</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gql" data-lang="gql"><span style="color:#66d9ef">query</span> <span style="color:#a6e22e">albums_tracks_genre_all</span> {
+  albums {
+    id
+    title
+    tracks {
+      id
+      name
+      genre {
+        name
+      }
+    }
+  }
+}
+</code></pre></div><ul>
+<li>每秒请求：328req/s</li>
+<li>延时：73ms</li>
+<li>CUP：～ 100%</li>
+<li>RAM：~30MB (Hasura) + 130MB (Postgres)</li>
+</ul>
+<h5 id="尝试它">尝试它！</h5>
+<p>如果你没有运行 Hasura，使用 <a href="https://hasura.io/docs/latest/graphql/cloud/getting-started/index.html#utm_source=Hasura%20Blog&amp;utm_medium=Blog%20Article&amp;utm_campaign=Project%20Cloud&amp;utm_content=introducing%20actions">Hasura 云</a>去设置一个 GraphQL 工程，读这个<a href="https://hasura.io/docs/latest/graphql/cloud/index.html">文档</a>去开始吧。</p>
+<p>如果你早已运行了 Hasura，确保你的版本是 1.2 及以上，你可以出发了！</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/>http://ansoncode.bazhentu.net/2022/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
+                    #技术翻译</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/hasura/">
+                    #Hasura</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="prev" rel="prev" title="001【翻译01】Hasura设计思想"><i class="iconfont icon-left"></i>&nbsp;001【翻译01】Hasura设计思想</a>
+        
+        
+        <a href="http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/" class="next" rel="next" title="002【翻译】Nhost简介及使用">002【翻译】Nhost简介及使用&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://ansoncode.bazhentu.net/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '003【翻译】GraphQL到SQL高性能架构'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>
