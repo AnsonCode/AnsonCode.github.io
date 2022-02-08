@@ -1,7 +1,7 @@
 ---
 title: "002【翻译】Nhost简介及使用"
 date: 2022-02-01T11:59:39+08:00
-tags: [”技术翻译“, "Hasura", "Nhost"]
+tags: ["技术翻译", "Hasura", "Nhost"]
 categories:
   - "研发提效"
 featured_image:

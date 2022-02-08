@@ -1,7 +1,7 @@
 ---
 title: "001【翻译01】Hasura设计思想"
 date: 2022-01-30T16:09:15+08:00
-tags: [”技术翻译“, "Hasura"]
+tags: ["技术翻译", "Hasura"]
 categories:
   - "研发提效"
 featured_image:

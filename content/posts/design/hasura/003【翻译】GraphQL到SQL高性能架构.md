@@ -1,12 +1,12 @@
 ---
-title: "002【翻译】GraphQL到SQL高性能架构"
+title: "003【翻译】GraphQL到SQL高性能架构"
 date: 2022-01-30T16:32:14+08:00
-tags: [”技术翻译“, "Hasura"]
+tags: ["技术翻译", "Hasura"]
 categories:
   - "研发提效"
 featured_image:
 description:
-draft: true
+draft: false
 ---
 
 翻译自：[Architecture of a high performance GraphQL to SQL engine](https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server-58d9944b8a87/)
