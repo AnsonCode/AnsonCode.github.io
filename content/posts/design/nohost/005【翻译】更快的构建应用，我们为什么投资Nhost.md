@@ -1,5 +1,5 @@
 ---
-title: "006【翻译】更快的构建应用，我们为什么投资Nhost"
+title: "005【翻译】更快的构建应用，我们为什么投资Nhost"
 date: 2022-02-09T20:01:09+08:00
 tags: ["技术翻译", "Nhost"]
 categories: ["研发提效"]
@@ -12,7 +12,7 @@ draft: false
 
 我们非常相信并且支持开源软件。因此，我们很激动能在 Nhost 领投 3 百万美金种子轮融资，一个坐落于 Stockholm 和 Berlin 的初创企业，和令人称奇的创始人 Johan 和 Nuno 一起踏上他们令人兴奋的旅程，去挑战现在的竞争对手 [Firebase](https://firebase.google.cn/)。
 
-![Nhost创始人Johan 和 Nuno](https://miro.medium.com/max/1400/0*WWoFgBqJjmTBsFu1.png)
+![Nhost创始人Johan 和 Nuno](https://gitee.com/caoyanbin/picgo/raw/master/img/20220209205925.png)
 
 自从在风险投资行业工作，我就没有像我喜欢的那样从事编程了。因此，我非常兴奋去尝试一个推荐给我叫做 [Nhost](https://nhost.io/) 的平台。我喜欢写代码，我对建立和维护基础设施不感兴趣。我对 Nhost 的易用性感到惊喜，几分钟内我就拥有了一个带着 GraphQL API 和身份验证的 PostgreSQL 数据库。
 
