@@ -3,7 +3,7 @@ title: "006【翻译】Serverless开源框架：OpenFaaS,Knative等"
 date: 2022-02-10T21:30:31+08:00
 tags: ["技术翻译", "Serverless"]
 categories: ["研发提效"]
-draft: true
+draft: false
 ---
 
 https://www.cncf.io/blog/2020/04/13/serverless-open-source-frameworks-openfaas-knative-more/
