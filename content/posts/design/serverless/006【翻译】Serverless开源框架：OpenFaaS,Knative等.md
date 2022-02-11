@@ -78,21 +78,133 @@ Docker Swarm 和 Kubernetes 是编排引擎。诸如 API Gateway, Function Watch
 
 # 在 Docker 中安装 OpenFaaS 的要点
 
+OpenFaaS API Gateway 依赖所选 Docker 编排工具内建的函数。为了实现它，API Gateway 为所选的编排工具连接合适的插件，在 Prometheus 中记录各种指标，并且基于从 Prometheus 通过 AlertManager 收到的警告扩充函数。
+
+例如，假如你正在用 Linux 系统工作，想去使用 OpenFaaS 在 Docker 集群节点上写一个简单的函数。为了实现它，你需要跟着下列的步骤：
+
+- 安装 Docker CE 17.05 或者更新的版本
+- 运行 Docker
+
+```sh
+$ docker run hello-world
+```
+
+- 初始化 Docker Swarm
+
+```sh
+$ docker swarm init
+```
+
+- 从 Github 克隆 OpenFaaS
+
+```sh
+git clone https://github.com/openfaas/faas && \  cd faas && \ ./deploy_stack.sh
+```
+
+- 登录 UI 门户： http://127.0.0.1:8080
+
+Docker 现在已经准备好使用了，当你进一步写函数时，不需要再安装它。
+
+## 为构建函数准备 CLI OpenFaaS
+
+为开发函数，你需要使用脚本安装最新的命令行工具。对于 brew，它是 `$ brew install faas-cli`。对于 curl，你需要使用`$ curl -sL https://cli.get-faas.com/ | sudo sh`。
+
+## 使用 OpenFaas 的不同编程语言
+
+使用 CLI 中的模板创建和部署一个 OpenFaas 函数，你几乎可以用任何编程语言写一个处理器（handler）。例如：
+
+- 创建新的函数：
+
+```sh
+$ faas-cli new --lang prog language <<function name>>
+```
+
+- 生成堆栈文件和文件夹：
+
+```sh
+$ git clone https://github.com/openfaas/faas \
+ cd faas \
+ git checkout 0.6.5 \
+ ./deploy_stack.sh
+```
+
+- 建立函数
+
+```sh
+$$ faas-cli build -f <<stack file>>
+Deploy the function:
+$ faas-cli deploy -f <<stack file>>
+```
+
+## 在 OpenFaaS UI 中测试函数
+
+从 OpenFaas 的用户界面，你可以用几种方式快速的测试函数，如下所示：
+
+- 前往 OpenFaaS UI：http://127.0.0.1:8080/ui/
+
+- 使用 curl：
+
+  ```sh
+  $ curl -d "10" http://localhost:8080/function/fib
+  ```
+
+- 使用 UI
+
+初一看，每件事情似乎都很简单。然而，你仍然必须处理很多细微的差别。如果你必须用 Kubernetes，需要很多函数，或者需要为 FaaS 主代码库增加额外的依赖，这更是如此了。
+
+这个一个在 GitHub 上完整的 OpenFaaS [开发者社区](https://github.com/openfaas/faas/tree/master/sample-functions)，你也能找到很多有用的信息。
+
 # OpenFaaS 的优缺点
+
+OpenFaaS 简化了系统的构建。修复错误变得更加容易，并且为系统增加新的功能也比单体应用情况下更快。换句话说，OpenFaaS 允许你随时随地用任何编程语言运行代码。
+
+然而，这儿是一些缺点：
+
+- 对一些编程语言冷启动时间长
+- 容器启动时间依赖于供应商
+- 函数有限的生命周期，意味着不是所有的系统都能根据 Serverless 工作。（当使用 OpenFaaS 时，计算容器不能在内存中长时间存储可执行的应用代码。平台将自动创建和销毁他们，所以无状态是不可能的。）
 
 # 使用 Knative 部署和运行函数
 
+Knative 允许你开发和部署基于容器的服务端应用，你可以容易的在云服务提供商之间迁移。Knative 是刚开始受欢迎的开源平台，但是现在引起了开发者很大的兴趣。
+
 ## Knative 的架构和组件
 
-### 构建
+Knative 架构包含 Building, Eventing, 和 Serving 组件。
 
-### 事件
+![Knative Architecture and Components](https://www.cncf.io/wp-content/uploads/2020/04/graf8.jpg)
 
-### 服务
+### 构建(Building)
+
+Knative Building 组件的职责是确保在集群中容器程序集从源代码中启动。该组件以现存的 Kubernetes 原语为基础，并对其进行扩展。
+
+### 事件(Eventing)
+
+Knative Eventing 组件负责通用的订阅、投递和事件管理，以及在松耦合架构组件之间创建通讯。此外，该组件允许你扩展服务器上负载。
+
+### 服务(Serving)
+
+Serving 组件的主要目标是支持 serverless 应用和特性的开发，自动缩放，Istio 组件的路由和网络编程，以及部署代码和配置的快照。Knative 使用 Kubernetes 作为编排器，Istio 执行查询路由和高级负载均衡的功能。
 
 # 使用 Knative 最简单函数的例子
 
+你可以在 Knative 上使用一些方法创建一个后端应用。你的选择依赖于你的特定技能和使用多种服务的经验，包括 Istio, Gloo, Ambassador, Google, 尤其是 Kubernetes Engine, IBM Cloud, Microsoft Azure Kubernetes Service, Minikube, 和 Gardener。
+
+简单为每个 Knative 组件选择安装文件。以下是三个所需组件的主要安装文件的链接：
+
+- Serving Component：[链接](https://github.com/knative/serving/releases/download/v0.7.0/serving.yamlhttps://github.com/knative/serving/releases/download/v0.7.0/monitoring.yaml)
+- Building Component：[链接](https://github.com/knative/build/releases/download/v0.7.0/build.yaml)
+- Eventing Component：[链接](https://github.com/knative/eventing/releases/download/v0.7.0/release.yamlhttps://github.com/knative/eventing/releases/download/v0.7.0/eventing.yaml)
+
+这些组件的每一个都由一系列对象构成。关于语法和安装组件的更多细节信息能在[Knative 开发站点](https://knative.dev/docs/)上找到。
+
 # Knative 的优缺点
+
+Knative 有大量的优势。和 OpenFaaS 一样，Knative 允许你使用容器创建 serverless 环境。这反过来允许你获得一个本地的基于事件的架构，其中没有来自公共云服务施加的限制。Knative 也能自动化容器组装进程，从而提供自动伸缩。因此，serverless 函数的能力是基于预定义阈值和事件处理机制。
+
+此外，Knative 允许你在内部、云上或者第三方数据中心创建应用。这意味着，你不必被任何云供应商束缚。并且由于它的操作基于 Kubernetes 和 Istio，Knative 也有一个更高的采用率和更大采用潜能。
+
+Knative 一个主要的缺点是需要独立管理容器架构。简而言之，Knative 不是针对终端用户的。然而，因此，更多的商业化管理的 Knative 服务正开始出现，例如 Google Kubernetes Engine 和 IBM Cloud Kubernetes Service 的 Managed Knative 。
 
 # 结论
 
