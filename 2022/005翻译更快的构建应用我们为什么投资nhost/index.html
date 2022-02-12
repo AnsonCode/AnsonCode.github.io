@@ -10,8 +10,8 @@
     <meta name="keywords" content="golang;PMP">
     
     <link rel="prev" href="http://ansoncode.bazhentu.net/2022/004%E7%BF%BB%E8%AF%91%E4%BD%BF%E7%94%A8gatsby%E5%92%8Chasura%E5%8A%A8%E6%80%81%E5%8C%96jamstack/" />
-    
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/006%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            006【翻译】更快的构建应用，我们为什么投资Nhost | Anson`s Blog
+            005【翻译】更快的构建应用，我们为什么投资Nhost | Anson`s Blog
         
     </title>
-    <meta name="title" content="006【翻译】更快的构建应用，我们为什么投资Nhost | Anson`s Blog">
+    <meta name="title" content="005【翻译】更快的构建应用，我们为什么投资Nhost | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,8 +43,8 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "006【翻译】更快的构建应用，我们为什么投资Nhost",
-    "headline" : "006【翻译】更快的构建应用，我们为什么投资Nhost",
+    "name" : "005【翻译】更快的构建应用，我们为什么投资Nhost",
+    "headline" : "005【翻译】更快的构建应用，我们为什么投资Nhost",
     "description" : "翻译自：Build apps faster, or why we invested in Nhost! 我们非常相信并且支持开源软件。因此，我们很激动能在 Nhost 领投 3 百万美金种子轮融资，一个坐落于 Stockholm 和 Berlin 的初创企业，",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
@@ -55,7 +55,7 @@
     "copyrightYear" : "2022",
     "datePublished": "2022-02-09 20:01:09 \u002b0800 CST",
     "dateModified" : "2022-02-09 20:01:09 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/006%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost\/",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost\/",
     "wordCount" : "2088",
     "keywords" : [ "技术翻译","Nhost", "Anson`s Blog"]
 }
@@ -146,7 +146,7 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">006【翻译】更快的构建应用，我们为什么投资Nhost</h1>
+        <h1 class="post-title" itemprop="name headline">005【翻译】更快的构建应用，我们为什么投资Nhost</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
@@ -187,7 +187,7 @@
 
         <p>翻译自：<a href="https://medium.com/nauta-capital/build-apps-faster-or-why-we-invested-in-nhost-5fb602d87559">Build apps faster, or why we invested in Nhost!</a></p>
 <p>我们非常相信并且支持开源软件。因此，我们很激动能在 Nhost 领投 3 百万美金种子轮融资，一个坐落于 Stockholm 和 Berlin 的初创企业，和令人称奇的创始人 Johan 和 Nuno 一起踏上他们令人兴奋的旅程，去挑战现在的竞争对手 <a href="https://firebase.google.cn/">Firebase</a>。</p>
-<p><img src="https://miro.medium.com/max/1400/0*WWoFgBqJjmTBsFu1.png" alt="Nhost创始人Johan 和 Nuno" loading="lazy" ></p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220209205925.png" alt="Nhost创始人Johan 和 Nuno" loading="lazy" ></p>
 <p>自从在风险投资行业工作，我就没有像我喜欢的那样从事编程了。因此，我非常兴奋去尝试一个推荐给我叫做 <a href="https://nhost.io/">Nhost</a> 的平台。我喜欢写代码，我对建立和维护基础设施不感兴趣。我对 Nhost 的易用性感到惊喜，几分钟内我就拥有了一个带着 GraphQL API 和身份验证的 PostgreSQL 数据库。</p>
 <p>没有太多前端开发经验，我跟着 <a href="https://docs.nhost.io/get-started">Nhost 文档</a>(已翻译)快速建立了一个 React 应用。我最喜欢的项目是去建立一个简单的 web 应用去搜索我通过 GitHub API 获取的开源项目列表。我使用 Netlify 让我的项目随时可用。（部署到 Netlify 上）</p>
 <p>为这个项目，我主要需要用到 3 个工具：Nhost, <a href="https://medium.com/u/5250f9d9bd2f?source=post_page-----5fb602d87559-----------------------------------">Netlify</a> 和 <a href="https://medium.com/u/8df3bf3c40ae?source=post_page-----5fb602d87559-----------------------------------">GitHub</a>(公平一点，我还会写一点 Python 脚本获取数据)。这个事实让我不能更兴奋了，仅仅几个月 Nauta 资本 和 GitHub 创始人 <a href="https://twitter.com/mojombo">Tom Preston-Werner</a> 、 <a href="https://twitter.com/chacon">Scott Chacon</a>以及 Netlify 创始人 <a href="https://twitter.com/chr_bach">Christian Bach</a> 、 <a href="https://twitter.com/biilmann">Mathias Biilmann</a>(还有其他强大的天使投资人) 一起投资 Nhost。</p>
@@ -235,12 +235,12 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2022/006%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/>http://ansoncode.bazhentu.net/2022/006%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/>http://ansoncode.bazhentu.net/2022/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/006%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -308,6 +308,8 @@
         
         <a href="http://ansoncode.bazhentu.net/2022/004%E7%BF%BB%E8%AF%91%E4%BD%BF%E7%94%A8gatsby%E5%92%8Chasura%E5%8A%A8%E6%80%81%E5%8C%96jamstack/" class="prev" rel="prev" title="004【翻译】使用Gatsby和Hasura动态化JAMStack"><i class="iconfont icon-left"></i>&nbsp;004【翻译】使用Gatsby和Hasura动态化JAMStack</a>
         
+        
+        <a href="http://ansoncode.bazhentu.net/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/" class="next" rel="next" title="006【翻译】Serverless开源框架：OpenFaaS,Knative等">006【翻译】Serverless开源框架：OpenFaaS,Knative等&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -418,7 +420,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = '006【翻译】更快的构建应用，我们为什么投资Nhost'
+            let title = '005【翻译】更快的构建应用，我们为什么投资Nhost'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
