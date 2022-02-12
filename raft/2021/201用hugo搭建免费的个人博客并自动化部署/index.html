@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://localhost:1313/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" />
+    <link rel="next" href="http://localhost:1313/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/" />
+    <link rel="canonical" href="http://localhost:1313/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            201十分钟！用hugo搭建免费的个人博客并自动化部署 | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="201十分钟！用hugo搭建免费的个人博客并自动化部署 | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313\/"
+    },
+    "articleSection" : "posts",
+    "name" : "201十分钟！用hugo搭建免费的个人博客并自动化部署",
+    "headline" : "201十分钟！用hugo搭建免费的个人博客并自动化部署",
+    "description" : "前言 本文详细介绍了“如何用hugo免费搭建个人博客并自动化发布部署”，原理是：用hugo把markdown文件和博客模板（皮肤）合并生成网页",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-20 22:37:29 \u002b0800 CST",
+    "dateModified" : "2021-01-20 22:37:29 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2\/",
+    "wordCount" : "4842",
+    "keywords" : [ "hugo","travis-ci","github pages", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">201十分钟！用hugo搭建免费的个人博客并自动化部署</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-20 itemprop="datePublished">January 20, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/"> 学以致用, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">4842 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h1 id="前言">前言</h1>
+<p>本文详细介绍了“如何用hugo<strong>免费</strong>搭建个人博客并自动化发布部署”，原理是：用hugo把markdown文件和博客模板（皮肤）合并生成网页，利用github pages服务托管上述网页，实现免费博客。具体细节如下：</p>
+<ol>
+<li>将个人博客系统发布到github的特殊仓库的<code>blog</code>分支中；</li>
+<li>当提交本地仓库<code>blog</code>分支到github时，github通过webhook通知travis-ci；</li>
+<li>travis-ci拉取<code>blog</code>分支，并执行特定脚本（hugo），生成<code>public</code>文件；</li>
+<li>travis-ci自动将<code>public</code>文件提交到本仓库的<code>master</code>分支；</li>
+<li>本仓库<code>master</code>分支开启了github pages功能，可以通过特殊域名访问；</li>
+</ol>
+<pre><code class="language-plantuml" data-lang="plantuml">@startuml
+本机 -&gt; github :push(all)-&gt;blog分支
+github-&gt;travisCI :webhook触发
+travisCI-&gt;travisCI : hugo指令(./public)
+travisCI-&gt;github :push(./public)-&gt;master分支(github token)
+github-&gt;github:pages服务
+github-&gt;本机 :本机或公网访问
+@enduml
+</code></pre><p>学会了该原理，将网页托管到自建服务器或者OSS中也不再话下，尽管发挥想象把。参考本文搭建博客需要如下背景知识或条件：</p>
+<ul>
+<li>git基本操作技能</li>
+<li>github账户</li>
+<li>vscode编辑器</li>
+</ul>
+<h1 id="絮絮叨">絮絮叨</h1>
+<p>很久很久之前，曾经用wordpress搭建过个人博客<strong>极客工程师</strong>。但忘记给服务器续费，站点被清空。沮丧、懊悔、无助，像是弄丢了心爱玩具的小孩。也因此很久没再弄个人博客，偶尔在公众号上写写随笔。</p>
+<p>心血来潮，决定再弄一个博客，记录技术心得和成长感悟，同时以文会友获得更多机会。吸取教训，这次最核心的诉求是数据安全，其次是拓展性和美观性。虽然，也有公众号，但总感觉有诸多限制，不足以彰显个性凸显逼格。</p>
+<h1 id="需求分析">需求分析</h1>
+<p>核心诉求如下：</p>
+<ul>
+<li>安全性高：对于博客，文章是最主要的资产，一定要保证数据安全不容易丢失；</li>
+<li>拓展性强：博客就是一个乐高玩具，一定要能自由定制功能，承载我的小创意；</li>
+<li>写作方便：写博客主要时间都花费再写文章上，那么写作体验一定要好；</li>
+<li>体验良好：本身是一名产品经理，产品体验肯定要考虑（交互设计及UI设计）；</li>
+<li>成本要低：搭建博客本身就是为了“玩”，花太多金钱就不太值得了；</li>
+</ul>
+<h1 id="技术选型">技术选型</h1>
+<p>目前市场上有很多博客搭建工具，主要分为两类：静态博客和动态博客。</p>
+<ul>
+<li>动态博客：一套web系统，博文存入数据库，访问文章时从数据库读取博文，并基于模板渲染为html展示给用户。我之前用过的wordpress属于动态博客。</li>
+<li>静态博客：通过工具，直接将博文编译成最终的html文件，放入服务器接口访问。当前用的最多的静态博客是hexo。</li>
+</ul>
+<p>两种类型各有优缺点，前者功能强大可以集成功能模块，但需要专门的服务器部署各种运行环境及数据库；后者响应快，无需维护，成本还低，SEO友好。所以本次决定尝试静态博客，从静态博客的优秀代表hexo应该重点考虑，但发现很多人都吐槽hexo生成较慢，而且还需要安装nodejs才能使用，所以放弃了它。最终选了和它类似的hugo，主要原因如下：</p>
+<ul>
+<li>hugo相对于hexo不需要安装任何依赖，下载二进制包即可使用；</li>
+<li>hugo生成页面快，史称最快没有之一，方便本地调试；5秒生成6000个页面！</li>
+<li>hugo由golang开发，自己也一直在用golang，自带亲近感;</li>
+</ul>
+<h1 id="操作步骤window10">操作步骤（window10)</h1>
+<ul>
+<li>配置博客：安装hugo-&gt;新建站点-&gt;安装模板及预览-&gt;新增文章-&gt;配置站点</li>
+<li>部署博客：新建仓库-&gt;授权travis-&gt;修改配置-&gt;提交站点-&gt;域名配置（可选）</li>
+</ul>
+<h2 id="配置博客">配置博客</h2>
+<h3 id="安装hugo">安装hugo</h3>
+<ol>
+<li>下载hugo：点击<a href="https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_extended_0.80.0_Windows-64bit.zip">下载</a><code>hugo.exe</code>，记得一定要下载扩展版，不然可能会报错
+<ul>
+<li>hugo有两种版本：一个是普通版，一个是扩展版（支持各种插件如sass）</li>
+<li>上述链接为hugo_extended_0.80.0_Windows-64bit,为扩展版</li>
+</ul>
+</li>
+<li>安装hugo：将hugo.exe文件复制到任意一个文件夹（随心即可），同时在<em>系统环境变量</em>中设置hugo.exe所在目录，重启电脑（不重启可能不生效）
+<img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210122011409.png" alt="本地环境变量设置" loading="lazy" ></li>
+</ol>
+<p>在命令行输入：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo version
+</code></pre></div><p>若提示如下，说明安装成功。</p>
+<pre><code>Hugo Static Site Generator v0.80.0/extended windows/amd64 BuildDate: unknown
+</code></pre><p>若提示如下，则说明<em>系统环境变量</em>设置错误或未生校。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo : 无法将“hugo”项识别为 cmdlet、函数、脚本文件或可运行程序的名称。请检查名称的拼写，如果包括路径，请确保路径正确，然后再试一次。
+所在位置 行:1 字符: <span style="color:#ae81ff">1</span>
++ hugo version
++ ~~~~
+    + CategoryInfo          : ObjectNotFound: <span style="color:#f92672">(</span>hugo:String<span style="color:#f92672">)</span> <span style="color:#f92672">[]</span>, CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+</code></pre></div><h3 id="新建站点">新建站点</h3>
+<ol>
+<li>新建文件夹用于存储博客，用vscode打开文件夹
+<ul>
+<li>点击 终端-&gt;新终端，打开终端</li>
+<li>在终端中，输入<code>cd ..</code>进入上一级目录</li>
+</ul>
+</li>
+<li>在上一级目录中执行<code>hugo new site [替换成你的文件夹]</code>创建站点(提示如下)</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Congratulations! Your new Hugo site is created in <span style="color:#f92672">[</span>你的目录<span style="color:#f92672">]</span>.
+Just a few more steps and you<span style="color:#960050;background-color:#1e0010">&#39;</span>re ready to go:
+1. Download a theme into the same-named folder. <span style="color:#75715e">#下载主题到themes目录</span>
+   Choose a theme from https://themes.gohugo.io/ or <span style="color:#75715e">#从官方下载主题</span>
+   create your own with the <span style="color:#e6db74">&#34;hugo new theme &lt;THEMENAME&gt;&#34;</span> command. <span style="color:#75715e">#新建主题</span>
+2. Perhaps you want to add some content. You can add single files 
+   with <span style="color:#e6db74">&#34;hugo new &lt;SECTIONNAME&gt;\&lt;FILENAME&gt;.&lt;FORMAT&gt;&#34;</span>.# 新建内容
+3. Start the built-in live server via <span style="color:#e6db74">&#34;hugo server&#34;</span>. <span style="color:#75715e"># 本地启动服务</span>
+</code></pre></div><h3 id="安装模板及预览">安装模板及预览</h3>
+<ol>
+<li>前往hugo官网选择中意的模板下载，前往<a href="https://themes.gohugo.io/">这里</a>
+<ul>
+<li>官网提供了模板列表，真正下载一般要到github上下载</li>
+<li>这里我推荐一个不错的模板：<a href="https://github.com/Mogeko/mogege">mogege</a>（本站在用）</li>
+</ul>
+</li>
+<li>将下载的模板复制到themes目录即可</li>
+<li>执行如下指令后，访问<code>http://localhost:1313/</code>,即可在本地预览博客</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">hugo server --minify --theme mogege
+</code></pre></div><h3 id="新增文章">新增文章</h3>
+<ol>
+<li>在终端右上角点击“+”新建终端</li>
+<li>录入<code>hugo new posts/[文章名].md</code>新建文章</li>
+<li>在<code>content/posts</code>目录中可以看到该文章</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown">--- #头部起始位
+title: &#34;001万物之始 内存对齐&#34; #文章标题
+date: 2021-01-21T01:12:44+08:00 #文章日期
+draft: true #是否为草稿（false发布|true草稿）
+--- #头部结束位
+
+这里是文章内容，需要用markdown语法来写，其实很简单，等我填坑
+</code></pre></div><ol start="4">
+<li>刷新<code>http://localhost:1313/posts</code>可以看到文章展示出来了</li>
+</ol>
+<h3 id="配置站点">配置站点</h3>
+<ol>
+<li>首先打开<code>config.toml</code>文件,各字段解释如下：</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#34;http://ansoncode.bazhentu.net/&#34;</span> <span style="color:#75715e"># &lt;head&gt; 里面的 baseurl 信息，填你的博客地址</span>
+<span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#34;Anson`s Blog&#34;</span> <span style="color:#75715e"># 浏览器的标题</span>
+<span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#34;zh-cn&#34;</span> <span style="color:#75715e"># 语言</span>
+<span style="color:#a6e22e">hasCJKLanguage</span> = <span style="color:#66d9ef">true</span> <span style="color:#75715e"># 开启可以让「字数统计」统计汉字</span>
+<span style="color:#a6e22e">theme</span> = <span style="color:#e6db74">&#34;mogege&#34;</span> <span style="color:#75715e"># 主题 (需要自己下载)</span>
+
+<span style="color:#a6e22e">paginate</span> = <span style="color:#ae81ff">11</span> <span style="color:#75715e"># 每页的文章数</span>
+<span style="color:#a6e22e">enableEmoji</span> = <span style="color:#66d9ef">true</span> <span style="color:#75715e"># 支持 Emoji</span>
+<span style="color:#a6e22e">enableRobotsTXT</span> = <span style="color:#66d9ef">true</span> <span style="color:#75715e"># 支持 robots.txt</span>
+<span style="color:#a6e22e">googleAnalytics</span> = <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#75715e"># Google 统计 id</span>
+
+<span style="color:#a6e22e">preserveTaxonomyNames</span> = <span style="color:#66d9ef">true</span>
+
+[<span style="color:#a6e22e">blackfriday</span>]
+  <span style="color:#a6e22e">hrefTargetBlank</span> = <span style="color:#66d9ef">true</span>
+  <span style="color:#a6e22e">nofollowLinks</span> = <span style="color:#66d9ef">true</span>
+  <span style="color:#a6e22e">noreferrerLinks</span> = <span style="color:#66d9ef">true</span>
+
+[<span style="color:#a6e22e">Permalinks</span>]
+ <span style="color:#a6e22e">posts</span> = <span style="color:#e6db74">&#34;/:year/:filename/&#34;</span>
+
+[<span style="color:#a6e22e">menu</span>] <span style="color:#75715e">#博客的菜单</span>
+  [[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]] <span style="color:#75715e">#第一个菜单</span>
+    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Blog&#34;</span>
+    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/posts/&#34;</span> <span style="color:#75715e">#菜单的访问路径</span>
+    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">1</span>  <span style="color:#75715e">#菜单的排序</span>
+
+  [[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
+    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Categories&#34;</span>
+    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/categories/&#34;</span>
+    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">2</span>
+
+  [[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
+    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;Tags&#34;</span>
+    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/tags/&#34;</span>
+    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">3</span>
+
+  [[<span style="color:#a6e22e">menu</span>.<span style="color:#a6e22e">main</span>]]
+    <span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;About&#34;</span>
+    <span style="color:#a6e22e">url</span> = <span style="color:#e6db74">&#34;/about/&#34;</span>
+    <span style="color:#a6e22e">weight</span> = <span style="color:#ae81ff">4</span>
+
+[<span style="color:#a6e22e">params</span>] <span style="color:#75715e">#网站的参数</span>
+    <span style="color:#a6e22e">since</span> = <span style="color:#ae81ff">2017</span>
+    <span style="color:#a6e22e">author</span> = <span style="color:#e6db74">&#34;Anson&#34;</span>                          <span style="color:#75715e"># Author&#39;s name</span>
+    <span style="color:#a6e22e">avatar</span> = <span style="color:#e6db74">&#34;https://i.loli.net/2021/01/20/PfjiWupdZrtzINV.png&#34;</span>           <span style="color:#75715e"># Author&#39;s avatar</span>
+    <span style="color:#a6e22e">subtitle</span> = <span style="color:#e6db74">&#34;Anson，会写代码的产品经理&#34;</span>    <span style="color:#75715e"># Subtitle</span>
+    <span style="color:#a6e22e">cdn_url</span> = <span style="color:#e6db74">&#34;&#34;</span>           <span style="color:#75715e"># Base CDN URL</span>
+    <span style="color:#a6e22e">home_mode</span> = <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#75715e"># post or other</span>
+    <span style="color:#a6e22e">enableGitalk</span> = <span style="color:#66d9ef">false</span> <span style="color:#75715e"># gitalk 评论系统</span>
+
+    <span style="color:#a6e22e">google_verification</span> = <span style="color:#e6db74">&#34;&#34;</span>
+
+    <span style="color:#a6e22e">description</span> = <span style="color:#e6db74">&#34;****&#34;</span> <span style="color:#75715e"># (Meta) 描述</span>
+    <span style="color:#a6e22e">keywords</span> = <span style="color:#e6db74">&#34;******&#34;</span> <span style="color:#75715e"># site keywords 用于SEO优化</span>
+
+    <span style="color:#a6e22e">beian</span> = <span style="color:#e6db74">&#34;xxx&#34;</span> <span style="color:#75715e">#备案号</span>
+    <span style="color:#a6e22e">baiduAnalytics</span> = <span style="color:#e6db74">&#34;&#34;</span>
+
+    <span style="color:#a6e22e">license</span>= <span style="color:#e6db74">&#39;本文采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34;&gt;知识共享署名-非商业性使用 4.0 国际许可协议&lt;/a&gt;进行许可&#39;</span>
+
+[<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">social</span>]
+    <span style="color:#a6e22e">GitHub</span> = <span style="color:#e6db74">&#34;AnsonCode&#34;</span>
+    <span style="color:#a6e22e">Twitter</span> = <span style="color:#e6db74">&#34;xxoo&#34;</span>
+    <span style="color:#a6e22e">Email</span>   = <span style="color:#e6db74">&#34;***@foxmail.com&#34;</span>
+    <span style="color:#a6e22e">Instagram</span> = <span style="color:#e6db74">&#34;xxoo&#34;</span>
+    <span style="color:#a6e22e">Wechat</span> = <span style="color:#e6db74">&#34;****&#34;</span>  <span style="color:#75715e"># Wechat QRcode image</span>
+    <span style="color:#a6e22e">Facebook</span> = <span style="color:#e6db74">&#34;xxoo&#34;</span>
+    <span style="color:#a6e22e">Telegram</span> = <span style="color:#e6db74">&#34;xxoo&#34;</span>
+    <span style="color:#a6e22e">Dribbble</span> = <span style="color:#e6db74">&#34;xxoo&#34;</span>
+    <span style="color:#a6e22e">Medium</span> = <span style="color:#e6db74">&#34;xxoo&#34;</span>
+
+[<span style="color:#a6e22e">params</span>.<span style="color:#a6e22e">gitalk</span>] <span style="color:#75715e"># Github: https://github.com/gitalk/gitalk （以后单独再讲解）</span>
+    <span style="color:#a6e22e">clientID</span> = <span style="color:#e6db74">&#34;xxx&#34;</span> <span style="color:#75715e"># Your client ID</span>
+    <span style="color:#a6e22e">clientSecret</span> = <span style="color:#e6db74">&#34;xxx&#34;</span> <span style="color:#75715e"># Your client secret</span>
+    <span style="color:#a6e22e">repo</span> = <span style="color:#e6db74">&#34;xxx&#34;</span> <span style="color:#75715e"># The repo to store comments</span>
+    <span style="color:#a6e22e">owner</span> = <span style="color:#e6db74">&#34;xxx&#34;</span> <span style="color:#75715e"># Your GitHub ID</span>
+    <span style="color:#a6e22e">admin</span>= <span style="color:#e6db74">&#34;xxx&#34;</span> <span style="color:#75715e"># Required. Github repository owner and collaborators. (Users who having write access to this repository)</span>
+    <span style="color:#a6e22e">id</span>= <span style="color:#e6db74">&#34;location.pathname&#34;</span> <span style="color:#75715e"># The unique id of the page.</span>
+    <span style="color:#a6e22e">labels</span>= <span style="color:#e6db74">&#34;gitalk&#34;</span> <span style="color:#75715e"># Github issue labels. If you used to use Gitment, you can change it</span>
+    <span style="color:#a6e22e">perPage</span>= <span style="color:#ae81ff">15</span> <span style="color:#75715e"># Pagination size, with maximum 100.</span>
+    <span style="color:#a6e22e">pagerDirection</span>= <span style="color:#e6db74">&#34;last&#34;</span> <span style="color:#75715e"># Comment sorting direction, available values are &#39;last&#39; and &#39;first&#39;.</span>
+    <span style="color:#a6e22e">createIssueManually</span>= <span style="color:#66d9ef">false</span> <span style="color:#75715e"># If it is &#39;false&#39;, it is auto to make a Github issue when the administrators login.</span>
+    <span style="color:#a6e22e">distractionFreeMode</span>= <span style="color:#66d9ef">false</span> <span style="color:#75715e"># Enable hot key (cmd|ctrl + enter) submit comment.</span>
+
+</code></pre></div><ol start="2">
+<li>根据需要修改就行了，用不到的可以在前面加上<code>'#'</code>进行注释</li>
+<li>更多配置，如评论系统以后再说</li>
+</ol>
+<h2 id="部署博客">部署博客</h2>
+<p>如果你有自己的服务器或者OSS，且不需要自动化部署，其实到这里就可以结束了。
+但如果你希望自动化部署博客，那么follow me!</p>
+<h3 id="新建仓库">新建仓库</h3>
+<ol>
+<li>前往github，新建仓库
+<ul>
+<li>仓库名称为<code>[git用户名].github.io</code>(必须，这是一个特殊的仓库)</li>
+</ul>
+</li>
+<li>设置仓库为public,且开启github pages服务
+<ul>
+<li>在仓库的<code>Setting</code>-&gt;<code>GitHub Pages</code>中开启pages服务</li>
+<li>选择分支为<code>master</code>（需要等travis生效后再回来设置，不然没有master分支）</li>
+</ul>
+</li>
+<li>执行以下命令，初始化仓库</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git init
+git remote add origin <span style="color:#f92672">[</span>你的仓库地址<span style="color:#f92672">]</span>
+git checkout -b blog <span style="color:#75715e">#新建blog分支并设置当前分支为blog</span>
+git add .
+git commit -m <span style="color:#e6db74">&#34;first commit&#34;</span>
+git push -u origin blog <span style="color:#75715e">#推送到github上</span>
+</code></pre></div><ol start="4">
+<li>在github的项目设置中把blog设置为主分支</li>
+</ol>
+<h3 id="授权travis">授权travis</h3>
+<ol>
+<li>前往<a href="https://travis-ci.com/">https://travis-ci.com/</a>，并用github账户登陆</li>
+<li>前往<a href="https://travis-ci.com/account/repositories">https://travis-ci.com/account/repositories</a>授权travis访问刚刚新建仓库的权限</li>
+</ol>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210122030216.png" alt="20210122030216" loading="lazy" ></p>
+<ol start="3">
+<li>在travis当前仓库的后台设置<code>$GH_APIKEY2</code>(详情见<code>.travis.yml</code>）为github的token
+<ul>
+<li>前往<code>https://github.com/settings/tokens</code>获取git token,权限为<code>write:packages</code></li>
+<li>$GH_APIKEY2对应的仓库设置为<code>blog</code>(原因是仅blog分支会触发脚本)</li>
+</ul>
+</li>
+<li>在本地的博客文件夹根目录增加<code>.travis.yml</code>文件，文件内容如下</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">language</span>: <span style="color:#ae81ff">go</span>
+
+<span style="color:#f92672">branches</span>:
+  <span style="color:#f92672">only</span>:
+    - <span style="color:#ae81ff">blog </span> <span style="color:#75715e"># 设置自动化部署的源码分支(仅当前分支更新时会触发脚本)</span>
+    - <span style="color:#ae81ff">2</span>-<span style="color:#ae81ff">travis-auto-depoly</span> <span style="color:#75715e"># test for travis</span>
+
+<span style="color:#75715e"># cache this directory</span>
+<span style="color:#f92672">cache</span>:
+  <span style="color:#f92672">directories</span>:
+    - <span style="color:#ae81ff">themes</span>
+    <span style="color:#75715e"># - public</span>
+    <span style="color:#75715e">#- themes 主题没有更改时可以缓存</span>
+
+<span style="color:#f92672">before_install</span>:
+- <span style="color:#ae81ff">export TZ=&#39;Asia/Shanghai&#39; </span> <span style="color:#75715e"># 设置时区</span>
+
+<span style="color:#75715e"># 安装依赖组件</span>
+<span style="color:#f92672">install</span>:
+  - <span style="color:#ae81ff">wget https://github.com/gohugoio/hugo/releases/download/v0.80.0/hugo_extended_0.80.0_Linux-64bit.tar.gz</span> <span style="color:#75715e">#下载hugo压缩包（扩展版本支持scss）</span>
+  - <span style="color:#ae81ff">tar -xzvf hugo_extended_0.80.0_Linux-64bit.tar.gz</span> <span style="color:#75715e">#解压压缩包</span>
+  - <span style="color:#ae81ff">chmod +x hugo  </span> <span style="color:#75715e">#授权hugo执行权限</span>
+  - <span style="color:#ae81ff">export PATH=$PATH:$PWD</span>
+  - <span style="color:#ae81ff">hugo version   </span> <span style="color:#75715e">#查看Hugo版本</span>
+  - <span style="color:#ae81ff">git log -p -2 | cat </span> <span style="color:#75715e">#查看本次提交变更（调试时用，可以注释）</span>
+  - <span style="color:#ae81ff">rm -rf public/*     </span> <span style="color:#75715e">#删除blog仓库下的public文件</span>
+
+<span style="color:#f92672">script</span>:
+  - <span style="color:#ae81ff">hugo  --enableGitInfo </span> <span style="color:#75715e">#执行hugo生成html到public目录下</span>
+
+<span style="color:#75715e"># 构建完成后会自动更新Github Pages</span>
+<span style="color:#f92672">deploy</span>:
+  <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">pages  </span> <span style="color:#75715e">#github pages部署，还有其他方式</span>
+  <span style="color:#f92672">skip-cleanup</span>: <span style="color:#66d9ef">true</span> <span style="color:#75715e"># 重要，不能省略（暂不知道原因）</span>
+  <span style="color:#f92672">local-dir</span>: <span style="color:#ae81ff">public</span> <span style="color:#75715e">#部署的内容是刚刚生成的html站点</span>
+  <span style="color:#f92672">target-branch</span>: <span style="color:#ae81ff">master</span> <span style="color:#75715e">#部署到当前仓库的master分支</span>
+  <span style="color:#f92672">github-token</span>: <span style="color:#ae81ff">$GH_APIKEY2 </span> <span style="color:#75715e">#上传到该仓库需要push权限，这个是在travis后台设置的github token</span>
+  <span style="color:#f92672">keep-history</span>: <span style="color:#66d9ef">true</span> <span style="color:#75715e"># 是否保持target-branch分支的提交记录</span>
+  <span style="color:#f92672">on</span>:
+    <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">blog </span> <span style="color:#75715e">#博客源码的分支</span>
+</code></pre></div><h3 id="修改配置">修改配置</h3>
+<ol>
+<li>打开<code>config.toml</code>文件，修改参数</li>
+<li>将<code>baseURL</code>的值修改为<code>&quot;[git用户名].github.io&quot;</code></li>
+<li>将<code>theme</code>的值修改为<code>&quot;mogege&quot;</code>(主要是为了匹配<code>.travis.yml</code>文件中的<code>hugo  --enableGitInfo</code>)</li>
+</ol>
+<h3 id="提交站点">提交站点</h3>
+<ol>
+<li>提交本地仓库的blog分支到github的blog分支</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
+git commit -m <span style="color:#e6db74">&#34;测试travis自动化部署&#34;</span>
+git push -u origin blog <span style="color:#75715e">#注意-》提交本地blog分支到blog分支</span>
+</code></pre></div><ol start="2">
+<li>前往<a href="https://travis-ci.com/account/repositories">https://travis-ci.com/account/repositories</a>查看部署日志</li>
+<li>若没有问题的话，前往github仓库，切换到master分支，可以看到来自travis提交的记录（这表明部署成功）</li>
+<li>访问<code>&quot;[git用户名].github.io&quot;</code>即可开始博客之旅</li>
+<li>以后每次新建文章，并将文章头部的<code>draft</code>置为<code>false</code>，提交git到blog分支即可</li>
+<li>稍等片刻，系统将自动化部署，并由github帮你进行文章的版本管理</li>
+</ol>
+<h3 id="域名配置可选">域名配置(可选)</h3>
+<ol>
+<li>前往域名服务商后台，设置域名CNAME解析到<code>&quot;[git用户名].github.io&quot;</code></li>
+<li>前往github当前仓库setting的github pages部分，设置custom domin为你的域名</li>
+<li>在<code>/static</code>目录下新建<code>CNAME</code>文件，写入<code>你的域名</code>（主要是为了解决自定义域名被覆盖的问题）</li>
+<li>访问你的域名试一试</li>
+</ol>
+<h1 id="后记">后记</h1>
+<p>恭喜你，看到这里，说明你已经掌握了 用hugo<strong>免费</strong>搭建个人博客并自动化发布部署 的所有技巧！心动不如行动，马上搭建你的BLOG吧！</p>
+<h1 id="参考">参考</h1>
+<ul>
+<li>
+<p><a href="https://olowolo.com/post/hugo-quick-start/?utm_source=cyhour.com">Hugo 从入门到会用</a></p>
+</li>
+<li>
+<p><a href="https://mogeko.me/2018/018/">hugo模板配置</a></p>
+</li>
+<li>
+<p><a href="https://www.gohugo.org/doc/templates/functions/">hugo文档-函数</a></p>
+</li>
+<li>
+<p><a href="https://segmentfault.com/a/1190000017797561?utm_source=tag-newest">Hexo 博客终极玩法：云端写作，自动部署</a></p>
+</li>
+<li>
+<p><a href="https://kxcblog.com/post/blog/1.hugo-blog/">Hugo搭建个人博客与自动部署</a></p>
+</li>
+<li>
+<p><a href="https://www.gohugo.org/2015/11/21/hugo-deploy-script/">Hugo 自动化部署脚本 deploy.py</a></p>
+</li>
+<li>
+<p><a href="https://www.hyec.me/posts/hugo-and-auto-deploy/">搭建 Hugo 静态博客并配置自动部署</a></p>
+</li>
+<li>
+<p><a href="http://researchlab.github.io/2016/05/08/travis-ci-deploy-hexo-blog/">⭐使用Travis CI自动构建Hexo静态博客</a></p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/still_night/article/details/104838505/">使用Travis-CI部署Hugo，实现自动化部署</a></p>
+</li>
+<li>
+<p><a href="https://craftboss.net/2019/10/22/hexo%E5%8F%91%E5%B8%83%E4%B9%8B%E5%90%8Egithubpage%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E5%A4%B1%E6%95%88/">hexo发布之后GitHub Pages自定义域名失效</a></p>
+</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/>http://localhost:1313/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://localhost:1313/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://localhost:1313/tags/hugo/">
+                    #hugo</a></span>
+            
+            <span class="tag"><a href="http://localhost:1313/tags/travis-ci/">
+                    #travis-ci</a></span>
+            
+            <span class="tag"><a href="http://localhost:1313/tags/github-pages/">
+                    #github pages</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" class="prev" rel="prev" title="001什么是大端对齐和小端对齐？"><i class="iconfont icon-left"></i>&nbsp;001什么是大端对齐和小端对齐？</a>
+        
+        
+        <a href="http://localhost:1313/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/" class="next" rel="next" title="101编码——国际求救信号为什么是SOS？">101编码——国际求救信号为什么是SOS？&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/jmnote/plantuml-encoder@1.2.4/dist/plantuml-encoder.min.js" integrity="sha256-Qsk2KRBCN5qVZX7B+8+2IvQl1Aqc723qV1tBCQaVoqo=" crossorigin="anonymous"></script>
+<script>
+(function(){
+  let plantumlPrefix = "language-plantuml";
+  Array.prototype.forEach.call(document.querySelectorAll("[class^=" + plantumlPrefix + "]"), function(code){
+    let image = document.createElement("IMG");
+    image.loading = 'lazy'; 
+    image.src = 'http://www.plantuml.com/plantuml/svg/~1' + plantumlEncoder.encode(code.innerText);
+    code.parentNode.insertBefore(image, code);
+    code.style.display = 'none';
+  });
+})();
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '201十分钟！用hugo搭建免费的个人博客并自动化部署'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>

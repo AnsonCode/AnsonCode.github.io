@@ -6,7 +6,7 @@ categories: ["研发提效"]
 draft: false
 ---
 
-https://www.cncf.io/blog/2020/04/13/serverless-open-source-frameworks-openfaas-knative-more/
+翻译自：[Serverless Open-Source Frameworks: OpenFaaS, Knative, & more](https://www.cncf.io/blog/2020/04/13/serverless-open-source-frameworks-openfaas-knative-more/)
 
 本文将讨论上面提及的一些框架，并且深入 OpenFaaS 和 Knative 去介绍他们的架构、主要的组件以及基本安装步骤。如果你对这个主题感兴趣，并且计划使用开源平台开发 serverless 应用，本文将让你更好的理解这些解决方案。
 

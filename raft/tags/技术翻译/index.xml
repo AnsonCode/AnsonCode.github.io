@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术翻译 on Anson`s Blog</title>
+    <link>http://localhost:1313/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/</link>
+    <description>Recent content in 技术翻译 on Anson`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 10 Feb 2022 21:30:31 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>006【翻译】Serverless开源框架：OpenFaaS,Knative等</title>
+      <link>http://localhost:1313/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/</link>
+      <pubDate>Thu, 10 Feb 2022 21:30:31 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/</guid>
+      <description>翻译自：Serverless Open-Source Frameworks: OpenFaaS, Knative, &amp;amp; more 本文将讨论上面提及的一些框架，并且深入 OpenFaaS 和 Knative 去介绍他们的架构、主要的组件以及基本安装步骤。如果你对这</description>
+    </item>
+    
+    <item>
+      <title>005【翻译】更快的构建应用，我们为什么投资Nhost</title>
+      <link>http://localhost:1313/2022/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/</link>
+      <pubDate>Wed, 09 Feb 2022 20:01:09 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2022/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/</guid>
+      <description>翻译自：Build apps faster, or why we invested in Nhost! 我们非常相信并且支持开源软件。因此，我们很激动能在 Nhost 领投 3 百万美金种子轮融资，一个坐落于 Stockholm 和 Berlin 的初创企业，</description>
+    </item>
+    
+    <item>
+      <title>004【翻译】使用Gatsby和Hasura动态化JAMStack</title>
+      <link>http://localhost:1313/2022/004%E7%BF%BB%E8%AF%91%E4%BD%BF%E7%94%A8gatsby%E5%92%8Chasura%E5%8A%A8%E6%80%81%E5%8C%96jamstack/</link>
+      <pubDate>Mon, 07 Feb 2022 12:33:13 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2022/004%E7%BF%BB%E8%AF%91%E4%BD%BF%E7%94%A8gatsby%E5%92%8Chasura%E5%8A%A8%E6%80%81%E5%8C%96jamstack/</guid>
+      <description>翻译自：Dynamic JAMStack with Gatsby and Hasura GraphQL JAMStack是构建 web 应用的现代架构。与基于经验的传统 CMS 相比，开发者工作流有了很大的提升。 由 JAMStack 驱动的 web 应</description>
+    </item>
+    
+    <item>
+      <title>003【翻译】GraphQL到SQL高性能架构</title>
+      <link>http://localhost:1313/2022/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/</link>
+      <pubDate>Tue, 01 Feb 2022 16:32:14 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2022/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/</guid>
+      <description>翻译自：Architecture of a high performance GraphQL to SQL engine 更新：在旧金山的 2019 GraphQL 峰会上，Tanmai Gopal（Hasura 联合创始人\CEO）讨论了更</description>
+    </item>
+    
+    <item>
+      <title>002【翻译】Nhost简介及使用</title>
+      <link>http://localhost:1313/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Tue, 01 Feb 2022 11:59:39 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</guid>
+      <description>1. 欢迎来到 Nhost Nhost 是一个开源的，实时，无服务的后端平台，能够构建可靠的应用，去扩大你的商业规模。 组件 Nhost 构建在一系列开源组件之上。 数据库 你的应用程</description>
+    </item>
+    
+    <item>
+      <title>001【翻译01】Hasura设计思想</title>
+      <link>http://localhost:1313/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</link>
+      <pubDate>Sun, 30 Jan 2022 16:09:15 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/</guid>
+      <description>翻译自：Hasura Design Philosophy Hasura 设计思想 本文，我打算从产品视角谈论下 Hasura，我们的技术设计思想，与其他技术的比较，以及一些常见问题。 如果你仅</description>
+    </item>
+    
+  </channel>
+</rss>

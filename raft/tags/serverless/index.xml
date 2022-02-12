@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Serverless on Anson`s Blog</title>
+    <link>http://localhost:1313/tags/serverless/</link>
+    <description>Recent content in Serverless on Anson`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 10 Feb 2022 21:30:31 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/serverless/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>006【翻译】Serverless开源框架：OpenFaaS,Knative等</title>
+      <link>http://localhost:1313/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/</link>
+      <pubDate>Thu, 10 Feb 2022 21:30:31 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/</guid>
+      <description>翻译自：Serverless Open-Source Frameworks: OpenFaaS, Knative, &amp;amp; more 本文将讨论上面提及的一些框架，并且深入 OpenFaaS 和 Knative 去介绍他们的架构、主要的组件以及基本安装步骤。如果你对这</description>
+    </item>
+    
+  </channel>
+</rss>

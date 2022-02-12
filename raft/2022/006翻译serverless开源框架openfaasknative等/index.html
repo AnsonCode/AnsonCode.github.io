@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://localhost:1313/2022/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/" />
+    
+    <link rel="canonical" href="http://localhost:1313/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            006【翻译】Serverless开源框架：OpenFaaS,Knative等 | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="006【翻译】Serverless开源框架：OpenFaaS,Knative等 | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313\/"
+    },
+    "articleSection" : "posts",
+    "name" : "006【翻译】Serverless开源框架：OpenFaaS,Knative等",
+    "headline" : "006【翻译】Serverless开源框架：OpenFaaS,Knative等",
+    "description" : "翻译自：Serverless Open-Source Frameworks: OpenFaaS, Knative, \u0026amp; more 本文将讨论上面提及的一些框架，并且深入 OpenFaaS 和 Knative 去介绍他们的架构、主要的组件以及基本安装步骤。如果你对这",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-02-10 21:30:31 \u002b0800 CST",
+    "dateModified" : "2022-02-10 21:30:31 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2022\/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89\/",
+    "wordCount" : "3841",
+    "keywords" : [ "技术翻译","Serverless", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">006【翻译】Serverless开源框架：OpenFaaS,Knative等</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2022-02-10 itemprop="datePublished">February 10, 2022</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/%E7%A0%94%E5%8F%91%E6%8F%90%E6%95%88/"> 研发提效, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">3841 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>翻译自：<a href="https://www.cncf.io/blog/2020/04/13/serverless-open-source-frameworks-openfaas-knative-more/">Serverless Open-Source Frameworks: OpenFaaS, Knative, &amp; more</a></p>
+<p>本文将讨论上面提及的一些框架，并且深入 OpenFaaS 和 Knative 去介绍他们的架构、主要的组件以及基本安装步骤。如果你对这个主题感兴趣，并且计划使用开源平台开发 serverless 应用，本文将让你更好的理解这些解决方案。</p>
+<p>过去几年里，serverless 已经迅速流行起来。这个技术的主要优势是能够创建和运行应用程序，但不需要基础架构管理。换句话说，当使用 serverless 架构时，开发者不再需要分配资源、扩展或维护服务器就可以运行应用，或者管理数据库和存储系统。他们唯一的职责就是去写高质量的代码。</p>
+<p>有很多建立 serverless 框架的开源项目（Apache OpenWhisk, IronFunctions, Fn from Oracle, OpenFaaS, Kubeless, Knative, Project Riff 等）。此外，由于开源平台提供了 IT 创新的途径，很多开发者对开源解决方案产生兴趣。</p>
+<h1 id="openwhisk-firecracker--oracle-fn">OpenWhisk, Firecracker &amp; Oracle FN</h1>
+<p>深入研究 OpenFaaS 和 Knative 之前，让我们简单的介绍下这三个平台。</p>
+<p>Apache OpenWhisk 是用于 serverless 计算的开放云计算平台，它把云计算资源作为服务。与其他开源项目（Fission, Kubeless, IronFunctions）对比，A<a href="https://epsagon.com/blog/epsagon-makes-troubleshooting-apache-openwhisk-a-snap/">pache OpenWhisk</a> 有如下特征：庞大的代码库、高质量特性和大量贡献者。然而，该平台过于庞大的工具（CouchDB, Kafka, Nginx, Redis 和 Zookeeper）为开发者带来了困难。此外，该平台在安全性方面不太完美。</p>
+<p>Firecracker 是由 Amazon 推出的一个虚拟化技术。这个技术提供最小开销的虚拟机，允许创建和管理隔离的环境和服务。Firecracker 提供叫做微 VMs 的轻量虚拟机，它使用基于硬件的虚拟化技术实现完全隔离，同时提供传统容器级别的性能和灵活性。对开发者的不便之处是，该技术的开发完全采用 Rust 语言。还使用了一个删减的软件环境，其中包含最小的组件集。为了节省内存，减少启动时间同时提高环境安全性，一个修改过的 Linux 内核被启动，其他所有多余的部分都被排除在外。此外，功能和设备支持也减少了。该平台由 Amazon Web Services 开发，旨在提高 AWS Lambda 和 AWS Fargate 平台的性能和效率。</p>
+<p>Oracle Fn 是一个开放服务的 serverless 平台，为云系统提供附加抽象层，允许函数即服务（FaaS）。与 Oracle Fn 中其他开放平台一样，开发者在独立的函数中实现逻辑。不像现存的商业 FaaS 平台，例如 Amazon AWS Lambda, Google Cloud Functions, 和 Microsoft Azure Functions，Oracle 的解决方案定位是无供应商锁定。用户能选择任何云解决方案供应商启动 Fn 基础架构，组合不同的云系统，或者在他们自己的设备上运行平台。</p>
+<p>Kubeless 是一个基础架构，支持在集群中部署 serverless 函数，同时能够在 Python, Node.js 或 Ruby 代码中执行 HTTP 和事件触发。Kubeless 是一个使用 <a href="https://epsagon.com/blog/development/how-to-guide-debugging-a-kubernetes-application/">Kubernetes</a> 核心功能，例如部署、服务、配置卡等，构建的平台。
+这节省了 Kubeless 的基础代码，而且代码尺寸很小，这也意味着开发者不必重放大部分任务调度逻辑代码，它包含在 Kubernetes 内核中。</p>
+<p>Fission 是一个开源平台，在 Kubernetes 上提供 serverless 架构。Fission 优势之一是它负责 Kubernetes 中自动扩展资源的大部分任务，把你从手动资源管理中释放出来。Fission 的第二个优势是你不受单一供应商的束缚，可以自由的从一个换到另一个，前提是他们支持 Kubernetes 集群（和你的程序或许有的任何其他特别的需求）。</p>
+<h1 id="使用-openfaas-和-knative-的主要优点">使用 OpenFaaS 和 Knative 的主要优点</h1>
+<p>OpenFaaS 和 Knative 公开可用且免费开源环境，能够创建和托管 serverless 函数。这些平台允许你：</p>
+<ul>
+<li>减少闲置资源</li>
+<li>快速处理数据</li>
+<li>对接第三方服务</li>
+<li>通过对大量请求的深加工来负载均衡</li>
+</ul>
+<p>然而，尽管这两种平台和 serverless 计算在总体上都有优势，开发者必须在开始实现前评估应用的逻辑。这意味着，你必须首先拆分逻辑为独立的任务，并且仅仅这样你才能写代码。</p>
+<p>为清晰起见，让我们分别考虑这些开源 serverless 解决方案。</p>
+<h1 id="如何使用-openfaas-构建和部署-serverless-函数">如何使用 OpenFaaS 构建和部署 Serverless 函数</h1>
+<p>OpenFaaS 的主要目标是使用 Docker 容器简化 serverless 函数，允许你运行复杂和灵活的基础设施。</p>
+<h2 id="openfaas-设计和架构">OpenFaas 设计和架构</h2>
+<p>OpenFaas 架构基于云原生标准，并且包含下列组件： API Gateway（API 网关）, Function Watchdog, and the container orchestrators Kubernetes, Docker Swarm, Prometheus, 和 Docker。根据如下所示的架构，当开发者使用 OpenFaas 时，流程开始于安装 Docker，结束于 Gateway API。</p>
+<p><img src="https://www.cncf.io/wp-content/uploads/2020/04/pasted-image-0.png" alt="OpenFaaS Components and Process" loading="lazy" ></p>
+<h2 id="api-gatewayapi-网关">API Gateway（API 网关）</h2>
+<p>通过 API 网关，提供了到所有函数位置的路由，同时通过 <a href="https://www.prometheus.wang/">Prometheus</a> 监控云原生指标。</p>
+<p><img src="https://www.cncf.io/wp-content/uploads/2020/04/graf2.jpg" alt="Client to Functions Routing" loading="lazy" ></p>
+<h2 id="function-watchdog">Function Watchdog</h2>
+<p>Watchdog 组件与每个容器集成去支持 serverless 应用，并且提供一个介于用户和函数之间的通用接口。</p>
+<p><img src="https://www.cncf.io/wp-content/uploads/2020/08/graf3.jpg" alt="OpenFaaS Watchdog Interface" loading="lazy" ></p>
+<p>Watchdog 的主要功能之一是组织在 API Gateway 接收的 HTTP 请求，并且调用选定的应用。</p>
+<h2 id="prometheus监控程序">Prometheus（监控程序）</h2>
+<p>这个组件允许你随时获取指标变化的动态，和其他指标对比，转换他们，在不离开网络界面主页的情况下，用文本格式或图表形式可视化他们。Prometheus 在 RAM 中存储收集的度量指标，并且在到达给定大小限制或一段时间后，把他们存储在磁盘上。</p>
+<h2 id="docker-swarm-和-kubernetes">Docker Swarm 和 Kubernetes</h2>
+<p>Docker Swarm 和 Kubernetes 是编排引擎。诸如 API Gateway, Function Watchdog, 和 Prometheus 实例工作在这些编排器之上。建议使用 Kubernetes 去开发产品，而 Docker Swarm 更适合创建本地函数。</p>
+<p>再者，所有开发的函数、微服务和产品被存储在 Docker 容器中，它充当主要的 OpenFaaS 平台，使用容器为开发者和系统管理员提供开发、部署和运行 serverless 应用。</p>
+<h1 id="在-docker-中安装-openfaas-的要点">在 Docker 中安装 OpenFaaS 的要点</h1>
+<p>OpenFaaS API Gateway 依赖所选 Docker 编排工具内建的函数。为了实现它，API Gateway 为所选的编排工具连接合适的插件，在 Prometheus 中记录各种指标，并且基于从 Prometheus 通过 AlertManager 收到的警告扩充函数。</p>
+<p>例如，假如你正在用 Linux 系统工作，想去使用 OpenFaaS 在 Docker 集群节点上写一个简单的函数。为了实现它，你需要跟着下列的步骤：</p>
+<ul>
+<li>安装 Docker CE 17.05 或者更新的版本</li>
+<li>运行 Docker</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker run hello-world
+</code></pre></div><ul>
+<li>初始化 Docker Swarm</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ docker swarm init
+</code></pre></div><ul>
+<li>从 Github 克隆 OpenFaaS</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git clone https://github.com/openfaas/faas <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\ </span> cd faas <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\ </span>./deploy_stack.sh
+</code></pre></div><ul>
+<li>登录 UI 门户： http://127.0.0.1:8080</li>
+</ul>
+<p>Docker 现在已经准备好使用了，当你进一步写函数时，不需要再安装它。</p>
+<h2 id="为构建函数准备-cli-openfaas">为构建函数准备 CLI OpenFaaS</h2>
+<p>为开发函数，你需要使用脚本安装最新的命令行工具。对于 brew，它是 <code>$ brew install faas-cli</code>。对于 curl，你需要使用<code>$ curl -sL https://cli.get-faas.com/ | sudo sh</code>。</p>
+<h2 id="使用-openfaas-的不同编程语言">使用 OpenFaas 的不同编程语言</h2>
+<p>使用 CLI 中的模板创建和部署一个 OpenFaas 函数，你几乎可以用任何编程语言写一个处理器（handler）。例如：</p>
+<ul>
+<li>创建新的函数：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ faas-cli new --lang prog language &lt;&lt;<span style="color:#66d9ef">function</span> name&gt;&gt;
+</code></pre></div><ul>
+<li>生成堆栈文件和文件夹：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ git clone https://github.com/openfaas/faas <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> cd faas <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> git checkout 0.6.5 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> ./deploy_stack.sh
+</code></pre></div><ul>
+<li>建立函数</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$$ faas-cli build -f <span style="color:#e6db74">&lt;&lt;stack file&gt;&gt;
+</span><span style="color:#e6db74">Deploy the function:
+</span><span style="color:#e6db74">$ faas-cli deploy -f &lt;&lt;stack</span> file&gt;&gt;
+</code></pre></div><h2 id="在-openfaas-ui-中测试函数">在 OpenFaaS UI 中测试函数</h2>
+<p>从 OpenFaas 的用户界面，你可以用几种方式快速的测试函数，如下所示：</p>
+<ul>
+<li>
+<p>前往 OpenFaaS UI：http://127.0.0.1:8080/ui/</p>
+</li>
+<li>
+<p>使用 curl：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ curl -d <span style="color:#e6db74">&#34;10&#34;</span> http://localhost:8080/function/fib
+</code></pre></div></li>
+<li>
+<p>使用 UI</p>
+</li>
+</ul>
+<p>初一看，每件事情似乎都很简单。然而，你仍然必须处理很多细微的差别。如果你必须用 Kubernetes，需要很多函数，或者需要为 FaaS 主代码库增加额外的依赖，这更是如此了。</p>
+<p>这个一个在 GitHub 上完整的 OpenFaaS <a href="https://github.com/openfaas/faas/tree/master/sample-functions">开发者社区</a>，你也能找到很多有用的信息。</p>
+<h1 id="openfaas-的优缺点">OpenFaaS 的优缺点</h1>
+<p>OpenFaaS 简化了系统的构建。修复错误变得更加容易，并且为系统增加新的功能也比单体应用情况下更快。换句话说，OpenFaaS 允许你随时随地用任何编程语言运行代码。</p>
+<p>然而，这儿是一些缺点：</p>
+<ul>
+<li>对一些编程语言冷启动时间长</li>
+<li>容器启动时间依赖于供应商</li>
+<li>函数有限的生命周期，意味着不是所有的系统都能根据 Serverless 工作。（当使用 OpenFaaS 时，计算容器不能在内存中长时间存储可执行的应用代码。平台将自动创建和销毁他们，所以无状态是不可能的。）</li>
+</ul>
+<h1 id="使用-knative-部署和运行函数">使用 Knative 部署和运行函数</h1>
+<p>Knative 允许你开发和部署基于容器的服务端应用，你可以容易的在云服务提供商之间迁移。Knative 是刚开始受欢迎的开源平台，但是现在引起了开发者很大的兴趣。</p>
+<h2 id="knative-的架构和组件">Knative 的架构和组件</h2>
+<p>Knative 架构包含 Building, Eventing, 和 Serving 组件。</p>
+<p><img src="https://www.cncf.io/wp-content/uploads/2020/04/graf8.jpg" alt="Knative Architecture and Components" loading="lazy" ></p>
+<h3 id="构建building">构建(Building)</h3>
+<p>Knative Building 组件的职责是确保在集群中容器程序集从源代码中启动。该组件以现存的 Kubernetes 原语为基础，并对其进行扩展。</p>
+<h3 id="事件eventing">事件(Eventing)</h3>
+<p>Knative Eventing 组件负责通用的订阅、投递和事件管理，以及在松耦合架构组件之间创建通讯。此外，该组件允许你扩展服务器上负载。</p>
+<h3 id="服务serving">服务(Serving)</h3>
+<p>Serving 组件的主要目标是支持 serverless 应用和特性的开发，自动缩放，Istio 组件的路由和网络编程，以及部署代码和配置的快照。Knative 使用 Kubernetes 作为编排器，Istio 执行查询路由和高级负载均衡的功能。</p>
+<h1 id="使用-knative-最简单函数的例子">使用 Knative 最简单函数的例子</h1>
+<p>你可以在 Knative 上使用一些方法创建一个后端应用。你的选择依赖于你的特定技能和使用多种服务的经验，包括 Istio, Gloo, Ambassador, Google, 尤其是 Kubernetes Engine, IBM Cloud, Microsoft Azure Kubernetes Service, Minikube, 和 Gardener。</p>
+<p>简单为每个 Knative 组件选择安装文件。以下是三个所需组件的主要安装文件的链接：</p>
+<ul>
+<li>Serving Component：<a href="https://github.com/knative/serving/releases/download/v0.7.0/serving.yamlhttps://github.com/knative/serving/releases/download/v0.7.0/monitoring.yaml">链接</a></li>
+<li>Building Component：<a href="https://github.com/knative/build/releases/download/v0.7.0/build.yaml">链接</a></li>
+<li>Eventing Component：<a href="https://github.com/knative/eventing/releases/download/v0.7.0/release.yamlhttps://github.com/knative/eventing/releases/download/v0.7.0/eventing.yaml">链接</a></li>
+</ul>
+<p>这些组件的每一个都由一系列对象构成。关于语法和安装组件的更多细节信息能在<a href="https://knative.dev/docs/">Knative 开发站点</a>上找到。</p>
+<h1 id="knative-的优缺点">Knative 的优缺点</h1>
+<p>Knative 有大量的优势。和 OpenFaaS 一样，Knative 允许你使用容器创建 serverless 环境。这反过来允许你获得一个本地的基于事件的架构，其中没有来自公共云服务施加的限制。Knative 也能自动化容器组装进程，从而提供自动伸缩。因此，serverless 函数的能力是基于预定义阈值和事件处理机制。</p>
+<p>此外，Knative 允许你在内部、云上或者第三方数据中心创建应用。这意味着，你不必被任何云供应商束缚。并且由于它的操作基于 Kubernetes 和 Istio，Knative 也有一个更高的采用率和更大采用潜能。</p>
+<p>Knative 一个主要的缺点是需要独立管理容器架构。简而言之，Knative 不是针对终端用户的。然而，因此，更多的商业化管理的 Knative 服务正开始出现，例如 Google Kubernetes Engine 和 IBM Cloud Kubernetes Service 的 Managed Knative 。</p>
+<h1 id="结论">结论</h1>
+<p>尽管开源 serverless 平台越来越多，OpenFaaS 和 Knative 将继续获得开发者的欢迎。值得注意的是，这些平台不容易比较，因为他们为了不同的任务而设计。</p>
+<p>尽管 OpenFaas, Knative 不是一个完全成熟的 serverless 平台，但是它是更合适作为一个创建、部署和管理 serverless 工作负载的平台。然而，从配置和维护的角度，OpenFaas 是更简单的。使用 OpenFaas，不需要像 Knative 那样单独安装所有的组件，并且如果需要的组件早已被安装了，你不需要清除之前的设置和新开发的资源。</p>
+<p>还是，如上面所提到的，OpenFaaS 的一个显著缺点是容器启动时间依赖提供者，而 Knative 不受制于任何单独的云解决方案提供商。基于上面的优缺点，团队或许也可以选择同时使用 Knative 和 OpenFaaS 来有效实现不同目标。</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/>http://localhost:1313/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://localhost:1313/2022/006%E7%BF%BB%E8%AF%91serverless%E5%BC%80%E6%BA%90%E6%A1%86%E6%9E%B6openfaasknative%E7%AD%89/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://localhost:1313/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
+                    #技术翻译</a></span>
+            
+            <span class="tag"><a href="http://localhost:1313/tags/serverless/">
+                    #Serverless</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2022/005%E7%BF%BB%E8%AF%91%E6%9B%B4%E5%BF%AB%E7%9A%84%E6%9E%84%E5%BB%BA%E5%BA%94%E7%94%A8%E6%88%91%E4%BB%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E6%8A%95%E8%B5%84nhost/" class="prev" rel="prev" title="005【翻译】更快的构建应用，我们为什么投资Nhost"><i class="iconfont icon-left"></i>&nbsp;005【翻译】更快的构建应用，我们为什么投资Nhost</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '006【翻译】Serverless开源框架：OpenFaaS,Knative等'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>

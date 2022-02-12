@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://localhost:1313/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" />
+    <link rel="next" href="http://localhost:1313/2021/102%E7%BB%A7%E7%94%B5%E5%99%A8%E4%B8%8D%E5%8F%AA%E6%98%AF%E6%94%BE%E5%A4%A7%E4%BF%A1%E5%8F%B7%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95/" />
+    <link rel="canonical" href="http://localhost:1313/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            101编码——国际求救信号为什么是SOS？ | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="101编码——国际求救信号为什么是SOS？ | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313\/"
+    },
+    "articleSection" : "posts",
+    "name" : "101编码——国际求救信号为什么是SOS？",
+    "headline" : "101编码——国际求救信号为什么是SOS？",
+    "description" : "前言 无论是灾难电影还是日常生活，我们都曾看到过SOS的身影?例如，中国电影《一出好戏》中流落荒岛的一群人用救生衣摆放了一个SOS的标记；国外",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-01-25 09:03:13 \u002b0800 CST",
+    "dateModified" : "2021-01-25 09:03:13 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos\/",
+    "wordCount" : "2017",
+    "keywords" : [ "莫斯密码","SOS", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">101编码——国际求救信号为什么是SOS？</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-01-25 itemprop="datePublished">January 25, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/%E4%BB%8E%E7%BB%A7%E7%94%B5%E5%99%A8%E5%88%B0%E8%AE%A1%E7%AE%97%E6%9C%BA/"> 从继电器到计算机, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">2017 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="a-name1前言a"><!-- raw HTML omitted -->前言<!-- raw HTML omitted --></h2>
+<p>无论是灾难电影还是日常生活，我们都曾看到过<strong>SOS</strong>的身影?例如，中国电影《一出好戏》中流落荒岛的一群人用救生衣摆放了一个<strong>SOS</strong>的标记；国外电影《荒岛余生》中汤姆汉克斯用木头摆了一个<strong>SOS</strong>。但为什么国际求救信号是<strong>SOS</strong>呢？它背后到底隐藏着什么秘密？</p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210125100609.png" alt="一出好戏SOS信号" loading="lazy" ></p>
+<h2 id="从航海业说起">从航海业说起</h2>
+<p>20世纪初，航海业迅速发展，海上事故日益增多。海洋大国为了能够及时发现船只遇险信息，决定制订通用求救信号，该信号要满足如下特点：</p>
+<ul>
+<li>足够简单，容易记忆</li>
+<li>足够完备，信息准确</li>
+</ul>
+<p>当时船舶和陆地主要的通讯方式是无线电，相信我们在很多抗战片中都见过<em>滴滴答答</em>的电报，就是当时最常见的无线电通讯设备。</p>
+<h2 id="用灯泡搭建电报">用灯泡搭建电报</h2>
+<p>电报按照通讯方式可分为两种：<em>有线电报</em>和<em>无线电报</em>。尽管两者在实用性上不可同日而语，但两者通讯机制是一样的。所以，理解了有线电报的机制，也就理解了无线电报。</p>
+<p>电影《金刚川》中描述了一个场景，解放军需要在凌晨5点之前渡江，渡江需要修筑渡桥，不能有明火，以防敌军轰炸，还要接受来自江对岸的命令。<em>假设无线电通讯被监听，不能通过无线电通讯。</em></p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210125210004.png" alt="金刚川剧照" loading="lazy" ></p>
+<p>在这种场景下，我们就可以利用<strong>电池/开关/灯泡</strong>等器件组建一台有线电报机，把开关（<strong>发送端</strong>）放在桥这边，把灯泡（<strong>接收端</strong>）放在桥对岸的军事基地。通过有节奏的开闭开关，让灯泡有节奏的闪烁，根据闪烁的次数就可以传递信息了，例如：通过让灯泡闪烁对应的次数，发送1-9个数字。</p>
+<blockquote>
+<p>注：真实场景下的电报，都是用电磁继电器代替灯泡的。本文仅用于说明情况。电磁继电器的用途下文再说。</p>
+</blockquote>
+<p>同理，再制作一个一样的设备，把接收端和发送端颠倒过来，就可以实现两岸的实时通讯了。这就是电报机的雏形。尽管当前只能发送1-9个数字，但是我们已经成功了一半，不是吗？</p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_47" alt="双向结构图" loading="lazy" ></p>
+<p>当然，我们若是愿意，也可以用拼音或英文传递信息。首先要对26个字母编码，最直观的方式是：1-26次闪烁分别表示a-z这26个字母。理论上，通过这种方式，我们能传递任何含义的信息（英文或拼音）。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字母</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">……</th>
+<th style="text-align:center">o</th>
+<th style="text-align:center">p</th>
+<th style="text-align:center">……</th>
+<th style="text-align:center">s</th>
+<th style="text-align:center">t</th>
+<th style="text-align:center">……</th>
+<th style="text-align:center">x</th>
+<th style="text-align:center">y</th>
+<th style="text-align:center">z</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">闪烁</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">……</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">16</td>
+<td style="text-align:center">……</td>
+<td style="text-align:center">19</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">……</td>
+<td style="text-align:center">24</td>
+<td style="text-align:center">25</td>
+<td style="text-align:center">26</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>但，这种方式存在明显不足——信息传递效率太低。假设要发送stop指令，大概需要闪烁19+20+15+16=70次，就算发送端手速跟得上，接收端的眼力也跟不上。</p>
+<h2 id="为电报设计新编码">为电报设计新编码</h2>
+<p>这里有人提出了一个新的方案，用闪烁的间隔表示不同的含义【<em>亮-灭-亮</em>（短闪烁）和<em>亮-灭灭-亮</em>（长闪烁）】，用更长的间隔分割两个字母【上一个字符**&quot;“灭灭灭灭”**下一个字符】，由这两种闪烁来自由组合构成新的含义。在这个前提下，我们本着*最短闪烁次数*和*高频字母优先*的原则，重新设计26个字母编码。</p>
+<p>用编码中包含的短闪烁和长闪烁的数量进行分组，接下来用**.**表示短闪烁，*——*表示长闪烁，例如1位可表示2种含义，分别为：</p>
+<ul>
+<li><strong>&quot;.&ldquo;表示E</strong></li>
+<li><strong>&quot;-&ldquo;表示T</strong></li>
+</ul>
+<p>以此类推，2位可表示4个字母，3位可表示8个字母，4位可表示16个字母，累计：2＋4＋8＋16=30个字母，多出的4个可用来做标点或空格。具体如下表：</p>
+<p><img src="https://res.weread.qq.com/wrepub/epub_33381009_17" alt="莫斯密码表" loading="lazy" ></p>
+<p>按照这种设计思路，发送端能方便的根据字母查编码，接收端也可以根据编码的数量反查字母。再看下<em>stop</em>的莫斯密码表示：<em>&rdquo;&hellip; - &mdash; .&ndash;.&quot;</em>，闪烁11次，相较于之前的70次，节省了</p>
+<blockquote>
+<p><strong>(70-11)/70=84.3%</strong></p>
+</blockquote>
+<p>我们还可以发现一个规律：</p>
+<blockquote>
+<p><strong>含义数目 = 2^编码的位数</strong></p>
+</blockquote>
+<p>因此莫斯编码又被成为二进制编码。</p>
+<p>到这里，其实我们已经回答了<a href="#1">前沿</a>的问题：为什么国际求救信号是<em>SOS</em>?来，回到上图编码表，找到<em>SOS</em>的位置，拼出他们的莫斯密码：<strong>&hellip; &mdash; &hellip;</strong>。现在知道原因了吧？<em>SOS</em>简短、准确、连续而有节奏，易于拍发和阅读，也很易懂，是莫斯密码中最方便记忆且不容易和其他编码混淆（3位长度）的组合之一。</p>
+<p>如果有机会会看《无间道》，清注意陈永仁（梁朝伟）给黄sir（黄秋生）传递求救信息时轻敲玻璃时的手势，是不是<strong>嘀嘀嘀 哒哒哒 嘀嘀嘀</strong>?</p>
+<p><img src="https://ansoncode.bazhentu.net/myblogtalk/img/20210125192939.png" alt="无间道剧照" loading="lazy" ></p>
+<p><em>SOS</em>第1次被人们使用是在1905年的4月1号，1908年正式成为国际标准，但在此之前<em>CQD</em>才是事实上的国际求救信号。现在很多人都把<em>SOS</em>理解为<em>save our ship</em>，但事实上这只是人们后来赋予它的意义。</p>
+<p>SOS另有一种表现方法为191519。19、15、19分别为S、O、S在26个英文字母中的顺序。原因是SOS求救信号广为人知，当在极端被动的情况之下SOS会暴露受难者求救的信息，所以191519是另一种隐晦的传递和表达求救讯息的符号。</p>
+<h2 id="延长电报传递距离">延长电报传递距离</h2>
+<p>解决了编码问题，我们的电报机往前更近了一步，但它的通讯距离仅局限在两岸，效果大打折扣。我们是不是可以继续延长电路，实现和千里之外总部的通讯呢？原理上可行，但实际实施过程中会发现延长导线的长度，会导致电阻增加，灯泡越来越暗，甚至就看不出闪烁了。</p>
+<p>那有什么方法来解决这个问题呢？且听下节：<a href="../102%E7%BB%A7%E7%94%B5%E5%99%A8%E4%B8%8D%E5%8F%AA%E6%94%BE%E5%A4%A7%E4%BF%A1%E5%8F%B7%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95/">102继电器——不只放大信号这么简单</a>。</p>
+<p>待续……</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://weread.qq.com/web/reader/64e32bf071fd5a9164ece6bkc81322c012c81e728d9d180">《编码-隐匿在计算机背后的语言》</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/>http://localhost:1313/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://localhost:1313/2021/101%E7%BC%96%E7%A0%81%E5%9B%BD%E9%99%85%E6%B1%82%E6%95%91%E4%BF%A1%E5%8F%B7%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AFsos/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://localhost:1313/tags/%E8%8E%AB%E6%96%AF%E5%AF%86%E7%A0%81/">
+                    #莫斯密码</a></span>
+            
+            <span class="tag"><a href="http://localhost:1313/tags/sos/">
+                    #SOS</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" class="prev" rel="prev" title="201十分钟！用hugo搭建免费的个人博客并自动化部署"><i class="iconfont icon-left"></i>&nbsp;201十分钟！用hugo搭建免费的个人博客并自动化部署</a>
+        
+        
+        <a href="http://localhost:1313/2021/102%E7%BB%A7%E7%94%B5%E5%99%A8%E4%B8%8D%E5%8F%AA%E6%98%AF%E6%94%BE%E5%A4%A7%E4%BF%A1%E5%8F%B7%E8%BF%99%E4%B9%88%E7%AE%80%E5%8D%95/" class="next" rel="next" title="102继电器——不只放大信号这么简单！">102继电器——不只放大信号这么简单！&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '101编码——国际求救信号为什么是SOS？'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>

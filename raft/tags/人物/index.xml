@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>人物 on Anson`s Blog</title>
+    <link>http://localhost:1313/tags/%E4%BA%BA%E7%89%A9/</link>
+    <description>Recent content in 人物 on Anson`s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 01 Jun 2021 22:10:20 +0800</lastBuildDate><atom:link href="http://localhost:1313/tags/%E4%BA%BA%E7%89%A9/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>602-禅师</title>
+      <link>http://localhost:1313/2021/002-%E7%A6%85%E5%B8%88/</link>
+      <pubDate>Tue, 01 Jun 2021 22:10:20 +0800</pubDate>
+      
+      <guid>http://localhost:1313/2021/002-%E7%A6%85%E5%B8%88/</guid>
+      <description>2013年的时候，我在HPU读本科大二。因为迷恋编程，所以，我常混迹于计算机学院。偶然结识一个学姐，人美心善，常常邀请我去他们实验室参观，并</description>
+    </item>
+    
+  </channel>
+</rss>

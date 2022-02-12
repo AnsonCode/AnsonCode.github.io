@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://localhost:1313/2021/30130%E5%A4%A9%E6%8C%91%E6%88%98-%E5%86%99%E4%BD%9C%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%85%A5%E9%97%A8%E5%85%AC%E5%BC%80%E5%86%99%E4%BD%9C/" />
+    <link rel="next" href="http://localhost:1313/2021/001-%E4%B8%93%E6%B3%A8%E7%9A%84%E6%96%B9%E6%B3%95/" />
+    <link rel="canonical" href="http://localhost:1313/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            205为hugo制作在线编辑器 | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="205为hugo制作在线编辑器 | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/localhost:1313\/"
+    },
+    "articleSection" : "posts",
+    "name" : "205为hugo制作在线编辑器",
+    "headline" : "205为hugo制作在线编辑器",
+    "description" : "前言 近期重建博客，发现用 github 托管 hugo 静态博客无比舒心，满足了服务免费、数据安全、扩展性强等需求。美中不足的是，静态博客无法在线编辑，更换电脑需要",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-02-08 18:22:24 \u002b0800 CST",
+    "dateModified" : "2021-02-08 18:22:24 \u002b0800 CST",
+    "url" : "http:\/\/localhost:1313\/2021\/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8\/",
+    "wordCount" : "2249",
+    "keywords" : [ "hugo","静态博客","github", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://localhost:1313/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://localhost:1313/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">205为hugo制作在线编辑器</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://localhost:1313/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-02-08 itemprop="datePublished">February 8, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://localhost:1313/categories/%E5%AD%A6%E4%BB%A5%E8%87%B4%E7%94%A8/"> 学以致用, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">2249 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <h2 id="前言">前言</h2>
+<p>近期重建博客，发现用 github 托管 hugo 静态博客无比舒心，满足了服务免费、数据安全、扩展性强等需求。美中不足的是，静态博客无法在线编辑，更换电脑需要单独配置环境，无法在手机上修改文章。我想，肯定不止我遇到了这个难题,不如做个产品解决它。</p>
+<h2 id="建站经历">建站经历</h2>
+<p>大概在 2 年前接触到静态博客，犹记得第一次鼓捣时，无所适从的场景。当时，用静态博客为公司搭建了一个官网，先是了解静态博客的基本架构，然后用命令行创建站点、文章并生成静态文件，最后是手动将站点上传到服务器。整个过程比较繁琐，着实摸索了一些时间。尤其是每次更新文章，都要如此重复一番，令人不爽。后来，更换了一次电脑，官网的数据也不知弄到那里，就只能重新再来一遍。事后无尽懊悔，不该不备份数据。</p>
+<p>直到前些天，学会了用 gihub 托管静态网站，才从根本上解决了<code>自动化部署</code>和<code>数据备份</code>的问题。从学习、爬坑到正式部署，花了将近一天时间。</p>
+<p>对于懂技术的同学，若是找不到合适的教程，难免也要像我一样，花费这么长时间。假若建立博客的信心不够坚定，想必也会半途而废，从而失去了建站的乐趣。而不懂技术的同学，即使找到合适的教程，可能也会被<code>命令行</code>和<code>配置步骤</code>吓到，未必能照葫芦画瓢。</p>
+<p>我希望这款产品能够让有志于建立静态博客的小白，无需命令行，仅靠<code>Next</code>就能在半小时内学会，并搭建出自己的静态博客。同时，解决掉静态博客无法在线编辑的难题。</p>
+<h2 id="需求分析">需求分析</h2>
+<p>从以上经历可以发现：</p>
+<p><strong>首先</strong>，使用静态博客<strong>最大</strong>的问题是搭建门槛高，尤其是技术门槛，例如<code>命令行操作</code>以及<code>git及GitHub等的使用</code>。</p>
+<p><strong>其次</strong>，静态博客缺乏版本管理工具，无法像动态博客那样，保留每次修改记录，以便于恢复或追溯。这可能会导致辛苦完成的文章，因没有备份而丢失，损失难以估量。</p>
+<p><strong>此外</strong>，静态博客无法在线（网页）编辑，每次更新内容都要手动执行发布命令。即使采用了自动化部署，也需要人工用命令行把本地仓库 push 到 github 上。而且，采用该方式搭建的静态博客，不支持手机端编辑，而且更换电脑时也需要额外配置环境，如<code>安装git</code>、<code>安装hugo</code>、<code>安装编辑器</code>等。</p>
+<p><strong>另一方面</strong>，静态博客编辑体验存在问题，最为突出的是图片上传。动态博客可以方便拖拽上传图片，而静态博客基于 markdown 语法，图片需要额外的<code>图床</code>托管。一般需要先将图片上传到某个<code>图床</code>后，把链接复制下来，再粘贴到 markdown 文件中，整个流程比较繁琐。</p>
+<p><strong>最后</strong>，静态博客默认不支持<code>评论</code>、<code>留言</code>等交互功能，缺乏写文章最大动力：<code>反馈</code>。大多数静态博客通过<code>引入js</code>的方式解决该问题，但目前来看缺乏安全、可靠的插件或插件平台来解决该问题。</p>
+<p>针对上述问题，有如下解决方案：</p>
+<ul>
+<li><strong>可视化建站流程</strong>：将<code>命令行操作</code>以及<code>git及GitHub等的使用</code>等复杂操作进行封装，可视将建站及文章发布流程；</li>
+<li><strong>文章版本追溯及站点发布</strong>：基于 GitHub 或 gitee 托管 markdown 格式的文章，系统自动从指定<code>文章仓库</code>下载 markdown 文章，并根据指定的<code>站点模板</code>生成站点，自动发布；</li>
+<li><strong>文章在线编辑并优化编辑体验</strong>：基于 GitHub 或 gitee 提供的 api,访问用户指定的<code>文章仓库</code>，在网页中编辑 markdown,并<code>内置图床</code>、<code>公式编辑</code>、<code>流程图</code>等功能；</li>
+<li><strong>插件及模板市场</strong>：提供插件和模板市场，允许用户在线选购插件或模板，如<code>评论插件</code>，复制代码可直接集成到网站中；</li>
+</ul>
+<p>通过以上分析，产品定位也很明确了：<strong>静态博客后台管理系统</strong>。</p>
+<p>服务形式分为两种：</p>
+<ul>
+<li>针对无服务器的用户提供 SAAS 化服务方案；</li>
+<li>针对有服务器的用户提供开源私有化部署方案。</li>
+</ul>
+<pre><code class="language-plantuml" data-lang="plantuml">@startmindmap
+* 产品定位
+** 用户
+*** 静态博客玩家
+*** 技术爱好者
+*** 非计算机的极客
+** 痛点
+*** 静态博客学习成本高，需要懂一些编程知识
+**** 技术小白在第一次操作时，往往要踩坑多次
+*** 静态博客缺乏版本管理，无法恢复历史文章
+**** 可通过github等工具追溯版本，但不友好
+*** 静态博客有环境依赖，无法随时随地编辑
+**** 通过github托管，换电脑时重新clone，不能云端编辑
+*** 静态博客无评论功能，缺乏互动交流平台
+**** 当前通过集成第三方评论系统解决，但流程较复杂，且存在数据丢失的风险
+** 定位
+*** 为静态博客玩家提供一站式后台，随时随地更新文章
+** 形式
+*** SAAS
+*** 开源
+@endmindmap
+</code></pre><h2 id="竞品分析">竞品分析</h2>
+<p>上述产品设计，综合借鉴了下述国内外几款产品。国内两款产品主要侧重于<code>GitHub文件的在线编辑</code>，国外两款产品侧重于<code>基于GitHub源的自动化部署</code>。综合国内外几款产品，将<code>在线编辑</code>和<code>可视化部署</code>结合起来，可以解决上述大多数问题。</p>
+<ul>
+<li>国内
+<ul>
+<li><a href="https://www.jingtaiboke.com/help1.html">https://www.jingtaiboke.com/help1.html</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://img.youzibe.com/upload/2021/01/242342-1611502941620.png" alt="静态博客编辑器" loading="lazy" > - <a href="https://isnowfy.github.io/about-simple-cn.html">https://isnowfy.github.io/about-simple-cn.html</a></p>
+<p><img src="https://isnowfy.github.io/img/Simple.png" alt="用静态页面生成静态博客" loading="lazy" ></p>
+<ul>
+<li>国外
+<ul>
+<li><a href="https://glitch.com/dashboard">https://glitch.com/dashboard</a></li>
+<li><a href="https://vercel.com/dashboard">https://vercel.com/dashboard</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="架构设计">架构设计</h2>
+<p>考虑到工作量，计划先基于 GitHub 实现 MVP 产品原型，主要分为两个核心功能：<code>编辑博客</code>和<code>发布博客</code>。</p>
+<ul>
+<li><strong>编辑博客</strong>：用户打开 web 页面访问 SAAS 系统，SAAS 系统自动从当前用户指定的 github 仓库分支中读取文章，在线编辑后，自动推送到该仓库分支（master);</li>
+<li><strong>发布博客</strong>：用户点击<code>发布</code>按钮时，SAAS 系统自动下载文章，并调用 hugo，根据设置的模板生成站点，自动将站点推送到指定的 github 仓库分支（pages）托管，用户可通过 GitHub 提供的域名访问博客；</li>
+</ul>
+<pre><code class="language-plantuml" data-lang="plantuml">@startuml
+== 编辑博客 ==
+autonumber
+本机 -&gt; SAAS :web访问
+github-&gt;SAAS :拉取master分支
+SAAS-&gt;SAAS:编辑md文档（提供编辑器）
+SAAS-&gt;github:推送到master分支
+== 发布博客 ==
+autonumber
+github-&gt;SAAS :拉取master分支
+SAAS-&gt;SAAS:hugo渲染（模板等设置）
+SAAS-&gt;github:推送到pages分支
+github-&gt;github:pages服务
+github-&gt;本机 :本机或公网访问
+@enduml
+</code></pre><h2 id="后续工作">后续工作</h2>
+<p>按照上述架构完成最小化 MVP 后，根据反馈优化产品体验：例如针对在线编辑功能，增加标签提取功能、更多的图床；针对发布博客功能，增加更多的托管平台。</p>
+<p>@2021-02-08 于长安 Last Modify：2021-02-10</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://www.netlify.com/jamstack/">https://www.netlify.com/jamstack/</a></li>
+<li><a href="https://jamstack.org/headless-cms/">https://jamstack.org/headless-cms/</a></li>
+<li><a href="https://forestry.io/">https://forestry.io/</a></li>
+<li><a href="https://app.tina.io/quickstart">https://app.tina.io/quickstart</a></li>
+<li><a href="https://www.datocms.com/cms/hugo-cms">https://www.datocms.com/cms/hugo-cms</a></li>
+<li><a href="https://strapi.io/">https://strapi.io/</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://localhost:1313/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/>http://localhost:1313/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://localhost:1313/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://localhost:1313/tags/hugo/">
+                    #hugo</a></span>
+            
+            <span class="tag"><a href="http://localhost:1313/tags/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/">
+                    #静态博客</a></span>
+            
+            <span class="tag"><a href="http://localhost:1313/tags/github/">
+                    #github</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://localhost:1313/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://localhost:1313/2021/30130%E5%A4%A9%E6%8C%91%E6%88%98-%E5%86%99%E4%BD%9C%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%85%A5%E9%97%A8%E5%85%AC%E5%BC%80%E5%86%99%E4%BD%9C/" class="prev" rel="prev" title="301【30天挑战-写作】半小时入门公开写作"><i class="iconfont icon-left"></i>&nbsp;301【30天挑战-写作】半小时入门公开写作</a>
+        
+        
+        <a href="http://localhost:1313/2021/001-%E4%B8%93%E6%B3%A8%E7%9A%84%E6%96%B9%E6%B3%95/" class="next" rel="next" title="601-专注的方法">601-专注的方法&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://localhost:1313/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/jmnote/plantuml-encoder@1.2.4/dist/plantuml-encoder.min.js" integrity="sha256-Qsk2KRBCN5qVZX7B+8+2IvQl1Aqc723qV1tBCQaVoqo=" crossorigin="anonymous"></script>
+<script>
+(function(){
+  let plantumlPrefix = "language-plantuml";
+  Array.prototype.forEach.call(document.querySelectorAll("[class^=" + plantumlPrefix + "]"), function(code){
+    let image = document.createElement("IMG");
+    image.loading = 'lazy'; 
+    image.src = 'http://www.plantuml.com/plantuml/svg/~1' + plantumlEncoder.encode(code.innerText);
+    code.parentNode.insertBefore(image, code);
+    code.style.display = 'none';
+  });
+})();
+</script>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '205为hugo制作在线编辑器'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>
