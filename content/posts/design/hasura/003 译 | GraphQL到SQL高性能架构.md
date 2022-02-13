@@ -1,5 +1,5 @@
 ---
-title: "003【翻译】GraphQL到SQL高性能架构"
+title: "003 译 | GraphQL到SQL高性能架构"
 date: 2022-02-01T16:32:14+08:00
 tags: ["技术翻译", "Hasura"]
 categories:

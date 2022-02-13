@@ -1,5 +1,5 @@
 ---
-title: "002【翻译】Nhost简介及使用"
+title: "002 译 | Nhost简介及使用"
 date: 2022-02-01T11:59:39+08:00
 tags: ["技术翻译", "Hasura", "Nhost"]
 categories:
@@ -371,6 +371,325 @@ _所有登录用户都有**user**角色_
 ![User select permission](https://docs.nhost.io/images/quick-start/user-select-permission.png)
 
 现在，再一次运行 APP。新的 todos 被插入，并且仅用户的 todos 能被查询和展示。你的后端成功被保护！
+
+# 4. 工作流命令行
+
+## 4.1 命令行从零到生产环境
+
+在之前的教程中，我们测试了 Nhost 的各部分，例如：
+
+- Database
+- GraphQL API
+- Permission
+- JavaScript SDK
+- Authentication
+
+我们为数据库和 API 做的所有更改都直接在 Nhost 应用的生产环境。
+
+在生产环境进行更改是不理想的，因为你或许弄砸事情，将影响应用的所有用户。
+
+反而，在部署这些变更到生产环境之前，更推荐在本地更改和测试应用。
+
+为了在本地进行更改，我们需要有一个完整的 Nhost 应用运行在本地，这是 Nhost CLI 做的事情。
+
+Nhost CLI 在本地环境中匹配生产环境应用，这种方式在部署修改到生产环境前，你可以修改或者测试代码。
+
+### 使用 Nhost 建议的工作流
+
+- 使用 Nhost CLI 本地开发
+- 推送变更到 GitHub
+- Nhost 部署变更到生产环境
+
+### 你将在该指导中学到什么：
+
+- 使用 Nhost CLI 创建本地环境
+- 使用 Nhost 应用连接到 GitHub 仓库
+- 部署本地修改到生产环境
+
+## 4.2 工作流程设置
+
+接下来是如何为工作流程设置 Nhost 的详细教程。
+
+### 创建 Nhost 应用
+
+为该练习创建新的 Nhost 应用。
+
+> 为这个指导创建新的应用而不是复用旧的 Nhost 应用是重要的，因为我们想去起推动一个干净的 Nhost 应用。
+
+![Create new app](https://docs.nhost.io/images/cli-workflow/create-app.png)
+
+### 创建新的 GitHub 仓库
+
+为你的新 Nhost 应用创建新的 GitHub 仓库。仓库私有或者公开都可以。
+
+![Create new repo](https://docs.nhost.io/images/cli-workflow/create-repo.png)
+
+### 把 GitHub 仓库连接到 Nhost 应用
+
+在 Nhost 面板，前往你 Nhost 应用的仪表盘并且点击`Connect to GitHub`。
+
+[视频演示](https://docs.nhost.io/videos/cli-workflow/connect-github-repo.mp4)
+
+## 4.3 安装命令行
+
+使用下列命令安装 Nhost CLI：
+
+```sh
+sudo curl -L https://raw.githubusercontent.com/nhost/cli/main/get.sh | bash
+```
+
+在本地初始化新的 Nhost 应用：
+
+```sh
+nhost init -n "nhost-example-app" && cd nhost-example-app
+```
+
+并且，在相同文件夹初始化 GitHub 仓库：
+
+```sh
+echo "# nhost-example-app" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/[github-username]/nhost-example-app.git
+git push -u origin main
+```
+
+现在返回 Nhost 面板，点击`Deployments`。你就已经为 Nhost 应用完成了新的部署。
+
+![Deployments tab](https://docs.nhost.io/images/cli-workflow/deployments-tab.png)
+
+如果你点击部署，你可以看到没有任何东西真的部署了。因为，我们仅仅对 README 文件做了变更。
+
+![Deployments details](https://docs.nhost.io/images/cli-workflow/deployments-details.png)
+
+让我们做一些本地后端的变更吧！
+
+## 4.4 本地变更
+
+本地启动 Nhost：
+
+```sh
+nhost dev
+```
+
+> 确保你已经在自己电脑上安装了 Docker。这是 Nhost 工作所必须的。
+
+`nhost dev` 命令将在你的电脑上自动开始一个完整的本地 Nhost 环境：
+
+- Postgres
+- Hasura
+- Authentication
+- Storage
+- Serverless Functions
+- Mailhog
+
+在部署变更到生产环境前，你使用本地环境去做更改和测试。
+
+运行`nhost dev` 也启动 Hasura 控制面板。
+
+> 使用 Hasura 面板是重要的，当你变更时，它自动启动。这种方式，自动为你跟踪变化。
+
+![Hasura Console](https://docs.nhost.io/images/cli-workflow/hasura-console.png)
+
+在 Hasura 控制面板，创建一个带有 2 列的新表`customers`:
+
+- id
+- name
+
+[视频演示](https://docs.nhost.io/videos/cli-workflow/hasura-create-customers-table.mp4)
+
+当我们创建`customers`表时，有一个迁移被自动创建。迁移被创建在 `nhost/migrations/default`下。
+
+```sh
+$ ls -la nhost/migrations/default
+total 0
+drwxr-xr-x  3 eli  staff   96 Feb  7 16:19 .
+drwxr-xr-x  3 eli  staff   96 Feb  7 16:19 ..
+drwxr-xr-x  4 eli  staff  128 Feb  7 16:19 1644247179684_create_table_public_customers
+```
+
+数据库迁移或许仅被应用于本地，意味着，你在本地创建`customers`表，但是它至今不存在于生产环境。
+
+为了将本地变更应用到生产环境，我们需要提交变更，并且推送它到 GitHub。Nhost 将自动获取仓库变更并应用变更。
+
+> 你可以提交和推送文件在另一个终端，以便`nhost dev`仍然运行。
+
+```sh
+git add -A
+git commit -m "Initialized Nhost and added a customers table"
+git push
+```
+
+在 Hasura 面板导航到`Deployments`选项卡看下部署。
+
+![Deployments tab after changes](https://docs.nhost.io/images/cli-workflow/deployments-tab-with-changes.png)
+
+一旦部署完成，`customers`表将在生产环境创建。
+
+![Customers table in Hasura Console](https://docs.nhost.io/images/cli-workflow/hasura-customers-table.png)
+
+现在，我们在 Nhost 完成了推荐的工作流：
+
+- 使用 Nhost CLI 本地开发
+- 推送变更到 GitHub
+- Nhost 部署变更到生产环境
+
+## 4.5 元数据和 Serverless 函数
+
+在上述章节，我们仅仅创建了一个新的表：`customers`。使用命令行你也可以后端的其他部分。
+
+命令行和 GitHub 集成跟踪和应用到生产环境有有 3 个事情：
+
+- 数据迁移
+- Hasura 元数据
+- Serverless 函数
+
+本节，我们变更下 Hasura 元数据并且创建一个 Serverless 函数。
+
+### Hasura 元数据
+
+我们为`users`表增加权限，确保用户仅能看到他们自己的数据。为此，前往`auth`模式，点击`users`表。然后点击 `Permissions` 并键入新的角色 `user`，并且为角色创建新的 `select` 权限。
+
+使用`自定义检查`创建权限：
+
+```JSON
+{
+  "id": {
+    "_eq" : "X-Hasura-User-Id"
+  }
+}
+```
+
+选择下列的字段：
+
+- id
+- created_at
+- display_name
+- avatar_url
+- email
+
+然后点击`Save permissions`(保存权限)。
+
+[视频演示](https://docs.nhost.io/videos/cli-workflow/hasura-user-permissions.mp4)
+
+现在，我们再做一次`git status`(git 状态检查)去确保我们做的权限更改被跟踪到本地的 Git 仓库中。
+
+![Git status](https://docs.nhost.io/images/cli-workflow/git-status.png)
+
+我们现在可以提交该变更：
+
+```sh
+git add -A
+git commit -m "added permission for uses"
+```
+
+现在，让我们在推送所有变更到 GitHub 之前，创建一个 serverless 函数，以便 Nhost 能部署我们的变更。
+
+### Serverless 函数
+
+Serverless 函数是一块用 JavaScript 或者 TypeScript 写的代码，它能响应 http 请求，并返回响应。
+
+这是一些示例：
+
+```js
+import { Request, Response } from "express";
+
+export default (req: Request, res: Response) => {
+  res.status(200).send(`Hello ${req.query.name}!`);
+};
+```
+
+Serverless 函数被放置在仓库的`functions/ `文件夹。每个文件变成他自己的端点。在我们创建 serverless 函数之前，需要安装 `express`，它是 Serverless 函数工作的必要条件。
+
+```sh
+npm install express
+# or with yarn
+yarn add express
+```
+
+我们将用到 TypeScript，所以我们也安装两个类型定义。
+
+```sh
+npm install -d @types/node @types/express
+# or with yarn
+yarn add -D @types/node @types/express
+```
+
+然后，我们创建一个文件 `functions/time.ts`。
+
+在文件 `time.ts` 中，我们将增加下列的代码去创建我们的 serverless 函数:
+
+```js
+import { Request, Response } from "express";
+
+export default (req: Request, res: Response) => {
+  return res
+    .status(200)
+    .send(`Hello ${req.query.name}! It's now: ${new Date().toUTCString()}`);
+};
+```
+
+我们现在可以在本地测试该函数。本地，后端 URL 是 `http://localhost:1337`。函数位于`/v1/functions `之下。每个函数的路径和名称变成 API 端点。
+
+这意味着我们的函数`functions/time.ts`位于 `http://localhost:1337/v1/functions/time`.
+
+让我们使用 curl 测试我们的新函数：
+
+```sh
+curl http://localhost:1337/v1/functions/time
+Hello undefined! It's now: Sun, 06 Feb 2022 17:44:45 GMT
+```
+
+并且携带一个带有我们名字的查询参数：
+
+```sh
+curl http://localhost:1337/v1/functions/time\?name\=Johan
+Hello Johan! It's now: Sun, 06 Feb 2022 17:44:48 GMT
+```
+
+再一次，让我们使用`git status`去看下创建过 serverless 函数后的变化。
+
+现在，提交变化并且推送到 GitHub。
+
+```sh
+git add -A
+git commit -m "added serverless function"
+git push
+```
+
+在 Nhost 控制面板，点击一个新的部署看下详情。
+
+![Deployments details for function](https://docs.nhost.io/images/cli-workflow/details-for-function.png)
+
+Nhost 完成变更部署后，我们可以在生产环境测试他们。首先，确保用户权限已经应用。
+
+![Hasura Console permissions table](https://docs.nhost.io/images/cli-workflow/hasura-permissions-table.png)
+
+然后，确认 serverless 函数被部署。再一次，我们使用 curl:
+
+```sh
+curl http://localhost:1337/v1/functions/time\?name\=Johan
+```
+
+![Serverless Function test](https://docs.nhost.io/images/cli-workflow/function-test.png)
+
+### 结论
+
+在这个练习中，我们安装了 Nhost CLI 并且创建了本地 Nhost 环境进行本地开发和测试。
+
+在本地环境中，我们变更了数据库和 Hasura’s 元数据，并且创建了 serverless 函数。
+
+我们连接到 GitHub 仓库，并且推送变更到 GitHub。
+
+我们看到了 Nhost 自动部署我们的变更，并且我们验证了更改的应用。
+
+总结，我们使用推荐的 Nhost 工作流建立了生产环境：
+
+- 使用 Nhost CLI 本地开发
+- 推送变更到 GitHub
+- Nhost 部署变更到生产环境
 
 # 4. 从 V1 升级到 V2(待润色)
 

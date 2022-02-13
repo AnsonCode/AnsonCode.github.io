@@ -1,5 +1,5 @@
 ---
-title: "004【翻译】使用Gatsby和Hasura动态化JAMStack"
+title: "004 译 | 使用Gatsby和Hasura动态化JAMStack"
 date: 2022-02-07T12:33:13+08:00
 tags: ["技术翻译", "Hasura"]
 categories:

@@ -1,5 +1,5 @@
 ---
-title: "008【翻译】在前端客户端上处理JWTs的终极指南（GraphQL）"
+title: "008 译 | 在前端客户端上处理JWTs的终极指南（GraphQL）"
 date: 2022-02-11T22:52:37+08:00
 tags: ["技术翻译", "Hasura"]
 categories: ["研发提效"]
