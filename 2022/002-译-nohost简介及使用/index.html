@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" />
-    <link rel="next" href="http://ansoncode.bazhentu.net/2022/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/" />
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/001-%E8%AF%91-hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2022/003-%E8%AF%91-graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/002-%E8%AF%91-nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            002【翻译】Nhost简介及使用 | Anson`s Blog
+            002 译 | Nhost简介及使用 | Anson`s Blog
         
     </title>
-    <meta name="title" content="002【翻译】Nhost简介及使用 | Anson`s Blog">
+    <meta name="title" content="002 译 | Nhost简介及使用 | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,8 +43,8 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "002【翻译】Nhost简介及使用",
-    "headline" : "002【翻译】Nhost简介及使用",
+    "name" : "002 译 | Nhost简介及使用",
+    "headline" : "002 译 | Nhost简介及使用",
     "description" : "1. 欢迎来到 Nhost Nhost 是一个开源的，实时，无服务的后端平台，能够构建可靠的应用，去扩大你的商业规模。 组件 Nhost 构建在一系列开源组件之上。 数据库 你的应用程",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
@@ -55,8 +55,8 @@
     "copyrightYear" : "2022",
     "datePublished": "2022-02-01 11:59:39 \u002b0800 CST",
     "dateModified" : "2022-02-01 11:59:39 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8\/",
-    "wordCount" : "3498",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/002-%E8%AF%91-nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8\/",
+    "wordCount" : "5792",
     "keywords" : [ "技术翻译","Hasura","Nhost", "Anson`s Blog"]
 }
 </script>
@@ -146,7 +146,7 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">002【翻译】Nhost简介及使用</h1>
+        <h1 class="post-title" itemprop="name headline">002 译 | Nhost简介及使用</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
@@ -163,7 +163,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">3498 words</span>
+                <span class="post-word-count">5792 words</span>
         </div>
     </header>
 
@@ -414,6 +414,205 @@ null
 <p>对于<strong>选择权限</strong>，设置一个<strong>自定义检查</strong>，以便用户仅能选择<code>user_id</code>与他们用户 ID 相同的 todos。换句话说：用户仅能选择他们自己的 todos。见下图：</p>
 <p><img src="https://docs.nhost.io/images/quick-start/user-select-permission.png" alt="User select permission" loading="lazy" ></p>
 <p>现在，再一次运行 APP。新的 todos 被插入，并且仅用户的 todos 能被查询和展示。你的后端成功被保护！</p>
+<h1 id="4-工作流命令行">4. 工作流命令行</h1>
+<h2 id="41-命令行从零到生产环境">4.1 命令行从零到生产环境</h2>
+<p>在之前的教程中，我们测试了 Nhost 的各部分，例如：</p>
+<ul>
+<li>Database</li>
+<li>GraphQL API</li>
+<li>Permission</li>
+<li>JavaScript SDK</li>
+<li>Authentication</li>
+</ul>
+<p>我们为数据库和 API 做的所有更改都直接在 Nhost 应用的生产环境。</p>
+<p>在生产环境进行更改是不理想的，因为你或许弄砸事情，将影响应用的所有用户。</p>
+<p>反而，在部署这些变更到生产环境之前，更推荐在本地更改和测试应用。</p>
+<p>为了在本地进行更改，我们需要有一个完整的 Nhost 应用运行在本地，这是 Nhost CLI 做的事情。</p>
+<p>Nhost CLI 在本地环境中匹配生产环境应用，这种方式在部署修改到生产环境前，你可以修改或者测试代码。</p>
+<h3 id="使用-nhost-建议的工作流">使用 Nhost 建议的工作流</h3>
+<ul>
+<li>使用 Nhost CLI 本地开发</li>
+<li>推送变更到 GitHub</li>
+<li>Nhost 部署变更到生产环境</li>
+</ul>
+<h3 id="你将在该指导中学到什么">你将在该指导中学到什么：</h3>
+<ul>
+<li>使用 Nhost CLI 创建本地环境</li>
+<li>使用 Nhost 应用连接到 GitHub 仓库</li>
+<li>部署本地修改到生产环境</li>
+</ul>
+<h2 id="42-工作流程设置">4.2 工作流程设置</h2>
+<p>接下来是如何为工作流程设置 Nhost 的详细教程。</p>
+<h3 id="创建-nhost-应用">创建 Nhost 应用</h3>
+<p>为该练习创建新的 Nhost 应用。</p>
+<blockquote>
+<p>为这个指导创建新的应用而不是复用旧的 Nhost 应用是重要的，因为我们想去起推动一个干净的 Nhost 应用。</p>
+</blockquote>
+<p><img src="https://docs.nhost.io/images/cli-workflow/create-app.png" alt="Create new app" loading="lazy" ></p>
+<h3 id="创建新的-github-仓库">创建新的 GitHub 仓库</h3>
+<p>为你的新 Nhost 应用创建新的 GitHub 仓库。仓库私有或者公开都可以。</p>
+<p><img src="https://docs.nhost.io/images/cli-workflow/create-repo.png" alt="Create new repo" loading="lazy" ></p>
+<h3 id="把-github-仓库连接到-nhost-应用">把 GitHub 仓库连接到 Nhost 应用</h3>
+<p>在 Nhost 面板，前往你 Nhost 应用的仪表盘并且点击<code>Connect to GitHub</code>。</p>
+<p><a href="https://docs.nhost.io/videos/cli-workflow/connect-github-repo.mp4">视频演示</a></p>
+<h2 id="43-安装命令行">4.3 安装命令行</h2>
+<p>使用下列命令安装 Nhost CLI：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo curl -L https://raw.githubusercontent.com/nhost/cli/main/get.sh | bash
+</code></pre></div><p>在本地初始化新的 Nhost 应用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">nhost init -n <span style="color:#e6db74">&#34;nhost-example-app&#34;</span> <span style="color:#f92672">&amp;&amp;</span> cd nhost-example-app
+</code></pre></div><p>并且，在相同文件夹初始化 GitHub 仓库：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">echo <span style="color:#e6db74">&#34;# nhost-example-app&#34;</span> &gt;&gt; README.md
+git init
+git add README.md
+git commit -m <span style="color:#e6db74">&#34;first commit&#34;</span>
+git branch -M main
+git remote add origin https://github.com/<span style="color:#f92672">[</span>github-username<span style="color:#f92672">]</span>/nhost-example-app.git
+git push -u origin main
+</code></pre></div><p>现在返回 Nhost 面板，点击<code>Deployments</code>。你就已经为 Nhost 应用完成了新的部署。</p>
+<p><img src="https://docs.nhost.io/images/cli-workflow/deployments-tab.png" alt="Deployments tab" loading="lazy" ></p>
+<p>如果你点击部署，你可以看到没有任何东西真的部署了。因为，我们仅仅对 README 文件做了变更。</p>
+<p><img src="https://docs.nhost.io/images/cli-workflow/deployments-details.png" alt="Deployments details" loading="lazy" ></p>
+<p>让我们做一些本地后端的变更吧！</p>
+<h2 id="44-本地变更">4.4 本地变更</h2>
+<p>本地启动 Nhost：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">nhost dev
+</code></pre></div><blockquote>
+<p>确保你已经在自己电脑上安装了 Docker。这是 Nhost 工作所必须的。</p>
+</blockquote>
+<p><code>nhost dev</code> 命令将在你的电脑上自动开始一个完整的本地 Nhost 环境：</p>
+<ul>
+<li>Postgres</li>
+<li>Hasura</li>
+<li>Authentication</li>
+<li>Storage</li>
+<li>Serverless Functions</li>
+<li>Mailhog</li>
+</ul>
+<p>在部署变更到生产环境前，你使用本地环境去做更改和测试。</p>
+<p>运行<code>nhost dev</code> 也启动 Hasura 控制面板。</p>
+<blockquote>
+<p>使用 Hasura 面板是重要的，当你变更时，它自动启动。这种方式，自动为你跟踪变化。</p>
+</blockquote>
+<p><img src="https://docs.nhost.io/images/cli-workflow/hasura-console.png" alt="Hasura Console" loading="lazy" ></p>
+<p>在 Hasura 控制面板，创建一个带有 2 列的新表<code>customers</code>:</p>
+<ul>
+<li>id</li>
+<li>name</li>
+</ul>
+<p><a href="https://docs.nhost.io/videos/cli-workflow/hasura-create-customers-table.mp4">视频演示</a></p>
+<p>当我们创建<code>customers</code>表时，有一个迁移被自动创建。迁移被创建在 <code>nhost/migrations/default</code>下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ ls -la nhost/migrations/default
+total <span style="color:#ae81ff">0</span>
+drwxr-xr-x  <span style="color:#ae81ff">3</span> eli  staff   <span style="color:#ae81ff">96</span> Feb  <span style="color:#ae81ff">7</span> 16:19 .
+drwxr-xr-x  <span style="color:#ae81ff">3</span> eli  staff   <span style="color:#ae81ff">96</span> Feb  <span style="color:#ae81ff">7</span> 16:19 ..
+drwxr-xr-x  <span style="color:#ae81ff">4</span> eli  staff  <span style="color:#ae81ff">128</span> Feb  <span style="color:#ae81ff">7</span> 16:19 1644247179684_create_table_public_customers
+</code></pre></div><p>数据库迁移或许仅被应用于本地，意味着，你在本地创建<code>customers</code>表，但是它至今不存在于生产环境。</p>
+<p>为了将本地变更应用到生产环境，我们需要提交变更，并且推送它到 GitHub。Nhost 将自动获取仓库变更并应用变更。</p>
+<blockquote>
+<p>你可以提交和推送文件在另一个终端，以便<code>nhost dev</code>仍然运行。</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git add -A
+git commit -m <span style="color:#e6db74">&#34;Initialized Nhost and added a customers table&#34;</span>
+git push
+</code></pre></div><p>在 Hasura 面板导航到<code>Deployments</code>选项卡看下部署。</p>
+<p><img src="https://docs.nhost.io/images/cli-workflow/deployments-tab-with-changes.png" alt="Deployments tab after changes" loading="lazy" ></p>
+<p>一旦部署完成，<code>customers</code>表将在生产环境创建。</p>
+<p><img src="https://docs.nhost.io/images/cli-workflow/hasura-customers-table.png" alt="Customers table in Hasura Console" loading="lazy" ></p>
+<p>现在，我们在 Nhost 完成了推荐的工作流：</p>
+<ul>
+<li>使用 Nhost CLI 本地开发</li>
+<li>推送变更到 GitHub</li>
+<li>Nhost 部署变更到生产环境</li>
+</ul>
+<h2 id="45-元数据和-serverless-函数">4.5 元数据和 Serverless 函数</h2>
+<p>在上述章节，我们仅仅创建了一个新的表：<code>customers</code>。使用命令行你也可以后端的其他部分。</p>
+<p>命令行和 GitHub 集成跟踪和应用到生产环境有有 3 个事情：</p>
+<ul>
+<li>数据迁移</li>
+<li>Hasura 元数据</li>
+<li>Serverless 函数</li>
+</ul>
+<p>本节，我们变更下 Hasura 元数据并且创建一个 Serverless 函数。</p>
+<h3 id="hasura-元数据">Hasura 元数据</h3>
+<p>我们为<code>users</code>表增加权限，确保用户仅能看到他们自己的数据。为此，前往<code>auth</code>模式，点击<code>users</code>表。然后点击 <code>Permissions</code> 并键入新的角色 <code>user</code>，并且为角色创建新的 <code>select</code> 权限。</p>
+<p>使用<code>自定义检查</code>创建权限：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#f92672">&#34;id&#34;</span>: {
+    <span style="color:#f92672">&#34;_eq&#34;</span> : <span style="color:#e6db74">&#34;X-Hasura-User-Id&#34;</span>
+  }
+}
+</code></pre></div><p>选择下列的字段：</p>
+<ul>
+<li>id</li>
+<li>created_at</li>
+<li>display_name</li>
+<li>avatar_url</li>
+<li>email</li>
+</ul>
+<p>然后点击<code>Save permissions</code>(保存权限)。</p>
+<p><a href="https://docs.nhost.io/videos/cli-workflow/hasura-user-permissions.mp4">视频演示</a></p>
+<p>现在，我们再做一次<code>git status</code>(git 状态检查)去确保我们做的权限更改被跟踪到本地的 Git 仓库中。</p>
+<p><img src="https://docs.nhost.io/images/cli-workflow/git-status.png" alt="Git status" loading="lazy" ></p>
+<p>我们现在可以提交该变更：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git add -A
+git commit -m <span style="color:#e6db74">&#34;added permission for uses&#34;</span>
+</code></pre></div><p>现在，让我们在推送所有变更到 GitHub 之前，创建一个 serverless 函数，以便 Nhost 能部署我们的变更。</p>
+<h3 id="serverless-函数">Serverless 函数</h3>
+<p>Serverless 函数是一块用 JavaScript 或者 TypeScript 写的代码，它能响应 http 请求，并返回响应。</p>
+<p>这是一些示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Request</span>, <span style="color:#a6e22e">Response</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> (<span style="color:#a6e22e">req</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Request</span>, <span style="color:#a6e22e">res</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>) =&gt; {
+  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">`Hello </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">!`</span>);
+};
+</code></pre></div><p>Serverless 函数被放置在仓库的<code>functions/ </code>文件夹。每个文件变成他自己的端点。在我们创建 serverless 函数之前，需要安装 <code>express</code>，它是 Serverless 函数工作的必要条件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm install express
+<span style="color:#75715e"># or with yarn</span>
+yarn add express
+</code></pre></div><p>我们将用到 TypeScript，所以我们也安装两个类型定义。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm install -d @types/node @types/express
+<span style="color:#75715e"># or with yarn</span>
+yarn add -D @types/node @types/express
+</code></pre></div><p>然后，我们创建一个文件 <code>functions/time.ts</code>。</p>
+<p>在文件 <code>time.ts</code> 中，我们将增加下列的代码去创建我们的 serverless 函数:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Request</span>, <span style="color:#a6e22e">Response</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
+
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> (<span style="color:#a6e22e">req</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Request</span>, <span style="color:#a6e22e">res</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Response</span>) =&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">res</span>
+    .<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>)
+    .<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">`Hello </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">query</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">! It&#39;s now: </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">toUTCString</span>()<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+};
+</code></pre></div><p>我们现在可以在本地测试该函数。本地，后端 URL 是 <code>http://localhost:1337</code>。函数位于<code>/v1/functions </code>之下。每个函数的路径和名称变成 API 端点。</p>
+<p>这意味着我们的函数<code>functions/time.ts</code>位于 <code>http://localhost:1337/v1/functions/time</code>.</p>
+<p>让我们使用 curl 测试我们的新函数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl http://localhost:1337/v1/functions/time
+Hello undefined! It<span style="color:#960050;background-color:#1e0010">&#39;</span>s now: Sun, <span style="color:#ae81ff">06</span> Feb <span style="color:#ae81ff">2022</span> 17:44:45 GMT
+</code></pre></div><p>并且携带一个带有我们名字的查询参数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl http://localhost:1337/v1/functions/time<span style="color:#ae81ff">\?</span>name<span style="color:#ae81ff">\=</span>Johan
+Hello Johan! It<span style="color:#960050;background-color:#1e0010">&#39;</span>s now: Sun, <span style="color:#ae81ff">06</span> Feb <span style="color:#ae81ff">2022</span> 17:44:48 GMT
+</code></pre></div><p>再一次，让我们使用<code>git status</code>去看下创建过 serverless 函数后的变化。</p>
+<p>现在，提交变化并且推送到 GitHub。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git add -A
+git commit -m <span style="color:#e6db74">&#34;added serverless function&#34;</span>
+git push
+</code></pre></div><p>在 Nhost 控制面板，点击一个新的部署看下详情。</p>
+<p><img src="https://docs.nhost.io/images/cli-workflow/details-for-function.png" alt="Deployments details for function" loading="lazy" ></p>
+<p>Nhost 完成变更部署后，我们可以在生产环境测试他们。首先，确保用户权限已经应用。</p>
+<p><img src="https://docs.nhost.io/images/cli-workflow/hasura-permissions-table.png" alt="Hasura Console permissions table" loading="lazy" ></p>
+<p>然后，确认 serverless 函数被部署。再一次，我们使用 curl:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">curl http://localhost:1337/v1/functions/time<span style="color:#ae81ff">\?</span>name<span style="color:#ae81ff">\=</span>Johan
+</code></pre></div><p><img src="https://docs.nhost.io/images/cli-workflow/function-test.png" alt="Serverless Function test" loading="lazy" ></p>
+<h3 id="结论">结论</h3>
+<p>在这个练习中，我们安装了 Nhost CLI 并且创建了本地 Nhost 环境进行本地开发和测试。</p>
+<p>在本地环境中，我们变更了数据库和 Hasura’s 元数据，并且创建了 serverless 函数。</p>
+<p>我们连接到 GitHub 仓库，并且推送变更到 GitHub。</p>
+<p>我们看到了 Nhost 自动部署我们的变更，并且我们验证了更改的应用。</p>
+<p>总结，我们使用推荐的 Nhost 工作流建立了生产环境：</p>
+<ul>
+<li>使用 Nhost CLI 本地开发</li>
+<li>推送变更到 GitHub</li>
+<li>Nhost 部署变更到生产环境</li>
+</ul>
 <h1 id="4-从-v1-升级到-v2待润色">4. 从 V1 升级到 V2(待润色)</h1>
 <p>从 Nhost V1 版本升级到 V2 版本需要改变数据库 schema 和 hasura 元数据。</p>
 <p><strong>需要帮助？</strong></p>
@@ -471,12 +670,12 @@ cp -r migrations/* migrations/default/
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/>http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/002-%E8%AF%91-nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/>http://ansoncode.bazhentu.net/2022/002-%E8%AF%91-nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/002%E7%BF%BB%E8%AF%91nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/002-%E8%AF%91-nohost%E7%AE%80%E4%BB%8B%E5%8F%8A%E4%BD%BF%E7%94%A8/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -545,10 +744,10 @@ cp -r migrations/* migrations/default/
 
     <div class="post-nav">
         
-        <a href="http://ansoncode.bazhentu.net/2022/001%E7%BF%BB%E8%AF%91hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="prev" rel="prev" title="001【翻译01】Hasura设计思想"><i class="iconfont icon-left"></i>&nbsp;001【翻译01】Hasura设计思想</a>
+        <a href="http://ansoncode.bazhentu.net/2022/001-%E8%AF%91-hasura%E8%AE%BE%E8%AE%A1%E6%80%9D%E6%83%B3/" class="prev" rel="prev" title="001 译 | Hasura设计思想"><i class="iconfont icon-left"></i>&nbsp;001 译 | Hasura设计思想</a>
         
         
-        <a href="http://ansoncode.bazhentu.net/2022/003%E7%BF%BB%E8%AF%91graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/" class="next" rel="next" title="003【翻译】GraphQL到SQL高性能架构">003【翻译】GraphQL到SQL高性能架构&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="http://ansoncode.bazhentu.net/2022/003-%E8%AF%91-graphql%E5%88%B0sql%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%B6%E6%9E%84/" class="next" rel="next" title="003 译 | GraphQL到SQL高性能架构">003 译 | GraphQL到SQL高性能架构&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -659,7 +858,7 @@ cp -r migrations/* migrations/default/
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = '002【翻译】Nhost简介及使用'
+            let title = '002 译 | Nhost简介及使用'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
