@@ -8,7 +8,7 @@ description:
 draft: false
 ---
 
-[The Ultimate Guide to handling JWTs on frontend clients (GraphQL)](https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/)
+翻译自：[The Ultimate Guide to handling JWTs on frontend clients (GraphQL)](https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/)
 
 JWTs (JSON Web Token, pronounced 'jot') 正变成一个流行的处理身份认证的方式。本文目标是阐明 JWT 是什么，讨论它的优缺点以及涵盖在客户端实现 JWT 的最佳实践，牢记安全。
 
