@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    
-    
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/tags/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/010-%E8%AF%91-hasura%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2022/011-%E8%AF%91-actions%E4%BB%8B%E7%BB%8D%E4%B8%BAhasura%E5%A2%9E%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-copy/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,25 +22,51 @@
     <title>
         
         
-            Tags | Anson`s Blog
+            012 译 | hasura常见问答 | Anson`s Blog
         
     </title>
-    <meta name="title" content="Tags | Anson`s Blog">
+    <meta name="title" content="012 译 | hasura常见问答 | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
 
     
-    <link rel="alternate" href="/tags/index.xml" type="application/rss+xml" title="Anson`s Blog">
-    <link rel="feed" href="/tags/index.xml" type="application/rss+xml" title="Anson`s Blog">
-    
     
  
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/ansoncode.bazhentu.net\/"
+    },
+    "articleSection" : "posts",
+    "name" : "012 译 | hasura常见问答",
+    "headline" : "012 译 | hasura常见问答",
+    "description" : "翻译自：Building Stateful Apps with Serverless Functions and Postgres Adding custom business logic with Hasura",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-02-16 22:22:45 \u002b0800 CST",
+    "dateModified" : "2022-02-16 22:22:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/012-%E8%AF%91-copy\/",
+    "wordCount" : "25",
+    "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
+}
+</script>
 
   </head>
     <body class="">
         <div class="wrapper">
             <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
     
     <div class="container">
         
@@ -60,7 +86,7 @@
                 
                 <a class="menu-item" href="/categories/" title="">Categories</a>
                 
-                <a class="menu-item active" href="/tags/" title="">Tags</a>
+                <a class="menu-item" href="/tags/" title="">Tags</a>
                 
                 <a class="menu-item" href="/about/" title="">About</a>
                 
@@ -71,6 +97,8 @@
     </div>
 </nav>
 <nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
     
      <div class="container">
         <div class="navbar">
@@ -99,7 +127,7 @@
                             <div class="menu-active"></div>
                         </a>
                     
-                        <a class="menu-item active" href="/tags/" title="">
+                        <a class="menu-item" href="/tags/" title="">
                             <h3>Tags</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -116,99 +144,150 @@
             <main class="main">
                 <div class="container">
                     
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">012 译 | hasura常见问答</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2022-02-16 itemprop="datePublished">February 16, 2022</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E7%A0%94%E5%8F%91%E6%8F%90%E6%95%88/"> 研发提效, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">25 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>翻译自：<a href="https://hasura.io/blog/building-stateful-apps-using-serverless-postgres-and-hasura/">Building Stateful Apps with Serverless Functions and Postgres</a></p>
+<p><a href="https://hasura.io/blog/custom-business-logic/">Adding custom business logic with Hasura</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
 
 
-
-
-
-
-<div class="post-warp tags">
-    <h2 class="post-title" style="text-align:right;padding-bottom:2em">-&nbsp;Tags&nbsp;-</h2>
-
-    <div class="tag-cloud-tags">
-    
-        
-        <a href="/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/"> 技术翻译 <small>(11)</small></a>
-        
-    
-        
-        <a href="/tags/hasura/"> hasura <small>(9)</small></a>
-        
-    
-        
-        <a href="/tags/hugo/"> hugo <small>(2)</small></a>
-        
-    
-        
-        <a href="/tags/nhost/"> nhost <small>(2)</small></a>
-        
-    
-        
-        <a href="/tags/%E9%80%BB%E8%BE%91/"> 逻辑 <small>(2)</small></a>
-        
-    
-        
-        <a href="/tags/github/"> github <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/github-pages/"> github-pages <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/serverless/"> serverless <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/sos/"> sos <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/travis-ci/"> travis-ci <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E4%B8%93%E6%B3%A8/"> 专注 <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E4%BA%BA%E7%89%A9/"> 人物 <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E5%86%85%E5%AD%98/"> 内存 <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E5%86%99%E4%BD%9C/"> 写作 <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E5%86%A5%E6%83%B3/"> 冥想 <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E6%84%9F%E6%81%A9/"> 感恩 <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E7%BB%A7%E7%94%B5%E5%99%A8/"> 继电器 <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E8%8E%AB%E6%96%AF%E5%AF%86%E7%A0%81/"> 莫斯密码 <small>(1)</small></a>
-        
-    
-        
-        <a href="/tags/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"> 静态博客 <small>(1)</small></a>
-        
-    
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-copy/>http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-copy/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-copy/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
     </div>
 
 
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
+                    #技术翻译</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/hasura/">
+                    #Hasura</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
+        </section>
+    </div>
 
-</div>
+    <div class="post-nav">
+        
+        <a href="http://ansoncode.bazhentu.net/2022/010-%E8%AF%91-hasura%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/" class="prev" rel="prev" title="010 译 | hasura常见问答"><i class="iconfont icon-left"></i>&nbsp;010 译 | hasura常见问答</a>
+        
+        
+        <a href="http://ansoncode.bazhentu.net/2022/011-%E8%AF%91-actions%E4%BB%8B%E7%BB%8D%E4%B8%BAhasura%E5%A2%9E%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/" class="next" rel="next" title="011 译 | Actions介绍：为Hasura增加自定义业务逻辑">011 译 | Actions介绍：为Hasura增加自定义业务逻辑&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
 
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
                 </div>
             </main>
             <footer class="footer">
@@ -306,7 +385,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = 'Tags'
+            let title = '012 译 | hasura常见问答'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 

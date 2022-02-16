@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/008-%E8%AF%91-%E5%9C%A8%E5%89%8D%E7%AB%AF%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8A%E5%A4%84%E7%90%86jwts%E7%9A%84%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97graphql/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2022/010-%E8%AF%91-hasura%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/009-%E8%AF%91-%E4%B9%90%E8%A7%82ui%E5%92%8C%E6%A1%A3%E6%A1%88%E9%94%80%E6%AF%81/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            009 译 | 乐观UI和档案销毁 | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="009 译 | 乐观UI和档案销毁 | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/ansoncode.bazhentu.net\/"
+    },
+    "articleSection" : "posts",
+    "name" : "009 译 | 乐观UI和档案销毁",
+    "headline" : "009 译 | 乐观UI和档案销毁",
+    "description" : "翻译自：Optimistic UI and Clobbering 什么是乐观 UI？ 乐观 UI 是一个前端开发范例，向某 API 发起一个变更请求之后，客户端假定请求是成功的，并乐观的更新",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-02-14 23:20:45 \u002b0800 CST",
+    "dateModified" : "2022-02-14 23:20:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/009-%E8%AF%91-%E4%B9%90%E8%A7%82ui%E5%92%8C%E6%A1%A3%E6%A1%88%E9%94%80%E6%AF%81\/",
+    "wordCount" : "1624",
+    "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://ansoncode.bazhentu.net/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://ansoncode.bazhentu.net/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">009 译 | 乐观UI和档案销毁</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2022-02-14 itemprop="datePublished">February 14, 2022</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E7%A0%94%E5%8F%91%E6%8F%90%E6%95%88/"> 研发提效, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1624 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>翻译自：<a href="https://hasura.io/blog/optimistic-ui-and-clobbering/">Optimistic UI and Clobbering</a></p>
+<h2 id="什么是乐观-ui">什么是乐观 UI？</h2>
+<blockquote>
+<p>乐观 UI 是一个前端开发范例，向某 API 发起一个变更请求之后，客户端假定请求是成功的，并乐观的更新 UI。</p>
+</blockquote>
+<p><img src="https://hasura.io/blog/content/images/2019/08/Group-3277--1--1.png" alt="Optimistic UI" loading="lazy" ></p>
+<p>请看下面 GIF 中的示例。它展示了一个来自数据库的计数器值，并且递增按钮使其递增。左侧的计数器实现了传统的同步 UI，而右侧的那一个实现了乐观 UI。</p>
+<p><img src="https://hasura.io/blog/content/images/2019/07/optimistic-ui.gif" alt="Optimistic UI example" loading="lazy" ></p>
+<h3 id="同步-ui">同步 UI</h3>
+<ol>
+<li>向数据库发起<code>increment</code>请求</li>
+<li>一旦请求成功，UI 上的计数器值被更新</li>
+<li>如果请求是不成功的，UI 上的计数器值保持不改变</li>
+</ol>
+<h3 id="乐观-ui">乐观 UI</h3>
+<ol>
+<li>向数据库发起<code>increment</code>请求</li>
+<li>假设响应将成功，UI 上的计数器值被立即更新</li>
+<li>如果响应成功，UI 被来自成功响应的数据更新</li>
+<li>如果响应失败，UI 上的计数器值返回之前的状态</li>
+</ol>
+<h2 id="你为什么应该使用乐观-ui">你为什么应该使用乐观 UI？</h2>
+<p>正如你在上面看到的，在两种案例中，成功和失败响应均被优雅处理。唯一的不同是，乐观 UI 似乎更快，不管网络瓶颈。在很多案例中，没有理由去等待一个成功的响应，因为很多请求在生产环境中预期是成功的。如果请求失败，你也有一个恢复机制去回退到原始状态。</p>
+<p><img src="https://hasura.io/blog/content/images/2019/07/image-1.png" alt=""></p>
+<h3 id="乐观-ui-的档案毁损">乐观 UI 的档案毁损</h3>
+<h4 id="问题">问题</h4>
+<p>档案毁损是一个软件工程问题，由于副作用，数据源被覆盖。在乐观 UI 场景下，当 UI 在接二连三的发起多个变更时，档案毁损通常发生，并且变更的乐观 UI 被来自不同变更的响应数据覆盖。</p>
+<p>考虑一个场景，UI 元素接二连三从值 1 到值 2 到值 3 变更。你能在下面 GIF 里看到档案损毁问题：</p>
+<p><img src="https://hasura.io/blog/content/images/2019/07/optimistic-ui-clobbering.gif" alt=""></p>
+<p>如果你尝试实现乐观 UI 没有考虑档案损毁， UI 将经历以下状态。</p>
+<ol>
+<li>初始状态
+<ul>
+<li>数据库值：1</li>
+<li>UI 值：1</li>
+</ul>
+</li>
+<li>变更到值（2）初始：
+<ul>
+<li>数据库值：1</li>
+<li>UI（乐观）值：2</li>
+</ul>
+</li>
+<li>变更到值（3）初始：
+<ul>
+<li>数据库值：1</li>
+<li>UI（乐观）值：3</li>
+</ul>
+</li>
+<li>变更到值（2）成功：
+<ul>
+<li>数据库值：2</li>
+<li>UI（成功响应）值：2</li>
+</ul>
+</li>
+<li>变更到值（3）成功：
+<ul>
+<li>数据库值：3</li>
+<li>UI（成功响应）值：3</li>
+</ul>
+</li>
+</ol>
+<p>这意味着，对于看到 UI 的人，UI 从 1 到 2 到 3 到 2 到 3，这在语义上是错误的。UI 理想上应该从 1 到 2 到 3，就是这样。</p>
+<p>这是乐观 UI 的档案损毁问题。</p>
+<h3 id="解决方案">解决方案</h3>
+<p>我们可以通过在更新 UI 前核查过期数据的方式解决问题。为了实现这，我们把每个变更和唯一可对比的标识符关联起来，例如时间戳或数字。这意味着，随着每个变更，你关联一个标识符（例如数字），比之前变更的关联标识稍微大点。这个标识符应该是你的乐观响应和变更响应的一部分。现在，无论 UI 何时更新，我们仅需要核查新的数据是否有比现存数据更大的变更标识符。在这种方式，我们避免使用陈旧数据更新 UI。</p>
+<p><img src="https://hasura.io/blog/content/images/2019/08/optimistic-ui-clobbering-solution.gif" alt=""></p>
+<p>现在，我们知道如何导致档案损毁，当一个值从 1 到 2 到 3 时，让我们重新看下 UI 状态:</p>
+<ol>
+<li>
+<p>初始值</p>
+<ul>
+<li>数据库值：1</li>
+<li>变更标识符：1252</li>
+<li>UI 值:1</li>
+</ul>
+</li>
+<li>
+<p>变更到值（2）初始：</p>
+<ul>
+<li>数据库值：1</li>
+<li>乐观数据的变更标识符：1253</li>
+<li>现存数据的变更标识符：1252</li>
+<li>UI（乐观）值：2</li>
+</ul>
+</li>
+<li>
+<p>变更到值（3）初始：</p>
+<ul>
+<li>数据库值：1</li>
+<li>乐观数据的变更标识符：1254</li>
+<li>现存数据的变更标识符：1252</li>
+<li>UI（乐观）值：3</li>
+</ul>
+</li>
+<li>
+<p>变更到值（2）成功：</p>
+<ul>
+<li>
+<p>数据库值：2</p>
+</li>
+<li>
+<p>成功响应数据的变更标识符：1253</p>
+</li>
+<li>
+<p>现存数据的变更标识符：1254</p>
+</li>
+<li>
+<p>UI（成功响应）值：3</p>
+<blockquote>
+<p>注意 UI 不更新数据来自变更响应，因为变更身份标识符比 UI 数据变更标识符小。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>变更到值（3）成功：</p>
+<ul>
+<li>数据库值：3</li>
+<li>成功响应数据的变更标识符：1254</li>
+<li>现存数据的变更标识符：1254</li>
+<li>UI（成功响应）值：3</li>
+</ul>
+</li>
+</ol>
+<p>正如你看到的，UI 从 1 到 2 到 3。</p>
+<p>目标是在更新数据源之前，核查并清除数据，并且他可被用于解决很多档案损毁问题。实现该解决方案的唯一要求是服务端应该支持原子增量及更新。</p>
+<h3 id="错误处理">错误处理</h3>
+<p>有了档案损毁的解决方案，也很容易处理失败请求。因为，每个 UI 状态带着一个变更标识符，无论何时从服务端收到失败响应，我们都可以回滚到之前的变更标识符？</p>
+<h3 id="示例">示例</h3>
+<p>让我们举一个在 TODO 应用场景下实现该解决方案的示例。</p>
+<p>假设你有一个 从 Postgres 的<code>todo</code>表读数据的 TODO 应用。<code>todo</code>表通常看起来像这样：</p>
+<p>因为我们必须为档案损毁负责，我们将为该表增加另一个叫做 <code>update_mutation_identifier</code>的字段。</p>
+<p>现在，无论何时 todo 不断地从激活到完成到激活更新，流程将看起来像下图。</p>
+<p><img src="https://hasura.io/blog/content/images/2019/08/Group-3278--1-.png" alt="Simultaneous UI and Database states during subsequent rapid mutations" loading="lazy" ></p>
+<p>我已经使用 Postgres (和 Hasura for GraphQL)建立了上述示例。</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/009-%E8%AF%91-%E4%B9%90%E8%A7%82ui%E5%92%8C%E6%A1%A3%E6%A1%88%E9%94%80%E6%AF%81/>http://ansoncode.bazhentu.net/2022/009-%E8%AF%91-%E4%B9%90%E8%A7%82ui%E5%92%8C%E6%A1%A3%E6%A1%88%E9%94%80%E6%AF%81/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/009-%E8%AF%91-%E4%B9%90%E8%A7%82ui%E5%92%8C%E6%A1%A3%E6%A1%88%E9%94%80%E6%AF%81/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
+                    #技术翻译</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/hasura/">
+                    #Hasura</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://ansoncode.bazhentu.net/2022/008-%E8%AF%91-%E5%9C%A8%E5%89%8D%E7%AB%AF%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8A%E5%A4%84%E7%90%86jwts%E7%9A%84%E7%BB%88%E6%9E%81%E6%8C%87%E5%8D%97graphql/" class="prev" rel="prev" title="008 译 | 在前端客户端上处理JWTs的终极指南（GraphQL）"><i class="iconfont icon-left"></i>&nbsp;008 译 | 在前端客户端上处理JWTs的终极指南（GraphQL）</a>
+        
+        
+        <a href="http://ansoncode.bazhentu.net/2022/010-%E8%AF%91-hasura%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/" class="next" rel="next" title="010 译 | hasura常见问答">010 译 | hasura常见问答&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://ansoncode.bazhentu.net/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '009 译 | 乐观UI和档案销毁'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>
