@@ -1,0 +1,13 @@
+---
+title: "012 译 | hasura常见问答"
+date: 2022-02-16T22:22:45+08:00
+tags: ["技术翻译", "Hasura"]
+categories: ["研发提效"]
+featured_image:
+description:
+draft: false
+---
+
+翻译自：[Building Stateful Apps with Serverless Functions and Postgres](https://hasura.io/blog/building-stateful-apps-using-serverless-postgres-and-hasura/)
+
+[Adding custom business logic with Hasura](https://hasura.io/blog/custom-business-logic/)

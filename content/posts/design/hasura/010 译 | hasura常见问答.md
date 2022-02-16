@@ -5,7 +5,7 @@ tags: ["技术翻译", "Hasura"]
 categories: ["研发提效"]
 featured_image:
 description:
-draft: true
+draft: false
 ---
 
 翻译自：[Frequently Asked Questions](https://hasura.io/blog/optimistic-ui-and-clobbering/)
