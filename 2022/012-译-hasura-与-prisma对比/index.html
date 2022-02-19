@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/010-%E8%AF%91-hasura%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/" />
-    <link rel="next" href="http://ansoncode.bazhentu.net/2022/011-%E8%AF%91-actions%E4%BB%8B%E7%BB%8D%E4%B8%BAhasura%E5%A2%9E%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/" />
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-copy/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/011-%E8%AF%91-actions%E4%BB%8B%E7%BB%8D%E4%B8%BAhasura%E5%A2%9E%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/" />
+    
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-hasura-%E4%B8%8E-prisma%E5%AF%B9%E6%AF%94/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            012 译 | hasura常见问答 | Anson`s Blog
+            012 译 | Hasura 与 Prisma对比 | Anson`s Blog
         
     </title>
-    <meta name="title" content="012 译 | hasura常见问答 | Anson`s Blog">
+    <meta name="title" content="012 译 | Hasura 与 Prisma对比 | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "012 译 | hasura常见问答",
-    "headline" : "012 译 | hasura常见问答",
-    "description" : "翻译自：Building Stateful Apps with Serverless Functions and Postgres Adding custom business logic with Hasura",
+    "name" : "012 译 | Hasura 与 Prisma对比",
+    "headline" : "012 译 | Hasura 与 Prisma对比",
+    "description" : "翻译自：Hasura vs Prisma 过去几周，很多人问我 Hasura 与 Prisma.js 的区别。 在我们用户如何使用 Hasura 的帮助下，我总结了以下几点，并罗列了一些区别。这些都是定性的观",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
@@ -53,10 +53,10 @@
     "accountablePerson" : "Anson",
     "copyrightHolder" : "Anson",
     "copyrightYear" : "2022",
-    "datePublished": "2022-02-16 22:22:45 \u002b0800 CST",
-    "dateModified" : "2022-02-16 22:22:45 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/012-%E8%AF%91-copy\/",
-    "wordCount" : "25",
+    "datePublished": "2022-02-19 22:22:45 \u002b0800 CST",
+    "dateModified" : "2022-02-19 22:22:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/012-%E8%AF%91-hasura-%E4%B8%8E-prisma%E5%AF%B9%E6%AF%94\/",
+    "wordCount" : "1720",
     "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
 }
 </script>
@@ -146,11 +146,11 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">012 译 | hasura常见问答</h1>
+        <h1 class="post-title" itemprop="name headline">012 译 | Hasura 与 Prisma对比</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
-                on <time datetime=2022-02-16 itemprop="datePublished">February 16, 2022</time>
+                on <time datetime=2022-02-19 itemprop="datePublished">February 19, 2022</time>
                 </span>
                 in
                 
@@ -163,7 +163,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">25 words</span>
+                <span class="post-word-count">1720 words</span>
         </div>
     </header>
 
@@ -172,19 +172,63 @@
 
         
         
-
-        
-        
-        
-        
+            
         
 
         
         
         
+        
+        
 
-        <p>翻译自：<a href="https://hasura.io/blog/building-stateful-apps-using-serverless-postgres-and-hasura/">Building Stateful Apps with Serverless Functions and Postgres</a></p>
-<p><a href="https://hasura.io/blog/custom-business-logic/">Adding custom business logic with Hasura</a></p>
+        
+        
+        
+
+        <p>翻译自：<a href="https://hasura.io/blog/hasura-vs-prisma-9ffc7271eda8/">Hasura vs Prisma</a></p>
+<p>过去几周，很多人问我 Hasura 与 Prisma.js 的区别。</p>
+<p>在我们用户如何使用 Hasura 的帮助下，我总结了以下几点，并罗列了一些区别。这些都是定性的观点，由于时间问题我不能面面俱到，但我将不断完善它。在此期间，如果你有任何问题，请随时在 <a href="https://twitter.com/tanmaigo?lang=en">Twitter</a> 或 <a href="https://discord.gg/vBPpJkS">discord</a> 上联系我。</p>
+<p>表面上看，Hasura 和 Prisma 在 Postgres 上 提供 GraphQL API。然而，从 Hasura 在你技术栈的理想位置和他们如何为项目增加价值方面来看，是有重大区别的。</p>
+<h2 id="hasura-是面向前端应用的-graphql">Hasura 是面向前端应用的 GraphQL</h2>
+<p>Prisma 是一个针对 <a href="https://hasura.io/graphql/">GraphQL</a> (或 REST)服务和非前端应用的 GraphQL ORM，更像 JDBC, SQL Alchemy, ActiveRecord 等的替代品。</p>
+<p>作为基于数据库之上的 GraphQL API，Prisma 不能直接被前端应用使用。</p>
+<p><img src="https://hasura.io/blog/content/images/downloaded_images/hasura-vs-prisma-9ffc7271eda8/1-EMkrtmQxqh1S0K5BXhIZ0g.png" alt=""></p>
+<p>也就是说，如果你需要，你可以使用 Hasura 作为你微服务的 GraphQL API。尤其，如果你正在寻找可扩展和强健的订阅。</p>
+<h2 id="增加业务逻辑">增加业务逻辑</h2>
+<p>Prisma 为 nodejs/typescript/go 提供了客户端和绑定，让你去构建自己的业务逻辑，与数据库对话。因为 Prisma 是一个 ORM，而不是使用 nodejs 和 knex/sequelize 构建 GraphQL 服务，你可以使用 nodejs 和 Prisma 客户端与 Prisma 服务对话，进而与数据库对话。你的代码可以像通常那样执行业务逻辑，就像从头构建 GraphQL 服务时一样。</p>
+<p><strong>使用 Hasura</strong>，有两种写业务逻辑的方式：</p>
+<ol>
+<li>
+<p>用任何语言或框架编写自己的 GraphQL 服务，使用你最喜欢的 ORM（如果你需要与数据库对话），并且使用 Hasura 的 GraphQL 合并 GraphQL 服务，创建一个统一的 GraphQL 端点。</p>
+</li>
+<li>
+<p>写一个 webhook，理想情况下作为 serverless 函数，无论数据库何时发生变更，它都被触发。注意，你可以在数据库中为任何变化设置变化捕捉，不仅是 GraphQL 变更时。</p>
+</li>
+</ol>
+<p>Hasura 目标是<strong>为你节省写 CRUD 和可扩展实时后端的繁重的工作</strong>，而不影响你如何写业务逻辑。</p>
+<p><img src="https://hasura.io/blog/content/images/downloaded_images/hasura-vs-prisma-9ffc7271eda8/1-cIboOGvlbRJK_tBKS0DJaA.png" alt="Adding business logic with Hasura" loading="lazy" ></p>
+<h2 id="身份验证访问控制和-graphql-安全">身份验证、访问控制和 GraphQL 安全</h2>
+<p>由于 Hasura 是一个针对应用的 GraphQL API，Hasura 拥有权限控制和身份验证特性，让你能<a href="https://hasura.io/graphql/security/">安全</a>访问数据库。我们仔细地设计权限控制系统使其能处理简单到复杂的用户场景。从用户能够 CRUD 他们自己的数据到企业级多租户多角色应用。</p>
+<p>Hasura 可以集成任何身份验证系统，包括 JWT 系统像 <a href="https://auth0.com/">Auth0</a>, <a href="https://firebase.google.com/docs/auth/">firebase</a>, <a href="https://www.forgerock.com/">forgerock</a>。</p>
+<p>**GraphQL 安全：**我们早已支持限制响应大小去避免爬虫和拒绝服务，并且我们正在根据用户优先级排序增加更多安全特性。在我们的路线图上，还有有很多其他特性，可以帮助用户安全的使用 GraphQL。</p>
+<h2 id="性能和开销">性能和开销</h2>
+<p>在架构中，Hasura 不使用解析器或者数据加载器。而是，Hasura 将<a href="https://hasura.io/learn/graphql/intro-graphql/graphql-queries/"> GraphQL 查询</a>编译为单语句，非常可读的 SQL 查询，并且包含权限控制语句（<code>where user_id = &lt;session-user-id&gt;</code>）。这使得 Hasura 非常快，尤其是对于复杂的查询。在这儿阅读更多关于高性能架构：<a href="https://hasura.io/blog/architecture-of-a-high-performance-graphql-to-sql-server-58d9944b8a87">（已翻译 003 译 | GraphQL 到 SQL 高性能架构）</a></p>
+<p>由于 Hasura 实际上是一个针对网络服务的编译器，Hasura 的资源占用特别低，尤其与 Prisma 运行所需要的 JVM 对比。</p>
+<p>在 100MB RAM 以内，Hasura 可以很好的满足几千条复杂 GraphQL 查询每秒。在运行 Postgres 和 Hasura 的情况下，构建一个可以扩展 1000 用户并发的业余项目，需要花费 5 美元/月。由于它的镜像尺寸和资源消耗，Prisma 不能免费运行在 Heroku 和 Zeit 上。</p>
+<p>相比之下，Prisma 使用数据加载器方法，仅仅为小查询做了优化，并且不能有效处理复杂查询。</p>
+<h2 id="简单缩放和自动缩放">简单缩放和自动缩放</h2>
+<p>Hasura 被设计完全保持无状态化，并且没有主从架构。这让它可以无痛缩放 Hasura：</p>
+<ol>
+<li>纵向缩放：增加 CUP/RAM</li>
+<li>水平缩放：增加副本数量</li>
+<li>自动缩放：在你最喜欢的容器提供商上设置自动缩放，依赖流量从 1 到 n 扩展</li>
+</ol>
+<p>水平扩展 Prisma 是更乏味的，并且不像改变配置变量去增加副本或者在云供应商面板上开启自动扩展（或者重声明配置文件）那样简单。</p>
+<h2 id="无缝支持-postgres">无缝支持 Postgres</h2>
+<p>Hasura 被设计 Postgres 优先。Postgres 是一个非常成熟的数据库，并且 Hasura 持续确保你可以以一种你想要的方式，使用一个现存的 Postgres 实例，而不需要对你团队的工作流做任何改变。Hasura 支持 Postgres 丰富的类型系统和操作，创建视图的能力，使用自定义 SQL 函数，并且甚至物理化了视图！</p>
+<h2 id="自动管理-graphql-schema">自动管理 GraphQL schema</h2>
+<p>Prisma 只能让你通过 GraphQL SDL 管理数据库，它不支持很多应用最终需要的 UP/DOWN/自定义数据库迁移。例如，在 GraphQL SDL 驱动的数据库系统中：创建 User GraphQL 类型等同于创建 user 表。</p>
+<p>Hasura 不能通过 GraphQL schema 定义语言驱动你的数据模型。相反，Hasura 帮你使用你的数据库，并且提供一个简单的 UI 管理你的数据库模型，然后基于额外提供的元数据生成 GraphQL schema。你可以使用你自己的数据库迁移系统或者 Hasura 的迁移系统（灵感来自 ActiveRecord ala Rails）去建模你的数据库。</p>
 
     </div>
 
@@ -200,12 +244,12 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-copy/>http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-copy/</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-hasura-%E4%B8%8E-prisma%E5%AF%B9%E6%AF%94/>http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-hasura-%E4%B8%8E-prisma%E5%AF%B9%E6%AF%94/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-copy/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/012-%E8%AF%91-hasura-%E4%B8%8E-prisma%E5%AF%B9%E6%AF%94/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -271,10 +315,8 @@
 
     <div class="post-nav">
         
-        <a href="http://ansoncode.bazhentu.net/2022/010-%E8%AF%91-hasura%E5%B8%B8%E8%A7%81%E9%97%AE%E7%AD%94/" class="prev" rel="prev" title="010 译 | hasura常见问答"><i class="iconfont icon-left"></i>&nbsp;010 译 | hasura常见问答</a>
+        <a href="http://ansoncode.bazhentu.net/2022/011-%E8%AF%91-actions%E4%BB%8B%E7%BB%8D%E4%B8%BAhasura%E5%A2%9E%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/" class="prev" rel="prev" title="011 译 | Actions介绍：为Hasura增加自定义业务逻辑"><i class="iconfont icon-left"></i>&nbsp;011 译 | Actions介绍：为Hasura增加自定义业务逻辑</a>
         
-        
-        <a href="http://ansoncode.bazhentu.net/2022/011-%E8%AF%91-actions%E4%BB%8B%E7%BB%8D%E4%B8%BAhasura%E5%A2%9E%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/" class="next" rel="next" title="011 译 | Actions介绍：为Hasura增加自定义业务逻辑">011 译 | Actions介绍：为Hasura增加自定义业务逻辑&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -385,7 +427,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = '012 译 | hasura常见问答'
+            let title = '012 译 | Hasura 与 Prisma对比'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
