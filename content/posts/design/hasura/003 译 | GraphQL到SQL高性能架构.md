@@ -340,3 +340,7 @@ query albums_tracks_genre_all {
 如果你没有运行 Hasura，使用 [Hasura 云](https://hasura.io/docs/latest/graphql/cloud/getting-started/index.html#utm_source=Hasura%20Blog&utm_medium=Blog%20Article&utm_campaign=Project%20Cloud&utm_content=introducing%20actions)去设置一个 GraphQL 工程，读这个[文档](https://hasura.io/docs/latest/graphql/cloud/index.html)去开始吧。
 
 如果你早已运行了 Hasura，确保你的版本是 1.2 及以上，你可以出发了！
+
+### 参考
+
+- [Building a GraphQL to SQL Compiler on Postgres, MS SQL and MySQL](https://hasura.io/blog/building-a-graphql-to-sql-compiler-on-postgres-ms-sql-and-mysql/)
