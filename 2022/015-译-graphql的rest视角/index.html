@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/014-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92-copy/" />
+    
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            015 译 | GraphQL解析器：最佳实践 | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="015 译 | GraphQL解析器：最佳实践 | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/ansoncode.bazhentu.net\/"
+    },
+    "articleSection" : "posts",
+    "name" : "015 译 | GraphQL解析器：最佳实践",
+    "headline" : "015 译 | GraphQL解析器：最佳实践",
+    "description" : "翻译自：GraphQL Resolvers: Best Practices 本文是在 PayPal 构建 GraphQL APIs 所做的最佳实践和观察系列的第一部分。在日后的文章中，我们将分享我们关于：方案设计，错误处理，生",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-03-02 21:29:45 \u002b0800 CST",
+    "dateModified" : "2022-03-02 21:29:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/015-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92\/",
+    "wordCount" : "3180",
+    "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://ansoncode.bazhentu.net/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://ansoncode.bazhentu.net/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">015 译 | GraphQL解析器：最佳实践</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2022-03-02 itemprop="datePublished">March 2, 2022</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E7%A0%94%E5%8F%91%E6%8F%90%E6%95%88/"> 研发提效, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">3180 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>翻译自：<a href="https://medium.com/paypal-tech/graphql-resolvers-best-practices-cd36fdbcef55/">GraphQL Resolvers: Best Practices</a></p>
+<p>本文是在 PayPal 构建 GraphQL APIs 所做的最佳实践和观察系列的第一部分。在日后的文章中，我们将分享我们关于：方案设计，错误处理，生产可视性，优化客户端集成和团队工具的想法。</p>
+<p>你或许已经看过我们之前的文章：GraphQL: PayPal Checkout 成功的故事，它讲述了 PayPal 从 REST 到 GraphQL 的旅程。本文将详细介绍一些构建解析器的最佳实践，解析器是快速的，可测试的，有弹性的。</p>
+<h2 id="解析器是什么">解析器是什么？</h2>
+<p>让我们从相同的基准线开始。解析器是什么？</p>
+<blockquote>
+<p>解析器：一个在 schema 中解析类型或字段值的函数或方法。</p>
+</blockquote>
+<blockquote>
+<p>每种类型的每个字段被一个叫做解析器的函数支持。</p>
+</blockquote>
+<p>解析器是一个在 schema 中解析类型或字段值的函数。解析器可以返回对象或标量如 Strings, Numbers, Booleans 等。如果返回一个对象，执行继续到下一个子字段。如果返回标量（通常在叶子结点），执行完成。如果返回 null，执行停止并不再继续。</p>
+<p>解析器也可以是异步的。他们可以从其他 REST API，数据库，缓存，常量等，解析值。</p>
+<p>稍后，我们将遍历一系列示例，图解如何构建快速的、可测试的、有弹性的解析器。</p>
+<h2 id="执行查询">执行查询</h2>
+<p>为了更好理解解析器，你需要了解查询如何执行。</p>
+<p>每个 GraphQL 查询经过三个阶段。解析、校验和执行查询。</p>
+<ol>
+<li>解析：解析查询为一个抽象语法树（或者 AST）。ASTs 难以置信的强大，并且位于 ESLint, babel 等工具之后。如果你想看 GraphQL AST 看起来像什么，看看<a href="https://astexplorer.net/">astexplorer.net</a>，并且将 JavaScript 改成 GraphQL。你将看看到查询在左侧，AST 在右侧。</li>
+<li>校验：根据 schema 验证 AST。检查正确的查询语法以及字段是否存在。</li>
+<li>执行：运行时遍历 AST，从树的根节点开始，调用解析器，收集结果，并且输出 JSON。</li>
+</ol>
+<p>例如，我们将参考这个查询：</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220302230121.png" alt="Query for later reference" loading="lazy" ></p>
+<p>当解析该查询时，它被转化为一个 AST 或者树。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220302230229.png" alt="Query represented as a tree" loading="lazy" ></p>
+<p>根 Query 类型是树的入口点，并且包含两个根字段，<code>user</code> 和 <code>album</code>。并行执行<code>user</code> 和 <code>album</code>解析器（在所有运行时中国呢都是常见的）。宽度优先执行树，意味着必须解析<code>user</code>，在它的子节点 <code>name</code> 和 <code>email</code> 执行之前。如果解析器时异步的，<code>user</code>分支延迟到它被执行。一旦解析所有子节点:<code>name</code>, <code>email</code>,<code> title</code>，执行就完成了。</p>
+<p>并行执行根 Query 字段，像<code>user</code> 和 <code>album</code>，但是没有特定的顺序。通常，按照他们在查询中出现的顺序执行字段，但是做这样的假定是不保险的。因为并行执行字段，他们假定为原子的、幂等的、边际效应无关的。</p>
+<h3 id="仔细观察解析器">仔细观察解析器</h3>
+<p>在接下来的部分，我们将使用 JavaScript，但是可以用很多语言来写 GraphQL 服务。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220302231655.png" alt="Resolvers with four arguments — root, args, context, info" loading="lazy" ></p>
+<p>在某种形式中，每种语言的每个解析器都接收 4 个参数：</p>
+<ul>
+<li>
+<p>root：来自上一个或父类型的结果</p>
+</li>
+<li>
+<p>args：为字段提供的参数</p>
+</li>
+<li>
+<p>context：提供给所有解析器的可变对象</p>
+</li>
+<li>
+<p>info：与查询有关的特定于字段的信息（很少使用）</p>
+</li>
+</ul>
+<p>这 4 个参数是理解解析器间数据流的核心。</p>
+<h2 id="默认解析器">默认解析器</h2>
+<p>我们继续之前，值得注意的是 GraphQL 服务有内建的默认解析器，所以你不必为每个字段指明解析函数。默认解析器会在根节点寻找和字段同名的属性。一个可能的实现：</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220302233544.png" alt="Default resolver implementation" loading="lazy" ></p>
+<h2 id="在解析器中查询数据">在解析器中查询数据</h2>
+<p>我们应该在哪里查询数据？我们的选择有哪些权衡？</p>
+<p>在接下来的示例中，我们将参考这个 schema：</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220302233753.png" alt="An event field has a required id argument, returns an Event" loading="lazy" ></p>
+<h2 id="在解析器间传递数据">在解析器间传递数据</h2>
+<p>context 是一个提供给所有解析器的可变对象。在每个请求间创建和销毁它。它是存储公用 Auth（身份鉴权）数据、APIs 和数据库通用模型/加载器等的好去处。在 PayPal，我们是一个基于 Express 架构的 Node.js 商店，所以我们在那里存储 Express 的 req。</p>
+<p>当你第一次学习 context 时，初始的想法或许是使用 context 作为通用缓存。这不被推荐，但是实现可能是这样的。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220302235616.png" alt="Passing data between resolvers using context. This is not recommended!" loading="lazy" ></p>
+<p>当 调用 <code>title</code>，我们在 <code>context</code> 中存储 <code>event</code> 结果。当调用 <code>photoUrl</code>，我们从 <code>context</code> 获取 <code>event</code>，并且使用它。这个代码是不可靠的。不能保证 <code>title</code> 在 <code>photoUrl</code> 之前执行。</p>
+<p>我们可以改进所有解析器，核查 <code>event</code> 是否存在于 <code>context</code>。如果这样，使用它。否则，我们获取它并且稍微存储它，但是这仍然有很大出错空间。</p>
+<p>反而，我们应该避免在解析器内部修改 <code>context</code>。我们应该避免知识和焦虑混杂在一起，以便于我们的解析器容易理解、调试和测试。</p>
+<h2 id="从父到子传递数据">从父到子传递数据</h2>
+<p>root 参数用于从父解析器到子解析器传递数据。</p>
+<p>例如，如果你正在构建 Event 类型，在那里 Event 的所有字段都依赖相同数据，你或许想要在 event 字段中获取它一次而不是在 每个 Event 字段。</p>
+<p>似乎是一个好的注意，对吗？这是开始建立解析器的快速方式，但是你或许会遇到一些问题。让我们理解为什么。</p>
+<p>如下示例，我们将使用有两个字段的 Event 类型。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303000954.png" alt="Event type with two fields: title and photoUrl" loading="lazy" ></p>
+<p>Event 的很多字段可以从 Event API 获取，所以我们可以在顶级 event 解析器中获取它，并为我们的 title 和 photoUrl 解析器提供结果。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303001126.png" alt="Top-level event resolver fetches data, provides results to title and photoUrl field resolvers" loading="lazy" ></p>
+<p>甚至，我们不需要指明下面的两个解析器。</p>
+<p>我们可以使用默认解析器，因为被<code> getEvent()</code>返回的对象有 <code>title</code> 和 <code>photoUrl</code> 属性。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303001346.png" alt="id and title are resolved using default resolvers" loading="lazy" ></p>
+<p>这有什么问题吗?</p>
+<p>有两种场景你或许会重复查询……</p>
+<h3 id="场景1多层数据查询">场景#1：多层数据查询</h3>
+<p>假设有一些需求进来，你需要展示一个 event 的参与者。我们开始为 Event 增加 attendees 字段。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303001650.png" alt="Event type with an additional attendees field" loading="lazy" ></p>
+<p>当你查询 attendees 详情时，你有两个选择：在 event 解析器中查询数据或者 attendees 解析器。</p>
+<p>我们将测试第一个选项：将其添加到 event 解析器中。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303001846.png" alt="event resolver calls two APIs, fetching event details and attendees details" loading="lazy" ></p>
+<p>如果客户端仅查询 title 和 photoUrl, 而没有 attendees。现在你开始低效并且向 Attendees API 发起无效的请求。</p>
+<p>这不是你的错误，这是我们的工作方式。我们识别模式并复制他们。如果参与者看到数据查询在 event 解析器中完成，他们将可能增加任何其他数据查询，而不需要考虑太多。</p>
+<p>我们还有一个选项测试在 attendees 解析器中获取 attendees。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303002420.png" alt="attendees resolver fetches attendees details from the Attendees API" loading="lazy" ></p>
+<p>如果我们的客户端仅查询 attendees，而不是 title 和 photoUrl。我们仍然效率低下，因向 Events API 发起了不必的请求。</p>
+<h3 id="场景2n1-问题">场景#2：N+1 问题</h3>
+<p>由于数据在字段级查询，所以我们有过渡获取的风险。在 GraphQL 世界中，过渡获取和 N+1 问题是常见的话题。<a href="https://medium.com/u/bab76dfc19b0?source=post_page-----cd36fdbcef55-----------------------------------">Shopify</a> 有一个很赞的文章很好的解释了 N+1 问题。</p>
+<p>这对我们有什么影响？</p>
+<p>为了更好的阐明它，我们将增加一个新的 events 字段，返回所有 events。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303003158.png" alt="An events field returns all events." loading="lazy" ></p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303003216.png" alt="Query for all events w/ their title and attendees" loading="lazy" ></p>
+<p>如果客户端查询所有 events 和他们的 attendees，我们有过渡获取的风险，因为 attendees 可以参与不止一个 event。我们或许重复查询相同的 attendee。</p>
+<p>该问题在大型组织中被放大，在那里请求可能扩散并且给系统造成不必要的压力。</p>
+<p>为了解决它，我们需要批量并且删除重复请求！</p>
+<p>在 JavaScript，一些受欢迎的选项是 <a href="https://github.com/graphql/dataloader"> 数据加载器</a> 和 <a href="https://www.apollographql.com/docs/apollo-server/features/data-sources.html">Apollo 数据源</a>.</p>
+<p>如果你正使用其他语言，你可能会发现一些其他东西。所以，在你自己解决这个之前，先找一圈。</p>
+<p>最重要的是，这些位于数据访问层之上的库，将缓存和删除重复请求，使用消除抖动和缓存。如果你好奇异步缓存，看看 Daniel Brain 的<a href="https://medium.com/@bluepnume/async-javascript-is-much-more-fun-when-you-spend-less-time-thinking-about-control-flow-8580ce9f73fc">大作</a>。</p>
+<h3 id="在字段级获取数据">在字段级获取数据</h3>
+<p>早些时候，我们看到“头重脚轻“的父到子解析器很容易导致过渡获取。</p>
+<p><strong>有没有更好的选择？</strong></p>
+<p>让我们再次梳理下父到子选项。如果我们反过来，让子字段负责获取他们自己的数据呢？</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220303004804.png" alt="Fields are responsible for their own data fetching." loading="lazy" ></p>
+<p><strong>为什么这是一个更好的选择？</strong></p>
+<p>这段代码很容易理解。你确切的知道邮件在那里获取。这很容易调试。</p>
+<p>这段代码是可测试的。当你只想测试 title 解析器时，你不必测试 event 解析器。</p>
+<p>在某种程度上，getEvent 重复或许看起来像坏代码的味道。但是， 拥有简单、易于推理和更易于测试的代码是值得重复的。</p>
+<p>但是，这仍然有一个潜在的问题。如果客户端查询 title 和 photoUrl,我们用 getEvent 在
+Event API 上发起额外的请求。正如我们之前在 N+1 问题中看到的，我们应该使用像<a href="https://github.com/graphql/dataloader"> 数据加载器</a> 和 <a href="https://www.apollographql.com/docs/apollo-server/features/data-sources.html">Apollo 数据源</a>一样的库在框架层删除重复请求。</p>
+<p>如果我们在字段级获取数据并且删除重复请求，我们的代码容易调试和测试，并且我们可以不用考虑优化查询数据。</p>
+<h2 id="最佳实践">最佳实践</h2>
+<ul>
+<li>从父到子的数据获取和解析应该谨慎使用</li>
+<li>使用像<a href="https://github.com/graphql/dataloader"> 数据加载器</a>这样的库删除重复下游请求</li>
+<li>注意对数据源造成的任何压力</li>
+<li>不要修改”context。确保代码一致,Bug 更少</li>
+<li>写可读的、可维护的和可测试的解析器。不要太过聪明</li>
+<li>确保解析器尽可能的薄。为可重用的异步函数提供数据获取逻辑</li>
+</ul>
+<h2 id="继续学习">继续学习！</h2>
+<p>思考？我们将喜欢听到你的团队构建解析器的最佳实践和学习。这不是经常讨论的话题，但对构建持久的 GraphQL APIs 至关重要。</p>
+<p>在即将到来的文章中，我们将分享我们的思考关于：方案设计，错误处理，生产可视性，优化客户端集成和团队工具。</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92/>http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
+                    #技术翻译</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/hasura/">
+                    #Hasura</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://ansoncode.bazhentu.net/2022/014-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92-copy/" class="prev" rel="prev" title="014 译 | GraphQL的REST视角"><i class="iconfont icon-left"></i>&nbsp;014 译 | GraphQL的REST视角</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://ansoncode.bazhentu.net/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '015 译 | GraphQL解析器：最佳实践'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>
