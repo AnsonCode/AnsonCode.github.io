@@ -15,5 +15,3 @@ draft: true
 [Announcing Hasura GraphQL Engine 2.0!](https://hasura.io/blog/announcing-hasura-graphql-engine-2-0/)
 
 [Introducing the Open-Source Hasura Data Dictionary](https://hasura.io/blog/hasura-data-dictionary/)
-
-[A REST View of GraphQL](https://hasura.io/blog/rest-view-of-graphql/)
