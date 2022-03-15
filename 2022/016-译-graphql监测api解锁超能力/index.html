@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/014-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92-copy/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E8%A7%A3%E6%9E%90%E5%99%A8%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/016-%E8%AF%91-graphql%E7%9B%91%E6%B5%8Bapi%E8%A7%A3%E9%94%81%E8%B6%85%E8%83%BD%E5%8A%9B/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            016 译 | GraphQL：监测API，解锁超能力 | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="016 译 | GraphQL：监测API，解锁超能力 | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/ansoncode.bazhentu.net\/"
+    },
+    "articleSection" : "posts",
+    "name" : "016 译 | GraphQL：监测API，解锁超能力",
+    "headline" : "016 译 | GraphQL：监测API，解锁超能力",
+    "description" : "翻译自：GraphQL: Instrumenting your API and unlocking superpowers 本文是在 PayPal 构建 GraphQL APIs 所做的最佳实践和观察系列的第二部分。在日后的文章中，我们将分享我们关于：方案设计，错误",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-03-02 21:29:45 \u002b0800 CST",
+    "dateModified" : "2022-03-02 21:29:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/016-%E8%AF%91-graphql%E7%9B%91%E6%B5%8Bapi%E8%A7%A3%E9%94%81%E8%B6%85%E8%83%BD%E5%8A%9B\/",
+    "wordCount" : "1647",
+    "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://ansoncode.bazhentu.net/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://ansoncode.bazhentu.net/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">016 译 | GraphQL：监测API，解锁超能力</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2022-03-02 itemprop="datePublished">March 2, 2022</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E7%A0%94%E5%8F%91%E6%8F%90%E6%95%88/"> 研发提效, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">1647 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>翻译自：<a href="https://medium.com/paypal-tech/graphql-instrumenting-your-api-and-unlocking-superpowers-c0bc3a9dc451">GraphQL: Instrumenting your API and unlocking superpowers</a></p>
+<p>本文是在 PayPal 构建 GraphQL APIs 所做的最佳实践和观察系列的第二部分。在日后的文章中，我们将分享我们关于：方案设计，错误处理，生产可视性，优化客户端集成和团队工具的想法。</p>
+<p>你或许已经看过我们之前的文章：GraphQL: PayPal Checkout 成功的故事，它讲述了 PayPal 从 REST 到 GraphQL 的旅程。本文将详细介绍插桩以及为什么它是重要的，为什么监测 API 解锁超能力以及一些监测 API 的策略。</p>
+<p><strong>插桩</strong></p>
+<ol>
+<li>检测或测量产品性能水平，诊断错误，写追踪信息的能力</li>
+<li>怎么样理解你的用户如何使用 API，并且怎么随着时间自信地演化 API</li>
+</ol>
+<p>插桩是在应用程序代码中增加合适数量的日志，以便于你确切的知道它是如何被使用的。</p>
+<h2 id="解锁超能力">解锁超能力</h2>
+<p>使用 GraphQL，客户端必须在字段级别明确要求他们需要的数据。他们只接收这些字段，不多也不少。例如：客户端不能简单的要求 USER 类型的所有字段。由于设计约束，插桩在 GraphQL 中比在传统 REST APIs 中更有用。</p>
+<h2 id="满怀信心的改造-api">满怀信心的改造 API</h2>
+<p>在 REST 中，客户端请求资源或对象。你或许知道客户端调用 GET /project 端点多少次，但是你不知道他们真的需要资源的哪一个字段。你无法洞察资源的哪个部分是有问题的或者较慢的。更坏的是，你无法洞察客户端如何使用 APIs，所以你更可能保持扩展或增长 API，因为你太害怕做出突破性的改变。</p>
+<p>在 GraphQL 中，可以随着时间推移逐渐进行更改。你不需要创建新的主要版本（例如：/V3）并且维护一个 API 的多个版本。你不需要启动一个大型项目迁移所有的客户端到一个新的主要版本上。</p>
+<p>如果你想重命名或者移除字段，并且你的插桩说没人使用它？好极了！你可以自信地移除它。</p>
+<p>如果你想完全重构 schema，你也可以渐进迁移！创建并部署新的结构，然后使用@deprecated 指令标记旧的字段，这样新的客户端就看不到他们了，通知正请求旧字段的客户端，稍后安全的移除它。</p>
+<h2 id="强大的工具">强大的工具</h2>
+<p>插桩为强大的工具打开了大门！</p>
+<p>现在，你确切知道哪个字段太慢或者造成太多错误。你也确切知道你的字段被请求了多少次，以及被谁请求。</p>
+<p>首先，你可以将数据传输到像 Grafana 这样的工具中。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220313161940.png" alt="Example of latency per resolver/field" loading="lazy" ></p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220313162015.png" alt="Example of # of errors per resolver/field" loading="lazy" ></p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220313162033.png" alt="Example of # of times a resolver/field is executed" loading="lazy" ></p>
+<p>接下来， Marc-André Giroux 在 <a href="https://speakerdeck.com/xuorig/continuous-evolution-of-graphql-schemas-at-github?slide=52">Continuous Evolution of Schemas</a> 上的访谈展示了一个 GitHub 内部使用的拉取请求机器人。如果你想移除字段并且你有客户端查询这些字段，你的更改将被拒绝。如果没人使用那个字段，好极了！去移除它吧！</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220314192304.png" alt="From Marc-Andre Giroux’s talk on Continuous Evolution of Schemas" loading="lazy" ></p>
+<p>最终，如果你想移除字段，并且你知道你的客户端正在使用它，你应该使用@deprecated 指令废弃它，而不是移除它。</p>
+<p>因为你知道哪个客户端请求哪个字段，当你 废弃他们使用的一些东西时，你可以主动地通知他们。在 PayPal，我们发现通过积极主动并且小幅度做出改变，产品团队更可能快速迁移。大项目以及带有复杂计划流程的大迁移会让人望而生畏并且破坏开发者的工作流。</p>
+<h2 id="应用实践">应用实践</h2>
+<p>在实践中，最容易的方法是检测被每个查询调用的解析器函数。</p>
+<p>在 Node.JS 中，你使用另一个函数封装全部的解析器函数，并且获取开始到结束的时间差值。如果你正在使用 Node.js 的 apollo 服务，你可以简单开启跟踪标识，当<a href="https://www.apollographql.com/docs/apollo-server/api/apollo-server.html#constructor-options-lt-ApolloServer-gt">创建 ApolloServer 实例</a>时，然后采用响应的“跟踪”部分，并且做你想用它做的事情。</p>
+<p>其他语言绑定（例如： Java 的<a href="https://github.com/graphql-java/graphql-java"> graphql-java </a>）也有选项！</p>
+<p>尽管监测解析器函数是最容易开始的方式，他不是 100%精确。更好的方法是评估客户端请求了哪个查询。可能存在一种情形“父”字段（例如：user）当前被破坏，执行了一半，并且 name 解析器没有被调用。如果你使用解析器方法，你或许认为 name 字段从未被请求过并且认为移除它很安全。然后，修复 user 解析器并且破坏了客户端。当然！它是有点极端的案例，但还是安全为好。</p>
+<p>一个更好的方法是评估客户端发送了哪个查询，而不是执行了什么解析器。这不像监测解析器那样简单，并且目前没有任何知名开源解决方案。如果这听起来像一个有趣的问题，你或许想要解决并开源，我们的社区将感谢你。</p>
+<p>值得一提的 Apollo Engine 也是一个很好的解决该问题的付费服务。Engine 不仅能捕获字段和整体查询的时间和错误率，而且它也有一些真的很好的可视化效果。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315135550.png" alt="From apollographql.com" loading="lazy" ></p>
+<h2 id="继续收听">继续收听</h2>
+<p>思考下？我们想要听到你团队关于插槽的想法。这是一个非常有力和有趣的话题，但创新的时机仍然成熟（有机会创新）。</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/016-%E8%AF%91-graphql%E7%9B%91%E6%B5%8Bapi%E8%A7%A3%E9%94%81%E8%B6%85%E8%83%BD%E5%8A%9B/>http://ansoncode.bazhentu.net/2022/016-%E8%AF%91-graphql%E7%9B%91%E6%B5%8Bapi%E8%A7%A3%E9%94%81%E8%B6%85%E8%83%BD%E5%8A%9B/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/016-%E8%AF%91-graphql%E7%9B%91%E6%B5%8Bapi%E8%A7%A3%E9%94%81%E8%B6%85%E8%83%BD%E5%8A%9B/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
+                    #技术翻译</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/hasura/">
+                    #Hasura</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://ansoncode.bazhentu.net/2022/014-%E8%AF%91-graphql%E7%9A%84rest%E8%A7%86%E8%A7%92-copy/" class="prev" rel="prev" title="014 译 | GraphQL的REST视角"><i class="iconfont icon-left"></i>&nbsp;014 译 | GraphQL的REST视角</a>
+        
+        
+        <a href="http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E8%A7%A3%E6%9E%90%E5%99%A8%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="next" rel="next" title="015 译 | GraphQL解析器：最佳实践">015 译 | GraphQL解析器：最佳实践&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://ansoncode.bazhentu.net/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = '016 译 | GraphQL：监测API，解锁超能力'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>

@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E8%A7%A3%E6%9E%90%E5%99%A8%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" />
     
-    
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/posts/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,25 +22,51 @@
     <title>
         
         
-            Posts | Anson`s Blog
+            017 译 | 使用Hasura增加自定义业务逻辑 | Anson`s Blog
         
     </title>
-    <meta name="title" content="Posts | Anson`s Blog">
+    <meta name="title" content="017 译 | 使用Hasura增加自定义业务逻辑 | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
 
     
-    <link rel="alternate" href="/posts/index.xml" type="application/rss+xml" title="Anson`s Blog">
-    <link rel="feed" href="/posts/index.xml" type="application/rss+xml" title="Anson`s Blog">
-    
     
  
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/ansoncode.bazhentu.net\/"
+    },
+    "articleSection" : "posts",
+    "name" : "017 译 | 使用Hasura增加自定义业务逻辑",
+    "headline" : "017 译 | 使用Hasura增加自定义业务逻辑",
+    "description" : "翻译自：Adding custom business logic with Hasura Hasura 在 Postgres 上提供具有身份验证引擎的即时实时 GraphQL。这使得设置一个快速的安全且可扩展的 GraphQL API 变得更容易，包括开",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-03-15 21:09:45 \u002b0800 CST",
+    "dateModified" : "2022-03-15 21:09:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/017-%E8%AF%91-copy-2\/",
+    "wordCount" : "858",
+    "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
+}
+</script>
 
   </head>
     <body class="">
         <div class="wrapper">
             <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
     
     <div class="container">
         
@@ -56,7 +82,7 @@
                 
                 <span class="menu">
                 
-                <a class="menu-item active" href="/posts/" title="">Blog</a>
+                <a class="menu-item" href="/posts/" title="">Blog</a>
                 
                 <a class="menu-item" href="/categories/" title="">Categories</a>
                 
@@ -71,6 +97,8 @@
     </div>
 </nav>
 <nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
     
      <div class="container">
         <div class="navbar">
@@ -89,7 +117,7 @@
                 <nav class="mb-md">
                     
                     
-                        <a class="menu-item active" href="/posts/" title="">
+                        <a class="menu-item" href="/posts/" title="">
                             <h3>Blog</h3>
                             <div class="menu-active"></div>
                         </a>
@@ -116,95 +144,185 @@
             <main class="main">
                 <div class="container">
                     
-<div class="post-warp archive">
-    
-    <h3>2021</h3>
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">017 译 | 使用Hasura增加自定义业务逻辑</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2022-03-15 itemprop="datePublished">March 15, 2022</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E7%A0%94%E5%8F%91%E6%8F%90%E6%95%88/"> 研发提效, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">858 words</span>
+        </div>
+    </header>
 
-    
-    <article class="archive-item">
-        <a href="/2021/201%E7%94%A8hugo%E6%90%AD%E5%BB%BA%E5%85%8D%E8%B4%B9%E7%9A%84%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%B9%B6%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2/" class="archive-item-link">201十分钟！用hugo搭建免费的个人博客并自动化部署</a>
-        <span class="archive-item-date">
-            January 20, 2021
-        </span>
-    </article>
-    
-    <article class="archive-item">
-        <a href="/2021/001%E4%BB%80%E4%B9%88%E6%98%AF%E5%A4%A7%E7%AB%AF%E5%AF%B9%E9%BD%90%E5%92%8C%E5%B0%8F%E7%AB%AF%E5%AF%B9%E9%BD%90/" class="archive-item-link">001什么是大端对齐和小端对齐？</a>
-        <span class="archive-item-date">
-            January 20, 2021
-        </span>
-    </article>
-     
-    <h3>0001</h3>
+    <div class="post-content">
+        
 
-    
-    <article class="archive-item">
-        <a href="/1/001%E7%AE%80%E4%BB%8B/" class="archive-item-link"></a>
-        <span class="archive-item-date">
-            January 1, 0001
-        </span>
-    </article>
-    
-    <article class="archive-item">
-        <a href="/1/00%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87/" class="archive-item-link"></a>
-        <span class="archive-item-date">
-            January 1, 0001
-        </span>
-    </article>
-     
-    
+        
+        
+            
+        
 
-<ul class="pagination">
-    
-    
-    
-    
-    
-    
-    
-    
         
         
-    
-    
-    <li class="page-item ">
-        <span class="page-link">
-            <a href="/posts/">1</a></li>
-        </span>
-    
-    
-    
-    
-    
-    
         
         
-    
-    
-    <li class="page-item ">
-        <span class="page-link">
-            <a href="/posts/page/2/">2</a></li>
-        </span>
-    
-    
-    
-    
-    
-    
+        
+
         
         
-    
-    
-    <li class="page-item active">
-        <span class="page-link">
-            <a href="/posts/page/3/">3</a></li>
-        </span>
-    
-    
+        
+
+        <p>翻译自：<a href="https://hasura.io/blog/custom-business-logic/">Adding custom business logic with Hasura</a></p>
+<p>Hasura 在 Postgres 上提供具有身份验证引擎的即时实时 GraphQL。这使得设置一个快速的安全且可扩展的 GraphQL API 变得更容易，包括开箱即用的 GraphQL 订阅！</p>
+<p>如何增加自定义逻辑呢？</p>
+<ul>
+<li>数据驱动逻辑</li>
+<li>自带 GraphQL API</li>
+<li>事件驱动业务逻辑（写优先工作流）</li>
 </ul>
+<p>本文涵盖了定制和扩展 Hasura 的不同方法，所以你可以容易地增加业务逻辑，使用你最喜欢的工具或框架。</p>
+<p>你将注意到当你考虑为应用增加新的或现存业务逻辑时，Hasura 鼓励你利用云原生模式（无状态微服务，serverless 函数，事件驱动）。</p>
+<h2 id="事件驱动逻辑">事件驱动逻辑</h2>
+<p>通常，在数据库层做一些业务逻辑比应用层更好（或更容易）。例如，复杂高性能聚合（假设连续时间序列聚合）或者事务存储进程。</p>
+<p>Hasura 使得使用 Postgres 视图（预定义查询）和函数为 GraphQL API 增加新的类型和字段更容易。Hasura 也使得自定义和扩展在 GraphQL API 中生成的类型和字段更加容易。</p>
+<ul>
+<li>视图和函数</li>
+<li>计算字段</li>
+<li>自定义 GraphQL schema 和字段名称（你可以容易的使用元数据 APIs 或 Hasura 控制面板做到）</li>
+</ul>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315191343.png" alt=""></p>
+<p>Hasura 很容易充分利用你的数据库，同时强制和重用身份授权系统，所以你不必为数据优先的任务写代码。</p>
+<h2 id="自带-graphql-服务自定义业务逻辑">自带 GraphQL 服务：自定义业务逻辑</h2>
+<p>Hasura 提供了一个容易的方式增加业务逻辑，通过使用“remote schemas&quot;”使用自己的 GraphQL API。</p>
+<p>（当你需要将不是 Hasura 早已指定数据库类型引入 GraphQL 模式时，这是理想的方式。）</p>
+<p>特定于领域的业务逻辑经常存在于微服务中，它或许与其他数据库，外部 SaaS APIs 通讯或者需要复杂应用层处理和转换。</p>
+<ul>
+<li>远程 Schemas</li>
+<li>远程连接</li>
+</ul>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315204555.png" alt=""></p>
+<p>Hasura 可以直接将他们集成到一个统一 GraphQL API 中 ，并且允许你通过配置“远程连接”配置不同 GraphQL 服务公开类型之间的语义关系。</p>
+<h2 id="事件驱动业务逻辑写优先工作流">事件驱动业务逻辑（写优先工作流）</h2>
+<p>随着微服务和无服务函数激增“后端技术栈”，事件驱动模式正成为处理日益复杂问题的规范。</p>
+<p>用事件驱动业务逻辑可以在不影响可伸缩性的情况下更容易实现解耦和容错。</p>
+<p><a href="https://hasura.io/blog/introducing-actions/">Hasura Actions</a>提供了一个容易的方式创建自定义 GraphQL 变更规范，并且将他们映射到微服务 APIs 或无服务函数（甚至 Postgres 函数）的事件处理器中。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315210053.png" alt=""></p>
+<p>Hasura 在内部关注事件管道，包括事件捕捉，持久化和投递。</p>
+<p>阅读更多<a href="https://hasura.io/blog/introducing-actions/"> Hasura actions</a>(已翻译)！</p>
 
-</div>
+    </div>
 
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/>http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
+                    #技术翻译</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/hasura/">
+                    #Hasura</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E8%A7%A3%E6%9E%90%E5%99%A8%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="prev" rel="prev" title="015 译 | GraphQL解析器：最佳实践"><i class="iconfont icon-left"></i>&nbsp;015 译 | GraphQL解析器：最佳实践</a>
+        
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
                 </div>
             </main>
             <footer class="footer">
@@ -302,7 +420,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = 'Posts'
+            let title = '017 译 | 使用Hasura增加自定义业务逻辑'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
