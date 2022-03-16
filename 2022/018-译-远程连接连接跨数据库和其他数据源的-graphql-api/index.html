@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E8%A7%A3%E6%9E%90%E5%99%A8%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" />
-    <link rel="next" href="http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/" />
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/" />
+    
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            017 译 | 使用Hasura增加自定义业务逻辑 | Anson`s Blog
+            018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API | Anson`s Blog
         
     </title>
-    <meta name="title" content="017 译 | 使用Hasura增加自定义业务逻辑 | Anson`s Blog">
+    <meta name="title" content="018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "017 译 | 使用Hasura增加自定义业务逻辑",
-    "headline" : "017 译 | 使用Hasura增加自定义业务逻辑",
-    "description" : "翻译自：Adding custom business logic with Hasura Hasura 在 Postgres 上提供具有身份验证引擎的即时实时 GraphQL。这使得设置一个快速的安全且可扩展的 GraphQL API 变得更容易，包括开",
+    "name" : "018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API",
+    "headline" : "018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API",
+    "description" : "翻译自：Remote Joins: A GraphQL API to join across your database and other data-sources 今天我们很高兴宣布 Remote Joins 的发布。使用 Hasura Remote Joins 的数据联合现在在 V1.3.0 稳定版本可用。 使用 Remote Joins ，开发者可以将跨",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
@@ -53,10 +53,10 @@
     "accountablePerson" : "Anson",
     "copyrightHolder" : "Anson",
     "copyrightYear" : "2022",
-    "datePublished": "2022-03-15 21:09:45 \u002b0800 CST",
-    "dateModified" : "2022-03-15 21:09:45 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/017-%E8%AF%91-copy-2\/",
-    "wordCount" : "858",
+    "datePublished": "2022-03-16 21:48:45 \u002b0800 CST",
+    "dateModified" : "2022-03-16 21:48:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api\/",
+    "wordCount" : "1203",
     "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
 }
 </script>
@@ -146,11 +146,11 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">017 译 | 使用Hasura增加自定义业务逻辑</h1>
+        <h1 class="post-title" itemprop="name headline">018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
-                on <time datetime=2022-03-15 itemprop="datePublished">March 15, 2022</time>
+                on <time datetime=2022-03-16 itemprop="datePublished">March 16, 2022</time>
                 </span>
                 in
                 
@@ -163,7 +163,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">858 words</span>
+                <span class="post-word-count">1203 words</span>
         </div>
     </header>
 
@@ -185,43 +185,55 @@
         
         
 
-        <p>翻译自：<a href="https://hasura.io/blog/custom-business-logic/">Adding custom business logic with Hasura</a></p>
-<p>Hasura 在 Postgres 上提供具有身份验证引擎的即时实时 GraphQL。这使得设置一个快速的安全且可扩展的 GraphQL API 变得更容易，包括开箱即用的 GraphQL 订阅！</p>
-<p>如何增加自定义逻辑呢？</p>
-<ul>
-<li>数据驱动逻辑</li>
-<li>自带 GraphQL API</li>
-<li>事件驱动业务逻辑（写优先工作流）</li>
-</ul>
-<p>本文涵盖了定制和扩展 Hasura 的不同方法，所以你可以容易地增加业务逻辑，使用你最喜欢的工具或框架。</p>
-<p>你将注意到当你考虑为应用增加新的或现存业务逻辑时，Hasura 鼓励你利用云原生模式（无状态微服务，serverless 函数，事件驱动）。</p>
-<h2 id="事件驱动逻辑">事件驱动逻辑</h2>
-<p>通常，在数据库层做一些业务逻辑比应用层更好（或更容易）。例如，复杂高性能聚合（假设连续时间序列聚合）或者事务存储进程。</p>
-<p>Hasura 使得使用 Postgres 视图（预定义查询）和函数为 GraphQL API 增加新的类型和字段更容易。Hasura 也使得自定义和扩展在 GraphQL API 中生成的类型和字段更加容易。</p>
-<ul>
-<li>视图和函数</li>
-<li>计算字段</li>
-<li>自定义 GraphQL schema 和字段名称（你可以容易的使用元数据 APIs 或 Hasura 控制面板做到）</li>
-</ul>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315191343.png" alt=""></p>
-<p>Hasura 很容易充分利用你的数据库，同时强制和重用身份授权系统，所以你不必为数据优先的任务写代码。</p>
-<h2 id="自带-graphql-服务自定义业务逻辑">自带 GraphQL 服务：自定义业务逻辑</h2>
-<p>Hasura 提供了一个容易的方式增加业务逻辑，通过使用“remote schemas&quot;”使用自己的 GraphQL API。</p>
-<p>（当你需要将不是 Hasura 早已指定数据库类型引入 GraphQL 模式时，这是理想的方式。）</p>
-<p>特定于领域的业务逻辑经常存在于微服务中，它或许与其他数据库，外部 SaaS APIs 通讯或者需要复杂应用层处理和转换。</p>
-<ul>
-<li>远程 Schemas</li>
-<li>远程连接</li>
-</ul>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315204555.png" alt=""></p>
-<p>Hasura 可以直接将他们集成到一个统一 GraphQL API 中 ，并且允许你通过配置“远程连接”配置不同 GraphQL 服务公开类型之间的语义关系。</p>
-<h2 id="事件驱动业务逻辑写优先工作流">事件驱动业务逻辑（写优先工作流）</h2>
-<p>随着微服务和无服务函数激增“后端技术栈”，事件驱动模式正成为处理日益复杂问题的规范。</p>
-<p>用事件驱动业务逻辑可以在不影响可伸缩性的情况下更容易实现解耦和容错。</p>
-<p><a href="https://hasura.io/blog/introducing-actions/">Hasura Actions</a>提供了一个容易的方式创建自定义 GraphQL 变更规范，并且将他们映射到微服务 APIs 或无服务函数（甚至 Postgres 函数）的事件处理器中。</p>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315210053.png" alt=""></p>
-<p>Hasura 在内部关注事件管道，包括事件捕捉，持久化和投递。</p>
-<p>阅读更多<a href="https://hasura.io/blog/introducing-actions/"> Hasura actions</a>(已翻译)！</p>
+        <p>翻译自：<a href="https://hasura.io/blog/remote-joins-a-graphql-api-to-join-database-and-other-data-sources/">Remote Joins: A GraphQL API to join across your database and other data-sources</a></p>
+<p>今天我们很高兴宣布 Remote Joins 的发布。使用 Hasura Remote Joins 的数据联合现在在 V1.3.0 稳定版本可用。</p>
+<p><strong>使用 Remote Joins ，开发者可以将跨不同数据源的数据视为同一个数据库而不必修改或者影响现存数据源。</strong></p>
+<p>随着开发者和团队开始使用越来越多的第三方 APIs，多数据库和微服务，数据和“真相之源”正在这些数据源间传播。应用开发者很难访问精确的数据切片，并且花费大量研发周期将数据安全的整合到一起。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315221708.png" alt="Remote Joins: A GraphQL API to join across your database and other data-sources" loading="lazy" ></p>
+<p>Hasura 的 Remote Joins 扩展跨表连接数据的概念，能够跨表和远程数据源连接数据。一旦创建了数据库类型和 APIs 类型之间的关系，然后你可以通过执行 GraphQL 查询“连接”他们。</p>
+<p>Remote joins 可以跨数据库和 APIs 连接。这些 APIs 可以是你写的<a href="https://hasura.io/graphql/production-ready-existing-apis/">自定义 GraphQL 服务</a>，第三方 SaaS APIs，或者甚至其他 Hasura 实例。</p>
+<p>当然，由于 Hasura 旨在成为一个你可以直接暴露到应用上的 GraphQL 服务，当提供远程连接时，Hasura 也处理安全和身份验证。</p>
+<h2 id="用例1客户数据与在-stripe-中的账户账单支付信息连接">用例#1：客户数据与在 Stripe 中的账户、账单、支付信息连接</h2>
+<p>如果在你的应用上有使用 Stripe 的支付方法，你客户的很多账户、账单信息存储在 Stripe 中。例如，客户的储值卡、账户余额、账单/发票历史。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315224653.png" alt="Customer data joined with account, billing, payment-transaction data in Stripe" loading="lazy" ></p>
+<p>在应用中，你不出所料的想要为用户展示卡片和发票历史。你将写代码从 Stripe API 为正确的用户、发票获取正确的数据，并将其作为 API 响应返回给应用。</p>
+<p>这是 Hasura 上的设置：</p>
+<h3 id="步骤-1设置-onegraph-连接到你的-stripe-账户">步骤 1：设置 OneGraph 连接到你的 Stripe 账户</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315225202.png" alt="Setup OneGraph to connect to your Stripe account" loading="lazy" ></p>
+<h3 id="步骤-2将-onegraph-作为远程模式添加到-hasura">步骤 2：将 OneGraph 作为远程模式添加到 Hasura</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315225335.png" alt="Add OneGraph as a remote schema to Hasura" loading="lazy" ></p>
+<h3 id="步骤-3使用-stripe_customer_id-作为连接键设置客户表到-stripe-解析器的远程关系">步骤 3：使用 <code>stripe_customer_id</code> 作为“连接”键设置客户表到 Stripe 解析器的远程关系</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315225602.png" alt="Your table should have the stripe_customer_id column" loading="lazy" ></p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315225634.png" alt="Setup a remote relationship from your customer table to the Stripe resolver using the stripe_customer_id as the &ldquo;join&rdquo; key" loading="lazy" ></p>
+<h3 id="步骤-4发起-graphql-查询在一个请求中获取客户和-stripe-信息">步骤 4：发起 GraphQL 查询在一个请求中获取客户和 stripe 信息！</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220315225833.png" alt="Make GraphQL queries to fetch customer and stripe information in one shot!" loading="lazy" ></p>
+<h2 id="用例2用户数据连接-auth0-的个人资料信息">用例#2：用户数据连接 Auth0 的个人资料信息</h2>
+<p>当你使用外部身份验证提供商（或者甚至一个你团队不直接拥有的身份验证/用户管理微服务），将有一些信息仅由身份认证服务提供。例如， <code>last_login</code>, <code>verified_email</code>, <code>login_count</code> 等。</p>
+<p>在数据库中，你通常有一个具有 <code>auth0_id</code> 字段的用户表。为获取特定身份信息，你需要使用这个 ID 和 Auth0 API。</p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316202126.png" alt="User data joined with account/profile/auth information in Auth0" loading="lazy" ></p>
+<p>下面是 Hasura 如何帮助你自动化这个流程：</p>
+<h3 id="步骤-1在-graphql-查询httpshasuraiolearngraphqlintro-graphqlgraphql-queries解析器中写一个封装有-auth0-个人资料-api-的无服务函数">步骤 1：在 <a href="https://hasura.io/learn/graphql/intro-graphql/graphql-queries/">GraphQL 查询</a>解析器中写一个封装有 Auth0 个人资料 API 的无服务函数</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316202440.png" alt="Write a serverless function that wraps the Auth0 profile API in a GraphQL query resolver. " loading="lazy" ></p>
+<h3 id="步骤-2在-hasura-中将此连接为一个-remote-schema">步骤 2：在 Hasura 中将此连接为一个 remote schema</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316202634.png" alt="Connect this as a remote schema in Hasura" loading="lazy" ></p>
+<h3 id="步骤-3前往-hasura-中的-user-表并为上面添加的模式中增加一个远程关系">步骤 3：前往 Hasura 中的 <code>USER</code> 表，并为上面添加的模式中增加一个“远程关系”</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316202913.png" alt="The auth0_id identifier is the &ldquo;join&rdquo; key from your database" loading="lazy" ></p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316203010.png" alt="Add a &ldquo;remote relationship&rdquo; to the auth0 schema" loading="lazy" ></p>
+<h3 id="步骤-4发起一个-graphql-查询同时从user-表和-auth0-个人资料信息查询数据">步骤 4：发起一个 GraphQL 查询同时从<code>USER</code> 表和 Auth0 个人资料信息查询数据</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316204258.png" alt="Make a GraphQL query to query data from the user table and the Auth0 profile information simultaneously" loading="lazy" ></p>
+<h2 id="用例3跨-2-个独立的数据库连接数据">用例#3：跨 2 个独立的数据库连接数据</h2>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316204411.png" alt="Joining data across 2 databases" loading="lazy" ></p>
+<p>标题说明了一切。这是 Hasura 的工作原理！</p>
+<h3 id="步骤-1设置-hasura-使用正确的权限控制规则指向数据库-1-和数据库-2以便-graphql-api-是安全的">步骤 1：设置 Hasura 使用正确的权限控制规则指向数据库 1 和数据库 2，以便 GraphQL API 是安全的</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316204706.png" alt="The &ldquo;remote&rdquo; Hasura + Postgres" loading="lazy" ></p>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316204725.png" alt="The &ldquo;primary&rdquo; Hasura + Postgres" loading="lazy" ></p>
+<h3 id="步骤-2在你主数据库的-hasura-上增加第二个-hasura-作为一个远程模式">步骤 2：在你“主”数据库的 Hasura 上，增加第二个 Hasura 作为一个远程模式</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316204924.png" alt="On the Hasura of your &ldquo;primary&rdquo; database, add the second Hasura as a remote schema" loading="lazy" ></p>
+<h3 id="步骤-3建立从主数据库任意表到其他数据库解析器-的远程关系">步骤 3：建立从“主”数据库任意表到其他数据库解析器 的远程关系</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316205300.png" alt="Set up remote relationships from any table in your &ldquo;primary&rdquo; database to resolvers in the other database" loading="lazy" ></p>
+<h3 id="步骤-4运行跨-2-个数据库连接的-graphql-查询">步骤 4：运行跨 2 个数据库连接的 GraphQL 查询</h3>
+<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316205447.png" alt="A GraphQL query that joins data across 2 databases!" loading="lazy" ></p>
+<p>注意：Hasura Remote Joins 是一个联邦类型，类似 Apollo Federation。主要的不同是 Apollo Federation 目的是帮助拥有多个 GraphQL 团队的组织“联合”一个全局的 GraphQL schema。 Hasura remote joins 帮你跨多个数据源（或 GraphQL &amp; REST microservices）“连接”，以便你获得一个统一的数据联合 GraphQL API。该统一 GraphQL API 或许对为其应用提供多个数据源的团队所必须，也可能是是一个统一的跨多团队的 GraphQL API，由组织的中心团队维护。</p>
 
     </div>
 
@@ -237,12 +249,12 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/>http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/>http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -308,10 +320,8 @@
 
     <div class="post-nav">
         
-        <a href="http://ansoncode.bazhentu.net/2022/015-%E8%AF%91-graphql%E8%A7%A3%E6%9E%90%E5%99%A8%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/" class="prev" rel="prev" title="015 译 | GraphQL解析器：最佳实践"><i class="iconfont icon-left"></i>&nbsp;015 译 | GraphQL解析器：最佳实践</a>
+        <a href="http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/" class="prev" rel="prev" title="017 译 | 使用Hasura增加自定义业务逻辑"><i class="iconfont icon-left"></i>&nbsp;017 译 | 使用Hasura增加自定义业务逻辑</a>
         
-        
-        <a href="http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/" class="next" rel="next" title="018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API">018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -422,7 +432,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = '017 译 | 使用Hasura增加自定义业务逻辑'
+            let title = '018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 

@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 15 Mar 2022 21:09:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Mar 2022 21:48:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API</title>
+      <link>http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/</link>
+      <pubDate>Wed, 16 Mar 2022 21:48:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/</guid>
+      <description>翻译自：Remote Joins: A GraphQL API to join across your database and other data-sources 今天我们很高兴宣布 Remote Joins 的发布。使用 Hasura Remote Joins 的数据联合现在在 V1.3.0 稳定版本可用。 使用 Remote Joins ，开发者可以将跨</description>
+    </item>
+    
     <item>
       <title>017 译 | 使用Hasura增加自定义业务逻辑</title>
       <link>http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/</link>
