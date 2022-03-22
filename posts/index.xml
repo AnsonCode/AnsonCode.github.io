@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 16 Mar 2022 21:48:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Mar 2022 01:27:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用</title>
+      <link>http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Wed, 23 Mar 2022 01:27:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/</guid>
+      <description>翻译自：Building Stateful Apps with Serverless Functions and Postgres 本文探索当在无服务函数中写业务逻辑时，处理应用状态的不同的方式。当谈论这些不同的方法时，我们将主要使用</description>
+    </item>
+    
     <item>
       <title>018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API</title>
       <link>http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/</link>
