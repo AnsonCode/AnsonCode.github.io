@@ -27,10 +27,10 @@
     
     <item>
       <title>017 译 | 使用Hasura增加自定义业务逻辑</title>
-      <link>http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/</link>
+      <link>http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-%E4%BD%BF%E7%94%A8hasura%E5%A2%9E%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/</link>
       <pubDate>Tue, 15 Mar 2022 21:09:45 +0800</pubDate>
       
-      <guid>http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-copy-2/</guid>
+      <guid>http://ansoncode.bazhentu.net/2022/017-%E8%AF%91-%E4%BD%BF%E7%94%A8hasura%E5%A2%9E%E5%8A%A0%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91/</guid>
       <description>翻译自：Adding custom business logic with Hasura Hasura 在 Postgres 上提供具有身份验证引擎的即时实时 GraphQL。这使得设置一个快速的安全且可扩展的 GraphQL API 变得更容易，包括开</description>
     </item>
     
