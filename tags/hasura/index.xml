@@ -6,7 +6,16 @@
     <description>Recent content in Hasura on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 23 Mar 2022 01:27:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/hasura/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 19 Apr 2022 23:59:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/hasura/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>022 译 | Hasura vs WunderGraph：不同之处是什么？</title>
+      <link>http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/</link>
+      <pubDate>Tue, 19 Apr 2022 23:59:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/</guid>
+      <description>翻译自：Hasura vs WunderGraph comparison: What are the differences? 从高层次角度来看，Hasura 和 WunderGraph 都给你“所有数据的即时 GraphQL ”，正如 Hasura 所说。本文，我们将分解这两个方案，并逐</description>
+    </item>
+    
     <item>
       <title>019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用</title>
       <link>http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/</link>
