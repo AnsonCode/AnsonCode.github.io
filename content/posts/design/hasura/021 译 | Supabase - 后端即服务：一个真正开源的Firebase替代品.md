@@ -5,7 +5,7 @@ tags: ["技术翻译", "PostgREST"]
 categories: ["研发提效"]
 featured_image:
 description:
-draft: true
+draft: false
 ---
 
 翻译自：[ Supabase - Backend as a service： A truly open source alternative to Firebase ](https://flaming.codes/posts/supabase-backend-as-a-service-firebase-alternative)
