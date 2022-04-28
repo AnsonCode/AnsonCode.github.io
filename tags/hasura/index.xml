@@ -6,7 +6,16 @@
     <description>Recent content in Hasura on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 19 Apr 2022 23:59:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/hasura/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Apr 2022 23:59:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/hasura/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>025 译 | StepZen vs. Apollo vs. Hasura</title>
+      <link>http://ansoncode.bazhentu.net/2022/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura/</link>
+      <pubDate>Thu, 28 Apr 2022 23:59:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura/</guid>
+      <description>翻译自：StepZen vs. Apollo vs. Hasura 后端团队正在努力为前端团队构建和部署 APIs，以便快速构建应用。他们被前端团队的请求驱动，去提供更好的性能以及</description>
+    </item>
+    
     <item>
       <title>022 译 | Hasura vs WunderGraph：不同之处是什么？</title>
       <link>http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/</link>

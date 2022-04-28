@@ -6,13 +6,40 @@
     <description>Recent content in Tags on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 19 Apr 2022 23:59:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Apr 2022 23:59:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GraphQL</title>
+      <link>http://ansoncode.bazhentu.net/tags/graphql/</link>
+      <pubDate>Thu, 28 Apr 2022 23:59:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/tags/graphql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Hasura</title>
       <link>http://ansoncode.bazhentu.net/tags/hasura/</link>
-      <pubDate>Tue, 19 Apr 2022 23:59:45 +0800</pubDate>
+      <pubDate>Thu, 28 Apr 2022 23:59:45 +0800</pubDate>
       
       <guid>http://ansoncode.bazhentu.net/tags/hasura/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>StepZen</title>
+      <link>http://ansoncode.bazhentu.net/tags/stepzen/</link>
+      <pubDate>Thu, 28 Apr 2022 23:59:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/tags/stepzen/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>技术翻译</title>
+      <link>http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/</link>
+      <pubDate>Thu, 28 Apr 2022 23:59:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/</guid>
       <description></description>
     </item>
     
@@ -26,11 +53,11 @@
     </item>
     
     <item>
-      <title>技术翻译</title>
-      <link>http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/</link>
-      <pubDate>Tue, 19 Apr 2022 23:59:45 +0800</pubDate>
+      <title>PostgREST</title>
+      <link>http://ansoncode.bazhentu.net/tags/postgrest/</link>
+      <pubDate>Thu, 31 Mar 2022 22:27:45 +0800</pubDate>
       
-      <guid>http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/</guid>
+      <guid>http://ansoncode.bazhentu.net/tags/postgrest/</guid>
       <description></description>
     </item>
     

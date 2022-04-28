@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    
-    
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/draft/%E7%BC%96%E7%A8%8B/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-             | Anson`s Blog
+            021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品 | Anson`s Blog
         
     </title>
-    <meta name="title" content=" | Anson`s Blog">
+    <meta name="title" content="021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品 | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -42,22 +42,22 @@
          "@type": "WebPage",
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
-    "articleSection" : "draft",
-    "name" : "",
-    "headline" : "",
-    "description" : "节流和防抖 防抖 所谓防抖就是，触发事件后，把触发非常频繁的时间合并成一次去执行。比如，在指定的时间内只执行一次回调函数，如果在指定的时间内又触",
+    "articleSection" : "posts",
+    "name" : "021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品",
+    "headline" : "021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品",
+    "description" : "翻译自：Supabase - Backend as a service： A truly open source alternative to Firebase Supabase，一个功能多样的后端套件 Supabase 是一组后端功能，允许你将后端作为服务",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
     "publisher": "Anson",
     "accountablePerson" : "Anson",
     "copyrightHolder" : "Anson",
-    "copyrightYear" : "0001",
-    "datePublished": "0001-01-01 00:00:00 \u002b0000 UTC",
-    "dateModified" : "0001-01-01 00:00:00 \u002b0000 UTC",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/draft\/%E7%BC%96%E7%A8%8B\/",
-    "wordCount" : "205",
-    "keywords" : [  "Anson`s Blog"]
+    "copyrightYear" : "2022",
+    "datePublished": "2022-03-31 22:27:45 \u002b0800 CST",
+    "dateModified" : "2022-03-31 22:27:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81\/",
+    "wordCount" : "951",
+    "keywords" : [ "技术翻译","PostgREST", "Anson`s Blog"]
 }
 </script>
 
@@ -146,15 +146,24 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline"></h1>
+        <h1 class="post-title" itemprop="name headline">021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
-                on <time datetime=0001-01-01 itemprop="datePublished">January 1, 0001</time>
+                on <time datetime=2022-03-31 itemprop="datePublished">March 31, 2022</time>
                 </span>
                 in
                 
-                <span class="post-word-count">205 words</span>
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/%E7%A0%94%E5%8F%91%E6%8F%90%E6%95%88/"> 研发提效, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">951 words</span>
         </div>
     </header>
 
@@ -163,8 +172,6 @@
 
         
         
-            
-        
 
         
         
@@ -176,21 +183,27 @@
         
         
 
-        <p>节流和防抖
-防抖
-　　所谓防抖就是，触发事件后，把触发非常频繁的时间合并成一次去执行。比如，在指定的时间内只执行一次回调函数，如果在指定的时间内又触发了该事件，则回调函数的执行时间会基于此刻重新开始计算。
-节流
-　　所谓的节流就是，频繁触发事件时，只会在指定的时间段内执行时间的回调，也就是说触发事件间隔大于等于指定时间才会执行回调函数。</p>
-<p>ui optimistic</p>
-<p>身份验证的本质是对请求方的不信任产生的，信任 Github</p>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220201162252.png" alt="OAuth2.0授权流程图" loading="lazy" ></p>
-<p><img src="https://user-images.githubusercontent.com/2803210/146643318-fe1ffc42-6e48-4e95-ab62-9a0ac837901c.png" alt=""></p>
-<p><img src="https://hasura.io/blog/content/images/size/w1600/2021/05/Frame-7.png" alt="Pipe&rsquo;s technical architecture" loading="lazy" ></p>
-<p>php larveal 迁移到 pg
-<a href="https://tonyfrenzy.medium.com/using-postgresql-with-laravel-c4c320ca7f34">https://tonyfrenzy.medium.com/using-postgresql-with-laravel-c4c320ca7f34</a></p>
-<p>UPDATE <code>ashcan</code> SET <code>code</code>=&lsquo;0001-00142&rsquo;,<code>ashcan_type_id</code>=1,<code>sequnce</code>=2,<code>ashcan_station_id</code>=5,<code>devicename</code>=&lsquo;868238054077935&rsquo;,<code>dev_type</code>=&lsquo;cap&rsquo;,<code>zd_dev_code</code>='',<code>firmware_version</code>=&lsquo;Ver.WasterbinTest.Z4.8.2.3N.FormalServer&rsquo;,<code>bluetooth</code>='',<code>device_info</code>='{&ldquo;netModuleSn1&rdquo;:&ldquo;868238054077935&rdquo;,&ldquo;MSISDN1&rdquo;:&ldquo;898604311121C0064029&rdquo;,&ldquo;netModuleSn2&rdquo;:&ldquo;868238054078065&rdquo;,&ldquo;MSISDN2&rdquo;:&ldquo;89860486102070571405&rdquo;}',<code>status</code>=&lsquo;normal&rsquo;,<code>free_volumn</code>=83.000000,<code>weight</code>=0.000000,<code>dump_energy</code>=12678,<code>smoke_rate</code>=0,<code>type</code>=&lsquo;recycle&rsquo;,<code>created_at</code>=&lsquo;2021-09-30 19:45:53&rsquo;,<code>updated_at</code>=&lsquo;2022-02-25 16:01:39.995&rsquo;,<code>deleted_at</code>=NULL,<code>net_status</code>=&lsquo;offline&rsquo;,<code>error</code>=&lsquo;00000&rsquo;,<code>community_id</code>=11,<code>blur_status</code>='' WHERE <code>id</code> = 164</p>
-<p><a href="https://kuzzle.io/kuzzle-iot-open-source-platform/">https://kuzzle.io/kuzzle-iot-open-source-platform/</a></p>
-<p><a href="https://www.section.io/engineering-education/how-to-set-up-golong-api-with-the-prisma-orm/">https://www.section.io/engineering-education/how-to-set-up-golong-api-with-the-prisma-orm/</a></p>
+        <p>翻译自：<a href="https://flaming.codes/posts/supabase-backend-as-a-service-firebase-alternative"> Supabase - Backend as a service： A truly open source alternative to Firebase </a></p>
+<h2 id="supabase一个功能多样的后端套件">Supabase，一个功能多样的后端套件</h2>
+<p>Supabase 是一组后端功能，允许你将后端作为服务来管理。它的特性集与 Firebase 特别相近，谷歌的一个建立在”谷歌云平台“上的产品，并且也允许你运行 Baas。</p>
+<h2 id="firebase-替代品">Firebase 替代品</h2>
+<p>由于 Supabase 和 Firebase 有核心功能的巨大重叠，Supabase 可以被视为 Firebase 的替代品。提供的特性如下：</p>
+<ul>
+<li>身份验证管理</li>
+<li>用于持久存储的数据库</li>
+<li>文件资产存储，例如图片，视频或文档</li>
+<li>serverless function，至今还没上线</li>
+</ul>
+<p>正如你看到的，Supabase 提供的最重要的特性，未来将会有 serverless function。你可以使用 Supabase 的托管服务，同时使用免费套餐在几分钟内启动并运行它。对于更多的使用，你当然可以升级到付费计划。</p>
+<p>Supabase 也提供了在开发阶段通过他们 CLI 使用本地设置进行测试的选项。实际上，这意味着它为你提供内建脚手架和生产环境去配置：本地脚手架，云端生产。当然这相当简单，但是我想说明它为完成本地测试提供一个 CLI，这是很棒的。</p>
+<h2 id="supabase-和-firebase-之间的不同">Supabase 和 Firebase 之间的不同</h2>
+<p>尽管拥有相同的特性集，他们的实现和开发策略与 Google’s Firebase 相比是相当不同的。首要的是，Supabase 是完全开源的，这意味着你可以为项目的每个方面做贡献。Firebase 只提供了客户端和管理端 SDK 作为开源方案，隐藏了服务的真实实现。</p>
+<p>Supabase 的公开的方法有一个副作用，就是你可以在你的基础设施中托管它。这对于 Firebase 来说是一个巨大的优势，如果需要的话，你可以选择 fork 并开发你的自定义服务。在考虑产品核心组件的寿命时，这是一个重要的方面。</p>
+<p>而且，很重要的不同是 <a href="https://supabase.com/database">Supabase 使用 PostgreSQL</a>，而不是像 Firebase 一样的 NoSQL 数据库。考虑到 Firestore 和 Firebase 数据库 是完全私有的，这也是一个巨大的不同。</p>
+<p>PostgreSQL 是一个通用的存储解决方案，允许你在未来在技术上将你的数据从 Supabase 迁移到任何其他 PostgreSQL-DB。</p>
+<p>至于 Firebase 提供的其他服务，例如通知和机器学习解决方案，Supabase 一点也不相似。你将仍然需要其他的供应商去开发这些功能，例如 AWS, Azure 实例 或, 当然还有 Firebase.</p>
+<h2 id="结论">结论</h2>
+<p>如你所见，Supabase 是一个可行的替代品，如果你喜欢 Firebase 提供的功能，但是不像使用谷歌的产品。同时如果你对未来数据迁移或者 Firebase 服务的私有代码有顾虑，Supabase 作为一个开源产品在它的开发中是完全透明的。正如所述，现在是公测版，但是可以在中等规模的项目中使用。</p>
 
     </div>
 
@@ -206,12 +219,12 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/draft/%E7%BC%96%E7%A8%8B/>http://ansoncode.bazhentu.net/draft/%E7%BC%96%E7%A8%8B/</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81/>http://ansoncode.bazhentu.net/2022/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/draft/%E7%BC%96%E7%A8%8B/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -258,6 +271,17 @@
 
     <div class="post-tags">
         
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
+                    #技术翻译</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/postgrest/">
+                    #PostgREST</a></span>
+            
+            </section>
+        
         <section>
                 <a href="javascript:window.history.back();">back</a></span> ·
                 <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
@@ -266,6 +290,10 @@
 
     <div class="post-nav">
         
+        <a href="http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/" class="prev" rel="prev" title="019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用"><i class="iconfont icon-left"></i>&nbsp;019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用</a>
+        
+        
+        <a href="http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/" class="next" rel="next" title="022 译 | Hasura vs WunderGraph：不同之处是什么？">022 译 | Hasura vs WunderGraph：不同之处是什么？&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -376,7 +404,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = ''
+            let title = '021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 

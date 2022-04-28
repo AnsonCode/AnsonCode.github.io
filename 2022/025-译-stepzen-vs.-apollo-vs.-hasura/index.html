@@ -9,9 +9,9 @@
     <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
     <meta name="keywords" content="golang;PMP">
     
-    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/" />
-    <link rel="next" href="http://ansoncode.bazhentu.net/2022/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81/" />
-    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/" />
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/" />
+    
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2022/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura/" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
     <title>
         
         
-            019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用 | Anson`s Blog
+            025 译 | StepZen vs. Apollo vs. Hasura | Anson`s Blog
         
     </title>
-    <meta name="title" content="019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用 | Anson`s Blog">
+    <meta name="title" content="025 译 | StepZen vs. Apollo vs. Hasura | Anson`s Blog">
     
 <link rel="stylesheet" href="/css/main.min.css">
 
@@ -43,9 +43,9 @@
          "@id": "http:\/\/ansoncode.bazhentu.net\/"
     },
     "articleSection" : "posts",
-    "name" : "019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用",
-    "headline" : "019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用",
-    "description" : "翻译自：Building Stateful Apps with Serverless Functions and Postgres 本文探索当在无服务函数中写业务逻辑时，处理应用状态的不同的方式。当谈论这些不同的方法时，我们将主要使用",
+    "name" : "025 译 | StepZen vs. Apollo vs. Hasura",
+    "headline" : "025 译 | StepZen vs. Apollo vs. Hasura",
+    "description" : "翻译自：StepZen vs. Apollo vs. Hasura 后端团队正在努力为前端团队构建和部署 APIs，以便快速构建应用。他们被前端团队的请求驱动，去提供更好的性能以及",
     "inLanguage" : "zh-cn",
     "author" : "Anson",
     "creator" : "Anson",
@@ -53,11 +53,11 @@
     "accountablePerson" : "Anson",
     "copyrightHolder" : "Anson",
     "copyrightYear" : "2022",
-    "datePublished": "2022-03-23 01:27:45 \u002b0800 CST",
-    "dateModified" : "2022-03-23 01:27:45 \u002b0800 CST",
-    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8\/",
-    "wordCount" : "2008",
-    "keywords" : [ "技术翻译","Hasura", "Anson`s Blog"]
+    "datePublished": "2022-04-28 23:59:45 \u002b0800 CST",
+    "dateModified" : "2022-04-28 23:59:45 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2022\/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura\/",
+    "wordCount" : "1748",
+    "keywords" : [ "技术翻译","StepZen","Hasura","GraphQL", "Anson`s Blog"]
 }
 </script>
 
@@ -146,11 +146,11 @@
                     
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用</h1>
+        <h1 class="post-title" itemprop="name headline">025 译 | StepZen vs. Apollo vs. Hasura</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
                 <span class="post-time">
-                on <time datetime=2022-03-23 itemprop="datePublished">March 23, 2022</time>
+                on <time datetime=2022-04-28 itemprop="datePublished">April 28, 2022</time>
                 </span>
                 in
                 
@@ -163,7 +163,7 @@
                         
                         
                 </span>
-                <span class="post-word-count">2008 words</span>
+                <span class="post-word-count">1748 words</span>
         </div>
     </header>
 
@@ -172,8 +172,6 @@
 
         
         
-            
-        
 
         
         
@@ -185,117 +183,107 @@
         
         
 
-        <p>翻译自：<a href="https://hasura.io/blog/building-stateful-apps-using-serverless-postgres-and-hasura/">Building Stateful Apps with Serverless Functions and Postgres</a></p>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316215809.png" alt="How should your serverless functions interface with a database to manage application state?" loading="lazy" ></p>
-<p>本文探索当在无服务函数中写业务逻辑时，处理应用状态的不同的方式。当谈论这些不同的方法时，我们将主要使用 Postgres 作为数据库，并且经常使用 Hasura 作为介于无服务函数和 Postgres 数据库之间的粘合剂。然而，本文的观点是通用的，并且可以应用到你最喜欢的数据库解决方案上。</p>
+        <p>翻译自：<a href="https://stepzen.com/blog/stepzen-hasura-apollo">StepZen vs. Apollo vs. Hasura</a></p>
+<p>后端团队正在努力为前端团队构建和部署 APIs，以便快速构建应用。他们被前端团队的请求驱动，去提供更好的性能以及增强的开发体验。</p>
+<p>在<a href="https://thenewstack.io/why-backend-developers-should-fall-in-love-with-graphql-too/">为什么后端开发者也应该爱上 GraphQL</a>，Anant Jhingran 总结了一些我们在与负责构建和发布这些 APIs 开发者的对话中听到的一些担忧：</p>
 <ul>
-<li>方法#1：直接从无服务函数连接到 Postgres 上</li>
-<li>方法#2：在无服务函数中使用 BaaS APIs</li>
-<li>方法#3：在 Postgres 事件中使用丰富的事件负载触发无服务函数</li>
-<li>方法#4：组合上述方法并且使用 Postgres 编排工作流与驱动状态转变的无服务函数</li>
+<li>我和我的团队都不具备构建 GraphQL APIs 的全部技能。</li>
+<li>GraphQL 代表了一种新的妥协 vector。我们锁定了 SQL 注入，然后是 REST，现在我必须担心其他事情？</li>
+<li>当前在 GraphQL 的工具是的混合业务逻辑和应用逻辑更容易，然而这是反范式的。</li>
+<li>我在 REST 端点投入数年，我需要扔掉这些从新开始吗？</li>
 </ul>
-<h2 id="介绍">介绍</h2>
-<p>Serverless 平台不允许开发者编写维持长期状态的代码。这是因为 Serverless 运行时按需启动，并且生命周期很短，例如：在请求完成时释放所有的资源。</p>
-<p>这是一些示例，你不能用写普通 API 服务相同的方式做的事情，之前可能认为理所当然：</p>
-<ol>
-<li>直接写入磁盘，像保存文件到文件夹</li>
-<li>保持跨多个请求信息的全局变量，例如一个跟踪该 API 服务已经精力多少次请求的计数器</li>
-<li>一个 API 服务维持数据库的连接池 ，甚至在没有请求时</li>
-</ol>
-<p>本文，我们探索一些真实世界用例的模式，将在使用无服务函数构建下一个应用中帮到你。让我们一个接一个的谈到他们！</p>
-<h2 id="1直接连接-postgres">1.直接连接 Postgres</h2>
-<p>对于服务端应用最常用的存储应用状态的方式是使用数据库。然而，直接从无服务函数原生连接到数据库不是明智的决定，因为当你突然调用 1000 无服务函数时，数据库不能突然扩容创建 1000 数据库连接。</p>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220316225409.png" alt=""></p>
-<p>这儿有一些从无服务函数连接到 Postgres 去读写数据或运行数据库事务的最佳实践：</p>
-<ol>
-<li>
-<p>跟着供应商的最佳实践创建数据库连接，帮助 serverless 函数通过”调用“（类似连接池）复用数据库连接</p>
-<ul>
-<li><a href="https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html">AWS Lambda</a></li>
-<li><a href="https://cloud.google.com/functions/docs/sql#best_practices_for_cloud_sql_in_cloud_functions">Google Cloud Functions</a></li>
-<li><a href="https://docs.microsoft.com/en-us/azure/azure-functions/manage-connections?tabs=csharp">Azure Functions</a></li>
-</ul>
-</li>
-<li>
-<p>在函数开始时，创建完整的状态</p>
-<ul>
-<li>这是为了避免对数据库执行多次调用，这可能造成性能开销以及运行开销。Gwen Shapira 在博文： <a href="https://thenewstack.io/managing-state-in-serverless/">https://thenewstack.io/managing-state-in-serverless/</a>
-中谈论了更多这种数据库访问模式。</li>
-</ul>
-</li>
-<li>
-<p>尽可能多的使用无 ORM 数据层</p>
-<ul>
-<li>这是因为使用 ORMs，你首先需要定义数据模型，并且你将必须为每个函数做这些。这可能意味着写很多样板代码，并且保持他们与底层数据库同步。当你做这些时，你将 意识到写一个整体的 API 服务比写彼此独立的 serverless 函数更好。</li>
-<li>考虑使用好的 SQL 客户端或者像 <a href="https://massivejs.org/">massivejs</a> 一样的无 ORM 客户端</li>
-</ul>
-</li>
-<li>
-<p>考虑为数据库使用外部连接池代理，比如 pgBouncer</p>
-<ul>
-<li>如果你正在使用 DB 事务，然后牢记数据库并发限制。事务花费巨大并且不容易扩展。依赖于你的负载，或许必须充分利用外部连接池，例如 <a href="http://www.pgbouncer.org/">pgBouncer</a>。事实上，DigitalOcean 通过内建连接池提供可管理的 Postgres 数据库。</li>
-</ul>
-</li>
-</ol>
-<h2 id="2使用-baas-apis">2.使用 BaaS APIs</h2>
-<p>管理状态最容易的方式是不自己管理它？</p>
-<p>当处理持久化状态时，后端即服务(BaaS)解决方案抽象了一些复杂的性能和并发问题。你在 serverless 函数中的代码使用了 HTTP APIs(无状态)并且把 BaaS 解决方案当做黑盒。BaaS 实际上自己处理管理和持久化状态，即使是成千的并发代码读、写或者修改数据。</p>
-<p>这儿有一个 BaaS 服务的示例，你的 serverless function 或许会用到：</p>
-<ul>
-<li>S3 风格 APIs 去读、写对象或文件类型数据。所有主要的云供应商现在提供 S3 API。</li>
-<li>Hasura GraphQL APIs 从 Postgres 中读、写数据</li>
-<li><a href="https://www.algolia.com/">Algolia</a> 去读写一个搜索索引和数据库</li>
-</ul>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220322224011.png" alt=""></p>
-<p>使用 BaaS 的好处之一是你的函数看上去好像完全无状态。考虑<a href="https://github.com/hasura/graphql-engine/tree/master/community/sample-apps/serverless-etl">下面的代码</a>，使用了 Algolia 输入一个搜索索引：</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">
-<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">algoliasearch</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;algoliasearch&#39;</span>);
+<p>这些担心通常是合理的，但是任何新技术都通常如此，实际情况可能不像它看起来那样糟糕。此外，使用 GraphQL 提供服务是一个动态软件开发领域，开源工具和像 Apollo, Hasura, 和 StepZen 这样的公司，正开始解决这些问题。</p>
+<p>这让我想到一个经常被问的问题：StepZen 如何与 Hasura 或者 Apollo (Server)比较。</p>
+<h2 id="hasura-vs-stepzen">Hasura vs. StepZen</h2>
+<p>Hasura 是一个 WEB 服务，它连接新的或现存的数据库，快速创建一个 GraphQL API。如果你的出发点是数据库，它是一个很棒的产品。Hasura 提供数据库数据到 GraphQL 的快速转换，通过它的易用的 web UI，托管 GraphQL 端点，以及一个慷慨的免费套餐。</p>
+<p>在 StepZen 中，在 GraphQL 模式中，你可以使用几行代码或 <a href="https://stepzen.com/docs/connecting-backends/how-to-connect-a-mysql-database">GraphQL 指令 @dbquery</a> 为数据库创建 GraphQL API ，而不是写很多行代码或者通过 UI 点击。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gql" data-lang="gql"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Article</span> {
+  id: <span style="color:#a6e22e">ID</span>!
+  title: <span style="color:#a6e22e">String</span>!
+  description: <span style="color:#a6e22e">String</span>
+}
 
-<span style="color:#a6e22e">exports</span>.<span style="color:#66d9ef">function</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">book</span>;
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Query</span> {
+  articles(username: <span style="color:#a6e22e">String</span>!): [<span style="color:#a6e22e">Article</span>]
+    <span style="color:#a6e22e">@dbquery</span>(<span style="color:#66d9ef">type</span>: <span style="color:#e6db74">&#34;mysql&#34;</span>, <span style="color:#a6e22e">table</span>: <span style="color:#e6db74">&#34;articles&#34;</span>)
+}
+</code></pre></div><p>此外，我们和很多处理过异构后端的开发者，不仅数据库，REST 后端，私有或公开的 SaaS REST APIs 甚至不断增加的 GraphQL 后端，交谈。StepZen 使得组合这些各种后端很容易。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gql" data-lang="gql"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Author</span> {
+  name: <span style="color:#a6e22e">String</span>!
+}
 
-  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">algoliasearch</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">ALGOLIA_ID</span>, <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">ALGOLIA_KEY</span>); <span style="color:#75715e">//from env vars
-</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">initIndex</span>(<span style="color:#e6db74">&#39;book_index&#39;</span>);
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Article</span> {
+  id: <span style="color:#a6e22e">ID</span>!
+  title: <span style="color:#a6e22e">String</span>!
+  description: <span style="color:#a6e22e">String</span>
+  authorID: <span style="color:#a6e22e">ID</span>!
+  author: <span style="color:#a6e22e">Author</span>
+    <span style="color:#a6e22e">@materializer</span>(
+      <span style="color:#66d9ef">query</span>: <span style="color:#e6db74">&#34;userByID&#34;</span>
+      <span style="color:#a6e22e">arguments</span>: [{ <span style="color:#a6e22e">name</span>: <span style="color:#e6db74">&#34;id&#34;</span>, <span style="color:#a6e22e">field</span>: <span style="color:#e6db74">&#34;authorID&#34;</span> }]
+    )
+}
 
-  <span style="color:#a6e22e">index</span>.<span style="color:#a6e22e">addObjects</span>([<span style="color:#a6e22e">data</span>], <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">content</span>) {
-    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
-      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">err</span>);
-      <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>({<span style="color:#a6e22e">error</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">err</span>});
-      <span style="color:#66d9ef">return</span>;
-    } <span style="color:#66d9ef">else</span> {
-        <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>({<span style="color:#a6e22e">error</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>, <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">content</span>});
-    }
+<span style="color:#a6e22e">type</span> <span style="color:#a6e22e">Query</span> {
+  articles(username: <span style="color:#a6e22e">String</span>!): [<span style="color:#a6e22e">Article</span>]
+    <span style="color:#a6e22e">@dbquery</span>(<span style="color:#66d9ef">type</span>: <span style="color:#e6db74">&#34;mysql&#34;</span>, <span style="color:#a6e22e">table</span>: <span style="color:#e6db74">&#34;articles&#34;</span>)
+  <span style="color:#a6e22e">authorByID</span>(<span style="color:#a6e22e">id</span>: <span style="color:#a6e22e">ID</span>!): <span style="color:#a6e22e">Author</span> <span style="color:#a6e22e">@rest</span>(endpoint: <span style="color:#e6db74">&#34;https://dev.to/api/users/$id&#34;</span>)
+}
+</code></pre></div><p>在 StepZen 中，创建 API 的代码与你需要写的运行，管理和维护 API 的代码大致相同。你可以发布一个极佳的，安全的和性能良好的 GraphQL API，而不需要写更多代码。API 应该为后端扩展，维护一个固定 IP 地址，并且自动修补最新的安全漏洞。StepZen 云，拥有 99.99%的可用性，为你做所有这些。</p>
+<h2 id="apollo-vs-stepzen">Apollo vs. StepZen</h2>
+<p>Apollo 提供 GraphQL 功能好几年了，并且有成熟的工具集让你顺利访问 GraphQL API。使用 Apollo，你写连接后端的代码。所以，你必须写自定义解析器代码，而不是声明式连接数据库或 API。</p>
+<p>在 Apollo 文档的示例中，你首先创建代码去创建爱你 GraphQL 模式——客户端可以执行名称为 <code>books</code>的查询，Apollo 服务返回一个空数组或多个<code>Books</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ApolloServer</span>, <span style="color:#a6e22e">gql</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;apollo-server&#34;</span>);
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">typeDefs</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">gql</span><span style="color:#e6db74">`
+</span><span style="color:#e6db74">  type Book {
+</span><span style="color:#e6db74">    title: String
+</span><span style="color:#e6db74">    author: String
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">  type Query {
+</span><span style="color:#e6db74">    books: [Book]
+</span><span style="color:#e6db74">  }
+</span><span style="color:#e6db74">`</span>;
+</code></pre></div><p>然后这个代码定义数据集。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">books</span> <span style="color:#f92672">=</span> [
+  {
+    <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;The Awakening&#34;</span>,
+    <span style="color:#a6e22e">author</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Kate Chopin&#34;</span>,
+  },
+  {
+    <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;City of Glass&#34;</span>,
+    <span style="color:#a6e22e">author</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Paul Auster&#34;</span>,
+  },
+];
+</code></pre></div><p>然后，创建解析器去定义获取模式中定义类型的技术。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JS" data-lang="JS"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">resolvers</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">Query</span><span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">books</span><span style="color:#f92672">:</span> () =&gt; <span style="color:#a6e22e">books</span>,
+  },
 };
+</code></pre></div><p>然后创建 Apollo Server 实例。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JS" data-lang="JS"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ApolloServer</span>({ <span style="color:#a6e22e">typeDefs</span>, <span style="color:#a6e22e">resolvers</span> });
 
-</code></pre></div><p>正如你看到的，该函数本质上向完成繁重状态工作的 BaaS 发起了一个 API 调用。</p>
-<h2 id="3使用丰富的-事件负载通过-postgres-events-触发-serverless-functions">3.使用”丰富“的 事件负载通过 Postgres events 触发 serverless functions</h2>
-<p>事件是云供应商为 serverless 函数提供资源并运行它的底层机制，通过从事件负载中向函数传递参数。</p>
-<p>如果事件负载包含 serverless function 运行的所有数据和必须上下文，然后你不必从外部源中读取数据。</p>
-<p>这为我们带来三个写需要状态的 serverless function 的方法。你可以从数据库（像 Postgres ）捕获事件，然后使用他们触发 serverless function。</p>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220322225209.png" alt=""></p>
-<p>然而，为了在真实环境中发挥作用，这些事件需要包含所有关联数据和相关上下文。只有 id 或者操作 (insert/update/delete) 细节明显不够。</p>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220322225435.png" alt="A detailed event payload is more useful" loading="lazy" ></p>
-<p>在我们使用 Postgres 的案例中，事件负载通常应该包含：</p>
-<ol>
-<li>行数据</li>
-<li>（通过其他表连接的）行的关联数据</li>
-<li>应用用户会话信息，若可以</li>
-</ol>
-<p>Hasura 提供一个在 Postgres 上开箱即用的<a href="https://hasura.io/event-triggers/">事件系统</a>，使它更容易携带更多如上所述的上下文和细节负载触发事件！</p>
-<h2 id="4postgres-和-serverless-functions-在工作流中充当一个状态机">4.Postgres 和 serverless functions 在工作流中充当一个状态机</h2>
-<p>很多复杂的应用在后端拥有工作流或通过状态机转换的流程。思考一个使用下列数据模型的食物订单应用：</p>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220323010812.png" alt="Order table" loading="lazy" ></p>
-<p>整个订单工作流，包含重要的业务逻辑步骤像校验，支付，审批，派送代理分配，可以认为是一系列对 <code>order</code> 表状态的转换。</p>
-<p><img src="https://gitee.com/caoyanbin/picgo/raw/master/img/20220323011235.png" alt="Orchestrating a workflow using Postgres and serverless functions" loading="lazy" ></p>
-<p>在订单模型的每个字段可以被特定 serverless function 更新，它运行复杂的业务逻辑发起适当的转换，并且使用更多信息修改状态。</p>
-<p>这个方法然后变成 1/2/3 方法的混合体：</p>
-<ul>
-<li>在数据库事件中触发 serverless function（更新特定列触发特定 serverless function）</li>
-<li>当通过#1 和#2 方法运行他们的业务逻辑时，serverless function 可以前往并更新数据库的状态</li>
-</ul>
-<p>该想法与 3factor 架构模式相近（<a href="https://hasura.io/event-driven-programming/">阅读更多</a>关于使用事件驱动编程构建 3factor 应用的内容）</p>
-<h2 id="结论">结论</h2>
-<p>使用 serverless function 构建有状态应用对很多用例来说不难。基本的思路是将繁重的工作委托给专家系统。使用一些这里介绍的模式，开发者可以发挥在 serverless funciton 中写业务逻辑的最大价值。</p>
+<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>().<span style="color:#a6e22e">then</span>(({ <span style="color:#a6e22e">url</span> }) =&gt; {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`🚀  Server ready at </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">url</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+});
+</code></pre></div><p>在 StepZen 中，通过向模式（SDL 文件）添加几行构建图，对于 REST，充分发挥 GraphQL 自定义指令<a href="https://stepzen.com/docs/connecting-backends/how-to-connect-a-rest-service">@rest </a>的优势，去连接 REST 后端。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-gql" data-lang="gql"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Article</span> {
+  id: <span style="color:#a6e22e">ID</span>!
+  title: <span style="color:#a6e22e">String</span>!
+  description: <span style="color:#a6e22e">String</span>
+}
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Query</span> {
+  articles(username: <span style="color:#a6e22e">String</span>!): [<span style="color:#a6e22e">Article</span>]
+    <span style="color:#a6e22e">@rest</span>(endpoint: <span style="color:#e6db74">&#34;https://dev.to/api/articles?username=$username&#34;</span>)
+}
+</code></pre></div><p>在 GraphQL 中真的成功意味着，GraphQL API 必须可扩展部署，保护，高性能以及处理变化。当然如果你使用 Apollo 你可以做到所有，你将必须学习技能，导入新的库，并且部署更多架构去实现这些。</p>
+<p>使用 StepZen，你声明式构建 GraphQL 层，就像你构建声明式构建数据库，不需要写应用层代码。你写的创建 API 的代码与你需要写去运行，管理和维护 API 的代码是相似的。在 StepZen 上运行 GraphQL，所以你必须要管理架构，你获得内建性能，花费和可靠性优化。</p>
+<h2 id="概述">概述</h2>
+<p>构建其他人（甚至你）使用的 APIs，最好使用 GraphQL。GraphQL 帮你为用户交付更易懂的 API。将功能缝合在一起帮你高效混合和匹配来自后端的响应。GraphQL 片段帮助抽象和细节连续性，并且具有自文档能力的内省节省你的时间。</p>
+<p>StepZen 的使命是让开发者获得优秀的，安全的以及高性能的 GraphQL API ，不需要写和维护更多代码，同时 API 应该是可伸缩的，为后端维护固定 IP 地址，并且自动修补最新的安全漏洞。StepZen 云，拥有 99.99%的可用性，为你做所有这些，不需要你做任何事情。</p>
+<p>为了帮你开始，我们提供预构建 SaaS APIs，和跨数据库和 REST 的内省，让你通过加入一些声明式代码构建图，然后坐下来，享受一个高性能 GraphQL API。在 GraphQL Studio 中，核查<a href="https://stepzen.com/docs/design-a-graphql-schema"> StepZen 文档</a>和预构建<a href="https://graphql.stepzen.com/"> SaaS APIs</a>。我们总是想要看到你正在构建什么，并且在 Discord 中回答问题。</p>
 
     </div>
 
@@ -311,12 +299,12 @@
             
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/>http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/</span>
+                    <a href=http://ansoncode.bazhentu.net/2022/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura/>http://ansoncode.bazhentu.net/2022/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura/</span>
             </p>
             
             
             <div id="qr_code_pc_outer" >
-                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/019-%E8%AF%91-%E4%BD%BF%E7%94%A8serverless-functions-%E5%92%8C-postgres-%E6%9E%84%E5%BB%BA%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8/>
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2022/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura/>
                 <p>扫一扫<br>阅读文章</p>
             </div>
             <script>
@@ -369,8 +357,14 @@
             <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/">
                     #技术翻译</a></span>
             
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/stepzen/">
+                    #StepZen</a></span>
+            
             <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/hasura/">
                     #Hasura</a></span>
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/graphql/">
+                    #GraphQL</a></span>
             
             </section>
         
@@ -382,10 +376,8 @@
 
     <div class="post-nav">
         
-        <a href="http://ansoncode.bazhentu.net/2022/018-%E8%AF%91-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E8%BF%9E%E6%8E%A5%E8%B7%A8%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%85%B6%E4%BB%96%E6%95%B0%E6%8D%AE%E6%BA%90%E7%9A%84-graphql-api/" class="prev" rel="prev" title="018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API"><i class="iconfont icon-left"></i>&nbsp;018 译 | 远程连接：连接跨数据库和其他数据源的 GraphQL API</a>
+        <a href="http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/" class="prev" rel="prev" title="022 译 | Hasura vs WunderGraph：不同之处是什么？"><i class="iconfont icon-left"></i>&nbsp;022 译 | Hasura vs WunderGraph：不同之处是什么？</a>
         
-        
-        <a href="http://ansoncode.bazhentu.net/2022/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81/" class="next" rel="next" title="021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品">021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -496,7 +488,7 @@
         
         loadManyJs(arr).then(async () => {
             console.log('仅微信端需要执行下面的操作', currurl)
-            let title = '019 译 | 使用Serverless Functions 和 Postgres 构建有状态应用'
+            let title = '025 译 | StepZen vs. Apollo vs. Hasura'
             console.log('title', title)
             let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
             let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 

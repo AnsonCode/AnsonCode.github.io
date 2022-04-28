@@ -6,7 +6,16 @@
     <description>Recent content in 技术翻译 on Anson`s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 19 Apr 2022 23:59:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Apr 2022 23:59:45 +0800</lastBuildDate><atom:link href="http://ansoncode.bazhentu.net/tags/%E6%8A%80%E6%9C%AF%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>025 译 | StepZen vs. Apollo vs. Hasura</title>
+      <link>http://ansoncode.bazhentu.net/2022/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura/</link>
+      <pubDate>Thu, 28 Apr 2022 23:59:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/025-%E8%AF%91-stepzen-vs.-apollo-vs.-hasura/</guid>
+      <description>翻译自：StepZen vs. Apollo vs. Hasura 后端团队正在努力为前端团队构建和部署 APIs，以便快速构建应用。他们被前端团队的请求驱动，去提供更好的性能以及</description>
+    </item>
+    
     <item>
       <title>022 译 | Hasura vs WunderGraph：不同之处是什么？</title>
       <link>http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/</link>
@@ -14,6 +23,15 @@
       
       <guid>http://ansoncode.bazhentu.net/2022/022-%E8%AF%91-hasura-vs-wundergraph%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88/</guid>
       <description>翻译自：Hasura vs WunderGraph comparison: What are the differences? 从高层次角度来看，Hasura 和 WunderGraph 都给你“所有数据的即时 GraphQL ”，正如 Hasura 所说。本文，我们将分解这两个方案，并逐</description>
+    </item>
+    
+    <item>
+      <title>021 译 | Supabase - 后端即服务：一个真正开源的Firebase替代品</title>
+      <link>http://ansoncode.bazhentu.net/2022/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81/</link>
+      <pubDate>Thu, 31 Mar 2022 22:27:45 +0800</pubDate>
+      
+      <guid>http://ansoncode.bazhentu.net/2022/021-%E8%AF%91-supabase-%E5%90%8E%E7%AB%AF%E5%8D%B3%E6%9C%8D%E5%8A%A1%E4%B8%80%E4%B8%AA%E7%9C%9F%E6%AD%A3%E5%BC%80%E6%BA%90%E7%9A%84firebase%E6%9B%BF%E4%BB%A3%E5%93%81/</guid>
+      <description>翻译自：Supabase - Backend as a service： A truly open source alternative to Firebase Supabase，一个功能多样的后端套件 Supabase 是一组后端功能，允许你将后端作为服务</description>
     </item>
     
     <item>
