@@ -1,0 +1,15 @@
+https://hasura.io/blog/hasura-vs-prisma-9ffc7271eda8/
+
+
+Why You Should Use Hasura：
+https://www.codedaily.io/tutorials/Why-You-Should-Use-Hasura
+
+
+
+https://blog.logrocket.com/firebase-vs-supabase-which-is-better/
+
+
+https://www.prisma.io/blog/tutorial-building-a-realtime-graphql-server-with-subscriptions-2758cfc6d427
+
+
+https://wundergraph.com/blog/what_happens_if_we_treat_graphql_queries_as_the_api_definition
