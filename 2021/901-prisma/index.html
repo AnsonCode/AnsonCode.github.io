@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp"/>
+    <meta name="author" content="Anson">
+    <meta name="description" content="anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。">
+    <meta name="keywords" content="golang;PMP">
+    
+    <link rel="prev" href="http://ansoncode.bazhentu.net/2021/30130%E5%A4%A9%E6%8C%91%E6%88%98-%E5%86%99%E4%BD%9C%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%85%A5%E9%97%A8%E5%85%AC%E5%BC%80%E5%86%99%E4%BD%9C/" />
+    <link rel="next" href="http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/" />
+    <link rel="canonical" href="http://ansoncode.bazhentu.net/2021/901-prisma/" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>
+        
+        
+            Prisma 生成器的原理 | Anson`s Blog
+        
+    </title>
+    <meta name="title" content="Prisma 生成器的原理 | Anson`s Blog">
+    
+<link rel="stylesheet" href="/css/main.min.css">
+
+
+    
+    
+ 
+
+<script type="application/ld+json">
+{
+    "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/ansoncode.bazhentu.net\/"
+    },
+    "articleSection" : "posts",
+    "name" : "Prisma 生成器的原理",
+    "headline" : "Prisma 生成器的原理",
+    "description" : "Prisma 生成器的原理",
+    "inLanguage" : "zh-cn",
+    "author" : "Anson",
+    "creator" : "Anson",
+    "publisher": "Anson",
+    "accountablePerson" : "Anson",
+    "copyrightHolder" : "Anson",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-02-07 10:22:03 \u002b0800 CST",
+    "dateModified" : "2021-02-07 10:22:03 \u002b0800 CST",
+    "url" : "http:\/\/ansoncode.bazhentu.net\/2021\/901-prisma\/",
+    "wordCount" : "2515",
+    "keywords" : [ "Prisma", "Anson`s Blog"]
+}
+</script>
+
+  </head>
+    <body class="">
+        <div class="wrapper">
+            <nav class="navbar">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+    <div class="container">
+        
+            <div class="navbar-header header-back2home-logo">
+                <span class="logo_mark" >>$</span>
+                <a href="http://ansoncode.bazhentu.net/">
+                    <span class="logo_text" >cd /home/</span>
+                    <span class="logo_cursor" ></span>
+                </a>
+            </div>
+        
+        <div class="navbar-right">
+                
+                <span class="menu">
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+                <span class="divide"></span>
+                <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a>
+                </span>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+    
+        <progress class="content_progress" max="0" value="0"></progress>
+    
+     <div class="container">
+        <div class="navbar">
+            <div class="navbar-header header-logo">
+                    <a href="http://ansoncode.bazhentu.net/">Anson`s Blog</a>
+            </div>
+            <div class="navbar-right">
+                <div><a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-dark-mode"></i></a></div>
+                <div class="menu-toggle">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                <nav class="mb-md">
+                    
+                    
+                        <a class="menu-item" href="/posts/" title="">
+                            <h3>Blog</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/categories/" title="">
+                            <h3>Categories</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/tags/" title="">
+                            <h3>Tags</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                        <a class="menu-item" href="/about/" title="">
+                            <h3>About</h3>
+                            <div class="menu-active"></div>
+                        </a>
+                    
+                </nav>
+        </div>
+    </div>
+</nav>
+            <main class="main">
+                <div class="container">
+                    
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Prisma 生成器的原理</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://ansoncode.bazhentu.net/" rel="author">Anson</a> with ♥
+                <span class="post-time">
+                on <time datetime=2021-02-07 itemprop="datePublished">February 7, 2021</time>
+                </span>
+                in
+                
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        
+                        
+                        
+                          <a href="http://ansoncode.bazhentu.net/categories/prisma/"> Prisma, </a>
+                        
+                        
+                </span>
+                <span class="post-word-count">2515 words</span>
+        </div>
+    </header>
+
+    <div class="post-content">
+        
+
+        
+        
+            
+        
+
+        
+        
+        
+        
+        
+
+        
+        
+        
+
+        <p>翻译：https://prismaio.notion.site/Prisma-Generators-a2cdf262207a4e9dbcd0e362dfac8dc0</p>
+<p>在 Prisma，我们有一个叫做“生成器（Generator）”的概念。生成器是一个执行程序，它把解析后的Prisma schema  作为输入，并且可以输出任何东西。</p>
+<p>最著名的生成器叫做<code>prisma-client-js</code>。它是一个ORM客户端，支持Node.js中的 TypeScript 和 JavaScript。</p>
+<p>然而，它不是唯一的生成器。因为生成器接口是开放的并且语言无关，任何人都能在他们的 Prisma 项目中接入他们自己的生成器，它能完成很棒的事情。</p>
+<p>一些其他生成器的示例：</p>
+<ul>
+<li><a href="https://github.com/pantharshit00/prisma-docs-generator">Docs generator</a>：用于生成 prisma 文档</li>
+<li><a href="https://github.com/notiz-dev/prisma-dbml-generator">DBML generator</a>：用于生成数据库关系图</li>
+<li><a href="https://www.npmjs.com/package/@trackyourhealth/nestjs-restful-generator">Nestjs Service generator</a></li>
+<li><a href="https://github.com/MichalLytek/typegraphql-prisma">TypeGraphQL generator</a>：看了没看太懂~大概意思是生成 TypeScript 类型</li>
+<li><a href="https://github.com/prisma/prisma-client-go">Prisma Go Client generator</a>：基于 golang 的生成器</li>
+</ul>
+<p>生成器将总是当你运行 <code>prisma generate</code> 时调用。然而，只有在 <code>schema.prisma</code> 文件中共提及的生成器会运行。本文档描述了，生成器架构的样子，以及如何构建自己的生成器。</p>
+<h1 id="schema">Schema</h1>
+<p>在 schema 中，有一个所谓的 <code>generator</code> 块：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// Prisma 客户端 TypeScript 生成器
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">generator</span> <span style="color:#a6e22e">mygen</span> {
+  <span style="color:#a6e22e">provider</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prisma-client-js&#34;</span>
+}
+
+<span style="color:#75715e">// Prisma 客户端 文档生成器
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">generator</span> <span style="color:#a6e22e">gen</span> {
+  <span style="color:#a6e22e">provider</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;node node_modules/prisma-docs-generator&#34;</span>
+}
+
+<span style="color:#75715e">// 官方 Prisma 客户端 Go 生成器
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">generator</span> <span style="color:#a6e22e">db</span> {
+  <span style="color:#a6e22e">provider</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;go run github.com/prisma/prisma-client-go&#34;</span>
+}
+</code></pre></div><p><code>provider</code> 也可以是一个命令，例如 <code>node myscript.js</code> 或者 预先定义的别名 <code>prisma-client-js</code>， <code>prisma</code> 命令行界面预封装了它。</p>
+<h1 id="cli">CLI</h1>
+<p><code>prisma generate</code> 是连接一切的关键。无论何时用户更新项目的 <code>schema.prisma</code> 文件，他们运行  <code>prisma generate</code> 在新生成的生成器构建中反射更新过的数据模型，比如生成的 TypeScript 客户端。</p>
+<p>它这样工作：</p>
+<ol>
+<li>解析数据模型，获得所有生成器</li>
+<li>为每个生成器生成子进程</li>
+<li>从每个生成器获得所谓的 <code>生成器自述 generator manifest</code>。它包含信息，该生成器需要哪个引擎和版本。</li>
+<li>下载可能丢失的引擎（？）</li>
+<li>在每个生成器：调用<code>generate</code>，给它传入元信息，例如解析后的数据模型 AST（抽象语法树） 或者引擎在文件系统中的位置</li>
+</ol>
+<h1 id="架构">架构</h1>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cdac9c4d-93e6-4480-ac46-c2f2e0217803/Blank_diagram.png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/cdac9c4d-93e6-4480-ac46-c2f2e0217803/Blank_diagram.png" loading="lazy" ></p>
+<p><a href="https://lucid.app/lucidchart/invitations/accept/d71c6bbf-5bdf-4f5f-b7c9-d9c2ae64d17d">https://lucid.app/lucidchart/invitations/accept/d71c6bbf-5bdf-4f5f-b7c9-d9c2ae64d17d</a></p>
+<h1 id="生成器接口">生成器接口</h1>
+<p>生成器必须是文件系统中某处的可执行文件。该执行文件，例如 <code>./mygenerator</code>  ，需要通过 标准输入输出 实现 JSON RPC 接口。</p>
+<p>生成器自身可以消费它从SDK中通过<code>stdin</code>接收的信息。</p>
+<p>如果生成器想向SDK”回复“一个消息，他可以通过<code>stderr</code>。</p>
+<p><img src="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ea923596-fbae-4324-93f4-6fa584b87e4c/Blank_diagram_(1).png" alt="https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ea923596-fbae-4324-93f4-6fa584b87e4c/Blank_diagram_(1).png" loading="lazy" ></p>
+<p><a href="https://lucid.app/lucidchart/invitations/accept/d0a7724d-86cf-4060-b474-a7279025982c">https://lucid.app/lucidchart/invitations/accept/d0a7724d-86cf-4060-b474-a7279025982c</a></p>
+<p>一个消息总是一行 JSON RPC 对象，以换行符 (<code>\n</code> )结束。</p>
+<p>从生成器返回给SDK的回复或信息通过 <code>stderr</code> 发送。他们也是一个行 JSON 对象，通过换行符 (<code>\n</code> )界定。</p>
+<p>这是一个来自生成器 SDK 的示例消息，</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx">{<span style="color:#e6db74">&#34;jsonrpc&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;2.0&#34;</span>,<span style="color:#e6db74">&#34;method&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;getManifest&#34;</span>,<span style="color:#e6db74">&#34;params&#34;</span><span style="color:#f92672">:</span>{},<span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>}<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">n</span>
+</code></pre></div><p>它遵循<a href="https://www.jsonrpc.org/specification">JSON RPC 2.0 规范</a>。注意，我们只支持了规范的子集。我们只支持单对象，没有批处理数组。</p>
+<h3 id="rpc示例流">RPC示例流</h3>
+<p>这是<code>getManifest</code> RPC 流看起来的样子：</p>
+<p><strong>Prisma SDK</strong> 把它发送给生成器进程 <code>stdin</code>：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx">{<span style="color:#e6db74">&#34;jsonrpc&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;2.0&#34;</span>,<span style="color:#e6db74">&#34;method&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;getManifest&#34;</span>,<span style="color:#e6db74">&#34;params&#34;</span><span style="color:#f92672">:</span>{...},<span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>}<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">n</span>
+</code></pre></div><p>The generator process then returns this to <code>stderr</code>:</p>
+<p>随后，生成器进程把它返回给 <code>stderr</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx">{<span style="color:#e6db74">&#34;jsonrpc&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;2.0&#34;</span>,<span style="color:#e6db74">&#34;result&#34;</span><span style="color:#f92672">:</span>{<span style="color:#e6db74">&#34;manifest&#34;</span><span style="color:#f92672">:</span>{...}},<span style="color:#e6db74">&#34;id&#34;</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>}<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">n</span>
+</code></pre></div><p>在 JSON RPC 中，有<strong>方法</strong>（这个概念）。方法基本是预先商定的API，这是双方（SDK和生成器）都理解的。</p>
+<h3 id="协议">协议</h3>
+<p>These are the available methods in the current generator interface, their params and their expected answer:</p>
+<p>在当前的生成器方法中，这是可用的方法，他们期望的参数和响应：</p>
+<p><a href="https://www.notion.so/591f19ac980a4450930f22e3e57e01fc">生成器 RPC 协议方法</a></p>
+<p>Here are the TypeScript type definitions of the input and output types together with comments explaining what they&rsquo;re good for:</p>
+<p>下面是输入和输出类型的TypeScript类型定义以及注释，解释了它们的优点:</p>
+<h3 id="生成器配置generatorconfig"><code>生成器配置（GeneratorConfig）</code></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * `GeneratorConfig` 是解析 `generator` 块的AST
+</span><span style="color:#75715e"> * 在数据模型中，由用户提供
+</span><span style="color:#75715e">**/</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GeneratorConfig</span> {
+  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span> <span style="color:#75715e">// 生成器的名称, 例如. &#34;mygen&#34;
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">output</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span> <span style="color:#75715e">// 自定义输出路径
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">isCustomOutput?</span>: <span style="color:#66d9ef">boolean</span>
+  <span style="color:#a6e22e">provider</span>: <span style="color:#66d9ef">string</span> <span style="color:#75715e">// 提供商, 例如. &#34;prisma-client-js&#34;
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">config</span>: <span style="color:#66d9ef">Dictionary</span>&lt;<span style="color:#f92672">string</span>&gt; <span style="color:#75715e">// 块中定义的所有其他字段都放在这里
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">binaryTargets</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#75715e">// 自定义二进制目标
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">previewFeatures</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#75715e">// 预览功能列表
+</span><span style="color:#75715e"></span>}
+</code></pre></div><h3 id="generatormanifest"><code>GeneratorManifest</code></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">EngineType</span> <span style="color:#f92672">=</span>
+  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;queryEngine&#39;</span>
+  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;libqueryEngineNapi&#39;</span>
+  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;migrationEngine&#39;</span>
+  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;introspectionEngine&#39;</span>
+  <span style="color:#f92672">|</span> <span style="color:#e6db74">&#39;prismaFmt&#39;</span>
+
+<span style="color:#75715e">/**
+</span><span style="color:#75715e"> * `GeneratorManifest` 是 当生成器被SDK请求时给的回复。
+</span><span style="color:#75715e"> * 它指定生成器的名称和或许有的需求。
+</span><span style="color:#75715e"> * 所有东西都在它的可选项中，尽管我们推荐至少提供`prettyName`，正如每个 `prisma generate` 命令展示的那样
+</span><span style="color:#75715e">**/</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">GeneratorManifest</span> <span style="color:#f92672">=</span> {
+  <span style="color:#75715e">// Name printed in `prisma generate`
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">prettyName?</span>: <span style="color:#66d9ef">string</span>
+
+  <span style="color:#75715e">// 如果没有提供输出时，应该输出到哪里？（默认输出地址）
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">defaultOutput?</span>: <span style="color:#66d9ef">string</span>
+
+  <span style="color:#75715e">// 是否有需要禁用的模型或字段名
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">denylists</span><span style="color:#f92672">?:</span> {
+    <span style="color:#a6e22e">models?</span>: <span style="color:#66d9ef">string</span>[]
+    <span style="color:#a6e22e">fields?</span>: <span style="color:#66d9ef">string</span>[]
+  }
+
+  <span style="color:#75715e">// 一些生成器依赖`prisma-client-js`先生成一次
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">requiresGenerators?</span>: <span style="color:#66d9ef">string</span>[]
+
+  <span style="color:#75715e">// 这些生成器依赖特定的引擎，例如 &#34;queryEngine（查询引擎）&#34;? 
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">requiresEngines?</span>: <span style="color:#66d9ef">EngineType</span>[]
+
+  <span style="color:#75715e">// What&#39;s the version of this generator?
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 生成器的版本？
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">version?</span>: <span style="color:#66d9ef">string</span>
+
+  <span style="color:#75715e">// 如果生成器需要特定引擎，引擎版本是哪个？
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">requiresEngineVersion?</span>: <span style="color:#66d9ef">string</span>
+}
+</code></pre></div><h3 id="生成器配置项generatoroptions"><code>生成器配置项（GeneratorOptions）</code></h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#75715e">/**
+</span><span style="color:#75715e"> * 在每个 `generate` 命令，有一些参数要传给生成器
+</span><span style="color:#75715e">**/</span>
+<span style="color:#66d9ef">export</span> <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">GeneratorOptions</span> <span style="color:#f92672">=</span> {
+  <span style="color:#75715e">// 生成器的 AST 配置，见上文
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">generator</span>: <span style="color:#66d9ef">GeneratorConfig</span>
+
+  <span style="color:#75715e">// 其他生成器的AST 配置
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">otherGenerators</span>: <span style="color:#66d9ef">GeneratorConfig</span>[]
+
+  <span style="color:#75715e">// `schema.prisma`  文件的位置
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">schemaPath</span>: <span style="color:#66d9ef">string</span>
+
+  <span style="color:#75715e">// 数据模型元格式(the Datamodel Meta Format (DMMF))的AS
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// 这个包含生成的 API Schema，以及解析的数据模型
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">dmmf</span>: <span style="color:#66d9ef">DMMF.Document</span>
+
+  <span style="color:#75715e">// 在数据模型中定义的数据源列表
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">datasources</span>: <span style="color:#66d9ef">DataSource</span>[]
+
+  <span style="color:#75715e">// 字符串格式的数据模型
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">datamodel</span>: <span style="color:#66d9ef">string</span>
+
+  <span style="color:#75715e">// 如果在自述中`requiresEngines`属性需要某些引擎，引擎的二进制在这里
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">binaryPaths?</span>: <span style="color:#66d9ef">BinaryPaths</span>
+
+  <span style="color:#75715e">// 二进制文件的版本
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">version</span>: <span style="color:#66d9ef">string</span> 
+}
+</code></pre></div><p>最新的类型定义在<a href="https://github.com/prisma/prisma/blob/main/packages/generator-helper/src/types.ts">这里</a><a href="https://github.com/prisma/prisma/blob/master/src/packages/generator-helper/src/types.ts">.</a></p>
+<h1 id="实现">实现</h1>
+<!-- raw HTML omitted -->
+<p><strong>The <code>@prisma/sdk</code> package and the DMMF are <em>not</em> considered part of
+the official API surface and might break unexpectedly with any release.</strong></p>
+<!-- raw HTML omitted -->
+<p><a href="https://github.com/prisma/prisma/tree/master/src/packages/cli">Prisma CLI</a> (<code>prisma</code> 的NPM包)，包含 <code>generate</code> 命令的实现，只是<a href="https://github.com/prisma/prisma/tree/master/src/packages/sdk">Prisma SDK</a> (<code>@prisma/sdk</code>)的一层封装。</p>
+<p>SDK 最终负责解析数据模型和运行生成器。</p>
+<p>在 SKD 中，我们有一个叫做 <code>getGenerators</code> 的函数。该函数是 <code>prisma generate</code> 访问生成器的<strong>入口点</strong>。它大致是这样工作的：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getGenerators</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@prisma/sdk&#39;</span>
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generators</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getGenerators</span>({ <span style="color:#a6e22e">schemaPath</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./prisma/schema.prisma&#39;</span> })
+
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">generator</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">generators</span>) {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Generating </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">generator</span>.<span style="color:#a6e22e">manifest</span>.<span style="color:#a6e22e">prettyName</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">generator</span>.<span style="color:#a6e22e">generate</span>()
+}
+</code></pre></div><p>在底层，它实例化<a href="https://github.com/prisma/prisma/blob/main/packages/generator-helper/src/GeneratorProcess.ts#L27">一堆<code>GeneratorProcess</code></a><a href="https://github.com/prisma/prisma/blob/master/src/packages/generator-helper/src/GeneratorProcess.ts#L27">.</a></p>
+<p>这些生成生成器二进制文件，作为一个长时间运行的进程。这个二进制现在准备通过 <code>stdin</code> 接收 RPCs了。</p>
+<p>在生成器端，你也能通过标准输入输出实现 JSON RPC，或者，如果你使用JavaScript 或 TypeScript，你可以使用我们写的叫做 <code>@prisma/generator-helper</code>的帮助库。</p>
+<p>它处理实现该接口的所有工作，并给你简单的回调，你可以在那里实现业务逻辑。这里有一个生成器帮助库如何在Prisma Client TypeScript中使用示例：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-tsx" data-lang="tsx"><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Debug</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@prisma/debug&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">enginesVersion</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@prisma/engines-version&#39;</span>
+<span style="color:#75715e">// 引入帮助库
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">generatorHandler</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@prisma/generator-helper&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">generateClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./generation/generateClient&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getDMMF</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./generation/getDMMF&#39;</span>
+<span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">externalToInternalDmmf</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./runtime/externalToInternalDmmf&#39;</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">debug</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Debug</span>(<span style="color:#e6db74">&#39;prisma:client:generator&#39;</span>)
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pkg</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">require</span>(<span style="color:#e6db74">&#39;../package.json&#39;</span>)
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">clientVersion</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pkg</span>.<span style="color:#a6e22e">version</span>
+
+<span style="color:#75715e">// 在回调中写具体的逻辑
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">generatorHandler</span>({
+<span style="color:#75715e">// 回复自述调用
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">onManifest</span>(<span style="color:#a6e22e">config</span>) {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">requiredEngine</span> <span style="color:#f92672">=</span>
+      <span style="color:#a6e22e">config</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">previewFeatures</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#39;napi&#39;</span>) <span style="color:#f92672">||</span>
+      <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">PRISMA_FORCE_NAPI</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;true&#39;</span>
+        <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;libqueryEngineNapi&#39;</span>
+        <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;queryEngine&#39;</span>
+    <span style="color:#a6e22e">debug</span>(<span style="color:#e6db74">`requiredEngine: </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">requiredEngine</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">defaultOutput</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;@prisma/client&#39;</span>,
+      <span style="color:#a6e22e">prettyName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Prisma Client&#39;</span>,
+      <span style="color:#a6e22e">requiresEngines</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">requiredEngine</span>],
+      <span style="color:#a6e22e">version</span>: <span style="color:#66d9ef">clientVersion</span>,
+      <span style="color:#a6e22e">requiresEngineVersion</span>: <span style="color:#66d9ef">enginesVersion</span>,
+    }
+  },
+  <span style="color:#75715e">// 调用生成时的逻辑
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">onGenerate</span>(<span style="color:#a6e22e">options</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">generateClient</span>({
+      <span style="color:#a6e22e">datamodel</span>: <span style="color:#66d9ef">options.datamodel</span>,
+      <span style="color:#a6e22e">datamodelPath</span>: <span style="color:#66d9ef">options.schemaPath</span>,
+      <span style="color:#a6e22e">binaryPaths</span>: <span style="color:#66d9ef">options.binaryPaths</span><span style="color:#f92672">!</span>,
+      <span style="color:#a6e22e">datasources</span>: <span style="color:#66d9ef">options.datasources</span>,
+      <span style="color:#a6e22e">outputDir</span>: <span style="color:#66d9ef">options.generator.output</span><span style="color:#f92672">!</span>,
+      <span style="color:#a6e22e">copyRuntime</span>: <span style="color:#66d9ef">Boolean</span>(<span style="color:#a6e22e">options</span>.<span style="color:#a6e22e">generator</span>.<span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">copyRuntime</span>),
+      <span style="color:#a6e22e">dmmf</span>: <span style="color:#66d9ef">options.dmmf</span>,
+      <span style="color:#a6e22e">generator</span>: <span style="color:#66d9ef">options.generator</span>,
+      <span style="color:#a6e22e">engineVersion</span>: <span style="color:#66d9ef">options.version</span>,
+      <span style="color:#a6e22e">clientVersion</span>,
+      <span style="color:#a6e22e">transpile</span>: <span style="color:#66d9ef">true</span>,
+      <span style="color:#a6e22e">activeProvider</span>: <span style="color:#66d9ef">options.datasources</span>[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">?</span>.<span style="color:#a6e22e">activeProvider</span>,
+    })
+  },
+})
+
+<span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">getDMMF</span>, <span style="color:#a6e22e">externalToInternalDmmf</span> }
+</code></pre></div><p>然而，你可以在任何语言实现这个，只要你遵循上面提及的 JSON RPC 接口。作为 TS 实现的替代方案，你可以看下<a href="https://github.com/prisma/prisma-client-go/blob/master/generator.go">Go 客户端</a>生成器接口的实现。</p>
+
+    </div>
+
+    <div class="post-copyright">
+            
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Anson </span>
+                </p>
+            
+
+
+            
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://ansoncode.bazhentu.net/2021/901-prisma/>http://ansoncode.bazhentu.net/2021/901-prisma/</span>
+            </p>
+            
+            
+            <div id="qr_code_pc_outer" >
+                <img src=https://api.qrserver.com/v1/create-qr-code/?size&#61;150x150&amp;data&#61;http://ansoncode.bazhentu.net/2021/901-prisma/>
+                <p>扫一扫<br>阅读文章</p>
+            </div>
+            <script>
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    
+                    
+                    
+                }else{
+                    document.getElementById('qr_code_pc_outer').style.display="block"
+                }
+            </script>
+            <style> 
+            p { word-wrap:break-word; }
+                #qr_code_pc_outer {
+                    display: none;
+                    color: #717375;
+                     
+                    position: fixed;
+                    right: 100px;
+                    text-align: center;
+                    top: 200px;
+                    }
+                #qr_code_pc_outer img{
+                    width: 100px;height: 100px;
+                }
+                #qr_code_pc_outer p{
+                    font-size: 0.5em;
+                }
+            </style>
+            
+            
+            <p class="copyright-item">
+                <span>Expect:</span>
+                <span>专注云开发相关技术及产品，寻找合作机会 </span>
+                </p>
+            
+            
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s):
+            
+            <span class="tag"><a href="http://ansoncode.bazhentu.net/tags/prisma/">
+                    #Prisma</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> ·
+                <span><a href="http://ansoncode.bazhentu.net/">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://ansoncode.bazhentu.net/2021/30130%E5%A4%A9%E6%8C%91%E6%88%98-%E5%86%99%E4%BD%9C%E5%8D%8A%E5%B0%8F%E6%97%B6%E5%85%A5%E9%97%A8%E5%85%AC%E5%BC%80%E5%86%99%E4%BD%9C/" class="prev" rel="prev" title="301【30天挑战-写作】半小时入门公开写作"><i class="iconfont icon-left"></i>&nbsp;301【30天挑战-写作】半小时入门公开写作</a>
+        
+        
+        <a href="http://ansoncode.bazhentu.net/2021/205%E4%B8%BAhugo%E5%88%B6%E4%BD%9C%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8/" class="next" rel="next" title="205为hugo制作在线编辑器">205为hugo制作在线编辑器&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+        
+            
+                <div id="tcomment"></div>
+<script src="https://cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"></script>
+<script>twikoo.init({ envId: 'anson-blog-talk-8gwaudnw7b5c558b', el: '#tcomment' })</script>
+            
+        
+    </div>
+</article>
+                </div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2017 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i>
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://ansoncode.bazhentu.net/">Anson</a> | </span>
+         
+
+         
+            <a href="http://www.miibeian.gov.cn/" target="_blank" rel="external nofollow">陕ICP备17023607号-1 </a> |
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/Mogeko/Mogege" target="_blank" rel="external nofollow">Mogege</a></span>
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+<script defer src="/js/vendor_main.min.js"></script>
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script> pangu.spacingPage();</script>
+
+
+
+
+
+
+  <script>
+    
+    function loadJs(url) {
+        return new Promise((resolve, reject) => {
+            var script = document.createElement('script');
+            script.type = "text/javascript";
+            if (script.readyState) {
+                script.onreadystatechange = function () {
+                    if (script.readyState == "loaded" || script.readyState == "complete") {
+                        script.onreadystatechange = null;
+                        
+                        resolve()
+                    }
+                }
+            } else {
+                script.onload = function () {
+                    
+                    resolve()
+                }
+            }
+            script.src = url;
+            document.body.appendChild(script);
+        })
+
+    }
+    function loadManyJs(arr) {
+        return new Promise(async (resolve, reject) => {
+            for (let i = 0; i < arr.length; i++) {
+                let jsUrl = arr[i]
+                try {
+                    await loadJs(jsUrl)
+                } catch (error) {
+                    reject(error)
+                }
+            }
+            resolve()
+        })
+    }
+
+    
+    var currurl = location.href.split('#')[0]
+    let userAgent = navigator.userAgent.toLowerCase();
+    let isWeixin = userAgent.match(/MicroMessenger/i) == "micromessenger"
+    let isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    let arr = [
+        "//astyle-src.alicdn.com/app/searchweb/products/zhaohuoshenqi/lib/jquery.js",
+        "//res.wx.qq.com/open/js/jweixin-1.6.0.js"
+    ]
+    if (isMobile) {
+        
+        loadManyJs(arr).then(async () => {
+            console.log('仅微信端需要执行下面的操作', currurl)
+            let title = 'Prisma 生成器的原理'
+            console.log('title', title)
+            let desc = 'anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。'
+            let imgUrl =  "https://ansoncode.bazhentu.net/myblogtalk/img/PfjiWupdZrtzINV.png" 
+            
+
+            let link =  "https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign"
+            let data = await JQ.get(link, { url: currurl })
+            console.log(data)
+            
+            
+            
+            
+            
+            
+            let debug= false 
+            wx.config({
+                debug: debug, 
+                appId: data.appId, 
+                timestamp: data.timestamp, 
+                nonceStr: data.nonceStr, 
+                signature: data.signature,
+                jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"] 
+            });
+  
+            wx.ready(function () {
+                
+                wx.checkJsApi({
+                    jsApiList: ["checkJsApi", "updateAppMessageShareData", "onMenuShareTimeline", "onMenuShareAppMessage", "onMenuShareQQ", "onMenuShareQZone"], 
+                    success: function (res) {
+                        
+                        
+                        
+                        
+                    }
+                });
+                
+                wx.updateAppMessageShareData({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    }
+                })
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                wx.onMenuShareTimeline({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function (res) {
+                    },
+                    cancel: function (res) {
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+                
+                wx.onMenuShareAppMessage({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    type: '', 
+                    dataUrl: '', 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQQ({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+                
+                wx.onMenuShareQZone({
+                    title: title, 
+                    desc: desc, 
+                    link: currurl, 
+                    imgUrl: imgUrl, 
+                    success: function () {
+                        
+                    },
+                    cancel: function () {
+                        
+                    }
+                });
+
+            });
+            wx.error(function (res) {
+                
+                console.log("初始化wx.config失败" + res)
+            });
+        }).catch(err => {
+            console.log('load js error', err)
+        })
+    }
+
+
+</script>
+
+
+        </div>
+    </body>
+</html>
