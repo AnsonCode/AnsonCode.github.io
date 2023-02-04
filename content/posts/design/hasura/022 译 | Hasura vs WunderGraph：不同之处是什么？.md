@@ -1,5 +1,5 @@
 ---
-title: "022 译 | Hasura vs WunderGraph：不同之处是什么？"
+title: "022 译 | Hasura 与 WunderGraph不同之处是什么？"
 date: 2022-04-19T23:59:45+08:00
 tags: ["技术翻译", "WunderGraph", "Hasura"]
 categories: ["研发提效"]
