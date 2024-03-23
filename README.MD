@@ -5,7 +5,7 @@
 [![Hugo](https://img.shields.io/badge/Power%20by-Hugo-%23ff4088)](https://gohugo.io/)
 [![theme](https://img.shields.io/badge/Theme-mogege-blueviolet)](https://github.com/Mogeko/mogege)
 
-这是 Anson 的个人博客，地址：**<https://ansoncode.bazhentu.net>**
+这是 Anson 的个人博客，地址：**<https://ansoncao.me>**
 
 使用 Markdown 书写，用 [Hugo](https://gohugo.io/) 生成静态网页，用 [Travis CI](https://travis-ci.com/) 部署到 [ansoncode.github.io](https://github.com/AnsonCode/ansoncode.github.io) 上。
 
