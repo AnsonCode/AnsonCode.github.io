@@ -4,7 +4,7 @@ languageCode = "zh-cn" # 语言
 hasCJKLanguage = true # 开启可以让「字数统计」统计汉字
 theme = "mogege2" # 主题 (需要自己下载)
 
-paginate = 11 # 每页的文章数
+paginate = 30 # 每页的文章数
 enableEmoji = true # 支持 Emoji
 enableRobotsTXT = true # 支持 robots.txt
 googleAnalytics = "" # Google 统计 id
@@ -17,7 +17,8 @@ preserveTaxonomyNames = true
   noreferrerLinks = true
 
 [Permalinks]
- posts = "/:year/:filename/"
+  posts = "/:slug/"
+
 
 [menu]
   [[menu.main]]
@@ -43,18 +44,18 @@ preserveTaxonomyNames = true
 [params]
     since = 2017
     author = "Anson"                          # Author's name
-    avatar = "https://ansoncao.me/myblogtalk/img/PfjiWupdZrtzINV.png"           # Author's avatar
-    subtitle = "Anson，会写代码的产品经理"                  # Subtitle
-    expect  = "专注云开发相关技术及产品，寻找合作机会" #个人期待
+    avatar = "//ansoncao.me/myblogtalk/img/PfjiWupdZrtzINV.png"           # Author's avatar
+    subtitle = "Anson，AI & 技术型PM  |  全栈D  |  连续创业者"                  # Subtitle
+    expect  = "飞布API | 可视化 API 开发公有云平台" #个人期待
     cdn_url = ""           # Base CDN URL
-    home_mode = "" # post or other
-    enableGitalk = false # gitalk 评论系统
-    enableTwikoo = true # Twikoo 评论系统
+    home_mode = "post" # post or other
+    enableGitalk = true # gitalk 评论系统
+    enableTwikoo = false # Twikoo 评论系统
 
     google_verification = ""
 
     description = "anson会写代码的产品经理，这是我的技术博客，专注产品设计及软件开发。" # (Meta) 描述
-    keywords = "golang;PMP" # site keywords
+    keywords = "fireboom;golang;产品经理;AIGC;aPaas;" # site keywords
 
     beian = "陕ICP备17023607号-1"
     baiduAnalytics = ""
@@ -87,12 +88,13 @@ preserveTaxonomyNames = true
   link="https://wechat-mp-8geeep1wd1373392-1253693669.ap-shanghai.app.tcloudbase.com/koa-starter/getSign" # 获取微信签名的地址
 
 [params.gitalk] # Github: https://github.com/gitalk/gitalk
-    clientID = "f5abafb88d519a0b1761e" # Your client ID
-    clientSecret = "ff626d72fe0a92234b4c76a39ff168ac076016b0b" # Your client secret
-    repo = "https://github.com/AnsonCode/myblogtalk.git" # The repo to store comments
+    clientID = "5abafb88d519a0b1761e" # Your client ID
+    clientSecret = "acfaf672f08d485d60555c14157c7f1c6215d5f2" # Your client secret
+    repo = "myblogtalk" # The repo to store comments
     owner = "AnsonCode" # Your GitHub ID
-    admin= "AnsonCode" # Required. Github repository owner and collaborators. (Users who having write access to this repository)
+    admin= ['AnsonCode'] # Required. Github repository owner and collaborators. (Users who having write access to this repository)
     id= "location.pathname" # The unique id of the page.
+    
     labels= "gitalk" # Github issue labels. If you used to use Gitment, you can change it
     perPage= 15 # Pagination size, with maximum 100.
     pagerDirection= "last" # Comment sorting direction, available values are 'last' and 'first'.

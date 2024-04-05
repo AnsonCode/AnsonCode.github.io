@@ -1,13 +1,13 @@
 # Anson`s Blog (index)
 
-[![Anson`s Blog](https://github.com/Mogeko/Blog/workflows/Mogeko%60s%20Blog/badge.svg?event=push)](https://ansoncode.github.io)
+[![Anson`s Blog](https://github.com/Mogeko/Blog/workflows/Mogeko%60s%20Blog/badge.svg?event=push)](https://ansoncao.me/)
 [![License](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-blue)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
 [![Hugo](https://img.shields.io/badge/Power%20by-Hugo-%23ff4088)](https://gohugo.io/)
 [![theme](https://img.shields.io/badge/Theme-mogege-blueviolet)](https://github.com/Mogeko/mogege)
 
 这是 Anson 的个人博客，地址：**<https://ansoncao.me>**
 
-使用 Markdown 书写，用 [Hugo](https://gohugo.io/) 生成静态网页，用 [Travis CI](https://travis-ci.com/) 部署到 [ansoncode.github.io](https://github.com/AnsonCode/ansoncode.github.io) 上。
+使用 Markdown 书写，用 [Hugo](https://gohugo.io/) 生成静态网页，用 `Cloudflare Pages` 部署。
 
 主题使用的是 [mogege](https://github.com/Mogeko/mogege)，替换了评论功能，增加了二维码生成以及微信分享功能。
 

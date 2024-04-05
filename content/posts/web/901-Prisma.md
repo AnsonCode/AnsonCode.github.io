@@ -1,5 +1,6 @@
 ---
 title: "901-Prisma 生成器的原理"
+slug: Prisma-Generators
 date: 2022-09-07T10:22:03+08:00
 tags: ["Prisma"]
 categories: ["WEB"]
