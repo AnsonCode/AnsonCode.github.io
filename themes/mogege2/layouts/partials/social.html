@@ -25,7 +25,7 @@
 <a href="https://www.instagram.com/{{.}}/" target="_blank" rel="me noopener"><i class="iconfont icon-instagram"></i></a> 
 {{ end }} 
 {{ with .Site.Params.Social.Email}}
-<a href="mailto:{{.}}" rel="me noopener"><i class="iconfont icon-mail01"></i></a>
+<a href="mailto:{{.}}" rel="me noopener"><i class="iconfont icon-mail"></i></a>
 {{ end }}
 {{ with .Site.Params.Social.Facebook}}
 <a href="https://facebook.com/{{.}}" rel="me noopener"><i class="iconfont icon-facebook"></i></a>
@@ -40,5 +40,12 @@
 <a href="https://medium.com/{{.}}" rel="me noopener"><i class="iconfont icon-medium-circle-fill"></i></a>
 {{ end }}
 {{ with .Site.Params.Social.Wechat}}
-<a target="_blank" rel="me noopener" onclick="document.getElementById('lightbox').style.display='inline';"><i class="iconfont icon-wechat"></i></a> 
+<a target="_blank" rel="me noopener" href="{{.}}"><i class="iconfont icon-wechat"></i></a> 
+{{end}}
+
+{{ with .Site.Params.Social.Zhihu}}
+<a target="_blank" rel="me noopener" href="{{.}}"><i class="iconfont icon-zhihu"></i></a> 
+{{end}}
+{{ with .Site.Params.Social.Jike}}
+<a target="_blank" rel="me noopener" href="{{.}}"><i class="iconfont icon-weibo"></i></a> 
 {{end}}

@@ -12,54 +12,34 @@
        {{ . }}
     </h2>
     {{ end }}
- 
+	{{ with .Site.Params.expect}}
+    <h4 class="description">
+       {{ . }}
+    </h4>
+    {{ end }}
+	<div class="social-links">
+        {{ partial "social.html" . }}
+    </div>
 </div>
-	{{ range (.Paginate .Pages).Pages }}
-		<article class="post" itemscope itemscope="" itemtype="http://schema.org/Article">
 
-			<header class="post-header">
-				<h1 class="post-title" itemprop="name headline"><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-			</header>
-			<div class="post-content">
-				 <!--featured_image-->
-				   {{ with .Params.featured_image }}
-          			{{- $img := . -}}
-          			<p><img src="{{ printf "%s" $img }}" class="featured_image"></p>
-       				 {{ end }}
-       			 <!-- end featured_image-->
+	<!-- 获取置顶的文章 -->
+	{{ $stickyPosts := where .Site.RegularPages "Params.sticky" true }}
+	{{ $pages := where $stickyPosts "Draft" false }}
 
-       			{{ .Summary }}
-			</div>
-			<div class="post-footer">
-				<div class="post-meta">
-                <span class="post-time">
-                <time datetime={{.Date.Format (.Site.Params.dateFormatToUse | default "2006-01-02") }} itemprop="datePublished">{{ .Date.Format (.Site.Params.dateFormatToUse | default "January 2, 2006") }}</time>
-                </span>
-                in
-                {{ with .Params.categories -}}
-                <i class="iconfont icon-folder"></i>
-                <span class="post-category">
-                        {{ range . }}
-                        {{- $name := . -}}
-                        {{- with $.Site.GetPage "taxonomy" (printf "categories/%s" $name) | default ($.Site.GetPage "taxonomy" (printf "categories/%s" ($name | urlize))) -}}
-                          <a href="{{ .Permalink }}"> {{ $name }} </a>
-                        {{ end -}}
-                        {{ end }}
-                </span>
-								{{- end }}
-								<span class="post-word-count">, {{ .WordCount }} words</span>
-        </div>
-				{{ with .Params.tags }}
-				<div class="post-tags">
-        		{{ range . }}
-        			<span class="tag"><a href="{{ "tags/" | absURL }}{{ . | urlize }}/">
-               	 #{{.}}</a></span>
-        		{{ end }}
-				</div>
-				{{ end }}
-			</div>
-		</article>
+	<!-- 如果没有置顶的文章，则获取最新文章 -->
+	{{ if eq (len $pages) 0 }}
+	{{ $pages = where .Site.RegularPages "Draft" false }}
 	{{ end }}
 
-	{{ partial "paginator.html" . }}
+	{{ range first 3 ($pages.ByDate.Reverse) }}
+	<div>
+		<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+		<span>{{ .Date.Format "January 2, 2006" }}</span>
+		<p>{{ .Summary }}</p>
+	</div>
+	{{ end }}
+
+	
+
+	<!-- {{ partial "paginator.html" . }} -->
 </div>

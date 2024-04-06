@@ -69,7 +69,7 @@ github->本机 :本机或公网访问
     - hugo有两种版本：一个是普通版，一个是扩展版（支持各种插件如sass）
     - 上述链接为hugo_extended_0.80.0_Windows-64bit,为扩展版
 2. 安装hugo：将hugo.exe文件复制到任意一个文件夹（随心即可），同时在*系统环境变量*中设置hugo.exe所在目录，重启电脑（不重启可能不生效）
-![本地环境变量设置](https://ansoncao.me/myblogtalk/img/20210122011409.png)
+![本地环境变量设置](https://img.ansoncao.me/img/20210122011409.png)
 
 在命令行输入：
 ```bash
@@ -246,7 +246,7 @@ git push -u origin blog #推送到github上
 1. 前往[https://travis-ci.com/](https://travis-ci.com/)，并用github账户登陆
 2. 前往[https://travis-ci.com/account/repositories](https://travis-ci.com/account/repositories)授权travis访问刚刚新建仓库的权限
 
-![20210122030216](https://ansoncao.me/myblogtalk/img/20210122030216.png)
+![20210122030216](https://img.ansoncao.me/img/20210122030216.png)
 
 3. 在travis当前仓库的后台设置`$GH_APIKEY2`(详情见`.travis.yml`）为github的token
     - 前往`https://github.com/settings/tokens`获取git token,权限为`write:packages`
