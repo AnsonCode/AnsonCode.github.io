@@ -3,6 +3,16 @@
 <!-- <script src="//cdn.bootcss.com/gitalk/1.5.2/gitalk.min.js"></script> -->
 <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script>
+    // 用来生成一个短链接，gitalk 需要
+    function formatString(url) {
+        // 移除开头和结尾的斜杠（如果存在）
+        let formatted = url.replace(/^\/|\/$/g, '');
+        // 移除 ".html" 扩展名
+        formatted = formatted.replace(/\.html$/, '');
+        // 保留50个字符
+        return formatted.substring(0, 50);
+    }
+
     const gitalk = new Gitalk({
 
         clientID: '{{ .Site.Params.Gitalk.clientID }}',
@@ -10,7 +20,7 @@
         repo: '{{ .Site.Params.Gitalk.repo }}',
         owner: '{{ .Site.Params.Gitalk.owner }}',
         admin: ['{{ .Site.Params.Gitalk.owner }}'],
-        id: (location.pathname).split("/").pop().substring(0, 49), // Ensure uniqueness and length less than 50
+        id: formatString(location.pathname), // Ensure uniqueness and length less than 50
         distractionFreeMode: false // Facebook-like distraction free mode
     });
     (function () {
@@ -18,6 +28,9 @@
         //     document.getElementById('gitalk-container').innerHTML = 'Gitalk comments not available by default when the website is previewed locally.';
         //     return;
         // }
+        console.log("debug",location.pathname,(location.pathname).substring(1, 50))
+        console.log("debug",formatString(location.pathname))
+        console.log("{{ .Site.Params.Gitalk.id }}")
         gitalk.render('gitalk-container');
     })();
 </script>
